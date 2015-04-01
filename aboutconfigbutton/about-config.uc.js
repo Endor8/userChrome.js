@@ -10,7 +10,7 @@
        function buttonFunction() {
           openUILinkIn("about:config", "tab");
        };   
-       
+        
        var button = document.createElement('toolbarbutton');
        button.id = buttonId;
        button.setAttribute('class', 'toolbarbutton-1 chromeclass-toolbar-additional');
