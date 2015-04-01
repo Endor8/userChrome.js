@@ -15,7 +15,7 @@
 // @note         - 右键菜单 "查看附加组件" 需要 DOM Inspector
 // @note         uc脚本管理界面
 // @note         - 启用禁用需要 rebuild_userChrome.uc.xul
-// @note         - 编辑命令需要首先设置 view_source.editor.path 的路径
+// @note         - 编辑命令需要首先设置  view_source.editor.path 的路径
 // @note         - 图标请自行添加样式，详细信息见主页
 // @note         其它信息见主页
 // ==/UserScript==
