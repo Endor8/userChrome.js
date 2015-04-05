@@ -3,8 +3,11 @@
 // @description    Greasemonkey っぽいもの
 // @namespace      http://d.hatena.ne.jp/Griever/
 // @include        main
-// @compatibility  Firefox 32
+// @compatibility  Firefox 32-37
 // @license        MIT License
+// @version        0.1.8.3 + add persistFlags for PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION to fix @require save data
+// @version        0.1.8.3 + Bug 704320 
+// @version        0.1.8.3 + fix unsafeWindow + __proto__ (Bug 1061853)
 // @version        0.1.8.3
 // @note           0.1.8.3 Firefox 32 で GM_xmlhttpRequest が動かないのを修正
 // @note           0.1.8.3 内臓の console を利用するようにした
@@ -532,14 +535,15 @@ USL.getFocusedWindow = function () {
 USL.init = function(){
 	USL.loadSetting();
 	USL.style = addStyle(css);
-/*	
-	USL.icon = $('status-bar').appendChild($C("statusbarpanel", {
+	
+/*	USL.icon = $('status-bar').appendChild($C("statusbarpanel", {
 		id: "UserScriptLoader-icon",
 		class: "statusbarpanel-iconic",
 		context: "UserScriptLoader-popup",
 		onclick: "USL.iconClick(event);"
 	}));
 */
+
 	USL.icon = $('urlbar-icons').appendChild($C("image", {
 		id: "UserScriptLoader-icon",
 		context: "UserScriptLoader-popup",
@@ -561,7 +565,7 @@ USL.init = function(){
 			</menu>\
 			<menuitem label="Script speichern"\
 			          id="UserScriptLoader-saveMenu"\
-			          accesskey="s"\
+			          accesskey="S"\
 			          oncommand="USL.saveScript();"/>\
 			<menu label="Menu" id="UserScriptLoader-submenu">\
 				<menupopup id="UserScriptLoader-submenu-popup">\
@@ -572,18 +576,18 @@ USL.init = function(){
 					          id="UserScriptLoader-hide-exclude"\
 					          accesskey="a"\
 					          type="checkbox"\
-					          checked=" + USL.HIDE_EXCLUDE + "\
+					          checked="' + USL.HIDE_EXCLUDE + '"\
 					          oncommand="USL.HIDE_EXCLUDE = !USL.HIDE_EXCLUDE;" />\
 					<menuitem label="Scriptordner öffnen"\
 					          id="UserScriptLoader-openFolderMenu"\
-					          accesskey="ö"\
+					          accesskey="o"\
 					          oncommand="USL.openFolder();" />\
 					<menuitem label="Script importieren"\
 					          accesskey="i"\
 					          oncommand="USL.rebuild();" />\
 					<menuitem label="Script Zwischenspeicher"\
 					          id="UserScriptLoader-cache-script"\
-					          accesskey="Z"\
+					          accesskey="z"\
 					          type="checkbox"\
 					          checked="' + USL.CACHE_SCRIPT + '"\
 					          oncommand="USL.CACHE_SCRIPT = !USL.CACHE_SCRIPT;" />\
@@ -750,7 +754,7 @@ USL.saveScript = function() {
 			var loadContext = win.QueryInterface(Ci.nsIInterfaceRequestor)
 				.getInterface(Ci.nsIWebNavigation)
 				.QueryInterface(Ci.nsILoadContext);
-			wbp.saveURI(uri, null, uri, null, null, fp.file, loadContext);
+			wbp.saveURI(uri, null, uri, Ci.nsIHttpChannel.REFERRER_POLICY_NO_REFERRER_WHEN_DOWNGRADE, null, null, fp.file, loadContext);
 		}
 	}
 	fp.open(callbackObj);
@@ -944,18 +948,24 @@ USL.injectScripts = function(safeWindow, rsflag) {
 			return;
 		}
 
-		let sandbox = new Cu.Sandbox(safeWindow, {sandboxPrototype: safeWindow});
+		let sandbox = new Cu.Sandbox(safeWindow, {sandboxPrototype: safeWindow, 'wantXrays': true,});
+    try {
+      var unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
+      Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
+    } catch(e) {
+      sandbox = new Cu.Sandbox([safeWindow], {sandboxPrototype: safeWindow});
+      unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
+      Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
+    }
 		let GM_API = new USL.API(script, sandbox, safeWindow, aDocument);
 		for (let n in GM_API)
 			sandbox[n] = GM_API[n];
-
 		sandbox.XPathResult  = Ci.nsIDOMXPathResult;
-		sandbox.unsafeWindow = safeWindow.wrappedJSObject;
 		sandbox.document     = safeWindow.document;
 		sandbox.console      = safeWindow.console;
 		sandbox.window       = safeWindow;
-
-		sandbox.__proto__ = safeWindow;
+    if (parseInt(Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).version) < 35)
+	  	sandbox.__proto__ = safeWindow;
 		USL.evalInSandbox(script, sandbox);
 		safeWindow.USL_run.push(script);
 	}
@@ -1026,7 +1036,7 @@ USL.loadSetting = function() {
 		//USL.database.resource = data.resource;
 		USL.debug('loaded UserScriptLoader.json');
 	} catch(e) {
-		USL.debug('can not load UserScriptLoader.json');
+		USL.debug('UserScriptLoader.json Datei kann nicht geladen werden');
 	}
 };
 
@@ -1075,7 +1085,9 @@ USL.getContents = function(aURL, aCallback){
 			onLinkIconAvailable: function(aIconURL) {},
 		}
 	}
-	wbp.saveURI(uri, null, null, null, null, aFile, null);
+  wbp.persistFlags = Ci.nsIWebBrowserPersist.PERSIST_FLAGS_BYPASS_CACHE;
+  wbp.persistFlags |= Ci.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
+	wbp.saveURI(uri, null, null, Ci.nsIHttpChannel.REFERRER_POLICY_NO_REFERRER_WHEN_DOWNGRADE, null, null, aFile, null);
 	USL.debug("getContents: " + aURL);
 };
 
