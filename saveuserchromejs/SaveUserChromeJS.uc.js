@@ -4,7 +4,7 @@
 // @description    像 Greasemonkey 一样保存 uc脚本
 // @include        main
 // @charset        UTF-8
-// @version        0.4a
+// @version        0.4b
 // @homepageURL    https://github.com/ywzhaiqi/userChromeJS/tree/master/SaveUserChromeJS
 // @reviewURL      http://bbs.kafan.cn/thread-1590873-1-1.html
 // ==/UserScript==
@@ -98,7 +98,24 @@ var ns = window.saveUserChromeJS = {
                         // 详见 http://tieba.baidu.com/f?ct=335675392&tn=baiduPostBrowser&z=3162087505&sc=53663075812#53663075812
                         if (Services.appinfo.version < 33) {
                             ns.github_addListener(safeWin);
-                        }
+                        }					
+						var sWBrowser = gBrowser.getBrowserForContentWindow(safeWin);
+						if (!sWBrowser.ProgListener) {
+						   sWBrowser.ProgListener = {
+							  QueryInterface: XPCOMUtils.generateQI(["nsIWebProgressListener", "nsISupportsWeakReference"]),
+							  onLocationChange: function() {
+								 safeWin.setTimeout(function() {
+									ns.github_addButton(safeWin.document);
+								 }, 0);
+							  }
+						   };
+						};
+						try {
+						   sWBrowser.addProgressListener(sWBrowser.ProgListener, Ci.nsIWebProgress.NOTIFY_LOCATION);
+						   safeWin.addEventListener('beforeunload', function() {
+							  sWBrowser.removeProgressListener(sWBrowser.ProgListener);
+						   });
+						} catch(e) { };
                     }, false);
                 }
 
