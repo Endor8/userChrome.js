@@ -3,7 +3,7 @@
 // @description    Greasemonkey っぽいもの
 // @namespace      http://d.hatena.ne.jp/Griever/
 // @include        main
-// @compatibility  Firefox 35
+// @compatibility  Firefox 37
 // @license        MIT License
 // @version        0.1.8.4
 // @note           0.1.8.4 add persistFlags for PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION to fix @require save data
