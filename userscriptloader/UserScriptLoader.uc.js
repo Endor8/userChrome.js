@@ -3,12 +3,13 @@
 // @description    Greasemonkey っぽいもの
 // @namespace      http://d.hatena.ne.jp/Griever/
 // @include        main
-// @compatibility  Firefox 32-37
+// @compatibility  Firefox 35
 // @license        MIT License
-// @version        0.1.8.3 + add persistFlags for PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION to fix @require save data
-// @version        0.1.8.3 + Bug 704320 
-// @version        0.1.8.3 + fix unsafeWindow + __proto__ (Bug 1061853)
-// @version        0.1.8.3
+// @version        0.1.8.4
+// @note           0.1.8.4 add persistFlags for PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION to fix @require save data
+// @note           0.1.8.4 Firefox 35 用の修正
+// @note           0.1.8.4 エディタで Scratchpad を使えるようにした
+// @note           0.1.8.4 GM_notification を独自実装
 // @note           0.1.8.3 Firefox 32 で GM_xmlhttpRequest が動かないのを修正
 // @note           0.1.8.3 内臓の console を利用するようにした
 // @note           0.1.8.3 obsever を使わないようにした
@@ -281,7 +282,10 @@ USL.API = function(script, sandbox, win, doc) {
 	var self = this;
 
 	this.GM_log = function() {
-		Services.console.logStringMessage("["+ script.name +"] " + Array.slice(arguments).join(", "));
+		var arr = Array.slice(arguments);
+		arr.unshift('[' + script.name + ']');
+		win.console.log.apply(win.console, arr);
+		// Services.console.logStringMessage("["+ script.name +"] " + Array.slice(arguments).join(", "));
 	};
 
 	this.GM_xmlhttpRequest = function(obj) {
@@ -401,6 +405,46 @@ USL.API = function(script, sandbox, win, doc) {
 	this.GM_getMetadata = function(key) {
 		return script.metadata[key] ? script.metadata[key].slice() : void 0;
 	};
+
+	this.GM_notification = function(msg, title, icon, callback) {
+		if (!icon) {
+			icon = 'data:image/png;base64,\
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACOElEQVQ4ja3Q3UtTcRgH8N8f4K11\
+FaRrVGumlTXndPYiyQqkCyPoLroOCbyJSCGJUhOGUSnShVqtFpYlW/lCKiPmy5zinObZdJtn29nZ\
+cW7nnB39TapvF+WdI4W+95/n+zwPIf8zwnRFt+AyIj5VDn7CAN5ZiphDD25Mh+jIaUSGixEePAnW\
+XhTaeYCr/OdWogMZoR2Z2DPQyBNsrpqxEWiF4muG4LwK9nOhvCOOT5Y1iks3sSV0IP29CrLnAkS3\
+EalxPRR/CxJTN8Dai35kXZ+fNGQyfBs2Q7chz1dCcp9FasIAxd+E5GwtwoNl8H3QqnZuHy+tSc5f\
+RybejvTCRUiz55CaKoPsvQV5sR7ciAnBvoJLWdtjTn1aCTWARlshz52HOG1E0lkCxd+C+LdrCH7S\
+1mXHjhLd2nQ1MvxzyF4TxJlKpCYrsD6mQ3rpEUL92l+BPg1d6T1Kl98dpr43asq8OkSZ7nyeEEII\
+59DzElMHGm3DJmvGRvAxFH8TFF8T0osPIXkaIc7UI+W6i+TEHbD9VWC68hRPx4E//+BGz6QiX4tp\
+eOgUZQdO0FV7IQ3ZCqi8+ACC7TjWhkwQ3Q2IfrmCZcsxMF0HX2Q9ZzuBj9rRdVctpLn7EN33ELaZ\
+wPSoRE/nvv3/xIQQEnivgeRpBDdcg5W3BWB68s27gn/xDDdUjejAZfheqxOezrzdtRJCiNeamxPo\
+1WLFqgHzUtW8a7idZesRr9+i5r1Pc3P2jAkhhLGodXs1vwEkf3FKAtNVEwAAAABJRU5ErkJggg==';
+		}
+
+		let aBrowser = win.QueryInterface(Ci.nsIDOMWindow)
+			.QueryInterface(Ci.nsIInterfaceRequestor)
+			.getInterface(Ci.nsIWebNavigation)
+			.QueryInterface(Ci.nsIDocShell).chromeEventHandler;
+
+		let buttons = [{
+			label: msg,
+			accessKey: 'U',
+			callback: function (aNotification, aButton) {
+				try {
+					if (callback)
+						callback.call(win);
+				} catch (e) {
+					self.GM_log(new Error(e));
+				}
+			}.bind(this)
+		}];
+		let notificationBox = gBrowser.getNotificationBox(aBrowser);
+		let notification = notificationBox.appendNotification(
+			title, 'USL_notification', icon,
+			notificationBox.PRIORITY_INFO_MEDIUM,
+			buttons);
+	};
 };
 USL.API.prototype = {
 	GM_openInTab: function(url, loadInBackground, reuseTab) {
@@ -492,10 +536,10 @@ USL.__defineGetter__("disabled", function() DISABLED);
 USL.__defineSetter__("disabled", function(bool){
 	if (bool) {
 		this.icon.setAttribute("state", "disable");
-		gBrowser.mPanelContainer.removeEventListener("DOMWindowCreated", this, false);
+		// gBrowser.mPanelContainer.removeEventListener("DOMWindowCreated", this, false);
 	} else {
 		this.icon.setAttribute("state", "enable");
-		gBrowser.mPanelContainer.addEventListener("DOMWindowCreated", this, false);
+		// gBrowser.mPanelContainer.addEventListener("DOMWindowCreated", this, false);
 	}
 	return DISABLED = bool;
 });
@@ -527,6 +571,15 @@ USL.__defineSetter__("CACHE_SCRIPT", function(bool){
 	return bool;
 });
 
+var MY_EDITOR = USL.pref.getValue('MY_EDITOR', true);
+USL.__defineGetter__("MY_EDITOR", function() MY_EDITOR);
+USL.__defineSetter__("MY_EDITOR", function(bool){
+	MY_EDITOR = !!bool;
+	let elem = $("UserScriptLoader-use-myeditor");
+	if (elem) elem.setAttribute("checked", MY_EDITOR);
+	return bool;
+});
+
 USL.getFocusedWindow = function () {
 	var win = document.commandDispatcher.focusedWindow;
 	return (!win || win == window) ? content : win;
@@ -535,22 +588,20 @@ USL.getFocusedWindow = function () {
 USL.init = function(){
 	USL.loadSetting();
 	USL.style = addStyle(css);
-	
-/*	USL.icon = $('status-bar').appendChild($C("statusbarpanel", {
+/*
+	USL.icon = $('status-bar').appendChild($C("statusbarpanel", {
 		id: "UserScriptLoader-icon",
 		class: "statusbarpanel-iconic",
 		context: "UserScriptLoader-popup",
 		onclick: "USL.iconClick(event);"
 	}));
 */
-
 	USL.icon = $('urlbar-icons').appendChild($C("image", {
 		id: "UserScriptLoader-icon",
 		context: "UserScriptLoader-popup",
 		onclick: "USL.iconClick(event);",
 		style: "padding: 0px 2px;",
 	}));
-
 
 	var xml = '\
 		<menupopup id="UserScriptLoader-popup" \
@@ -591,6 +642,12 @@ USL.init = function(){
 					          type="checkbox"\
 					          checked="' + USL.CACHE_SCRIPT + '"\
 					          oncommand="USL.CACHE_SCRIPT = !USL.CACHE_SCRIPT;" />\
+					<menuitem label="Eigenen Editor verwenden"\
+					          id="UserScriptLoader-use-myeditor"\
+					          accesskey="E"\
+					          type="checkbox"\
+					          checked="' + USL.MY_EDITOR + '"\
+					          oncommand="USL.MY_EDITOR = !USL.MY_EDITOR;" />\
 					<menuitem label="Testmodus"\
 					          id="UserScriptLoader-debug-mode"\
 					          accesskey="T"\
@@ -614,22 +671,27 @@ USL.init = function(){
 
 	USL.rebuild();
 	USL.disabled = USL.pref.getValue('disabled', false);
+	Array.from(gBrowser.browsers, browser => {
+		browser.addEventListener('DOMWindowCreated', USL, false);
+	});
+	gBrowser.mTabContainer.addEventListener('TabOpen', USL, false);
+	gBrowser.mTabContainer.addEventListener('TabClose', USL, false);
 	window.addEventListener('unload', USL, false);
 	USL.initialized = true;
 };
 
 USL.uninit = function () {
+	Array.from(gBrowser.browsers, browser => {
+		browser.removeEventListener('DOMWindowCreated', USL, false);
+	});
+	gBrowser.mTabContainer.removeEventListener('TabOpen', USL, false);
+	gBrowser.mTabContainer.removeEventListener('TabClose', USL, false);
 	window.removeEventListener('unload', USL, false);
-	USL.saveSetting();
 };
 
 USL.destroy = function () {
-	window.removeEventListener('unload', USL, false);
-
-	let disabledScripts = [x.leafName for each(x in USL.readScripts) if (x.disabled)];
-	USL.pref.setValue('script.disabled', disabledScripts.join('|'));
-	USL.pref.setValue('disabled', USL.disabled);
-	USL.pref.setValue('HIDE_EXCLUDE', USL.HIDE_EXCLUDE);
+	USL.saveSetting();
+	USL.uninit();
 
 	var e = document.getElementById("UserScriptLoader-icon");
 	if (e) e.parentNode.removeChild(e);
@@ -647,10 +709,17 @@ USL.handleEvent = function (event) {
 			win.USL_run = [];
 			if (USL.disabled) return;
 			if (USL.readScripts.length === 0) return;
-			this.injectScripts(win);
+			USL.injectScripts(win);
 			break;
+		case 'TabOpen':
+			event.target.linkedBrowser.addEventListener('DOMWindowCreated', USL, false);
+			break; 
+		case 'TabClose':
+			event.target.linkedBrowser.removeEventListener('DOMWindowCreated', USL, false);
+			break; 
 		case "unload":
-			this.uninit();
+			USL.saveSetting();
+			USL.uninit();
 			break;
 	}
 };
@@ -849,23 +918,49 @@ USL.menuClick = function(event){
 	if (event.button == 1) {
 		menuitem.doCommand();
 		menuitem.setAttribute('checked', menuitem.getAttribute('checked') == 'true'? 'false' : 'true');
-	} else if (event.button == 2 && USL.EDITOR && menuitem.script) {
-		USL.edit(menuitem.script.path);
+	} else if (event.button == 2 && menuitem.script) {
+		USL.edit(menuitem.script);
 	}
 };
 
-USL.edit = function(path) {
-	if (!USL.EDITOR) return;
+USL.edit = function(script) {
+	if (!USL.MY_EDITOR || !USL.EDITOR)
+		return USL.editByScratchpad(script);
 	try {
 		var UI = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
 		UI.charset = window.navigator.platform.toLowerCase().indexOf("win") >= 0? "Shift_JIS": "UTF-8";
-		path = UI.ConvertFromUnicode(path);
+		var path = UI.ConvertFromUnicode(script.path);
 		var app = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
 		app.initWithPath(USL.EDITOR);
 		var process = Cc["@mozilla.org/process/util;1"].createInstance(Ci.nsIProcess);
 		process.init(app);
 		process.run(false, [path], 1);
 	} catch (e) {}
+};
+
+USL.editByScratchpad = function(script) {
+	var win = Scratchpad.ScratchpadManager.openScratchpad({
+		filename: script.path,
+		text: USL.loadText(script.file),
+		saved: true,
+	});
+
+	var onload = (event) => {
+		win.removeEventListener('load', onload, false);
+		['sp-cmd-newWindow'
+		,'sp-cmd-openFile'
+		,'sp-cmd-clearRecentFiles'
+		,'sp-cmd-run'
+		,'sp-cmd-inspect'
+		,'sp-cmd-display'
+		,'sp-cmd-reloadAndRun'
+		].forEach(id => {
+			var elem = win.document.getElementById(id);
+			if (!elem) return;
+			elem.setAttribute('disabled', 'true');
+		});
+	};
+	win.addEventListener('load', onload, false);
 };
 
 USL.iconClick = function(event){
@@ -893,9 +988,9 @@ USL.injectScripts = function(safeWindow, rsflag) {
 	// document-start でフレームを開いた際にちょっとおかしいので…
 	if (!rsflag && locationHref == ""/* && safeWindow.frameElement*/)
 		return USL.retryInject(safeWindow);
-/*	// target="_blank" で about:blank 状態で開かれるので…
+	// target="_blank" で about:blank 状態で開かれるので…
 	if (!rsflag && locationHref == 'about:blank')
-		return USL.retryInject(safeWindow);*/
+		return USL.retryInject(safeWindow);
 
 	if (USL.GLOBAL_EXCLUDES_REGEXP.test(locationHref)) return;
 
@@ -921,19 +1016,33 @@ USL.injectScripts = function(safeWindow, rsflag) {
 			documentEnds.push(script);
 		}
 	});
-	if (documentEnds.length) {
-		safeWindow.addEventListener("DOMContentLoaded", function(event){
-			event.currentTarget.removeEventListener(event.type, arguments.callee, false);
+	/* 画像を開いた際に実行されないので適当に実行する */
+	if (aDocument instanceof ImageDocument) {
+		safeWindow.setTimeout(function() {
 			documentEnds.forEach(function(s) "delay" in s ? 
-				safeWindow.setTimeout(run, s.delay, s) : run(s));
-		}, false);
-	}
-	if (windowLoads.length) {
-		safeWindow.addEventListener("load", function(event) {
-			event.currentTarget.removeEventListener(event.type, arguments.callee, false);
+				safeWindow.setTimeout(run, s.delay, s) :
+				run(s));
+		}, 10);
+		safeWindow.setTimeout(function() {
 			windowLoads.forEach(function(s) "delay" in s ? 
-				safeWindow.setTimeout(run, s.delay, s) : run(s));
-		}, false);
+				safeWindow.setTimeout(run, s.delay, s) :
+				run(s));
+		}, 300);
+	} else {
+		if (documentEnds.length) {
+			safeWindow.addEventListener("DOMContentLoaded", function(event){
+				event.currentTarget.removeEventListener(event.type, arguments.callee, false);
+				documentEnds.forEach(function(s) "delay" in s ? 
+					safeWindow.setTimeout(run, s.delay, s) : run(s));
+			}, false);
+		}
+		if (windowLoads.length) {
+			safeWindow.addEventListener("load", function(event) {
+				event.currentTarget.removeEventListener(event.type, arguments.callee, false);
+				windowLoads.forEach(function(s) "delay" in s ? 
+					safeWindow.setTimeout(run, s.delay, s) : run(s));
+			}, false);
+		}
 	}
 
 	function run(script) {
@@ -948,24 +1057,21 @@ USL.injectScripts = function(safeWindow, rsflag) {
 			return;
 		}
 
-		let sandbox = new Cu.Sandbox(safeWindow, {sandboxPrototype: safeWindow, 'wantXrays': true,});
-    try {
-      var unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
-      Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
-    } catch(e) {
-      sandbox = new Cu.Sandbox([safeWindow], {sandboxPrototype: safeWindow});
-      unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
-      Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
-    }
+		let sandbox = new Cu.Sandbox(safeWindow, {sandboxPrototype: safeWindow});
+		let unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
+		Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
+
 		let GM_API = new USL.API(script, sandbox, safeWindow, aDocument);
 		for (let n in GM_API)
 			sandbox[n] = GM_API[n];
+
 		sandbox.XPathResult  = Ci.nsIDOMXPathResult;
+		// sandbox.unsafeWindow = safeWindow.wrappedJSObject;
 		sandbox.document     = safeWindow.document;
 		sandbox.console      = safeWindow.console;
 		sandbox.window       = safeWindow;
-    if (parseInt(Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).version) < 35)
-	  	sandbox.__proto__ = safeWindow;
+
+		// sandbox.__proto__ = safeWindow;
 		USL.evalInSandbox(script, sandbox);
 		safeWindow.USL_run.push(script);
 	}
@@ -1036,7 +1142,7 @@ USL.loadSetting = function() {
 		//USL.database.resource = data.resource;
 		USL.debug('loaded UserScriptLoader.json');
 	} catch(e) {
-		USL.debug('UserScriptLoader.json Datei kann nicht geladen werden');
+		USL.debug('can not load UserScriptLoader.json');
 	}
 };
 
@@ -1046,6 +1152,7 @@ USL.saveSetting = function() {
 	USL.pref.setValue('disabled', USL.disabled);
 	USL.pref.setValue('HIDE_EXCLUDE', USL.HIDE_EXCLUDE);
 	USL.pref.setValue('CACHE_SCRIPT', USL.CACHE_SCRIPT);
+	USL.pref.setValue('MY_EDITOR', USL.MY_EDITOR);
 	USL.pref.setValue('DEBUG', USL.DEBUG);
 
 	var aFile = Services.dirsvc.get('UChrm', Ci.nsILocalFile);
@@ -1085,9 +1192,9 @@ USL.getContents = function(aURL, aCallback){
 			onLinkIconAvailable: function(aIconURL) {},
 		}
 	}
-  wbp.persistFlags = Ci.nsIWebBrowserPersist.PERSIST_FLAGS_BYPASS_CACHE;
-  wbp.persistFlags |= Ci.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
-	wbp.saveURI(uri, null, null, Ci.nsIHttpChannel.REFERRER_POLICY_NO_REFERRER_WHEN_DOWNGRADE, null, null, aFile, null);
+	wbp.persistFlags = Ci.nsIWebBrowserPersist.PERSIST_FLAGS_BYPASS_CACHE;
+	wbp.persistFlags |= Ci.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
+	wbp.saveURI(uri, null, null, null, null, aFile, null);
 	USL.debug("getContents: " + aURL);
 };
 
