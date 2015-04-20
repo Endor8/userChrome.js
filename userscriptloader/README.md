@@ -9,7 +9,11 @@ Das **Ergebnis des Skripts**:
 
 ![Screenshot User Script Loader](https://github.com/ardiman/userChrome.js/raw/master/userscriptloader/scr_userscriptloader.png)
 
+![ScreenshotUser Script Loader2](http://i.imgur.com/2dsDZme.png)
+
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils. 
 Evtl. muss über `about:config` noch der externe Editor definiert (Wert für `view_source.editor.path` eintragen) werden.
+
+![ScreenshotUser Script Loader3](http://i.imgur.com/icEyfqP.png)
 
