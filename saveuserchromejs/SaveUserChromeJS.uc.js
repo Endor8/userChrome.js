@@ -11,7 +11,7 @@
 
 (function() {
 
-// 保存完毕是否启用通知？
+// 保存完毕是否启用通知-保存完？
 var notificationsAfterInstall = true;
 
 // 保存完毕是否加载脚本（无需启动）？仅支持 .uc.js，一些脚本有问题。
