@@ -538,7 +538,7 @@ USL.__defineSetter__("disabled", function(bool){
 	if (bool) {
 		this.icon.setAttribute("state", "disable");
 	  // gBrowser.mPanelContainer.removeEventListener("DOMWindowCreated", this, false);
-		this.icon.setAttribute("tooltiptext", "naktiv: Mit Linksklick aktivieren, Rechtsklick Menü öffnen");
+		this.icon.setAttribute("tooltiptext", "inaktiv: Mit Linksklick aktivieren, Rechtsklick Menü öffnen");
 	} else {
 		this.icon.setAttribute("state", "enable");
 	  // gBrowser.mPanelContainer.addEventListener("DOMWindowCreated", this, false);
