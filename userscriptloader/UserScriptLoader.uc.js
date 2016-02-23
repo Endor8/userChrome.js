@@ -1,19 +1,20 @@
 // ==UserScript==
 // @name           UserScriptLoader.uc.js
-// @description    Greasemonkey っぽいもの
+// @description    Greasemonkey Scripte laden
 // @namespace      http://d.hatena.ne.jp/Griever/
 // @include        main
-// @compatibility  Firefox 37
+// @compatibility  Firefox 32-37
 // @license        MIT License
 // @version        0.1.8.4
-// @note           0.1.8.4 add persistFlags for PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION to fix @require save data
-// @note           0.1.8.4 Firefox 35 用の修正
-// @note           0.1.8.4 エディタで Scratchpad を使えるようにした
-// @note           0.1.8.4 GM_notification を独自実装
+// @note           0.1.8.4 Scratchpad als Standardeditor verwenden
+// @note           0.1.8.4 Implementierung der GM_ Benachrichtigungen 
+// @note           0.1.8.3 + add persistFlags for PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION to fix @require save data
+// @note           0.1.8.3 + Bug 704320 
+// @note           0.1.8.3 + fix unsafeWindow + __proto__ (Bug 1061853)
 // @note           0.1.8.3 Firefox 32 で GM_xmlhttpRequest が動かないのを修正
-// @note           0.1.8.3 内臓の console を利用するようにした
-// @note           0.1.8.3 obsever を使わないようにした
-// @note           0.1.8.2 Firefox 22 用の修正
+// @note           0.1.8.3 Mithilfe der integrierten Konsole.
+// @note           0.1.8.3 observer nicht verwenden
+// @note           0.1.8.2 Fix für Firefox 22
 // @note           0.1.8.2 require が機能していないのを修正
 // @note           0.1.8.1 Save Script が機能していないのを修正
 // @note           0.1.8.0 Remove E4X
@@ -64,6 +65,14 @@ if (window.USL) {
 }
 
 var USL = {};
+
+// mögliche Positionen des Icons
+USL.POSITION_MOVABLE = 0;		// verschiebbar
+USL.POSITION_URLBAR = 1;		// URL-Leiste
+USL.POSITION_STATUSBAR = 2;	// Statusleiste
+
+// Festlegen der Position
+USL.position = USL.POSITION_MOVABLE;
 
 // Class
 USL.PrefManager = function (str) {
@@ -349,7 +358,10 @@ USL.API = function(script, sandbox, win, doc) {
 
 	this.GM_listValues = function() {
 		var p = script.pref.listValues();
-		var s = [x for(x in USL.database.pref[script.prefName + name])];
+//		var s = [x for(x in USL.database.pref[script.prefName + name])];
+		var s = [];
+		for (let x in USL.database.pref[script.prefName + name])
+			s.push(x);
 		s.forEach(function(e, i, a) a[i] = e.replace(script.prefName, ''));
 		p.push.apply(p, s);
 		return p;
@@ -405,7 +417,7 @@ USL.API = function(script, sandbox, win, doc) {
 	this.GM_getMetadata = function(key) {
 		return script.metadata[key] ? script.metadata[key].slice() : void 0;
 	};
-
+	
 	this.GM_notification = function(msg, title, icon, callback) {
 		if (!icon) {
 			icon = 'data:image/png;base64,\
@@ -536,10 +548,12 @@ USL.__defineGetter__("disabled", function() DISABLED);
 USL.__defineSetter__("disabled", function(bool){
 	if (bool) {
 		this.icon.setAttribute("state", "disable");
-		// gBrowser.mPanelContainer.removeEventListener("DOMWindowCreated", this, false);
+	  // gBrowser.mPanelContainer.removeEventListener("DOMWindowCreated", this, false);
+		this.icon.setAttribute("tooltiptext", "inaktiv: Mit Linksklick aktivieren, Rechtsklick Menü öffnen");
 	} else {
 		this.icon.setAttribute("state", "enable");
-		// gBrowser.mPanelContainer.addEventListener("DOMWindowCreated", this, false);
+	  // gBrowser.mPanelContainer.addEventListener("DOMWindowCreated", this, false);
+		this.icon.setAttribute("tooltiptext", "aktiv: Mit Linksklick deaktivieren, Rechtsklick Menü öffnen");
 	}
 	return DISABLED = bool;
 });
@@ -588,20 +602,46 @@ USL.getFocusedWindow = function () {
 USL.init = function(){
 	USL.loadSetting();
 	USL.style = addStyle(css);
-/*
-	USL.icon = $('status-bar').appendChild($C("statusbarpanel", {
-		id: "UserScriptLoader-icon",
-		class: "statusbarpanel-iconic",
-		context: "UserScriptLoader-popup",
-		onclick: "USL.iconClick(event);"
-	}));
-*/
-	USL.icon = $('urlbar-icons').appendChild($C("image", {
-		id: "UserScriptLoader-icon",
-		context: "UserScriptLoader-popup",
-		onclick: "USL.iconClick(event);",
-		style: "padding: 0px 2px;",
-	}));
+
+	if (this.position == this.POSITION_STATUSBAR) {
+		USL.icon = $('status-bar').appendChild($C("statusbarpanel", {
+			id: "UserScriptLoader-icon",
+			class: "statusbarpanel-iconic",
+			context: "UserScriptLoader-popup",
+			onclick: "USL.iconClick(event);"
+		}));
+	} else if (this.position == this.POSITION_URLBAR) {
+		USL.icon = $('urlbar-icons').appendChild($C("image", {
+			id: "UserScriptLoader-icon",
+			context: "UserScriptLoader-popup",
+			onclick: "USL.iconClick(event);",
+			style: "padding: 0px 2px;",
+		}));
+	} else {
+		try {
+			CustomizableUI.createWidget({
+				id: 'UserScriptLoader-icon',
+				type: 'custom',
+				defaultArea: CustomizableUI.AREA_NAVBAR,
+				onBuild: function(aDocument) {
+					var btn = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
+					var attributes = {
+						id: 'UserScriptLoader-icon',
+						class: 'toolbarbutton-1 chromeclass-toolbar-additional',
+						removable: 'true',
+						context: 'UserScriptLoader-popup',
+						onclick: 'USL.iconClick(event)',
+						label: 'UserScriptLoader',
+						style: 'padding: 0px 2px;'
+					};
+					for (var a in attributes)
+						btn.setAttribute(a, attributes[a]);
+					return btn;
+				}
+			});
+		} catch(e) { };
+		USL.icon = $('UserScriptLoader-icon');
+	};
 
 	var xml = '\
 		<menupopup id="UserScriptLoader-popup" \
@@ -693,6 +733,7 @@ USL.destroy = function () {
 	USL.saveSetting();
 	USL.uninit();
 
+
 	var e = document.getElementById("UserScriptLoader-icon");
 	if (e) e.parentNode.removeChild(e);
 	var e = document.getElementById("UserScriptLoader-popup");
@@ -709,7 +750,7 @@ USL.handleEvent = function (event) {
 			win.USL_run = [];
 			if (USL.disabled) return;
 			if (USL.readScripts.length === 0) return;
-			USL.injectScripts(win);
+			this.injectScripts(win);
 			break;
 		case 'TabOpen':
 			event.target.linkedBrowser.addEventListener('DOMWindowCreated', USL, false);
@@ -745,7 +786,13 @@ USL.createMenuitem = function () {
 };
 
 USL.rebuild = function() {
-	USL.disabled_scripts = [x.leafName for each(x in USL.readScripts) if (x.disabled)];
+//	USL.disabled_scripts = [x.leafName for each(x in USL.readScripts) if (x.disabled)];
+	USL.disabled_scripts = [];
+	for (let x of USL.readScripts) {
+		if (x.disabled) {
+			USL.disabled_scripts.push(x.leafName);
+		};
+	};
 	USL.pref.setValue('script.disabled', USL.disabled_scripts.join('|'));
 
 	let newScripts = [];
@@ -831,14 +878,17 @@ USL.saveScript = function() {
 
 USL.deleteStorage = function(type) {
 	var data = USL.database[type];
-	var list = [x for(x in data)];
+//	var list = [x for(x in data)];
+	var list = [];
+	for (let x in data)
+		list.push(x);
 	if (list.length == 0)
 		return alert(type + ' is none.');
 
 	list.push('All ' + type);
 	var selected = {};
 	var ok = Services.prompt.select(
-		window, "UserScriptLoader " + type, "Select delete URL.", list.length, list, selected);
+		window, "UserScriptLoader " + type, "Löschen URL auswählen.", list.length, list, selected);
 
 	if (!ok) return;
 	if (selected.value == list.length -1) {
@@ -988,9 +1038,9 @@ USL.injectScripts = function(safeWindow, rsflag) {
 	// document-start でフレームを開いた際にちょっとおかしいので…
 	if (!rsflag && locationHref == ""/* && safeWindow.frameElement*/)
 		return USL.retryInject(safeWindow);
-	// target="_blank" で about:blank 状態で開かれるので…
+/*	// target="_blank" で about:blank 状態で開かれるので…
 	if (!rsflag && locationHref == 'about:blank')
-		return USL.retryInject(safeWindow);
+		return USL.retryInject(safeWindow);*/
 
 	if (USL.GLOBAL_EXCLUDES_REGEXP.test(locationHref)) return;
 
@@ -1029,20 +1079,20 @@ USL.injectScripts = function(safeWindow, rsflag) {
 				run(s));
 		}, 300);
 	} else {
-		if (documentEnds.length) {
-			safeWindow.addEventListener("DOMContentLoaded", function(event){
-				event.currentTarget.removeEventListener(event.type, arguments.callee, false);
-				documentEnds.forEach(function(s) "delay" in s ? 
-					safeWindow.setTimeout(run, s.delay, s) : run(s));
-			}, false);
-		}
-		if (windowLoads.length) {
-			safeWindow.addEventListener("load", function(event) {
-				event.currentTarget.removeEventListener(event.type, arguments.callee, false);
-				windowLoads.forEach(function(s) "delay" in s ? 
-					safeWindow.setTimeout(run, s.delay, s) : run(s));
-			}, false);
-		}
+	if (documentEnds.length) {
+		safeWindow.addEventListener("DOMContentLoaded", function(event){
+			event.currentTarget.removeEventListener(event.type, arguments.callee, false);
+			documentEnds.forEach(function(s) "delay" in s ? 
+				safeWindow.setTimeout(run, s.delay, s) : run(s));
+		}, false);
+	}
+	if (windowLoads.length) {
+		safeWindow.addEventListener("load", function(event) {
+			event.currentTarget.removeEventListener(event.type, arguments.callee, false);
+			windowLoads.forEach(function(s) "delay" in s ? 
+				safeWindow.setTimeout(run, s.delay, s) : run(s));
+		}, false);
+      }	
 	}
 
 	function run(script) {
@@ -1057,21 +1107,25 @@ USL.injectScripts = function(safeWindow, rsflag) {
 			return;
 		}
 
-		let sandbox = new Cu.Sandbox(safeWindow, {sandboxPrototype: safeWindow});
-		let unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
-		Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
-
+		let sandbox = new Cu.Sandbox(safeWindow, {sandboxPrototype: safeWindow, 'wantXrays': true,});
+    try {
+      var unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
+      Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
+    } catch(e) {
+      sandbox = new Cu.Sandbox([safeWindow], {sandboxPrototype: safeWindow});
+      unsafeWindowGetter = new sandbox.Function('return window.wrappedJSObject || window;');
+      Object.defineProperty(sandbox, 'unsafeWindow', {get: unsafeWindowGetter});
+    }
+	
 		let GM_API = new USL.API(script, sandbox, safeWindow, aDocument);
 		for (let n in GM_API)
 			sandbox[n] = GM_API[n];
-
 		sandbox.XPathResult  = Ci.nsIDOMXPathResult;
-		// sandbox.unsafeWindow = safeWindow.wrappedJSObject;
 		sandbox.document     = safeWindow.document;
 		sandbox.console      = safeWindow.console;
 		sandbox.window       = safeWindow;
-
-		// sandbox.__proto__ = safeWindow;
+    if (parseInt(Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo).version) < 35)
+	  	sandbox.__proto__ = safeWindow;
 		USL.evalInSandbox(script, sandbox);
 		safeWindow.USL_run.push(script);
 	}
@@ -1142,12 +1196,18 @@ USL.loadSetting = function() {
 		//USL.database.resource = data.resource;
 		USL.debug('loaded UserScriptLoader.json');
 	} catch(e) {
-		USL.debug('can not load UserScriptLoader.json');
+		USL.debug('UserScriptLoader.json Datei kann nicht geladen werden');
 	}
 };
 
 USL.saveSetting = function() {
-	let disabledScripts = [x.leafName for each(x in USL.readScripts) if (x.disabled)];
+//	let disabledScripts = [x.leafName for each(x in USL.readScripts) if (x.disabled)];
+	let disabledScripts = [];
+	for (let x of USL.readScripts) {
+		if (x.disabled) {
+			disabledScripts.push(x.leafName);
+		};
+	};
 	USL.pref.setValue('script.disabled', disabledScripts.join('|'));
 	USL.pref.setValue('disabled', USL.disabled);
 	USL.pref.setValue('HIDE_EXCLUDE', USL.HIDE_EXCLUDE);
@@ -1192,9 +1252,9 @@ USL.getContents = function(aURL, aCallback){
 			onLinkIconAvailable: function(aIconURL) {},
 		}
 	}
-	wbp.persistFlags = Ci.nsIWebBrowserPersist.PERSIST_FLAGS_BYPASS_CACHE;
-	wbp.persistFlags |= Ci.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
-	wbp.saveURI(uri, null, null, null, null, aFile, null);
+    wbp.persistFlags = Ci.nsIWebBrowserPersist.PERSIST_FLAGS_BYPASS_CACHE;
+    wbp.persistFlags |= Ci.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
+	wbp.saveURI(uri, null, null, Ci.nsIHttpChannel.REFERRER_POLICY_NO_REFERRER_WHEN_DOWNGRADE, null, null, aFile, null);
 	USL.debug("getContents: " + aURL);
 };
 
@@ -1224,8 +1284,8 @@ USL.init();
 window.USL = USL;
 
 
-function log(str) { Application.console.log(Array.slice(arguments)); }
-function debug() { if (USL.DEBUG) Application.console.log('[USL DEBUG] ' + Array.slice(arguments));}
+function log(str) { Services.console.logStringMessage(Array.slice(arguments)); }
+function debug() { if (USL.DEBUG) Services.console.logStringMessage('[USL DEBUG] ' + Array.slice(arguments));}
 
 function $(id) document.getElementById(id);
 function $C(name, attr) {
