@@ -1,220 +1,347 @@
 // ==UserScript==
-// @name AutoPopup.uc.js
-// @description Auto popup menulist/menupopup/Panelpopup
-// @compatibility Firefox 2.0+
-// @author GOLF-AT
-// @version 2.0.0.20131119
+// @name           AutoPopup.uc.js
+// @description    Auto popup menulist/menupopup
+// @compatibility  Firefox 30.0+
+// @author         GOLF-AT, modify by gsf & aborix
+// @version        2017.3.09
+// ==UserScript==
 
 (function() {
-    var PopElt = null;    var DropElt = null;
-    var PopTimer = null;  var HideTimer = null;
-    var AlwaysPop = false;  var nDelay = 200;
-   
-    function IsNewMenuBtn(elt) {
-        try {
-            return elt.id=='PanelUI-menu-button';
-        }catch(e) {
-            return false;
-        }
-    }
-   
-    function AutoPopup()
-    {
-        PopTimer = null;
-        if (DropElt) {
-            if (DropElt.localName=='dropmarker' ||
-                IsNewMenuBtn(DropElt))
-                PopElt = DropElt;
-            else {
-                var v = null;
-                try {
-                    v = DropElt.ownerDocument.
-                        getAnonymousNodes(DropElt);
-                }catch(ex) {}
-                if (v!=null && v.length!=0 && v[0].
-                    localName=='menupopup')
-                    PopElt = v[0];
-                else
-                    PopElt = DropElt.childNodes[0];
-            }
-   
-            if (IsNewMenuBtn(PopElt)) {
-                PanelUI.show(); return;
-            }
-            try {
-                PopElt.showPopup(PopElt.parentNode,
-                    -1, -1, 'popup', 'bottomleft',
-                    'topleft');
-            }catch(e) { PopElt = null; }
-        }
-    }
-   
-    function HidePopup()
-    {
-        try {
-            if (PopElt.localName=='dropmarker')
-                PopElt.parentNode.closePopup();
-            else if (IsNewMenuBtn(PopElt))
-                PanelUI.hide();
-            else
-                PopElt.hidePopup();
-        }catch(e) {}
-        HideTimer = null; DropElt = null;
-        PopElt = null;
-    }
-   
-    function MouseOver(e)
-    {
-        if (!AlwaysPop && !document.hasFocus())
-            return;
-   
-        if (IsButton(e.target)) {
-            type = e.target.getAttribute('type');
-            if (type == 'menu-button') {
-                if (e.originalTarget!=e.target)
-                    return;
-            }
-            /*else {
-                if (type != 'menu') return;
-            }*/
-        }
-   
-        if (HideTimer) {
-            window.clearTimeout(HideTimer);
-            HideTimer = null;
-        }
-        try {
-            if ('PopupAutoComplete'==e.target.id.
-                substr(0,17))
-                return;
-            for(var elt=e.target; elt!=null; elt=
-                elt.parentNode) {
-                if (elt.localName=='popup' || elt.
-                    localName=='menupopup')
-                    return;
-            }
-        }catch(ex) {}
-   
-        if (IsNewMenuBtn(PopElt)) {
-            if (e.target != PopElt) HidePopup();
-        }
-        else if (PopElt != null) {
-            if (DropElt!=null && e.target==DropElt)
-                return;
-            try {
-                if (PopElt.localName != 'dropmarker'
-                    ) {
-                    for(var elt=e.target; elt!=null;
-                        elt=elt.parentNode) {
-                        if (elt == PopElt) return;
-                    }
-                }
-            }catch(ex) {}
-            HidePopup();
-        }
-        DropElt = e.target;
-        PopTimer = setTimeout(AutoPopup, nDelay);
-    }
-   
-    function MouseOut(e)
-    {
-        if (PopTimer) {
-            window.clearTimeout(PopTimer);
-            PopTimer = null;
-        }
-        if (!HideTimer && PopElt && !IsNewMenuBtn(e.
-            target))
-            HideTimer = window.setTimeout(HidePopup,
-                500);
-    }
-   
-    function IsButton(elt) {
-        try {
-            return elt.localName=='toolbarbutton' || elt
-                .localName=='button';
-        }catch(e) { return false; }
-    }
-   
-    function IsMenuButton(elt) {
-        if (IsNewMenuBtn(elt)) return true;
-   
-        if (!IsButton(elt)) return false;
-        for(var i=0; i<2; i++) {
-            try {
-                var nodes = i==0x01 ? elt.childNodes : elt.
-                    ownerDocument.getAnonymousNodes(elt);
-                if (nodes!=null && nodes.length && nodes[0]
-                    .localName=='menupopup')
-                    return true;
-            }catch(e) {}
-        }
-        return false;
-    }
-   
-    function EnumElement(elt) {
-        try {
-            if (elt.localName == 'prefpane') {
-                elt.addEventListener('paneload', function(e) {
-                    setTimeout(function() { EnumElement(e.
-                        target); }, 100);
-                    }, false);
-            }
-            else if(elt.id=='sidebar' && !elt.hasAttribute(
-                'AutoPopup')) {
-                elt.setAttribute('AutoPopup', true)
-                elt.addEventListener('SidebarFocused',
-                    function(e) { EnumElement(elt); }, false);
-            }
-            else if(elt.id == 'editBookmarkPanel')
-                return;
-        }catch(e) {}
-   
-        for(var i=0; i<2; i++) {
-            var nodes = null;
-            try {
-                if (elt.localName == 'browser') {
-                    i = 1;
-                    nodes = elt.contentDocument.childNodes;
-                }
-                else
-                    nodes = i==0x01 ? elt.childNodes : elt.
-                        ownerDocument.getAnonymousNodes(elt);
-            }catch(e) { nodes = null; }
-            if (nodes == null) continue;
-   
-            for(var n=0; n<nodes.length; n++) {
-                try {
-                    var node = nodes[n];
-                    if ('PopupAutoComplete'==node.getAttribute(
-                        'id').substr(0,17) || 'menupopup'==node
-                        .localName || node.localName=='popup')
-                        ;
-                    else if (node.localName != 'dropmarker') {
-                        if (node.localName=='menu' && 'menubar'
-                            ==node.parentNode.localName)
-                            ;
-                        else if(!IsMenuButton(node))
-                            node = null;
-                    }
-                    else if(node.getAttribute('type')=='menu') {
-                        node = node.parentNode;
-                        if (!node.firstChild || node.firstChild.
-                            localName!='menupopup')
-                            continue;
-                    }
-                    if (node == null) {
-                        EnumElement(nodes[n]); continue;
-                    }
-                    if (node.hasAttribute('command')) continue;
-   
-                    node.addEventListener('mouseout', MouseOut,
-                        false);
-                    node.addEventListener('mouseover',MouseOver,
-                        false);
-                }catch(e) {}
-            }
-        }
-    }
-   
-    setTimeout(function() { EnumElement(document); }, 100);
+	const showDelay = 200;
+	const hideDelay = 500;
+	var overElt = null;
+	var PopElt = null;
+	var PopTimer = null;
+	var HideTimer = null;
+	var AlwaysPop = false;
+	var searchBar = null;
+	if (window.BrowserSearch)
+		searchBar = BrowserSearch.searchBar;
+
+	// by gsf, 支持Fx的CSS所有语法: #表示id，. 表示class，或[id='demo']
+	// Fx support all of CSS syntax: # indicates id, . represents class, or [id='demo']
+	var BlackIDs = [];
+
+	// by gsf, 白名单，及触发动作
+	// whitelist, and trigger action
+	var whiteIDs = [{
+		id: 'omnibar-defaultEngine',
+		popMemu: 'omnibar-engine-menu',
+		run: function(overElem) {
+			document.getElementById('omnibar-in-urlbar').click(0);
+		}
+	},
+	{
+		id: 'ucjs_zoom_statuslabel',
+		popMemu: 'ucjs_zoom-context',
+		run: null
+	},
+	{
+		id: 'UserScriptLoader-icon',
+		popMemu: 'UserScriptLoader-popup',
+		run: null
+	},		
+	{
+		id: 'readLater',
+		popMemu: 'readLater-popup',
+		run: null
+		//function(overElem) {PopElt.popup();}
+	},
+	{
+		id: 'foxyproxy-toolbar-icon',
+		popMemu: 'foxyproxy-toolbarbutton-popup',
+		run: null
+	}];
+	var whitesInx = -1;
+
+	var popupPos = ['after_start', 'end_before', 'before_start', 'start_before'];
+
+	var menuPanelID = 'PanelUI-popup';
+	var downPanelID = 'downloadsPanel';
+	var widgetPanelID = 'customizationui-widget-panel';
+
+	function IsWidgetBtn(elt) {
+		try {
+			return elt.hasAttribute('widget-id')
+				&& elt.getAttribute('widget-type') == 'view';
+		} catch(e) {
+			return false;
+		}
+	}
+
+	function IsSearchBtn(elt) {
+		try {
+			return elt.getAttribute('anonid') == 'searchbar-search-button'
+				|| whitesInx === 0;
+		} catch(e) {
+			return false;
+		}
+	}
+
+	function IsNewMenuBtn(elt) {
+		try {
+			return elt.id == 'PanelUI-menu-button';
+		} catch(e) {
+			return false;
+		}
+	}
+
+	function IsDownloadBtn(elt) {
+		try {
+			return elt.localName == 'toolbarbutton'
+				&& elt.id == 'downloads-button';
+		} catch(e) {
+			return false;
+		}
+	}
+
+	function IsAutoComplete(elt) {
+		try {
+			return elt.getAttribute('type').substr(0, 12) == 'autocomplete';
+		} catch(e) {
+			return false;
+		}
+	}
+
+	function getPopupMenu(elt) {
+		if (whitesInx > -1 && PopElt)
+			return PopElt;
+		var nodes = elt ? elt.ownerDocument.getAnonymousNodes(elt) : null;
+		for (let [i, k] in Iterator(nodes)) {
+			if (k.localName == 'menupopup')
+				return k;
+		}
+
+		var s = elt.getAttribute('popup');
+		return s ? document.getElementById(s) : null;
+	}
+
+	function isBlackNode(elt) {
+		return BlackIDs.some(function(css) {
+			try {
+				var nodes = document.querySelectorAll(css);
+			} catch(e) {
+				return false;
+			}
+			for (var node of nodes) {
+				if (node == elt)
+					return true;
+			}
+			return false;
+		})
+	}
+
+	function getPopupPos(elt) {
+		var x, y, pos, box;
+
+		for (pos = 0, x = elt.boxObject.screenX, y = elt.boxObject.screenY;
+			elt != null; elt = elt.parentNode)
+		{
+			if (elt.localName == 'window' || !elt.parentNode)
+				break;
+			else if (elt.localName != 'toolbar' && elt.localName != 'hbox'
+				&& elt.localName != 'vbox');
+			else if (elt.boxObject.height >= 3 * elt.boxObject.width) {
+				if (elt.boxObject.height >= 45) {
+					pos = 9;
+					break;
+				}
+			} else if (elt.boxObject.width >= 3 * elt.boxObject.height) {
+				if (elt.boxObject.width >= 45) {
+					pos = 8;
+					break;
+				}
+			}
+		}
+		try {
+			box = elt.boxObject;
+			x = (pos & 1) ? (x <= box.width / 2 + box.screenX ? 1 : 3) :
+			                (y <= box.height / 2 + box.screenY ? 0 : 2);
+		} catch(e) {
+			x = 0;
+		}
+		return popupPos[x];
+	}
+
+	function getPopupNode(node) {
+		if (whitesInx > -1 && PopElt)
+			return PopElt;
+		var elt, isPop, s;
+
+		for (; node != null; node = node.parentNode) {
+			if (node == PopElt)
+				return node;
+
+			isPop = false; // Node isn't Popup node
+			s = node.localName;
+			if (s == 'menupopup' || s == 'popup' || s == 'menulist'
+			   || IsAutoComplete(node) || IsMenuButton(node))
+				isPop = true;
+			else if (s == 'dropmarker') {
+				if (node.getAttribute('type') == 'menu') {
+					elt = node.parentNode;
+					if (elt.firstChild.localName == 'menupopup')
+						isPop = true;
+				} else if (node.classList.contains('autocomplete-history-dropmarker'))
+					isPop = true;
+			} else if (s == 'menu')
+				isPop = (node.parentNode.localName == 'menubar');
+			else if (IsButton(node)) {
+				for (elt = node; (elt = elt.nextSibling) != null;) {
+					if (elt.localName == 'dropmarker' && elt.boxObject.width > 0
+					   && elt.boxObject.height > 0)
+						break;
+				}
+				if (elt) break;
+			}
+			if (isPop) break;
+		}
+		if (PopElt && node) {
+			// Whether node is child of PopElt
+			for (elt = node.parentNode; elt != null; elt = elt.parentNode) {
+				if (elt == PopElt)
+					return PopElt;
+			}
+		}
+		return isPop ? node : null;
+	}
+
+	function AutoPopup() {
+		PopTimer = null;
+		if (!overElt) return;
+
+		if (whitesInx > -1 && PopElt && whiteIDs[whitesInx].run) {
+			whiteIDs[whitesInx].run(overElt);
+			return;
+		}
+		!PopElt && (PopElt = overElt);
+
+		if (overElt.localName == 'dropmarker') {
+			if (overElt.classList.contains('urlbar-history-dropmarker'))
+				overElt.click();
+			else
+				PopElt.showPopup();
+		} else if (overElt.localName == 'menulist') {
+			overElt.open = true;
+		} else if (IsNewMenuBtn(overElt)) {
+			PanelUI.show();
+			PopElt = document.getElementById(menuPanelID);
+		} else if (IsWidgetBtn(overElt)) {
+			var cmdEvent = document.createEvent('xulcommandevent');
+			cmdEvent.initCommandEvent('command', true, true, window, 0, false,
+				false, false, false, null);
+			overElt.dispatchEvent(cmdEvent);
+			PopElt = document.getElementById(widgetPanelID);
+		} else if (IsDownloadBtn(overElt)) {
+			PopElt = document.getElementById(downPanelID);
+			DownloadsPanel.showPanel();
+		} else if (IsSearchBtn(overElt)) {
+			searchBar.openSuggestionsPanel();
+			//console.log('search click!');
+		} else {
+			PopElt = getPopupMenu(overElt);
+			try {
+				var Pos = getPopupPos(overElt);
+				PopElt.openPopup(overElt, Pos, 0, 0, false, false, null);
+			} catch(e) {
+				PopElt = null;
+			}
+		}
+	}
+
+	function HidePopup() {
+		try {
+			if (overElt.localName == 'dropmarker')
+				try {
+					PopElt.parentNode.closePopup();
+				} catch(e) {
+					PopElt.parentNode.parentNode.closePopup();
+				}
+			else if (overElt.localName == 'menulist')
+				PopElt.open = false;
+			else if (IsDownloadBtn(overElt))
+				DownloadsPanel.hidePanel();
+			//else if (IsNewMenuBtn(overElt) || IsWidgetBtn(overElt))
+			else if (PopElt && PopElt.hidePopup)
+				PopElt.hidePopup();
+			else if (PopElt.popupBoxObject)
+				PopElt.popupBoxObject.hidePopup();
+			else if (IsSearchBtn(overElt))
+				searchBar.textbox.closePopup();
+		} catch(e) { }
+
+		HideTimer = null;
+		overElt = PopElt = null;
+	}
+
+	function MouseOver(e) {
+		if (!AlwaysPop && !document.hasFocus())
+			return;
+		var popNode, n = e.originalTarget;
+
+		whitesInx = -1;
+		// gsf ：some,forEach,filter等数组遍历方法接受第二个参数，表作用域this，可不用call了
+		if (n.hasAttribute('id') && whiteIDs.some(function(k,i,me) {
+			//for (let [i, k] in Iterator(whiteIDs)) {
+			if (k.id == n.id) {
+				overElt = n;
+				whitesInx = i;
+				PopElt = document.getElementById(k.popMemu);
+				PopTimer = setTimeout(AutoPopup, showDelay);
+				return true;
+			}
+		})) return;
+
+		popNode = getPopupNode(e.originalTarget);
+		if (!popNode || (popNode && popNode.disabled) || isBlackNode(popNode)) {
+			MouseOut();
+			return;
+		}
+
+		if (HideTimer) {
+			window.clearTimeout(HideTimer);
+			HideTimer = null;
+		}
+		try {
+			if (IsAutoComplete(popNode))
+				return;
+			for (var elt = popNode; elt != null; elt = elt.parentNode) {
+				if (elt.localName == 'menupopup' || elt.localName == 'popup')
+					return;
+			}
+		}
+		catch(e) { }
+
+		if (PopElt && popNode == PopElt && PopElt != overElt)
+			return;
+		if (overElt && popNode != overElt)
+			HidePopup();
+		overElt = popNode;
+		PopElt = null;
+		PopTimer = setTimeout(AutoPopup, showDelay);
+	}
+
+	function MouseOut(e) {
+		if (PopTimer) {
+			window.clearTimeout(PopTimer);
+			PopTimer = null;
+		}
+		if (!HideTimer && PopElt)
+			HideTimer = window.setTimeout(HidePopup, hideDelay);
+	}
+
+	function IsButton(elt) {
+		try {
+			return elt.localName == 'button' || elt.localName == 'toolbarbutton';
+		} catch(e) {
+			return false;
+		}
+	}
+
+	function IsMenuButton(elt) {
+		return IsNewMenuBtn(elt) || IsDownloadBtn(elt) || IsWidgetBtn(elt)
+			|| (IsButton(elt) && getPopupMenu(elt));
+	}
+
+	window.addEventListener('mouseover', MouseOver, false);
 })();
