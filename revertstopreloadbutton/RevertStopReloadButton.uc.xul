@@ -1,40 +1,21 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="data:text/css,@namespace%20url('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul');@namespace%20html%20url('http://www.w3.org/1999/xhtml');
-        %23main-window:not([tabsintitlebar]) %23reload-button:-moz-system-metric(windows-classic):not(:-moz-lwtheme),
-        %23reload-button {
-          list-style-image: url('chrome://browser/skin/Toolbar.png');
-          -moz-image-region: rect(0px, 90px, 18px, 72px);
+        %23ucjs_reload-button {
+          list-style-image: url('chrome://browser/skin/reload.svg');
         }
-        
-        %23toolbar-menubar > %23reload-button:not(:-moz-system-metric(windows-classic)):not(:-moz-lwtheme),
-        %23main-window[tabsintitlebar] %23toolbar-menubar > %23reload-button:-moz-system-metric(windows-classic):not(:-moz-lwtheme),
-        %23reload-button:not(:-moz-any(:not([cui-areatype='toolbar']), [overflowedItem=true])):-moz-lwtheme-brighttext {
-          list-style-image: url('chrome://browser/skin/Toolbar-inverted.png');
-          -moz-image-region: rect(0px, 90px, 18px, 72px);
+
+        %23ucjs_stop-button {
+          list-style-image: url('chrome://browser/skin/stop.svg');
         }
-        
-        
-        %23main-window:not([tabsintitlebar]) %23stop-button:-moz-system-metric(windows-classic):not(:-moz-lwtheme),
-        %23stop-button {
-          list-style-image: url('chrome://browser/skin/Toolbar.png');
-          -moz-image-region: rect(0px, 108px, 18px, 90px);
-        }
-        
-        %23toolbar-menubar > %23stop-button:not(:-moz-system-metric(windows-classic)):not(:-moz-lwtheme),
-        %23main-window[tabsintitlebar] %23toolbar-menubar > %23stop-button:-moz-system-metric(windows-classic):not(:-moz-lwtheme),
-        %23stop-button:not(:-moz-any(:not([cui-areatype='toolbar']), [overflowedItem=true])):-moz-lwtheme-brighttext         {
-          list-style-image: url('chrome://browser/skin/Toolbar-inverted.png');
-          -moz-image-region: rect(0px, 108px, 18px, 90px);
-        }
-        
-        %23nav-bar %23reload-button .toolbarbutton-icon,
-        %23nav-bar %23stop-button .toolbarbutton-icon {
+
+        %23nav-bar %23ucjs_reload-button .toolbarbutton-icon,
+        %23nav-bar %23ucjs_stop-button .toolbarbutton-icon {
           padding-left:  3px;
           padding-right: 3px;
         }
-        
-        %23urlbar %23urlbar-reload-button,
-        %23urlbar %23urlbar-stop-button {
+
+        %23reload-button,
+        %23stop-button {
           display: none;
         }
 " type="text/css"?>
@@ -44,10 +25,10 @@
 <!--
 // ==UserScript==
 // @name           revertStopReloadButton.uc.xul
-// @namespace      http://blogs.yahoo.co.jp/alice0775 
+// @namespace      http://blogs.yahoo.co.jp/alice0775
 // @description    Revert Stop Reload Button
 // @include        main
-// @compatibility  Firefox 29+
+// @compatibility  Firefox 55+
 // @author         Alice0775
 // @version        2014/05/15 01:30 fix color
 // @version        2014/05/13 10:30 fix second window
@@ -64,16 +45,15 @@
 var revertStopReloadButton = {
 
   init: function() {
-    Components.utils.import("resource:///modules/CustomizableUI.jsm");
     try {
       CustomizableUI.createWidget({ //must run createWidget before windowListener.register because the register function needs the button added first
-        id: 'reload-button',
+        id: 'ucjs_reload-button',
         type: 'custom',
         defaultArea: CustomizableUI.AREA_NAVBAR,
         onBuild: function(aDocument) {
           var toolbaritem = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
           var props = {
-            id: "reload-button",
+            id: "ucjs_reload-button",
             class: "toolbarbutton-1 chromeclass-toolbar-additional",
             label: "Reload",
             removable: "true",
@@ -85,7 +65,7 @@ var revertStopReloadButton = {
           for (var p in props) {
             toolbaritem.setAttribute(p, props[p]);
           }
-          
+
           return toolbaritem;
         }
       });
@@ -93,13 +73,13 @@ var revertStopReloadButton = {
 
     try {
       CustomizableUI.createWidget({ //must run createWidget before windowListener.register because the register function needs the button added first
-        id: 'stop-button',
+        id: 'ucjs_stop-button',
         type: 'custom',
         defaultArea: CustomizableUI.AREA_NAVBAR,
         onBuild: function(aDocument) {
           var toolbaritem = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
           var props = {
-            id: "stop-button",
+            id: "ucjs_stop-button",
             class: "toolbarbutton-1 chromeclass-toolbar-additional",
             label: "Stop",
             removable: "true",
@@ -110,14 +90,31 @@ var revertStopReloadButton = {
           for (var p in props) {
             toolbaritem.setAttribute(p, props[p]);
           }
-          
+
           return toolbaritem;
         }
       });
-    } catch(ee) {}
+    } catch(ee) {};
+
+    window.addEventListener("aftercustomization", revertStopReloadButton, false);
+
+  },
+
+  handleEvent: function(event) {
+    switch(event.type) {
+      case "aftercustomization":
+        if (gBrowser.webNavigation.currentURI.spec != "about:blank") {
+          document.getElementById("ucjs_reload-button").removeAttribute("disabled");
+        };
+        break;
+    }
   }
+
 };
 
-revertStopReloadButton.init();
+if (location == 'chrome://browser/content/browser.xul') {
+  revertStopReloadButton.init();
+};
   ]]></script>
 </overlay>
+
