@@ -27,7 +27,7 @@ var uProfMenu = {
   // - Zum Ausblenden: abouts: [],
   // - Damit die about:-Seiten nicht als Untermenue, sondern direkt als Menuepunkte aufgefuehrt werden, muss das erste Element '0' sein:
   // abouts: ['0','about:about','about:addons','about:cache','about:config','about:support'],
-  abouts: ['about:about','about:addons','about:cache','about:config','about:crashes','about:home','about:memory','about:healthreport','about:plugins','about:support','about:preferences'],
+  abouts: ['about:about','about:addons','about:cache','about:config','about:crashes','about:home','about:memory','about:healthreport','about:plugins','about:support','about:preferences','about:performance'],
   // Die normalen Firefox-Einstellungen auch zur Verfuegung stellen (0: nein, 1: ja):
   showNormalPrefs: 0,
   // Stellt "Skriptliste in Zwischenablage" zur Verfuegung (1: ja, 2: mit getrennter Nummerierung, 3: mit gemeinsamer Nummerierung) oder nicht (0):
