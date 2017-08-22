@@ -210,6 +210,9 @@ var uProfMenu = {
     var file = Components.classes["@mozilla.org/file/directory_service;1"]
       .getService(Components.interfaces.nsIProperties)
       .get(str, Components.interfaces.nsIFile);
+      if (str == 'CurProcD') {
+      file = file.parent;
+      };
     return file.path;
   },
 
