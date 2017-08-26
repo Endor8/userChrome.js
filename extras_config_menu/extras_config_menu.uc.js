@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name           extras_config_menu.uc.js
-// @compatibility  Firefox 8.*, 9.*, 10.*, 11.*, 12.*, 13.*, 14.*, 15.*, 16.*, 17.*
+// @compatibility  Firefox 8.*, 9.*, 10.*, 11.*, 12.*, 13.*, 14.*, 15.*, 16.*, 17.*, 57.*
 // @include        main
-// @version        1.0.20121213
+// @version        1.0.20170826
 // ==/UserScript==
 
 var uProfMenu = {
   // Beginn der Konfiguration
   // In der folgenden Zeile (11) den Pfad zum Texteditor eintragen (unter Ubuntu 10.04 z.B.: '/usr/bin/gedit'). Bei Fehleintrag wird view_source.editor.path ausgelesen:
-  TextOpenExe : 'C:\\Programme\\Sonstige\\Notepad++\\notepad++.exe',
+  TextOpenExe : 'C:\\Program Files (x86)\\Notepad++\\notepad++.exe',
   // Falls gewuenscht, in Zeile 15 einen Dateimanager eintragen (komplett leer lassen fuer Dateimanager des Systems) Beispiele:
   // vFileManager: 'E:\\Total Commander\\Totalcmd.exe',
   // vFileManager: 'C:\\Program Files (x86)\\FreeCommander\\FreeCommander.exe'
@@ -16,18 +16,18 @@ var uProfMenu = {
   // In der folgenden Zeile (19) 'menu' eintragen, damit es unter "Extras" als Menue erscheint, sonst die id des gewuenschten
   // Elements *nach* dem der Button erscheinen soll (z.B. 'urlbar', 'searchbar', 'undoclosetab-button','abp-toolbarbutton')
   // Bitte nicht so etwas wie die Menue- oder Navigationsleiste (sondern einen Menuepunkt oder einen Button mit id auf diesen Leisten) eintragen:
-  warpmenuto: 'urlbar',
+  warpmenuto: 'helpMenu',
  // Unter Linux sollte/kann versucht werden, die userChromeJS-Skripte zu sortieren, unter Windows ist das evtl. nicht noetig (die Sortierung wird Gross- und Kleinschreibung *nicht* beruecksichtigen - dazu wird die sort()-Funktion entsprechend mit einer Vergleichsfunktion aufgerufen)
   sortScripts: 0,   // 1 zum Erzwingen der Sortierung
   // Einbindung GM-Skripte-Ordner (0: nein, 1: Greasemonkey [Profil-Verzeichnis], 2: UserScriptLoader [Chrome-Verzeichnis], 3: Scriptish [Profil-Verzeichnis]):
   gmOrdner: 1,
   // Einbindung CSS-Ordner (0: nein, 1: UserCSSLoader-Ordner im Chrome-Verzeichnis):
-  cssOrdner: 0,
+  cssOrdner: 1,
   // In Zeile 30 gueltige about:Adressen eintragen, die ebenfalls aufgerufen werden sollen.
   // - Zum Ausblenden: abouts: [],
   // - Damit die about:-Seiten nicht als Untermenue, sondern direkt als Menuepunkte aufgefuehrt werden, muss das erste Element '0' sein:
   // abouts: ['0','about:about','about:addons','about:cache','about:config','about:support'],
-  abouts: ['about:about','about:addons','about:cache','about:config','about:support'],
+   abouts: ['about:about','about:addons','about:cache','about:config','about:crashes','about:home','about:memory','about:healthreport','about:plugins','about:support','about:preferences','about:performance'],
   // Die normalen Firefox-Einstellungen auch zur Verfuegung stellen (0: nein, 1: ja):
   showNormalPrefs: 0,
   // Stellt "Skriptliste in Zwischenablage" zur Verfuegung (1: ja, 2: mit getrennter Nummerierung, 3: mit gemeinsamer Nummerierung) oder nicht (0):
@@ -62,7 +62,7 @@ var uProfMenu = {
       menu.setAttribute("id", "ExtraConfigMenu-button");
       menu.setAttribute("class", "toolbarbutton-1");
       menu.setAttribute("type", "menu");
-      menu.setAttribute("tooltiptext", "Extra Config Men\u00FC\nMittelklick \u00F6ffnet about:config");
+      menu.setAttribute("tooltiptext", "Extra Config Menü\nMittelklick \öffnet about:config");
       menu.setAttribute("onclick","if (event.button === 1 && !this.open) {getBrowser (). selectedTab = getBrowser (). addTab ('about:config')};");
     }
     //ab hier ist alles gleich, egal ob Button oder Menue
@@ -137,7 +137,8 @@ var uProfMenu = {
     if (this.showNormalPrefs) menupopup.appendChild(this.createME("menuitem","Einstellungen","try{openOptionsDialog();}catch(e){openPreferences();}","uProfMenu_prefs"),0);
     // Falls addRestartButton installiert ist, Neustart zur Verfuegung stellen (addRestartButton 1.0.20120105mod erforderlich)
     if(typeof(ToolRstartMod) != "undefined" || this.enableRestart) menupopup.appendChild(this.createME("menuitem","Neustart",
-      "try{ToolRstartMod.SaveRestart(event,1);} catch(e){alert(e);}","uProfMenu_restart"),0);
+    "try{ToolRstartMod.restartApp(false);} catch(e){alert(e);}","uProfMenu_restart"),0);
+
   },
 
 
@@ -183,7 +184,7 @@ var uProfMenu = {
 
   dirOpen:function(Path){
     if (this.vFileManager.length != 0) {
-      var file = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsILocalFile);
+      var file = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
       var process = Cc['@mozilla.org/process/util;1'].createInstance(Ci.nsIProcess);
       var args=[Path];
       file.initWithPath(this.vFileManager);
@@ -192,7 +193,7 @@ var uProfMenu = {
       process.run(false, args, args.length);
      } else {
       // Verzeichnis mit Dateimanager des Systems oeffnen
-      var dir = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
+      var dir = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
       dir.initWithPath(Path);
       dir.launch();
     }
@@ -210,12 +211,16 @@ var uProfMenu = {
     var file = Components.classes["@mozilla.org/file/directory_service;1"]
       .getService(Components.interfaces.nsIProperties)
       .get(str, Components.interfaces.nsIFile);
+	  if (str == 'CurProcD') {
+      file = file.parent;
+    };
+
     return file.path;
   },
 
 
   launch:function(RanPath,OpenPath){
-    var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+    var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
     var proc = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);
     var args = [OpenPath];
     file.initWithPath(RanPath);
@@ -252,7 +257,7 @@ var uProfMenu = {
     // Suchmuster, also die Dateierweiterungen uc.js und uc.xul
     let extjs = /\.uc\.js$/i;
     let extxul= /\.uc\.xul$/i;
-    let aFolder = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsILocalFile);
+    let aFolder = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
     aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path);
     // files mit Eintraegen im Chrome-Ordner befuellen
     let files = aFolder.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
