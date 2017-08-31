@@ -13,7 +13,7 @@ Die Dateien **config.js** und **userChromeJS.js** müssen in den **Firefox Insta
 
 Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults\pref**
 
-#### Wo finde ich den Firefox Installationsordner
+##### Wo finde ich den Firefox Installationsordner
 
 unter **C:\Program Files\Mozilla Firefox (bei 64bit)**
 
@@ -36,7 +36,7 @@ oder
 **Portable_Firefox\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
 
 
-#### Inhalt der Dateien:
+##### Inhalt der Dateien:
   
 **config.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/config.js.md) 
      
@@ -55,3 +55,7 @@ userChrome.import("*", "UChrm");
 
 ###### Alle 4 Dateien sind hier auch zum Herunterladen verfügbar:
 https://github.com/Endor8/userChrome.js/tree/master/userChrome
+
+Eine aktuelle Sammlung von Scripten gibt es hier:
+https://github.com/ardiman/userChrome.js
+
