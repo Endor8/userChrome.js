@@ -1,6 +1,5 @@
 #### Inhalt der Datei config.js
 
-**config.js**
 ```js
 //
 /* ***** BEGIN LICENSE BLOCK *****
