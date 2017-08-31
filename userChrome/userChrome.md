@@ -26,6 +26,7 @@ oder
 In den **Profilordner\chrome** gehört die Datei:
 **userChrome.js**
 
+![Screenshot](Screenshot1-900px.png)
 
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
