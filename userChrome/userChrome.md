@@ -50,4 +50,4 @@ userChrome.import("*", "UChrm");
 ```
 
 ###### Alle 4 Dateien sind hier auch zum Herunterladen verfügbar:
-(https://github.com/Endor8/userChrome.js/tree/master/userChrome)
+https://github.com/Endor8/userChrome.js/tree/master/userChrome
