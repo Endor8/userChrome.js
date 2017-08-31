@@ -1,4 +1,6 @@
-#### Inhalt der Datei config.js
+#### Inhalt der Datei:
+
+**config.js**
 
 ```js
 //
