@@ -11,7 +11,13 @@
 
 Die Dateien **config.js** und **userChromeJS.js** müssen in den **Firefox Installationsordner**
 
+![Screenshot](Screenshot4-600px.png)
+
+![Screenshot](Screenshot3-600px.png)
+
 Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults\pref**
+
+![Screenshot](Screenshot5-600px.png)
 
 ##### Wo finde ich den Firefox Installationsordner
 
