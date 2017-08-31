@@ -26,11 +26,15 @@ oder
 In den **Profilordner\chrome** gehört die Datei:
 **userChrome.js**
 
+
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
-**%appdata%\Mozilla\Firefox\Profiles\xxx.default** (xxx steht für eine zufällige Zeichenfolge und ist bei jedem anders)
+**%appdata%\Mozilla\Firefox\Profiles\xxx.default** 
+(xxx steht für eine zufällige Zeichenfolge und ist bei jedem anders)
+
 oder
 **Portable_Firefox\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
+
 
 #### Inhalt der Dateien:
   
