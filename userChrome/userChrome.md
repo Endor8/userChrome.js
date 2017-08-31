@@ -34,9 +34,9 @@ oder
 
 #### Inhalt der Dateien:
   
-**config.js** siehe [hier]:(https://github.com/Endor8/userChrome.js/blob/master/userChrome/config.js.md) 
+**config.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/config.js.md) 
      
-**userChromeJS.js** siehe [hier]:(https://github.com/Endor8/userChrome.js/blob/master/userChrome/userChromeJS.js.md)
+**userChromeJS.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/userChromeJS.js.md)
      
 **config-prefs.js**
 ```js
