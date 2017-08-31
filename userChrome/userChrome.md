@@ -56,6 +56,9 @@ userChrome.import("*", "UChrm");
 ###### Alle 4 Dateien sind hier auch zum Herunterladen verfügbar:
 https://github.com/Endor8/userChrome.js/tree/master/userChrome
 
-Eine aktuelle Sammlung von Scripten gibt es hier:
+###### Eine aktuelle Sammlung von Scripten gibt es hier:
 https://github.com/ardiman/userChrome.js
+
+###### Informationen und Hilfe siehe hier:
+https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
 
