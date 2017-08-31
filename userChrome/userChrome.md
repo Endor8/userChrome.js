@@ -34,6 +34,8 @@ In den **Profilordner\chrome** gehört die Datei:
 
 ![Screenshot](Screenshot1-600px.png)
 
+![Screenshot](Screenshot2-600px.png)
+
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
 **%appdata%\Mozilla\Firefox\Profiles\xxx.default**                                     
