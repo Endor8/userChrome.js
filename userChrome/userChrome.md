@@ -29,7 +29,7 @@ In den **Profilordner\chrome** gehört die Datei:
 
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
-**%appdata%\Mozilla\Firefox\Profiles\xxx.default** 
+**%appdata%\Mozilla\Firefox\Profiles\xxx.default**                                     
 (xxx steht für eine zufällige Zeichenfolge und ist bei jedem anders)
 
 oder
