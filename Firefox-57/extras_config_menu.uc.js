@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           extras_config_menu.uc.js
-// @compatibility  Firefox 8.*, 9.*, 10.*, 11.*, 12.*, 13.*, 14.*, 15.*, 16.*, 17.*, 18.*,57.*
+// @compatibility  Firefox 8.*, 9.*, 10.*, 11.*, 12.*, 13.*, 14.*, 15.*, 16.*, 17.*, 57.*
 // @include        main
-// @version        1.0.20170821
+// @version        1.0.20170826
 // ==/UserScript==
 
 var uProfMenu = {
@@ -27,11 +27,11 @@ var uProfMenu = {
   // - Zum Ausblenden: abouts: [],
   // - Damit die about:-Seiten nicht als Untermenue, sondern direkt als Menuepunkte aufgefuehrt werden, muss das erste Element '0' sein:
   // abouts: ['0','about:about','about:addons','about:cache','about:config','about:support'],
-  abouts: ['about:about','about:addons','about:cache','about:config','about:crashes','about:home','about:memory','about:healthreport','about:plugins','about:support','about:preferences','about:performance'],
+   abouts: ['about:about','about:addons','about:cache','about:config','about:crashes','about:home','about:memory','about:healthreport','about:plugins','about:support','about:preferences','about:performance'],
   // Die normalen Firefox-Einstellungen auch zur Verfuegung stellen (0: nein, 1: ja):
   showNormalPrefs: 0,
   // Stellt "Skriptliste in Zwischenablage" zur Verfuegung (1: ja, 2: mit getrennter Nummerierung, 3: mit gemeinsamer Nummerierung) oder nicht (0):
-  enableScriptsToClip: 2,
+  enableScriptsToClip: 0,
   // Um den Eintrag "Neustart" zu erzwingen (falls z.B. das andere Skript zu spaet eingebunden und nicht erkannt wird), auf 1 setzen:
   enableRestart: 0,
   // Ende der Konfiguration
@@ -62,7 +62,7 @@ var uProfMenu = {
       menu.setAttribute("id", "ExtraConfigMenu-button");
       menu.setAttribute("class", "toolbarbutton-1");
       menu.setAttribute("type", "menu");
-      menu.setAttribute("tooltiptext", "Extra Config Men\u00FC\nMittelklick \u00F6ffnet about:config");
+      menu.setAttribute("tooltiptext", "Extra Config Menü\nMittelklick \öffnet about:config");
       menu.setAttribute("onclick","if (event.button === 1 && !this.open) {getBrowser (). selectedTab = getBrowser (). addTab ('about:config')};");
     }
     //ab hier ist alles gleich, egal ob Button oder Menue
@@ -78,6 +78,7 @@ var uProfMenu = {
     sss.loadAndRegisterSheet(uri,sss.AGENT_SHEET);
     menu.setAttribute("onpopupshowing","uProfMenu.getScripts(0)");
     var menupopup = menu.appendChild(this.createME("menupopup",0,0,0,"ExtraConfigMenu-popup"));
+    menupopup.appendChild(this.createME("menuitem","userChrome.js","uProfMenu.edit(0,'userChrome.js');","uProfMenu_edit",0));
     // Anlegen von Untermenues fuer die userChromeJS-Skripte (befuellt werden sie spaeter)
     var submenu=menupopup.appendChild(this.createME("menu","uc.js",0,0,"submenu-ucjs"));
     var submenupopup = submenu.appendChild(this.createME("menupopup",0,0,0,"submenu-ucjs-items"));
@@ -87,7 +88,6 @@ var uProfMenu = {
      // Ende Anlegen von Untermenues fuer die userChromeJS-Skripte
     menupopup.appendChild(document.createElement('menuseparator'));
     // Einbindung von Konfigdateien
-	menupopup.appendChild(this.createME("menuitem","userChrome.js","uProfMenu.edit(0,'userChrome.js');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userChrome.css","uProfMenu.edit(0,'userChrome.css');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userContent.css","uProfMenu.edit(0,'userContent.css');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","prefs.js","uProfMenu.edit(1,'prefs.js');","uProfMenu_edit",0));
@@ -137,7 +137,8 @@ var uProfMenu = {
     if (this.showNormalPrefs) menupopup.appendChild(this.createME("menuitem","Einstellungen","try{openOptionsDialog();}catch(e){openPreferences();}","uProfMenu_prefs"),0);
     // Falls addRestartButton installiert ist, Neustart zur Verfuegung stellen (addRestartButton 1.0.20120105mod erforderlich)
     if(typeof(ToolRstartMod) != "undefined" || this.enableRestart) menupopup.appendChild(this.createME("menuitem","Neustart",
-      "try{ToolRstartMod.SaveRestart(event,1);} catch(e){alert(e);}","uProfMenu_restart"),0);
+    "try{ToolRstartMod.restartApp(false);} catch(e){alert(e);}","uProfMenu_restart"),0);
+
   },
 
 
@@ -210,9 +211,9 @@ var uProfMenu = {
     var file = Components.classes["@mozilla.org/file/directory_service;1"]
       .getService(Components.interfaces.nsIProperties)
       .get(str, Components.interfaces.nsIFile);
-      if (str == 'CurProcD') {
+    if (str == 'CurProcD') {
       file = file.parent;
-      };
+    };
     return file.path;
   },
 
