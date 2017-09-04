@@ -1,12 +1,19 @@
 // ==UserScript==
 // @name           Tab Wheel Scroll
 // @namespace      http://d.hatena.ne.jp/Cherenkov/
-// @description    ???????????
+// @description    Mit dem Mausrad durch die Tabs rollen
 // @include        chrome://browser/content/browser.xul
 // ==/UserScript==
 
-(function(){
-gBrowser.mTabContainer.addEventListener("DOMMouseScroll", function(event){
-	this.advanceSelectedTab(event.detail > 0 ? +1 : -1, true);
-}, true);
+(function() {
+  if (location != 'chrome://browser/content/browser.xul')
+    return;
+  const scrollRight = true;
+  const wrap = true;
+  gBrowser.tabContainer.addEventListener("wheel", function(event) {
+    let dir = (scrollRight ? 1 : -1) * Math.sign(event.deltaY);
+    setTimeout(function() {
+      gBrowser.tabContainer.advanceSelectedTab(dir, wrap);
+    }, 0);
+  }, true);
 })();
