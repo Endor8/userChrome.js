@@ -2,7 +2,7 @@
     // @name Shorten Title
     // @namespace Violentmonkey Scripts
     // @match https://www.camp-firefox.de/forum/*
-	// @description   Kürzt den Titel der Themen im Firefox-Forum auf www.camp-firefox.de
+    // @description   Kürzt den Titel der Themen im Firefox-Forum auf www.camp-firefox.de
     // @Version       0.0.1
     // @grant none
     // ==/UserScript==
