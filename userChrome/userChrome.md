@@ -6,7 +6,7 @@
 [2. userChromeJS.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/userChromeJS.js)     
 [3. config-prefs.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/config-prefs.js)        
 [4. userChrome.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/userChrome.js)      
-(Zum runterladen oben rechtsklick und Ziel Speichern unter.)
+###### (Zum runterladen oben rechtsklick und Ziel Speichern unter.)
 
 ##### Wo müssen die Dateien hin
 
@@ -25,7 +25,7 @@ Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults
 
 ##### Wo finde ich den Firefox Installationsordner
 
-unter **C:\Program Files\Mozilla Firefox (bei 64bit)**
+![#f03c15]unter **C:\Program Files\Mozilla Firefox (bei 64bit)**
 
 oder 
 **C:\Program Files (x86)\Mozilla Firefox (bei 32bit)**
