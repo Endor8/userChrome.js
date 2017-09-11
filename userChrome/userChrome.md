@@ -12,12 +12,15 @@
 Die Dateien **config.js** und **userChromeJS.js** müssen in den **Firefox Installationsordner**
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-400px.png?raw=true)
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-600px.png?raw=true)
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot3-400px.png?raw=true)
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot3-600px.png?raw=true)
 
 Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults\pref**
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot5-400px.png?raw=true)
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot5-600px.png?raw=true)
 
 ##### Wo finde ich den Firefox Installationsordner
 
@@ -33,8 +36,10 @@ In den **Profilordner\chrome** gehört die Datei:
 **userChrome.js**
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot2-400px.png?raw=true)
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot2-600px.png?raw=true)
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot1-400px.png?raw=true)
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot1-600px.png?raw=true)
 
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
