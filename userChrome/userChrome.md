@@ -1,6 +1,6 @@
 ### userChrome Verwendung auch in Firefox 57
 
-##### Folgende Dateien werden zur Verwendung von userChrome Scripten benötigt
+##### Folgende Dateien werden zur Verwendung von userChrome Scripten benötigt, bzw. sind Voraussetzung:
  
 1. config.js
 2. userChromeJS.js
