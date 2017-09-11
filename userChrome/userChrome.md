@@ -32,7 +32,7 @@ oder
 In den **Profilordner\chrome** gehört die Datei:
 **userChrome.js**
 
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot6-400px.png?raw=true)
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot2-400px.png?raw=true)
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot1-400px.png?raw=true)
 
