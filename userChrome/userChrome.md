@@ -12,7 +12,7 @@
 
 Die Dateien **config.js** und **userChromeJS.js** müssen in den **Firefox Installationsordner**
 
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-400px.png?style=centerme)  
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-400px.png?raw=true)  
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-600px.png?raw=true)
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot3-400px.png?raw=true)   
