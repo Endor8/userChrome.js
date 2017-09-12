@@ -2,10 +2,10 @@
 
 ##### Folgende Dateien werden zur Verwendung von userChrome Scripten benötigt, bzw. sind Voraussetzung:
  
-[1. config.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/config.js)       
-[2. userChromeJS.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/userChromeJS.js)     
-[3. config-prefs.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/config-prefs.js)        
-[4. userChrome.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/userChrome.js) 
+[1. config.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/config.js)       
+[2. userChromeJS.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/userChromeJS.js)     
+[3. config-prefs.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/config-prefs.js)        
+[4. userChrome.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/userChrome.js) 
 ###### (Zum runterladen rechtsklick auf obige Dateien und Ziel Speichern unter.)
 
 ##### Wo müssen die Dateien hin
@@ -53,9 +53,9 @@ oder
 
 ##### Inhalt der Dateien:
   
-**config.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/config.js.md) 
+**config.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/Dateien/config.js.md) 
      
-**userChromeJS.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/userChromeJS.js.md)
+**userChromeJS.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/Dateien/userChromeJS.js.md)
      
 **config-prefs.js**
 ```js
@@ -69,7 +69,7 @@ userChrome.import("*", "UChrm");
 ```
 
 ###### Alle 4 Dateien sind hier auch zum Herunterladen verfügbar:
-https://github.com/Endor8/userChrome.js/tree/master/userChrome
+https://github.com/Endor8/userChrome.js/tree/master/userChrome/Dateien
 
 ###### Eine aktuelle Sammlung von Scripten gibt es hier:
 https://github.com/ardiman/userChrome.js
