@@ -1,1 +1,1 @@
-atualisierte und neue Scripte für Firefox 57
+aktualisierte und neue Scripte für Firefox 57
