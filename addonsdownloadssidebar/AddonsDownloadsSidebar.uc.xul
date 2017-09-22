@@ -3,8 +3,8 @@
       xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
     <broadcasterset id="mainBroadcasterSet">
-        <broadcaster id="viewAddonsSidebar" autoCheck="false" label="Add-ons" type="checkbox" group="sidebar" sidebarurl="chrome://mozapps/content/extensions/extensions.xul" sidebartitle="Add-ons" oncommand="toggleSidebar('viewAddonsSidebar');"/>
-        <broadcaster id="viewDownloadsSidebar" autoCheck="false" label="Downloads" type="checkbox" group="sidebar" sidebarurl="chrome://mozapps/content/downloads/downloads.xul" sidebartitle="Downloads" oncommand="toggleSidebar('viewDownloadsSidebar');"/>
+        <broadcaster id="viewAddonsSidebar" autoCheck="false" label="Add-ons" type="checkbox" group="sidebar" sidebarurl="chrome://mozapps/content/extensions/extensions.xul" sidebartitle="Add-ons" oncommand="SidebarUI.toggle('viewAddonsSidebar');"/>
+        <broadcaster id="viewDownloadsSidebar" autoCheck="false" label="Downloads" type="checkbox" group="sidebar" sidebarurl="about:downloads" sidebartitle="Downloads" oncommand="SidebarUI.toggle('viewDownloadsSidebar');"/>
     </broadcasterset>
 
     <menupopup id="viewSidebarMenu">
