@@ -7,6 +7,7 @@
 // @include        chrome://browser/content/browser.xul
 // @note           0.3 add "Copy as Function" to the contextmenu. Now you can copy config entries in user_pref(xxx, xxx); format to be used in user.js
 // ==/UserScript==
+
 window.addEventListener('DOMContentLoaded', function (event) {
     var doc = event.target,
         win;
@@ -20,6 +21,8 @@ window.addEventListener('DOMContentLoaded', function (event) {
     menuitem.setAttribute('label', 'Kopieren für user.js');
     menuitem.setAttribute('accesskey', 'K');
     menuitem.setAttribute('oncommand', 'copyAsFunction();');
+
+    const gClipboardHelper = Cc["@mozilla.org/widget/clipboardhelper;1"].getService(Ci.nsIClipboardHelper);
 
     win.getSelected = function () {
         var arr = [],
@@ -39,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
     win.ResetSelected = function () {
         win.getSelected().forEach(function (i) {
-            win.gPrefBranch.clearUserPref(i.prefCol);
+            Services.prefs.clearUserPref(i.prefCol);
         })
     }
 
@@ -48,7 +51,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         win.getSelected().forEach(function (i) {
             arr.push(i.prefCol + ';' + i.valueCol);
         });
-        win.gClipboardHelper.copyString(arr.join('\n'), document);
+        gClipboardHelper.copyString(arr.join('\n'));
     }
 
     win.copyName = function () {
@@ -56,7 +59,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         win.getSelected().forEach(function (i) {
             arr.push(i.prefCol);
         });
-        win.gClipboardHelper.copyString(arr.join('\n'), document);
+        gClipboardHelper.copyString(arr.join('\n'));
     }
 
    win.copyValue = function () {
@@ -64,7 +67,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         win.getSelected().forEach(function (i) {
             arr.push(i.valueCol);
         });
-        win.gClipboardHelper.copyString(arr.join('\n'), document);
+        gClipboardHelper.copyString(arr.join('\n'));
     }
 
     win.copyAsFunction = function () {
@@ -76,7 +79,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
                 arr.push('user_pref("' + i.prefCol + '", ' + i.valueCol + ');');
             }
         });
-        win.gClipboardHelper.copyString(arr.join('\n'), document);
+        gClipboardHelper.copyString(arr.join('\n'));
     }
 
 }, true);
