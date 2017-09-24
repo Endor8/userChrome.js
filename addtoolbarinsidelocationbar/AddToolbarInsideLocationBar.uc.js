@@ -5,6 +5,9 @@
 // @include        main
 // @compatibility  Firefox 29+
 // @author         Alice0775
+// @version        2016/01/23 1$:00 fix unexpectedly open url when reorder bookmarks
+// @version        2015/08/11 18:00 fix icon size due to bug Bug 1147702
+// @version        2015/04/11 12:00 fix icon size due to bug 1147702
 // @version        2014/09/28 22:00 fix does not preserve position due to bug 1001090
 // @version        2014/06/20 22:00 do not collapse in gullscreen
 // @version        2014/06/07 20:00 slightly delayed to display toolbar
@@ -40,7 +43,8 @@ var addToolbarInsideLocationBar = {
       } \
  \
       /*default theme*/ \
-      #ucjs-Locationbar-toolbar > toolbarbutton .toolbarbutton-icon{ \
+      #nav-bar #ucjs-Locationbar-toolbar > toolbarbutton .toolbarbutton-icon{ \
+        width: 18px; \
         padding: 0 !important; \
       } \
  \
@@ -62,6 +66,12 @@ var addToolbarInsideLocationBar = {
       #ucjs-Locationbar-toolbar #bookmarks-menu-button[cui-areatype="toolbar"]:not(.bookmark-item):not([overflowedItem=true]) > .toolbarbutton-menubutton-dropmarker > .dropmarker-icon { \
         padding-top: 0; \
         padding-bottom: 0; \
+        padding-left: 2px; \
+        padding-right: 2px; \
+        width: 23px; \
+      } \
+      #ucjs-Locationbar-toolbar:not([customizing="true"]) #bookmarks-menu-button[cui-areatype="toolbar"] > .toolbarbutton-menubutton-button > .toolbarbutton-icon { \
+        width: 18px; \
       } \
       '.replace(/\s+/g, " ");
 
@@ -86,7 +96,7 @@ var addToolbarInsideLocationBar = {
     toolbar.setAttribute("context", "toolbar-context-menu");
     toolbar.setAttribute("class", "toolbar-primary chromeclass-toolbar customization-target");
     toolbar.setAttribute("fullscreentoolbar", "true");
-    toolbar.setAttribute("toolbarname", "UCJS Toolbar Inside LocationBar");
+    toolbar.setAttribute("toolbarname", "Symbolleiste in Adressleiste");
     toolbar.setAttribute("toolboxid", "navigator-toolbox");
     toolbar.setAttribute("hidden", "true");
     setTimeout(function(){toolbar.removeAttribute("hidden");}, 0)
@@ -105,7 +115,21 @@ var addToolbarInsideLocationBar = {
 
     let ref = this.getInsertPoint();
     ref.parentNode.insertBefore(toolbar, ref);
-
+    // xxxx toDo removing dirty hack
+    gURLBar.onDrop_addToolbarInsideLocationBar = gURLBar.onDrop;
+    gURLBar.onDrop = function(event) {
+      var toolbar = document.getElementById("ucjs-Locationbar-toolbar");
+      var target = event.originalTarget;
+      while(target) {
+        if (target == toolbar) {
+          return;
+        }
+        target = target.parentNode;
+      }
+      
+      gURLBar.onDrop_addToolbarInsideLocationBar(event);
+    };
+    //
     window.addEventListener("beforecustomization", this, true);
     BookmarkingUI._updateCustomizationState();
   },
@@ -121,7 +145,7 @@ var addToolbarInsideLocationBar = {
         window.addEventListener("customizationending", this, false);
         this.placeholder = toolbar.parentNode.insertBefore(document.createElement("hbox"), toolbar);
         let ref = document.getElementById("nav-bar-customization-target");
-        toolbar.setAttribute("tooltiptext", "Toolbar inside LocationBar");
+        toolbar.setAttribute("tooltiptext", "Symbolleiste in Adressleiste");
         ref.parentNode.insertBefore(toolbar, ref);
         break;
       case "customizationending":
