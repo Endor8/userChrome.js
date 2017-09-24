@@ -1,29 +1,31 @@
 // ==UserScript==
 // @name			AutoCopyLite.uc.js
 // @description		マウスで選択した文字列をクリップボードにコピーします。
-// @version			1.0.1c
-// @author			y2k
+// @version			1.0.3 文字列選択時にエラーが出るのを修正(e10sには非対応)
 // @include			main
-// @namespace		http://tabunfirefox.web.fc2.com/
-// @note			19以降で編集可能領域でもコピーされるのをとりあえず修正
 // ==/UserScript==
+(function (win) {
 
-(function() {
+var disableTag = { INPUT: true, TEXTAREA: true };
 var startCopy = false;
 
-window.addEventListener("mousedown", function(e) {
-	var localName = e.target.localName;
-	if (localName === 'input' || localName === 'textarea' || localName === 'textbox' || localName === 'password') return;
-	if ((e.button == 0) && (e.target instanceof HTMLElement))
+win.addEventListener("mousedown", (event) => {
+	var target = event.target;
+	if ((event.button === 0)
+		 && (target instanceof HTMLElement)
+		 && !disableTag[target.tagName]) {
 		startCopy = true;
-}, false);
+	}
+}, true);
 
-window.addEventListener("mouseup", function(e) {
-	if ((e.button == 0) && startCopy) {
-		var selection = getBrowserSelection();
-		if (selection)
+win.addEventListener("mouseup", (event) => {
+	if ((event.button === 0) && startCopy) {
+		var sel = win.getSelection().toString().trim();
+		if (sel) {
 			goDoCommand("cmd_copy");
+		}
 		startCopy = false;
 	}
-}, false);
-})();
+}, true);
+
+}(window));
