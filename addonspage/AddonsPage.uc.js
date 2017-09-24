@@ -15,7 +15,7 @@
 // @note         - 右键菜单 "查看附加组件" 需要 DOM Inspector
 // @note         uc脚本管理界面
 // @note         - 启用禁用需要 rebuild_userChrome.uc.xul
-// @note         - 编辑命令需要首先设置  view_source.editor.path 的路径
+// @note         - 编辑命令需要首先设置 view_source.editor.path 的路径
 // @note         - 图标请自行添加样式，详细信息见主页
 // @note         其它信息见主页
 // ==/UserScript==
@@ -186,7 +186,7 @@ location == "chrome://browser/content/browser.xul" && (function(){
                 hidden: true,
                 label: isCN ? "重载 uc 脚本（慎用）" : "uc Script nachladen",
                 style: "font-weight:bold",
-                tooltiptext: "Nur Teilweise Skriptunterstützung. Bei Problemen Firefox Neustarten.",
+                tooltiptext: "Nur teilweise Skriptunterstützung. Bei Problemen Firefox Neustarten.",
                 oncommand: "AM_Helper.getAddon(AM_Helper.getPopupNode(this).value, AM_Helper.reloadUserChromeJS);"
             });
             popup.insertBefore(menuitem, ins);
@@ -361,7 +361,7 @@ location == "chrome://browser/content/browser.xul" && (function(){
             dir.append("extensions");
             dir.append(aAddon.id);
             var fileOrDir = dir.path + (dir.exists() ? "" : ".xpi");
-            //Application.console.log(fileOrDir);
+            //Services.console.logStringMessage(fileOrDir);
             try {
                 (new nsLocalFile(fileOrDir)).reveal();
             } catch (ex) {
