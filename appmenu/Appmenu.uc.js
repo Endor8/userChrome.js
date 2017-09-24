@@ -67,8 +67,8 @@ var Appmenu = {
             subdir: 'Firefox Verzeichnis'
         },
 		{
-            name: 'Plugins',
-            path: '\\Plugins',
+            name: 'Erweiterungen',
+            path: '\\extensions',
 			image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACHSURBVDhPzZNLDoAgDES5ly6AsMFr61EMHkNb0hLCRxBd+JJJ6NBOmijiU7TWG+hEKaVWsqt+BjexyK76HjAsyMUNncIZiwEjwywX1pNSTrRUE2PMzHMhgO48aV2iGsB1r5cFIGld4jaghx8GPPmM2BsHvPmRDgGPY8FDctEUzO04S0uNIsQFBhTTt3pWtZkAAAAASUVORK5CYII=',
             subdir: 'Firefox Verzeichnis'
         },
@@ -92,18 +92,18 @@ var Appmenu = {
             name: 'Browser-Konsole',
             subdir: 'Firefox Funktionen',
 			image:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACHSURBVDhPzZNLDoAgDES5ly6AsMFr61EMHkNb0hLCRxBd+JJJ6NBOmijiU7TWG+hEKaVWsqt+BjexyK76HjAsyMUNncIZiwEjwywX1pNSTrRUE2PMzHMhgO48aV2iGsB1r5cFIGld4jaghx8GPPmM2BsHvPmRDgGPY8FDctEUzO04S0uNIsQFBhTTt3pWtZkAAAAASUVORK5CYII=',
-            command: "toJavaScriptConsole();"
+            command: "HUDService.openBrowserConsoleOrFocus();"
         },
 		{
             name: 'Firefox synchronisieren',
             subdir: 'Firefox Funktionen',
 			image:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADJSURBVDhPrVOBDcIwDMsJnMAJfFDWPsAJO4ET+IQTOGUn7AROgLg4U1qCihCWrCqxnVZaJhFSSrtpmi4551X5cFzRh06rSCnlCLJE+KDGpQv2XLYh1nThu/X0tiuGa3+PE7X1axgwcx9WzrQ08K+tcIFhOIQLVdqzKY/RDzBSHiMKg5T/h+gSkPIYURikPIbfg58GqHl2wW1TKb/w6fOpsQljja2mRcSt6U3PE4bhZN2E4bdeDXPi9z+QAhe8vVhNZ2X4C9PSQeQJaqDMYjYgrJgAAAAASUVORK5CYII=',
-            command: "gSyncUI.doSync(event);"
+            command: "gSyncUI.openSetup(null, 'menubar');"
         },
         //下面定义主菜单功能
         {
             name: 'Neustart',
-            command: "Services.appinfo.invalidateCachesOnRestart() || Application.restart();",
+            command: "Services.appinfo.invalidateCachesOnRestart() || BrowserUtils.restartApplication();",
             image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1klEQVR42mNgoCZwcnJiAuIIIN4IxK+A+D+U3gTEUSB5JLX16JpVgfgsVBMuDJJXA2kG8ZE1KwHxS6iih0CcCcSKQMwFxApQ/kOo/DeYgcjOPg0V3AHEfDi8xwvEt5FdBJOIhArcB2J+POFTj+4lmMQmqEAaKZqRDXgOFZAlN+r+QA1gIdeAt5S6YDPUgFRyDYhCigU+ItQfBmH05HseKR3w4kkH26HqrgIxK7KkClLaJ5QSQWGmgs0GZSC+SCAvXALlGUK5MQaItwLxC6imD1Cnx2CLagCrE7TimOQIRAAAAABJRU5ErkJggg=="
         },
         {
