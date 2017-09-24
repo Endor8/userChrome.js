@@ -1,5 +1,5 @@
-// AnimationToggleButton.uc.js
-// v. 0.4
+//   AnimationToggleButton.uc.js
+//   v. 0.4.2
 
 (function() {
 
@@ -41,8 +41,10 @@
                   return Services.prefs.getCharPref('image.animation_mode');
                };
                function setIsOnce(value) {
-                  for (var win of Application.windows)
-                     win._window.document.getElementById('animation-button').IsOnce = value;
+                  var windows = Services.wm.getEnumerator('navigator:browser');
+                  while (windows.hasMoreElements()) {
+                     windows.getNext().document.getElementById('animation-button').IsOnce = value;
+                  };
                };
 
                switch (event.button) {
@@ -55,7 +57,7 @@
                         setIsOnce(false);
                      } else {
                         if (animmode == 'normal')
-                           BrowserReloadSkipCache();
+                           BrowserReloadSkipCache()
                         else
                            BrowserReload();
                      };
@@ -73,8 +75,10 @@
                      break;
                };
 
-               for (var win of Application.windows)
-                  win._window.document.getElementById('animation-button').setAttribute('anim', getPref());
+               var windows = Services.wm.getEnumerator('navigator:browser');
+               while (windows.hasMoreElements()) {
+                  windows.getNext().document.getElementById('animation-button').setAttribute('anim', getPref());
+               };
             };
 
             button.setAttribute('onclick', '(' + onClick.toString() + ')();');
