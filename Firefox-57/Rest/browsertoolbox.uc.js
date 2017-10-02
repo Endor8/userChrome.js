@@ -1,8 +1,7 @@
 //	browsertoolbox.uc.js
 
-
 (function() {
-    if (location != 'chrome://browser/content/browser.xul')
+	if (location != 'chrome://browser/content/browser.xul')
 		return;
 
 	try {
@@ -11,12 +10,12 @@
 			defaultArea: CustomizableUI.AREA_NAVBAR,
 			label: 'Browser-Werkzeuge',
 			tooltiptext: 'Browser-Werkzeuge',
-			onCommand: function() {
-			onCommand();
+			onCommand: function(event) {
+				onCommand(event);
 			}
 		});
 	} catch(e) {
-  	  return;
+		return;
 	};
 
 	var css = '\
@@ -31,7 +30,7 @@
 
 	Cu.import('resource://gre/modules/Timer.jsm');
 
-	function onCommand() {
+	function onCommand(event) {
 
 		var listenOpen = {
 			observe: function(aSubject, aTopic, aData) {
@@ -53,7 +52,7 @@
 			    newWin.document.getElementById('info.body').textContent.startsWith(dialogText))
 			{
 				var button = newWin.document.getAnonymousElementByAttribute(
-				newWin.document.documentElement, 'dlgtype', 'accept');
+					newWin.document.documentElement, 'dlgtype', 'accept');
 				button.click();
 				Services.ww.unregisterNotification(listenOpen);
 				clearTimeout(tId);
@@ -61,11 +60,15 @@
 		};
 
 		Services.ww.registerNotification(listenOpen);
-		BrowserToolboxProcess.init();
+		var document = event.target.ownerDocument;
+		if (!document.getElementById('menu_browserToolbox')) {
+			let { require } = Cu.import("resource://devtools/shared/Loader.jsm", {});
+			require("devtools/client/framework/devtools-browser");
+		};
+		document.getElementById('menu_browserToolbox').click();
 		var tId = setTimeout(function() {
-		Services.ww.unregisterNotification(listenOpen);
+			Services.ww.unregisterNotification(listenOpen);
 		}, 5000);
 	};
 
 })();
-
