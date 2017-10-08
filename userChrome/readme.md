@@ -25,7 +25,7 @@ Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults
 
 ##### Wo finde ich den Firefox Installationsordner
 
-![#f03c15]unter **C:\Program Files\Mozilla Firefox (bei 64bit)**
+Unter **C:\Program Files\Mozilla Firefox (bei 64bit)**
 
 oder 
 **C:\Program Files (x86)\Mozilla Firefox (bei 32bit)**
