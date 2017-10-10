@@ -15,7 +15,7 @@
       let nsLocalFile = Components.Constructor("@mozilla.org/file/local;1","nsIFile", "initWithPath");
       new nsLocalFile(profileDir).reveal();
     }
-     
+    
     if (typeof win.openProfileDirectory == 'undefined') {
         win.openProfileDirectory = openProfileDirectory;
         win.addEventListener('keydown', function(e) {
