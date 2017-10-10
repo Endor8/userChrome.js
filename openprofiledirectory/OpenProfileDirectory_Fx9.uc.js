@@ -7,7 +7,7 @@
     function openProfileDirectory() {
         Components.classes["@mozilla.org/file/directory_service;1"]
               .getService(Components.interfaces.nsIProperties)
-              .get("ProfD", Components.interfaces.nsILocalFile)
+              .get("ProfD", Components.interfaces.nsIFile)
               .launch();
     }
     if(typeof win.openProfileDirectory == 'undefined') {
