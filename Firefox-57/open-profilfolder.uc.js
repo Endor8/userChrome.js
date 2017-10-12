@@ -11,13 +11,13 @@
 
        try {
           CustomizableUI.createWidget({
-             id: 'Open-Profile-Folderbutton',
+             id: 'open-profilfolder',
              type: 'custom',
              defaultArea: CustomizableUI.AREA_NAVBAR,
              onBuild: function(aDocument) {         
                 var toolbaritem = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
                 var props = {
-                   id: 'Open-Profile-Folderbutton',
+                   id: 'open-profilfolder',
                    class: 'toolbarbutton-1 chromeclass-toolbar-additional',
                    removable: true,
                    label: 'Profilordner öffnen',
