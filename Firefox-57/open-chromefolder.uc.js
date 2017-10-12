@@ -11,13 +11,13 @@
 
        try {
           CustomizableUI.createWidget({
-             id: 'Open-Chrome-Folderbutton',
+             id: 'open-chromefolder',
              type: 'custom',
              defaultArea: CustomizableUI.AREA_NAVBAR,
              onBuild: function(aDocument) {         
                 var toolbaritem = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
                 var props = {
-                   id: 'Open-Chrome-Folderbutton',
+                   id: 'open-chromefolder',
                    class: 'toolbarbutton-1 chromeclass-toolbar-additional',
                    removable: true,
                    label: 'Chrome Ordner öffnen',
