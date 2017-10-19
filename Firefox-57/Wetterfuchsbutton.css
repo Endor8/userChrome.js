@@ -437,8 +437,8 @@
     }
     }
 
-    @-moz-document url-prefix(http://www.dwd.de/DWD/wetter/wv_allg/deutschland/),
-                   url-prefix(http://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/) {
+    @-moz-document url-prefix(https://www.dwd.de/DWD/wetter/wv_allg/deutschland/),
+                   url-prefix(https://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/) {
 
     body {
     overflow: hidden !important;
