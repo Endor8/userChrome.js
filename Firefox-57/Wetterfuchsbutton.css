@@ -260,6 +260,45 @@
     #karte {margin-left: -100px !important;}
     }
 
+    @-moz-document url-prefix("https://www.wetterkontor.de/warnungen/warnung.asp"){
+		
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(7),
+    .banner728x90, #shr-admin-badge,
+    .cc_banner.cc_container.cc_container--open {display: none !important;}	
+
+    body {overflow: hidden !important; margin-left: 20px !important;}	
+	
+    #content {height: 700px !important; width: 1200px !important;}
+    
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    .uk-grid.uk-grid-width-medium-1-2 {margin-left: 0px !important;}
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important; }
+	
+    #karte {margin-left: -110px !important; margin-top: 80px !important;}
+    }
+
+    @-moz-document url("https://www.wetterkontor.de/warnungen/"){
+	
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
+    .banner728x90, #shr-admin-badge,
+    .cc_banner.cc_container.cc_container--open {display: none !important;}	
+	
+    body {overflow: hidden !important; margin-left: 25px !important;}	
+	
+    #content {height: 700px !important; width: 1200px !important;}
+  
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    .uk-grid.uk-grid-width-medium-1-2 {margin-left: 0px !important;}
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important; }
+	
+    #karte {margin-left: -110px !important; margin-top: 80px !important;}
+    }
 
     @-moz-document url-prefix("https://www.wetterkontor.de/de/wetter/europa/"){
     #header,H1, H2, .uk-width-large-2-5.uk-width-medium-1-3, .uk-text-right, .uk-text-muted, #content > DIV > DIV:first-child > ARTICLE >
