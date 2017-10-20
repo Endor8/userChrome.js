@@ -254,7 +254,9 @@
     .cc_banner.cc_container.cc_container--open	{display: none !important;}
 
     body {overflow: hidden !important; }
-
+    
+    #page{box-shadow: none!important; border: none !important;}
+    
     DIV[class="warnungen_box uk-panel uk-panel-box uk-panel-box-primary"]{margin-top: -300px !important;}
 
     #karte {margin-left: -100px !important;}
