@@ -59,10 +59,10 @@ var wetterfuchs = {
    @-moz-document domain(daswetter.com), \
                   domain(dwd.de), \
                   domain(meteocentrale.ch), \
-				  domain(niederschlagsradar.de), \
-				  domain(www.meteox.de), \
+		  domain(niederschlagsradar.de), \
+		  domain(www.meteox.de), \
                   domain(msn.com), \
-				  domain(wetter.faz.net), \
+		  domain(wetter.faz.net), \
                   domain(wetter.de), \
                   domain(wetter.net), \
                   domain(wetterkontor.de) { \
