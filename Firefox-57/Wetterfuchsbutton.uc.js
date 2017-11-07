@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           wetterfuchsbutton.uc.js
-// @compatibility  Firefox 33. - 58
+// @compatibility  Firefox 33. - 56
 // @include        main
-// @version        1.0.20171106
+// @version        1.0.20171107
 // ==/UserScript==
 
 var wetterfuchs = {
@@ -65,22 +65,12 @@ var wetterfuchs = {
 				  domain(wetter.faz.net), \
                   domain(wetter.de), \
                   domain(wetter.net), \
-				  domain(wetter.provinz.bz.it), \
-				  domain(www.meteotrentino.it), \
                   domain(wetterkontor.de) { \
      scrollbar {display: none !important} \
    }'; 
    var cssUri = Services.io.newURI('data:text/css,' + encodeURIComponent(css), null, null);
    var SSS = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
    SSS.loadAndRegisterSheet(cssUri, SSS.AGENT_SHEET);
-   
-   var css = '\
-      #wetterfuchs-toolbarbutton .toolbarbutton-icon {max-width: none !important;}\
-   ';
-	   
-   var stylesheet = document.createProcessingInstruction('xml-stylesheet', 'type="text/css" href="data:text/css;utf-8,' + encodeURIComponent(css) + '"');
-
-   document.insertBefore(stylesheet, document.documentElement);
    
    this.$F('wetterfuchs-toolbarbutton','\
 		<menupopup id="wetterfuchsmenu">\
