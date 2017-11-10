@@ -506,7 +506,7 @@
     @-moz-document domain(www.daswetter.com) {
     #contSup, #pubIzq, #pubAside, #pubAside2, .pubDesk, .modulo.bSocial, .modulo.fotoLoc, #divGota, .icons-de.liCompartir,.liCompartir.comp-svg,
     #wrap > HEADER > ASIDE > DIV > _moz_generated_content_before,#bottom_newsletter, DIV[class="tCook"][style="display: block;"], #pubSup > DIV,
-    #top30, .modulo.pubMapa, .modulo.fase-lunar.sl-1, .modulo.locC, #foots, .leySocial, #modulos > ASIDE,
+    #top30, .modulo.pubMapa, .modulo.fase-lunar.sl-1, .modulo.locC, #foots, .leySocial, #modulos > ASIDE, #pIzq,
     DIV[class="addthis-smartlayers addthis-smartlayers-desktop"][aria-labelledby="at4-share-label"],
     DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"]
     {display: none !important;}
@@ -588,8 +588,10 @@
     .fondoNB.color-fondo-flecha-12, .T1Loc.color-texto-t100-12, .ddHora.color-texto-t85-12, .ddDesc.T1Loc.color-texto-t100-12,
     .ddTemp.T1Loc.color-texto-t100-12, .T1Loc.color-texto-t100-12, .T3Loc.color-texto-t70-12, .dayS.T3Loc.color-texto-t70-12,
     .T2Loc.icons.tMax.color-texto-t90-12, .T2Loc.icons.tMin.color-texto-t90-12, .rain.T4Loc.color-texto-t50-12,
-    .xh-dir.color-texto-t85-12, .xh-temp.color-texto-t90-12, ABBR, #title_actualizacion, #fecha_act, #rmes > THEAD > TR > TH
-    {color: #FFFFFF !important;}
+    .xh-dir.color-texto-t85-12, .xh-temp.color-texto-t90-12, ABBR, #title_actualizacion, #fecha_act, #rmes > THEAD > TR > TH,
+    #pDer > SPAN {color: #FFFFFF !important;}
+
+    .despPaises {background: #FFFFFF !important; max-height: 34px !important;}
 
     /*   Hintergrundfarbe Pfeil Links bzw. Rechts und anderes Symbol  */
 
@@ -634,7 +636,7 @@
     #menu,.rahmen,.schatten_links,.schatten_rechts,#breadcrumb,#content_home_titel > TBODY > TR > TD > DIV:nth-child(2), #container_ortszeit,
     #content_links > TABLE:last-child > TBODY > TR > TD > TABLE:nth-child(2), #content_links > TABLE:last-child > TBODY > TR > TD > TABLE:last-child,
     #rahmen_inhalt > TABLE > TBODY > TR:last-child,#topmenu > TBODY > TR:first-child,#zeitClient_Container,#buehne,#content_links > TABLE:first-child,
-    #rahmen_inhalt > TABLE > TBODY > TR:nth-child(2),#rahmen_inhalt > TABLE > TBODY > TR:first-child,#wetterseite > NOSCRIPT,
+    #rahmen_inhalt > TABLE > TBODY > TR:nth-child(2),#rahmen_inhalt > TABLE > TBODY > TR:first-child,#wetterseite > NOSCRIPT, #werbung_links,
     .tab_infos.inaktiv,#content_links > TABLE:last-child > TBODY > TR > TD > B,#content_links > TABLE:last-child > TBODY > TR > TD > A,
     #rahmen_inhalt > TABLE > TBODY > TR:nth-child(4), #rahmen_inhalt > TABLE > TBODY > TR:nth-child(5),.cc_banner-wrapper{
     display: none !important;
