@@ -21,7 +21,7 @@ var gExternalApplications = {
     {name: 'Calculator', path: '.\\.\\..\\..\\WINDOWS\\system32\\calc.exe'},
     {name: 'Command Prompt', path: 'C:\\WINDOWS\\system32\\cmd.exe'},
     {name: 'separator'},
-	{name: 'Windows Explorer', path: 'C:\\Windows\\explorer.exe'},  
+    {name: 'Windows Explorer', path: 'C:\\Windows\\explorer.exe'},  
   ],
 
   init: function() {
