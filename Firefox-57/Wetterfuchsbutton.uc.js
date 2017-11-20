@@ -8,8 +8,8 @@
 var wetterfuchs = {
   urlobj: {
     MO_Doppelklick: {url:"https://www.msn.com/de-de/wetter/heute/de/Berlin,BE,Deutschland/we-city-52.520,13.380",width:700,height:640},
-    MO_Rechtsklick: {url:"http://www.wetter.net/47/Berlin",width:820,height:442},
-    MO_Mittelklick: {url:"https://www.daswetter.com/wetter_Berlin-Europa-Deutschland-Berlin--1-26301.html",width:800,height:700},
+    MO_Rechtsklick: {url:"http://www.wetter.net/47/Berlin",width:820,height:440},
+    MO_Mittelklick: {url:"https://www.daswetter.com/wetter_Berlin-Europa-Deutschland-Berlin--1-26301.html",width:800,height:638},
     DED_WetterAktuell: {url:"https://www.wetterkontor.de/de/deutschland_aktuell.asp?id=0&page=0&sort=0",width:625,height:865},
     DED_Vorhersage: {url:"https://www.wetterkontor.de/de/wetter/deutschland.asp",width:670,height:780},
     DED_Pollenbelastung: {url:"https://www.wetterkontor.de/de/bio/pollenflug-erle.asp",width:478,height:590},

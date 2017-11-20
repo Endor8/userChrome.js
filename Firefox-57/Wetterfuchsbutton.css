@@ -676,9 +676,10 @@
     #wrapper-site > DIV:nth-child(3), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > H1, #site-footer,
     #wrapper-site > DIV:nth-child(6) > DIV:last-child > DIV:nth-child(2), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > H2,
     #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > UL, #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:last-child,
-    .cc_banner.cc_container.cc_container--open {display: none! important;}
+    .cc_banner.cc_container.cc_container--open, .ligatus-footer-ad-container, .ligatus-content-forecast-reco-container,
+    .related-column, #adcontrol-site-top, #adcontrol-site-column-right{display: none! important;}
 
-    #js-page-reload-overlay, #js-page-reload-overlay-modal {display: none !important;}
+    #js-page-reload-overlay, #js-page-reload-overlay-modal,  #js-page-reload-idle, .modal-backdrop.fade.in {display: none !important;}
 
     /*   Verschiebt Steuerung, von ober dem Bild nach unten   */
 
