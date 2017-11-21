@@ -1,18 +1,22 @@
+//  bottomtoolbar.uc.js
+
 (function() {
 
   if (location != 'chrome://browser/content/browser.xul')
     return;
-    
-  var tb = document.createElement('toolbar');
-  tb.id = 'new-toolbar';
-  tb.setAttribute('customizable', true);
-  tb.setAttribute('mode', 'icons');
 
-  var vbox = document.createElement('vbox');
-  document.getElementById('navigator-toolbox').parentNode.insertBefore(
-    vbox, document.getElementById('browser-bottombox'));
-  vbox.appendChild(tb);
+  let toolbar = document.createElement('toolbar');
+  toolbar.id = 'bottom-toolbar';
+  toolbar.setAttribute('customizable', 'true');
+  toolbar.setAttribute('mode', 'icons');
+  toolbar.setAttribute('context', 'toolbar-context-menu');
 
-  CustomizableUI.registerArea('new-toolbar', {legacy: true});
+  let vbox  = document.createElement('vbox');
+  vbox.id = 'bottom-toolbar-vbox';
+  let browserBottombox = document.getElementById('browser-bottombox');
+  browserBottombox.parentNode.insertBefore(vbox, browserBottombox);
+  vbox.appendChild(toolbar);
+
+  CustomizableUI.registerArea('bottom-toolbar', {legacy: true});
 
 })();
