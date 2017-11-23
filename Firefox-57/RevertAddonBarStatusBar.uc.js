@@ -18,7 +18,7 @@
   vbox.appendChild(toolbar);
   vbox.style.backgroundColor = '#F6F6F6'; 
   //Hier kann die Hintergrundfarbe angepasst werden. Als Wert kann zbs. red, green,
-  //yellow oder black usw, aber auch zbs. #f7f7f7 usw.verwendet werden.
+  //yellow oder orange usw, aber auch zbs. #f7f7f7 usw.verwendet werden.
 
   CustomizableUI.registerArea('bottom-toolbar', {legacy: true});
 
