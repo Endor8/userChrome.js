@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name           expandsidebar.uc.js
-// @description    サイドバーの自動開閉
+// @name           expandsidebar_fx45.uc.js
+// @description    Automatisches Öffnen und Schließen der Seitenleiste
 // @namespace      http://forums.mozillazine.org/viewtopic.php?p=2592073#2592073
 // @include        chrome://browser/content/browser.xul
-// @compatibility  Firefox 45
+// @compatibility  Firefox 45 - 59
 // @author         Alice0775
-// @Note           _SIDEBARPOSITIONにあなたの環境におけるサイドバーの位置を指示しておく
-// @Note           keycongigやmousegesture等には SidebarUI.toggle(何タラ);
+// @Note           Seitenleiste Position auswählbar
+// @Note           Für keyconfig, mousgesture usw. (selber Code) wie bei SidebarUI.toggle;
 // @Note
 // @version        2017/11/18 Fx57
 // @version        2017/11/18 nsIPrefBranch2 to nsIPrefBranch
@@ -40,28 +40,27 @@
 // @version        2009/04/14 22:00 fx2削除
 var ucjs_expand_sidebar = {
 // --- config ---
-  //ここから
-  _OPEN_DELAY: 400,   //for open by mouseover
-  _OPEN_DELAY_DRAGOVER: 400,   //for open by dragover
-  _CLOSE_DELAY: 800,      //for close
-  _SCROLLBAR_DELAY: 1000, //for スクロールバーを操作後, 自動的に開閉を許可するまでの時間
-  _DEFAULTCOMMAND: "viewBookmarksSidebar", // デフォルトのサイドバー
-  _TOLERANCE: 0,          // 認識するウィンドウ左端とする範囲(TreeStyleTab等使用の場合は0がいいかも)
-  _DONOTCLOSE_XULELEMENT: true, // マウスがXULエレメント上ならクローズしない(コンテンツにXULを表示している場合もクローズしなくなる)
-  _CLOSEWHENGOOUT:  false, // ウィンドウ外にマウスが移動した際に: true:閉じる, [false]:閉じない
+  //Einstellungen:
+  _OPEN_DELAY: 400,          //Öffnen Verzögerung bei Maushover
+  _OPEN_DELAY_DRAGOVER: 400, //Öffnen Verzögerung beim ziehen
+  _CLOSE_DELAY: 800,         //Schließen Verzögerung
+  _SCROLLBAR_DELAY: 1000,    //Scroll-Balken Bewegung, benötigte Zeitverzögerung, zum automatischen öffnen und schließen 
+  _DEFAULTCOMMAND: "viewBookmarksSidebar", //Standard-Seitenleiste
+  _TOLERANCE: 0,             //Erkennung von Fenster Bereich auf der linken Seite (empfohlener Wert bei Verwendung von TreeStyleTab Erweiterung =0)
+  _DONOTCLOSE_XULELEMENT: true, // Maus auf einem XUL-Element, nicht schließen (bei XUL-Inhalt nicht schließen)
+  _CLOSEWHENGOOUT:  false, // Wenn die Maus bewegt wird, vor das Fenster: true: Schließen, [false]: Nicht schließen
   _FLOATING_SIDEBAR: false, //enable floating(overlay) sidebar, (known issue:can't resize sidebar.)
-  _SIDEBARPOSITION: "L",   //サイドバーの位置 左側:L 右側:R
-                           //ただし, バーチカルツールバーGomita氏作 VerticalToolbar.uc.js 0.1
-                           //(http://www.xuldev.org/blog/?p=113) を先に実行するようにしておく。
-  _KEEP_SIZES:true,        //サイドバーの種類毎に幅を記憶する
-  _defaultWidth: 300,      //デフォルトサイドバー幅
-  _inFullscreen: true,     //Fullscreen時の挙動をFirefox31当時の物にする
-  //ここまで
+  _SIDEBARPOSITION: "L",   //Seitenleiste: Links :L  Rechts :R
+                           //Mit, vertikaler Symbolleiste von Gomita, Version VerticalToolbar.uc.js 0.1 verwendbar.
+                           //(http://www.xuldev.org/blog/?p=113)
+  _KEEP_SIZES:true,        //Seitenleiste Breite merken
+  _defaultWidth: 234,      //Seitenleiste Standardbreite
+  _inFullscreen: true,     //Auch bei Vollbild anzeigen, funktioniert in Firefox 31, in neueren Versionen bisher nicht getestet.
 // --- config ---
 
-  _MOUSEMOVEINTERVAL: 10,  //マウスの位置をチェックする間隔
-  _CHECKBOX_AT_STARUP:false, //チェックボックスの初期値
-  _CLOSE_AT_STARTUP:true, //最初は閉じておく
+  _MOUSEMOVEINTERVAL: 10,    //Mausbewegungsintervall Überprüfung
+  _CHECKBOX_AT_STARUP:false, //Checkbox beim Start anzeigen
+  _CLOSE_AT_STARTUP:true,    //Seitenleiste beim Firefoxstart nicht anzeigen
   _lastcommand: null,
   _backup_lastcommand:null,
   _open_Timeout: null,
@@ -400,7 +399,7 @@ var ucjs_expand_sidebar = {
 	    gBrowser.selectedBrowser.focus();
 	  }
 
-    //fireSidebarFocusedEventの置き換え
+    //ersetzt durch fireSidebarFocusedEvent
     //
     if (typeof fireSidebarFocusedEvent == "function") {
       window.fireSidebarFocusedEvent_org = fireSidebarFocusedEvent;
@@ -418,7 +417,7 @@ var ucjs_expand_sidebar = {
       }
     }
 
-    //起動時 閉じておく?
+    //Seitenleiste bei Firefoxstart nicht öffnen?
 
     setTimeout(function(self) {
       var command = self._sidebar_box.getAttribute("sidebarcommand");
@@ -593,11 +592,11 @@ var ucjs_expand_sidebar = {
           return;
         }
         this._resizeTimer = setTimeout(function(self) {
-          //サイドバーが開いているならそのサイズを保存しておく
+          //Größe speichern, wenn Seitenleiste geöffnet ist
           var hidden = self._sidebar_box.hasAttribute('hidden') ? true : false;
           if (!hidden && self._sidebar_box.getAttribute('collapsed') != "true" ) {
             var size = self._sidebar_box.width;
-            //現在のコマンドをget
+            //Aktuelle Befehlsumgebung verlassen
             var _command =  self.getCommandId();
             if (!!_command){
               self._saveKeepItSizes(_command, size);
@@ -608,7 +607,7 @@ var ucjs_expand_sidebar = {
     }
   },
 
-  //負荷軽減のため分離
+  //Getrennt, um die Last zu verringern
   _mouseover: function(event){
     ucjs_expand_sidebar._checkWindowSideOrNot(event);
   },
