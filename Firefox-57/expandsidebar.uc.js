@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           expandsidebar_fx45.uc.js
+// @name           expandsidebar.uc.js
 // @description    サイドバーの自動開閉
 // @namespace      http://forums.mozillazine.org/viewtopic.php?p=2592073#2592073
 // @include        chrome://browser/content/browser.xul
