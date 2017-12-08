@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name          Extension Options Menu.uc.js
-// @description   拡張を操作するメニューボタンを追加
+// @description   Symbolleistenschaltfläche zur Add-ons-Verwaltung
 // @include       main
 // @charset       UTF-8
 // @version       3.1.1 Öffnen des Erweiterungen-Ordners funktionierte nicht
-// @version       3.1.0 Fx57Für später aktiviert, deaktivieren Sie integrierte Add-on zu verstecken
+// @version       3.1.0 Unterstützt Fx 57 oder später. System Add-ons, können nicht deaktiviert werden
 // @version       3.0.10 Fx52以降で右クリック時に出る既存メニューを出ないように修正 (2ch該当スレより拝借)
 // @version       3.0.9 表示したくないアドオンを設定できるように(コメントアウト内の説明参照)、選択アドオンのidをAlt+左クリックでコピーできるように
 // @version       3.0.8 再起動に関する修正
