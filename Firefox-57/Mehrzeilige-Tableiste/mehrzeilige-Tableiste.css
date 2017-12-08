@@ -1,0 +1,218 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+/*AGENT_SHEET*/
+/* === Firefox 多段タブ === */
+
+:root {
+     --multirowtab-height:         31px; /* タブの高さ */
+         --new-tab-button:         26px; /* 新しいタブボタン外枠幅 */
+     --new-tab-buttonicon:         14px; /* 新しいタブボタン画像部分 */
+  --multirowtab-min-width:        100px; /* タブの最小横幅 */
+  --multirowtab-max-width:        225px; /* タブの最大横幅 */
+  --multirowtabbar-height:            3; /*タブバーの高さ(段数)*/
+}
+/* 多段タブの要素 */
+.tabbrowser-arrowscrollbox {
+  -moz-binding: url("chrome://global/content/bindings/scrollbox.xml#arrowscrollbox") !important;
+}
+.tabbrowser-arrowscrollbox > .arrowscrollbox-scrollbox {
+  display: block !important;
+  overflow: visible !important;
+}
+.tabbrowser-arrowscrollbox > .arrowscrollbox-scrollbox > .scrollbox-innerbox {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+
+  /* 段数制限いらない人はこれを消す */
+  max-height: calc( var(--multirowtab-height) * var(--multirowtabbar-height) ) !important;
+}
+#tabbrowser-tabs,
+#tabbrowser-tabs > .tabbrowser-arrowscrollbox,
+#tabbrowser-tabs[positionpinnedtabs] > .tabbrowser-tab[pinned] {
+  min-height: var(--multirowtab-height) !important;
+}
+/* スクロールバーをドラッグ出来るようにする。 */
+/**/
+#main-window[tabsintitlebar] #tabbrowser-tabs {
+  -moz-window-dragging: no-drag !important;
+}
+
+.tabbrowser-tab {
+  min-height: var(--multirowtab-height) !important;
+  vertical-align: top !important;
+  display: -webkit-box !important;
+}
+.tab-stack {
+  width: 100% !important;
+  min-height: unset !important;
+}
+.tab-label-container[pinned] {
+  visibility: collapse !important;
+}
+/* タイトルバーボタン */
+#titlebar,#titlebar-buttonbox {
+  height: var(--multirowtab-height) !important;
+}
+#titlebar{
+  margin-bottom: calc(var(--multirowtab-height) * -1) !important;
+}
+#main-window[sizemode="maximized"] #titlebar {
+  margin-bottom: calc(8px + var(--multirowtab-height) * -1) !important;
+}
+/* 新しいタブボタン */
+#new-tab-button,
+.tabs-newtab-button {
+  min-width: 0px !important;
+  width: var(--new-tab-button) !important;
+  height: var(--new-tab-button) !important;
+  margin-top: 3px !important;
+  margin-bottom: 2px !important;
+  margin-left: 1px !important;
+}
+#new-tab-button:hover,
+.tabs-newtab-button:hover {
+  background: var(--toolbarbutton-hover-background) !important;
+}
+#new-tab-button .toolbarbutton-icon,
+.tabs-newtab-button .toolbarbutton-icon {
+  width: var(--new-tab-buttonicon) !important;
+  height: var(--new-tab-buttonicon) !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  background: none !important;
+}
+
+/* --- タブ横幅 --- */
+
+/* アクティブタブ */
+/*
+.tabbrowser-tab:not([pinned])[selected="true"] {
+  width: auto !important;
+  max-width: var(--multirowtab-max-width) !important;
+}
+*/
+
+/* 非アクティブタブ */
+.tabbrowser-tab:not([pinned]) {
+  flex-grow: 1 !important;
+  min-width: var(--multirowtab-min-width) !important;
+  max-width: var(--multirowtab-max-width) !important;
+}
+
+/* --- タブ文字色サイズ --- */
+
+/* アクティブ */
+
+/*
+.tabbrowser-tab[selected="true"] .tab-label {
+  color: rgba(34, 139, 34, 1.0) !important;
+  text-shadow: 1px 2px 1px #fff !important;
+  font-weight: 900;
+  font-size: 120%;
+}
+*/
+
+/* 非アクティブ */
+
+/*
+.tabbrowser-tab:not([visuallyselected=true]) {
+  color: rgba(65, 105, 225, 1.0) !important;
+  text-shadow: 1px 2px 1px #fff !important;
+  font-weight: 900;
+  font-size: 120%;
+}
+*/
+
+/* 読み込まれているが未読（選択されていない） */
+
+/*
+.tabbrowser-tab:not([selected="true"])[unread] .tab-label {
+  color: rgba(255, 0, 0, 1.0) !important;
+  text-shadow: 1px 2px 1px #fff !important;
+  font-weight: 900;
+  font-size: 120%;
+}
+*/
+
+/* まだ読み込まれていない（訪問されている） */
+
+/*
+.tabbrowser-tab:not([selected="true"])[pending] .tab-label,
+.tabbrowser-tab:not([selected="true"])[visited] .tab-label {
+  color: rgba(0, 0, 0, 0.6) !important;
+  text-shadow: 1px 2px 1px #fff !important;
+  font-weight: 900;
+  font-size: 120%;
+}
+*/
+
+/* 読み込み中 */
+
+/*
+.tabbrowser-tab[busy] .tab-text.tab-label {
+  color: rgba(0, 0, 255, 1.0) !important;
+  text-shadow: 1px 2px 1px #fff !important;
+  font-weight: 900;
+  font-size: 120%;
+}
+*/
+
+/* タブ内の新しいアクティビティ ピン留め? */
+
+/*
+.tabbrowser-tab[titlechanged] .tab-text.tab-label {
+  color: rgba(153, 0, 0, 1.0) !important;
+  font-weight: 900;
+  font-size: 120%;
+}
+*/
+
+/* タブバーの左右にあるドラッグスペースの非表示 */
+/*
+.titlebar-placeholder[type="pre-tabs"],
+.titlebar-placeholder[type="post-tabs"],
+*/
+/* 非表示 */
+#tabbrowser-tabs .scrollbutton-up,
+#tabbrowser-tabs .scrollbutton-down,
+#tabbrowser-tabs .autorepeatbutton-up,
+#tabbrowser-tabs .autorepeatbutton-down,
+.arrowscrollbox-overflow-start-indicator,
+.arrowscrollbox-overflow-end-indicator,
+#alltabs-button,.tabbrowser-tab:not([fadein]) {
+  display: none !important;
+}
+
+/* すべてのタブにタブを閉じるボタンを表示 */
+
+.tab-close-button.close-icon:not([pinned]) {
+  display: inline-block !important;
+}
+
+/* === ツールバー === */
+
+/* ブックマークツールバー文字サイズ */
+
+/*
+#PersonalToolbar { 
+  font-weight: 900;
+  font-size: 111%;
+}
+*/
+
+/* 検索バーの → を常に表示するように固定 */
+
+/*
+.search-go-button {
+  display: inline-block !important;
+}
+*/
+
+/* 条件付きで[進む]ボタンを非表示にする */
+
+/*
+#forward-button[disabled="true"] {
+  display: none !important;
+}
+*/
