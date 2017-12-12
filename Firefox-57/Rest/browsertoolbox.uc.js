@@ -26,7 +26,7 @@
 		}';
 	var cssUri = Services.io.newURI('data:text/css,' + encodeURIComponent(css), null, null);
 	var SSS = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
-	SSS.loadAndRegisterSheet(cssUri, SSS.AUTHOR_SHEET);
+	SSS.loadAndRegisterSheet(cssUri, SSS.AGENT_SHEET);
 
 	Cu.import('resource://gre/modules/Timer.jsm');
 
