@@ -24,9 +24,11 @@
 // @version        2014/05/13 10:30 cosmetic
 // @version        2014/05/13 09:30 fix second window
 // @version        2014/05/13
-// @note           USAGE: View > Toolbars > Cutomize..., then, the "Toolbar Inside LocationBara"(red dotted) appeas at lefy side of nav bar. and you can drag and drop toolbarbutton on to the toolbar. The toolbarbutton will display inside locatonbar after exit customize mode. If you want to drag an item to the other toolbar, you should place the item on palette once, then move it to the other toolbar. i.e, this toolbar > palette > other toolbar
-// @note           Verwendung: Firefox - Anpassen Dialog öffnen, dann wird "Toolbar Inside LocationBar" (rote gepunktete Linie) am linken Ende der Navigationsleiste angezeigt. 
-// @note           Ziehen Sie die Schaltflächen dorthin und legen Sie sie dort ab. Nach Schließen des Apassen Dialogs, werden die Schaltfläche in der Adressleiste angezeigt.
+// @note           Verwendung: Firefox - Anpassen Dialog öffnen, dann wird "Toolbar Inside LocationBar" 
+// @note           (rote gepunktete Linie) am linken Ende der Navigationsleiste angezeigt. 
+// @note           Schaltflächen dorthin ziehen und ablegen. Nach Schließen des 
+// @note           Apassen Dialogs, werden die Schaltflächen in der Adressleiste angezeigt.
+
 // ==/UserScript==
 var addToolbarInsideLocationBar = {
   init: function() {
