@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           000-addToolbarInsideLocationBar.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    add a Toolbar inside LocationBar
+// @description    Symbolleiste in Adressleiste einfügen
 // @include        main
 // @compatibility  Firefox 57
 // @author         Alice0775
