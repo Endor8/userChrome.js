@@ -2,25 +2,23 @@
 
 //Einstellungen	- true = ein(aktiviert) false = aus(deaktiviert)
 
-  let moc = true;	//in Verbindung mit der alten Suchleiste verwenden
-  let keyUD	= false;//Suchmaschine auch mit Strg + ↑ ↓ Tasten ändern
-  let over = false;	//Sämtliche Änderungen mit Mousehover bei Suchleiste anzeigen
 //Namen und Symbol der Suchmaschine in der Suchleiste anzeigen
-  let label = true; //Namen anzeigen
+  let label = true;//Namen anzeigen
   let img = true;	//Symbol - Favicon anzeigen
 //Doppelklick auf Suchleiste, um zur Standard Suchmaschine zurück zukehren
+  let only = false;	//Suchleiste leeren und nicht zur Standardsuchmaschine zurückkehren [[[Neu in Version 0.6]]]
   let dbl = true;	//Funktion aktivieren
-  let zero = true;	//Zurück an die Spitze der Suchmaschinen mit einem Klick
-  let select = 'Google Deutschland';  //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
-  let erase = false;//Nach Suche Suchleiste leeren
-//Nach Suche mit der Suchleiste, zur angegebenen Suchmaschine zurück zukehren
-  let auto = true;	//Andere Einstellungen verwenden, durch einen Doppelklick auf die Suchleiste
-//Kontextmenü Suche mit[～～Suchen]
+  let zero = false;	//Bei Klick zur obersten Suchmaschine zurückkehren
+  let select = 'Google'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
+  let erase = true; //Nach Suche Suchleiste leeren
+//[Aktion nach dem Suchen mit der Suchleiste]
+  let auto = true;	//Andere Einstellungen verwenden, durch einen Doppelklick auf die Suchleiste  
+//Kontextmenü Suche wechseln mit[～～Suchen]
   let con = true;	//Funktion aktivieren
   let icon = true;	//Symbol - Favicon anzeigen
   let clk = true;	//Klicken, um zur Standard Suchmaschine zurückzukehren (Andere Einstellungen verwenden ~ mit Doppelklick auf die Suchleiste)
-//Zu der beim Start angegebenen Suchmaschine zurückkehren. * Gilt auch beim Neustart
-  let start0 = true;//Andere Einstellungen verwenden, durch einen Doppelklick auf die Suchleiste
+//[Verhalten beim Start] * Gilt auch beim Neustart
+  let start0 = false; //Andere Einstellungen verwenden, durch Doppelklick auf die Suchleiste
 
 //Konfiguration
 
@@ -28,31 +26,32 @@
   let bar = document.getElementById('searchbar');
   let box = bar.textbox.inputField;
   let menu = document.getElementById('context-searchselect');
-  //Nur einmal aufrufen, zur Vermeidung von leerer Seite
+  
   if(!!start0)gBrowser.addEventListener('load', ResetE, {once:true});
   if(!start0)gBrowser.addEventListener('load', ShowCurrentE, {once:true});
-  if(!!moc)document.getElementById('PopupSearchAutoComplete').addEventListener('mouseup', function(){setTimeout(function(){CMenu()}, 0)}, false);
-  if(!!keyUD)box.addEventListener('keyup', function(e){CheckK(e)}, false);
-  if(!!over)bar.addEventListener('mouseover', ShowCurrentE, false);
   if(!!dbl)bar.addEventListener('dblclick', ResetE, false);
   bar.addEventListener('DOMMouseScroll', function(e){ChangeE(e)} , false);
-  menu.addEventListener('wheel', function(e){if(!!con) ChangeE(e)} , false);
+  if(!!con)menu.addEventListener('wheel', function(e){ChangeE(e)} , false);
   if(!!clk)menu.addEventListener('click', function(){setTimeout(function(){ResetE()}, 0)} , false);
-  
+
+  window.addEventListener('unload', function uninit() {
+        bar.removeEventListener('dblclick', ResetE, false);
+        bar.removeEventListener('DOMMouseScroll', function(e){ChangeE(e)} , false);
+        menu.removeEventListener('wheel', function(e){if(!!con) ChangeE(e)} , false);
+        menu.removeEventListener('click', function(){setTimeout(function(){ResetE()}, 0)} , false);
+        window.removeEventListener('unload', uninit , false);
+    }, false);
   
   function ResetE(){
   	this.engines = Services.search.getVisibleEngines({});
   	let index = this.engines.indexOf(Services.search.currentEngine);
+  	if(!only){
   	if(!!zero || select == ''){Services.search.currentEngine = this.engines[0]}else{
   		Services.search.currentEngine = Services.search.getEngineByName(select)
-  		}
-  	CMenu();
-  	if(!!erase)box.value = '';
-  }
-  
-  function CheckK(event){
-  	if(!event.ctrlKey && !event.keyCode == 38 && !event.keyCode == 40) return;
+	  	}
   	CMenu()
+  	}	
+  	if(!!erase || !!only)box.value = '';
   }
   
   function CMenu() {
@@ -76,7 +75,6 @@
   	let index = this.engines.indexOf(Services.search.currentEngine);
   		this.engines[this.engines.length] = this.engines[0]
     	Services.search.currentEngine = this.engines[index+dir];
-    	//console.log(Services.search.currentEngine.name); //Suchmaschinennamen erfassen
     	CMenu()
   }
   
@@ -87,10 +85,23 @@
 		if(!!img)icon.setAttribute('style', "list-style-image: url('"+ E.iconURI.spec +"') !important; -moz-image-region: auto !important; width: 16px !important; padding: 2px 0 !important;");
   }
   
+  Services.obs.addObserver(observe, "browser-search-engine-modified");
+    window.addEventListener("unload", () => {
+      Services.obs.removeObserver(observe, "browser-search-engine-modified");
+    });
+   
+   function observe(aEngine, aTopic, aVerb) { 
+    if (aTopic == "browser-search-engine-modified") {
+      aEngine.QueryInterface(Components.interfaces.nsISearchEngine);
+      if(aVerb !== "engine-current") return;
+      	CMenu()
+  	}
+  }
+  
   if(!auto) return;
   	bar.cmd = bar.doSearch;
   	bar.doSearch = function(aData, aWhere, aEngine) {
   	this.cmd(aData, aWhere, aEngine);
   	ResetE()
   }  
-})();
+})()
