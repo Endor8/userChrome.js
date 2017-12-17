@@ -9,7 +9,7 @@
   let only = false;	//Suchleiste leeren und nicht zur Standardsuchmaschine zurückkehren [[[Neu in Version 0.6]]]
   let dbl = true;	//Funktion aktivieren
   let zero = false;	//Bei Klick zur obersten Suchmaschine zurückkehren
-  let select = 'Google Deutschland'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
+  let select = 'Google'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
   let erase = true; //Nach Suche Suchleiste leeren
 //[Aktion nach dem Suchen mit der Suchleiste]
   let auto = true;	//Andere Einstellungen verwenden, durch einen Doppelklick auf die Suchleiste  
