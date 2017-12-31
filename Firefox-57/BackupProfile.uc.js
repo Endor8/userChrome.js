@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name           BackupProfile.uc.js
-// @namespace      BackupProfile29+_JS版github.com
+// @namespace      BackupProfile.github.com
 // @description    Schaltfläche zum Sichern des Firefoxprofils
 // @charset        UTF-8
 // @author         ywzhaiqi、defpt
 // @version        v2017.12.28
 // @note           Vorlage Script von ywzhaiqi
-// @note           Sicherungsdatei enthaelt auch Profilname (v2017.12.23)
+// @note           Sicherungsdatei enthält jetzt auch Profilname (v2017.12.23)
 // @reviewURL      http://bbs.kafan.cn/thread-1758785-1-1.html
 (function () {
 	Components.utils.import("resource:///modules/CustomizableUI.jsm");
