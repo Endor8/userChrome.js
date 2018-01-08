@@ -133,7 +133,7 @@
 
     #header, H1,H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
     .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider,
-    #wkFooter2, .cc_banner.cc_container.cc_container--open, #bnr, #maine0d59d447b  {display: none !important;}
+    #wkFooter2, .cc_banner.cc_container.cc_container--open, #bnr, #maine0d59d447b, .mir_info.mir_info-outside  {display: none !important;}
 
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
     #content > DIV > DIV:first-child > H1,
@@ -670,14 +670,15 @@
                    url-prefix(https://www.wetter.de/deutschland/regenradar-karte-sachsen-c49p14.html),
                    url-prefix(https://www.wetter.de/deutschland/regenradar-karte-sachsen-anhalt-c49p15.html),
                    url-prefix(https://www.wetter.de/deutschland/regenradar-karte-schleswig-holstein-c49p1.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-thueringen-c49p16.html){
+                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-thueringen-c49p16.html),
+                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-deutschland-c49.html){
 
     #wrapper-site > DIV:first-child, #wrapper-site > DIV:nth-child(2), .billboard-background, #wrapper-site > DIV:nth-child(4), #technical-service,
     #wrapper-site > DIV:nth-child(3), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > H1, #site-footer,
     #wrapper-site > DIV:nth-child(6) > DIV:last-child > DIV:nth-child(2), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > H2,
     #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > UL, #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:last-child,
-    .cc_banner.cc_container.cc_container--open, .ligatus-footer-ad-container, .ligatus-content-forecast-reco-container,
-    .related-column, #adcontrol-site-top, #adcontrol-site-column-right{display: none! important;}
+    .cc_banner.cc_container.cc_container--open, .ligatus-footer-ad-container, .ligatus-content-forecast-reco-container, #wrapper-site > DIV:nth-child(6) >    DIV:first-child > DIV:nth-child(3), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(4),
+    .related-column, #adcontrol-site-top, #adcontrol-site-column-right, #wrapper-site > DIV:nth-child(6) > DIV:last-child > DIV:last-child, .info-textbox{display: none! important;}
 
     #js-page-reload-overlay, #js-page-reload-overlay-modal,  #js-page-reload-idle, .modal-backdrop.fade.in {display: none !important;}
 
