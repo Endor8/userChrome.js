@@ -18,6 +18,6 @@ Das ist eine Sammelscript welches im Moment folgende Schaltflächen enthält:
 * Passwörter anzeigen
 * Chronik löschen öffnen
 
-Die Firefox neustarten Schaltflächen wird automatisch in die Navigationsleiste 
+Die Firefox Neustarten Schaltfläche wird automatisch in die Navigationsleiste 
 eingefügt, alle anderen werden dem Anpassenfenster hinzugefügt und können über
 den Anpassen Dialog an die gewünschte Position geschoben werden.
