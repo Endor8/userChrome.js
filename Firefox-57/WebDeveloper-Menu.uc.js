@@ -4,7 +4,7 @@
    if (location != 'chrome://browser/content/browser.xul')
       return;
    setTimeout(function() {
-      if (document.getElementById('menuWebDeveloperPopup').childElementCount <= 1) {
+      if (document.getElementById('menuWebDeveloperPopup').childElementCount <= 5) {
          // s. DevToolsStartup.prototype.initDevTools
          // https://dxr.mozilla.org/mozilla-central/source/devtools/shim/devtools-startup.js
          let { require } = Cu.import("resource://devtools/shared/Loader.jsm", {});
