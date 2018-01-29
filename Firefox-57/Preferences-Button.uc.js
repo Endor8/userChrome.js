@@ -1,5 +1,5 @@
   
-  //  preferences1.uc.js
+  //  preferences-button.uc.js
   
   (function() {
 
