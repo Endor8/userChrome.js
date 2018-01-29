@@ -1,22 +1,23 @@
 (function() {
-
 //Einstellungen	- true = ein(aktiviert) false = aus(deaktiviert)
 
 //Namen und Symbol der Suchmaschine in der Suchleiste anzeigen
   let label = true;//Namen anzeigen
   let img = true;	//Symbol - Favicon anzeigen
 //Doppelklick auf Suchleiste, um zur Standard Suchmaschine zurück zukehren
-  let only = false;	//Suchleiste leeren und nicht zur Standardsuchmaschine zurückkehren [[[Neu in Version 0.6]]]
+  let only = false;	//Suchleiste leeren und nicht zur Standardsuchmaschine zurückkehren [Neu in Version 0.6]
   let dbl = true;	//Funktion aktivieren
   let zero = false;	//Bei Klick zur obersten Suchmaschine zurückkehren
-  let select = 'Google'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
+  let select = 'Google Deutschland'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
   let erase = true; //Nach Suche Suchleiste leeren
 //[Aktion nach dem Suchen mit der Suchleiste]
   let auto = true;	//Andere Einstellungen verwenden, durch einen Doppelklick auf die Suchleiste  
 //Kontextmenü Suche wechseln mit[～～Suchen]
-  let con = true;	//Funktion aktivieren
+  let cxt = true;	//Funktion aktivieren
   let icon = true;	//Symbol - Favicon anzeigen
   let clk = true;	//Klicken, um zur Standard Suchmaschine zurückzukehren (Andere Einstellungen verwenden ~ mit Doppelklick auf die Suchleiste)
+  let sync = false;	//Suchwort an die Suchleiste senden [Neu in Version 0.7]
+  let hist = true;	//Suchwort der Suchchronik der Suchleiste hinzufügen * Es ist OK, wenn die Synchronisation inkorrekt ist [Neu in Version 0.8]
 //[Verhalten beim Start] * Gilt auch beim Neustart
   let start0 = false; //Andere Einstellungen verwenden, durch Doppelklick auf die Suchleiste
 
@@ -26,37 +27,44 @@
   let bar = document.getElementById('searchbar');
   let box = bar.textbox.inputField;
   let menu = document.getElementById('context-searchselect');
+  let BSS = Components.classes["@mozilla.org/browser/search-service;1"]
+  			.getService(Components.interfaces.nsIBrowserSearchService);
   
-  if(!!start0)gBrowser.addEventListener('load', ResetE, {once:true});
-  if(!start0)gBrowser.addEventListener('load', ShowCurrentE, {once:true});
-  if(!!dbl)bar.addEventListener('dblclick', ResetE, false);
+  if(!!dbl) bar.addEventListener('dblclick', ResetE, false);
   bar.addEventListener('DOMMouseScroll', ChangeE, false);
-  if(!!con)menu.addEventListener('wheel', ChangeE, false);
-  if(!!clk)menu.addEventListener('click', function(){setTimeout(function(){ResetE()}, 0)} , false);
+  if(!!cxt) menu.addEventListener('wheel', ChangeE, false);
+  if(!!clk) menu.addEventListener('click', function(){
+  	if(!!sync) {box.value = this.searchTerms}else{box.value = box.value}
+  	if(!!hist) SyncHistory();
+  	setTimeout(function(){ResetE()}, 0)
+  }, false);
 
   window.addEventListener('unload', function uninit() {
         bar.removeEventListener('dblclick', ResetE, false);
         bar.removeEventListener('DOMMouseScroll', ChangeE, false);
         menu.removeEventListener('wheel', function(e){if(!!con) ChangeE(e)} , false);
-        menu.removeEventListener('click', function(){setTimeout(function(){ResetE()}, 0)} , false);
+        menu.removeEventListener('click', function(){
+        	if(!!sync) {box.value = this.searchTerms}else{box.value = box.value}
+        	if(!!hist) SyncHistory();
+        	setTimeout(function(){ResetE()}, 0)
+        } , false);
         window.removeEventListener('unload', uninit , false);
-    }, false);
+  }, false);
   
   function ResetE(){
-  	this.engines = Services.search.getVisibleEngines({});
-  	let index = this.engines.indexOf(Services.search.currentEngine);
+  	this.engines = BSS.getVisibleEngines({});
+  	let index = this.engines.indexOf(BSS.currentEngine);
   	if(!only){
-  	if(!!zero || select == ''){Services.search.currentEngine = this.engines[0]
+  	if(!!zero || select == ''){BSS.currentEngine = this.engines[0]
   	}else{
-  		Services.search.currentEngine = Services.search.getEngineByName(select)
+  		BSS.currentEngine = BSS.getEngineByName(select)
 	  	}
-  	}	
-  	if(!!erase || !!only)box.value = '';
+  	}
+  	if(!!erase || !!only) box.value = '';
   }
   
   function CMenu() {
-  	ShowCurrentE();
-  	let selectedText = menu.searchTerms;
+  	let selectedText = menu.searchTerms || window.getSelection().toString();
   	if (selectedText.length > 15) {
   		let truncLength = 15;
   		let truncChar = selectedText[15].charCodeAt(0);
@@ -64,10 +72,10 @@
   			truncLength++;
   		selectedText = selectedText.substr(0, truncLength) + 'Suchen mit ';
   	}
-  	var menuLabel = gNavigatorBundle.getFormattedString('contextMenuSearch',[Services.search.currentEngine.name, selectedText]);
+  	var menuLabel = gNavigatorBundle.getFormattedString('contextMenuSearch',[BSS.currentEngine.name, selectedText]);
   	menu.setAttribute('label', menuLabel);
-  	if(!icon || !con) return;
-  	let style = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);#context-searchselect:before{margin:0 -20px 0 5px;content:"";display:inline-block;width:16px;height:16px;background:url('+ Services.search.currentEngine.iconURI.spec +');background-size:contain!important}';
+  	if(!icon || !cxt) return;
+  	let style = '@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);#context-searchselect:before{margin:0 -20px 0 5px;content:"";display:inline-block;width:16px;height:16px;background:url('+ BSS.currentEngine.iconURI.spec +');background-size:contain!important}';
   	let sspi = document.createProcessingInstruction(
     	'xml-stylesheet',
     	'type="text/css" href="data:text/css,' + encodeURIComponent(style) + '"'
@@ -78,16 +86,29 @@
   	};  
   }
   
+  function SyncHistory(){
+  	let val = menu.searchTerms;
+  	let addHistory = function(val){
+  		setTimeout(function(){bar.FormHistory.update({op: "add", fieldname: "searchbar-history", value: val})}, 500);
+  	};
+  	let removeHistory = function(callback, val){
+  		bar.FormHistory.update({op: "remove", fieldname: "searchbar-history", value: val});
+  		callback(val);
+  	}
+  	removeHistory(addHistory, val);
+  }
+  
   function ChangeE(event) {
     let dir = (scrollRight ? 1 : -1) * Math.sign(event.detail || event.deltaY);
-  	this.engines = Services.search.getVisibleEngines({});
-  	let index = this.engines.indexOf(Services.search.currentEngine);
+  	this.engines = BSS.getVisibleEngines({});
+  	let index = this.engines.indexOf(BSS.currentEngine);
   		this.engines[this.engines.length] = this.engines[0]
-    	Services.search.currentEngine = this.engines[index+dir];
+  		if(index+dir < 0) return;
+    	BSS.currentEngine = this.engines[index+dir];
   }
   
   function ShowCurrentE(){
-  	let E = Services.search.currentEngine;
+  	let E = BSS.currentEngine;
 		if(!!label)box.setAttribute('placeholder', E.name);
 	let icon = document.getAnonymousElementByAttribute(bar, 'class', 'searchbar-search-icon');
 		if(!!img)icon.setAttribute('style', "list-style-image: url('"+ E.iconURI.spec +"') !important; -moz-image-region: auto !important; width: 16px !important; padding: 2px 0 !important;");
@@ -96,15 +117,30 @@
   Services.obs.addObserver(observe, "browser-search-engine-modified");
     window.addEventListener("unload", () => {
       Services.obs.removeObserver(observe, "browser-search-engine-modified");
-    });
+  });
+   
+  Services.obs.addObserver(ob2, "browser-search-service");
+    window.addEventListener("unload", () => {
+      Services.obs.removeObserver(ob2, "browser-search-service");
+  });
+    
    
    function observe(aEngine, aTopic, aVerb) { 
     if (aTopic == "browser-search-engine-modified") {
       aEngine.QueryInterface(Components.interfaces.nsISearchEngine);
       if(aVerb !== "engine-current") return;
-      	CMenu()
+      	ShowCurrentE();
+      	CMenu();
   	}
   }
+
+   function ob2(aSubject, aTopic, aData) {
+    if(aData === "init-complete" && aTopic === "browser-search-service") {
+       if(!!start0) ResetE();
+   	   ShowCurrentE();
+   	   CMenu();
+   	 }
+   }
     
   if(!auto) return;
   	bar.cmd = bar.doSearch;
