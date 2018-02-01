@@ -11,9 +11,9 @@
 		return;
 	}
 	
-	const IN_BACKGROUND = true; // Tab in Hintergrund öffnen
+	const IN_BACKGROUND = true; //  Tab in Hintergrund öffnen
 	const RELATED_TO_CURRENT = true; // Link oder Lesezeichen neben dem aktuellen Tab öffnen?
-	//WAIT = Wartezeit zum Öffnen in einem neuen Tab in Millisekunden
+	// WAIT = Wartezeit zum Öffnen in einem neuen Tab in Millisekunden
 	
 	let frameScript = function() {
 		const WAIT = 300;
@@ -37,9 +37,7 @@
 			let node = event.target || event.originalTarget;
 			if (!node) return;
 
-			let link = findLink(node);
-
-			let url = link.href || node.src;
+			let url = findLink(node);
 			if (!url) return;
 
 			if (event.type === 'mousedown') {
@@ -49,7 +47,7 @@
 						event.preventDefault();
 						event.stopPropagation();
 					}, true);
-					sendAsyncMessage('openLinkByLongPress.uc.js', url);
+					sendAsyncMessage('openLinkByLongPress.uc.js', url.href);
 					longPress = true;
 				}, WAIT);
 			} else {
@@ -64,9 +62,6 @@
 		function findLink(node) {
 			if (!node || !node.tagName) {
 				return null;
-			}
-			if (node.localName === 'img') {
-				return node.src;
 			}
 			switch (node.tagName.toUpperCase()) {
 				case 'A':
