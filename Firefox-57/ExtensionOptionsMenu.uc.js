@@ -31,7 +31,7 @@ Strg + Mittelklick: Erweiterungs-ID in Zwischenablage kopieren
 Strg + Rechtsklick: Erweiterung entfernen / Deinstallation rückgängig machen 
 *Nach Firefox-Neustart kann dies nicht mehr Rückgängig gemacht werden.
 
-Bei "blackListArray" in Zeile 49 können Add-ons, die nicht im Menü angezeigt werden sollen,
+Bei "blackListArray" in Zeile 50 können Add-ons, die nicht im Menü angezeigt werden sollen,
 mit der ID des Add-ons eingegeben werden. Sie können die ID mit Strg + Mittelklick kopieren.
 Einige Systemerweiterungen werden standardmäßig hinzugefügt.
 
