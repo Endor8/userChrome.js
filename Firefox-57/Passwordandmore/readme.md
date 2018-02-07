@@ -1,7 +1,7 @@
 **passwordplus.uc.js**
 
-Dieses Script fügt der Navigationsleiste eine neue Schaltfläche hinzu.
-Diese Schaltfläche verfügt über ein Kontextmenü mit folgenden Einträgen
+Dieses Script fügt der Navigationsleiste eine neue Schaltfläche hinzu.  
+Diese Schaltfläche verfügt über ein Kontextmenü mit folgenden Einträgen:
 * Passwörter öffnen
 * Cookies öffnen
 * Zertifikate öffnen
@@ -12,7 +12,7 @@ das selbe Menü wird auch dem Hauptkontextmenü hinzugefügt.
 
 Sieht dann so aus:
 
-### Button + Menü
+### Button + Menü:
  
 ![Screenshot](pawuco1.png)
 
