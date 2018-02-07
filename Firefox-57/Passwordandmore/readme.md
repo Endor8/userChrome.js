@@ -12,11 +12,11 @@ das selbe Menü wird auch dem Hauptkontextmenü hinzugefügt.
 
 Sieht dann so aus:
 
-# Button + Menü
+### Button + Menü
  
 ![Screenshot](pawuco1.png)
 
-# Kontextmenü:
+### Kontextmenü:
   
 ![Screenshot](pawuco2.png)
 
