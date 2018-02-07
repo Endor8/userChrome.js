@@ -1,6 +1,8 @@
 **passwordplus.uc.js**
 
 Dieses Script fügt der Navigationsleiste eine neue Schaltfläche hinzu.  
+Sie kann über den Anpassendialog frei verschoben werden.  
+  
 Diese Schaltfläche verfügt über ein Kontextmenü mit folgenden Einträgen:
 * Passwörter öffnen
 * Cookies öffnen
