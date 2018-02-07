@@ -11,10 +11,12 @@ Diese Schaltfläche verfügt über ein Kontextmenü mit folgenden Einträgen
 das selbe Menü wird auch dem Hauptkontextmenü hinzugefügt.
 
 Sieht dann so aus:
-Button + Menü
+#Button + Menü
+ 
 ![Screenshot](pawuco1.png)
 
-Kontextmenü:
+#Kontextmenü:
+  
 ![Screenshot](pawuco2.png)
 
 Wer die Symbole bei den Menüs haben möchte muss über die userChrome.css
