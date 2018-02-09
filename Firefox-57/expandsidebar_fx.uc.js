@@ -1,13 +1,14 @@
 // ==UserScript==
-// @name           expandsidebar_fx45.uc.js
+// @name           expandsidebar_fx58.uc.js
 // @description    Automatisches Öffnen und Schließen der Seitenleiste
 // @namespace      http://forums.mozillazine.org/viewtopic.php?p=2592073#2592073
 // @include        chrome://browser/content/browser.xul
-// @compatibility  Firefox 45 - 59
+// @compatibility  Firefox 58+
 // @author         Alice0775
-// @Note           Seitenleiste Position auswählbar
-// @Note           Für keyconfig, mousgesture usw. (selber Code) wie bei SidebarUI.toggle;
+// @Note           Seitenleistenposition bei _SIDEBARPOSITION wählbar (links oder rechts)
+// @Note           Keyconfig und Mousegesten usw. SidebarUI.toggle (entsprechender Code);
 // @Note
+// @version        2018/01/25 Fx58 wip
 // @version        2017/11/18 Fx57
 // @version        2017/11/18 nsIPrefBranch2 to nsIPrefBranch
 // @version        2017/02/01 00:00 enable floating(overlay) sidebar
@@ -40,27 +41,28 @@
 // @version        2009/04/14 22:00 fx2削除
 var ucjs_expand_sidebar = {
 // --- config ---
-  //Einstellungen:
-  _OPEN_DELAY: 400,          //Öffnen Verzögerung bei Maushover
-  _OPEN_DELAY_DRAGOVER: 400, //Öffnen Verzögerung beim ziehen
-  _CLOSE_DELAY: 800,         //Schließen Verzögerung
-  _SCROLLBAR_DELAY: 1000,    //Scroll-Balken Bewegung, benötigte Zeitverzögerung, zum automatischen öffnen und schließen 
-  _DEFAULTCOMMAND: "viewBookmarksSidebar", //Standard-Seitenleiste
-  _TOLERANCE: 0,             //Erkennung von Fenster Bereich auf der linken Seite (empfohlener Wert bei Verwendung von TreeStyleTab Erweiterung =0)
-  _DONOTCLOSE_XULELEMENT: true, // Maus auf einem XUL-Element, nicht schließen (bei XUL-Inhalt nicht schließen)
-  _CLOSEWHENGOOUT:  false, // Wenn die Maus bewegt wird, vor das Fenster: true: Schließen, [false]: Nicht schließen
+  //ここから
+  _OPEN_DELAY: 400,   //for open by mouseover
+  _OPEN_DELAY_DRAGOVER: 400,   //for open by dragover
+  _CLOSE_DELAY: 800,      //for close
+  _SCROLLBAR_DELAY: 1000, //for スクロールバーを操作後, 自動的に開閉を許可するまでの時間
+  _DEFAULTCOMMAND: "viewBookmarksSidebar", // Standardseitenleiste
+  _TOLERANCE: 0,          // 認識するウィンドウ左端とする範囲(TreeStyleTab等使用の場合は0がいいかも)
+  _DONOTCLOSE_XULELEMENT: true, // マウスがXULエレメント上ならクローズしない(コンテンツにXULを表示している場合もクローズしなくなる)
+  _CLOSEWHENGOOUT:  false, // Wenn sich die Maus aus dem Fenster bewegt: true: schließen, [false]: nicht schließen
   _FLOATING_SIDEBAR: false, //enable floating(overlay) sidebar, (known issue:can't resize sidebar.)
-  _SIDEBARPOSITION: "L",   //Seitenleiste: Links :L  Rechts :R
-                           //Mit, vertikaler Symbolleiste von Gomita, Version VerticalToolbar.uc.js 0.1 verwendbar.
-                           //(http://www.xuldev.org/blog/?p=113)
-  _KEEP_SIZES:true,        //Seitenleiste Breite merken
-  _defaultWidth: 234,      //Seitenleiste Standardbreite
-  _inFullscreen: true,     //Auch bei Vollbild anzeigen, funktioniert in Firefox 31, in neueren Versionen bisher nicht getestet.
+  _SIDEBARPOSITION: "L",   //Seitenleistenposition Linke Seite: L Rechte Seite: R
+                           //ただし, バーチカルツールバーGomita氏作 VerticalToolbar.uc.js 0.1
+                           //(http://www.xuldev.org/blog/?p=113) を先に実行するようにしておく。
+  _KEEP_SIZES:true,        //サイドバーの種類毎に幅を記憶する
+  _defaultWidth: 234,      //デフォルトサイドバー幅
+  _inFullscreen: true,     //Fullscreen時の挙動をFirefox31当時の物にする
+  //ここまで
 // --- config ---
 
-  _MOUSEMOVEINTERVAL: 10,    //Mausbewegungsintervall Überprüfung
-  _CHECKBOX_AT_STARUP:false, //Checkbox beim Start anzeigen
-  _CLOSE_AT_STARTUP:true,    //Seitenleiste beim Firefoxstart nicht anzeigen
+  _MOUSEMOVEINTERVAL: 10,  //マウスの位置をチェックする間隔
+  _CHECKBOX_AT_STARUP:false, //チェックボックスの初期値
+  _CLOSE_AT_STARTUP:true, //最初は閉じておく
   _lastcommand: null,
   _backup_lastcommand:null,
   _open_Timeout: null,
@@ -88,12 +90,12 @@ var ucjs_expand_sidebar = {
     var style = ' \
     @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); \
  \
-    #main-window #sidebar-splitter:-moz-system-metric(windows-default-theme) \
+    #main-window #sidebar-splitter \
     { \
       -moz-box-align: center; \
       -moz-box-pack: center; \
       cursor: ew-resize; \
-      border-width: 0 2px; \
+      border-width: 0 0px; \
       border-style: solid; \
       -moz-border-left-colors: ThreeDShadow ThreeDHighlight; \
       -moz-border-right-colors: ThreeDDarkShadow ThreeDFace; \
@@ -102,6 +104,7 @@ var ucjs_expand_sidebar = {
       min-width: 0px; \
       background-color: ThreeDFace; \
       margin-left: 0px; \
+      margin-inline-start: 0px; \
     } \
     #navigator-toolbox[inFullscreen="true"] #sidebar-box[hidden="true"] + #sidebar-splitter, \
     #main-window[inFullscreen="true"] #sidebar-box[hidden="true"] + #sidebar-splitter \
@@ -280,40 +283,9 @@ var ucjs_expand_sidebar = {
      */
 		defineGetter(SidebarUI, "isOpen", function isOpen(){return !this._box.collapsed;})
 
-		SidebarUI.toggle =
-		function toggle(commandID = this.currentID) {
-		    if (this.isOpen && commandID == this.currentID) {
-		      this.hide();
-		      return Promise.resolve();
-		    } else {
-		      return this.show(commandID);
-		    }
-		  }
 
-		SidebarUI.show =
-		function show(commandID) {
-	    return new Promise((resolve, reject) => {
-	      let sidebarBroadcaster = document.getElementById(commandID);
-	      if (!sidebarBroadcaster || sidebarBroadcaster.localName != "broadcaster") {
-	        reject(new Error("Invalid sidebar broadcaster specified"));
-	        return;
-	      }
-
-	      let broadcasters = document.getElementsByAttribute("group", "sidebar");
-	      for (let broadcaster of broadcasters) {
-	        // skip elements that observe sidebar broadcasters and random
-	        // other elements
-	        if (broadcaster.localName != "broadcaster") {
-	          continue;
-	        }
-
-	        if (broadcaster != sidebarBroadcaster) {
-	          broadcaster.removeAttribute("checked");
-	        } else {
-	          sidebarBroadcaster.setAttribute("checked", "true");
-	        }
-	      }
-
+		SidebarUI.show_org = SidebarUI.show;
+		SidebarUI.show = function show(commandID, triggerNode) {
 	      //this._box.hidden = false;
 	      this._box.collapsed = false;
 	      this._splitter.hidden = false;
@@ -322,84 +294,26 @@ var ucjs_expand_sidebar = {
         ucjs_expand_sidebar._opend = true;
         if ("treeStyleTab" in gBrowser)
           gBrowser.treeStyleTab.updateFloatingTabbar(gBrowser.treeStyleTab.kTABBAR_UPDATE_BY_WINDOW_RESIZE);
-
-	      this._box.setAttribute("sidebarcommand", sidebarBroadcaster.id);
-
-	      let title = sidebarBroadcaster.getAttribute("sidebartitle");
-	      if (!title) {
-	        title = sidebarBroadcaster.getAttribute("label");
-	      }
-	      this._title.value = title;
-
-	      let url = sidebarBroadcaster.getAttribute("sidebarurl");
-	      this.browser.setAttribute("src", url); // kick off async load
-
-	      // We set this attribute here in addition to setting it on the <browser>
-	      // element itself, because the code in SidebarUI.uninit() persists this
-	      // attribute, not the "src" of the <browser id="sidebar">. The reason it
-	      // does that is that we want to delay sidebar load a bit when a browser
-	      // window opens. See delayedStartup() and SidebarUI.startDelayedLoad().
-	      this._box.setAttribute("src", url);
-
-	      if (this.browser.contentDocument.location.href != url) {
-	        let onLoad = event => {
-	          this.browser.removeEventListener("load", onLoad, true);
-
-	          // We're handling the 'load' event before it bubbles up to the usual
-	          // (non-capturing) event handlers. Let it bubble up before firing the
-	          // SidebarFocused event.
-	          setTimeout(() => this._fireFocusedEvent(), 0);
-
-	          // Run the original function for backwards compatibility.
-	          sidebarOnLoad(event);
-
-	          resolve();
-	        };
-
-	        this.browser.addEventListener("load", onLoad, true);
-	      } else {
-	        // Older code handled this case, so we do it too.
-	        this._fireFocusedEvent();
-	        resolve();
-	      }
-	    });
+      SidebarUI.show_org(commandID, triggerNode);
 	  }
 
+		SidebarUI.hide_org = SidebarUI.hide;
 		SidebarUI.hide =
-		function hide() {
+		function hide(triggerNode) {
 	    if (!this.isOpen) {
 	      return;
 	    }
 
-	    let commandID = this._box.getAttribute("sidebarcommand");
-	    let sidebarBroadcaster = document.getElementById(commandID);
-
-	    if (sidebarBroadcaster.getAttribute("checked") != "true") {
-	      return;
-	    }
-
-	    // Replace the document currently displayed in the sidebar with about:blank
-	    // so that we can free memory by unloading the page. We need to explicitly
-	    // create a new content viewer because the old one doesn't get destroyed
-	    // until about:blank has loaded (which does not happen as long as the
-	    // element is hidden).
-	    //this.browser.setAttribute("src", "about:blank");
-	    //this.browser.docShell.createAboutBlankContentViewer(null);
-
-      ucjs_expand_sidebar._saveKeepItSizes(commandID);
-	    sidebarBroadcaster.removeAttribute("checked");
-	    //this._box.setAttribute("sidebarcommand", "");
-	    //this._title.value = "";
-	    //this._box.hidden = true;
-	    //this._splitter.hidden = true;
+      ucjs_expand_sidebar._saveKeepItSizes(ucjs_expand_sidebar._lastcommand);
 	    this._box.collapsed = true;
-	    //this._splitter.hidden = true;
         if ("treeStyleTab" in gBrowser)
           gBrowser.treeStyleTab.updateFloatingTabbar(gBrowser.treeStyleTab.kTABBAR_UPDATE_BY_WINDOW_RESIZE);
 	    gBrowser.selectedBrowser.focus();
+
+	    //SidebarUI.hide(triggerNode);
 	  }
 
-    //ersetzt durch fireSidebarFocusedEvent
+    //fireSidebarFocusedEventの置き換え
     //
     if (typeof fireSidebarFocusedEvent == "function") {
       window.fireSidebarFocusedEvent_org = fireSidebarFocusedEvent;
@@ -417,7 +331,7 @@ var ucjs_expand_sidebar = {
       }
     }
 
-    //Seitenleiste bei Firefoxstart nicht öffnen?
+    //起動時 閉じておく?
 
     setTimeout(function(self) {
       var command = self._sidebar_box.getAttribute("sidebarcommand");
@@ -592,11 +506,11 @@ var ucjs_expand_sidebar = {
           return;
         }
         this._resizeTimer = setTimeout(function(self) {
-          //Größe speichern, wenn Seitenleiste geöffnet ist
+          //サイドバーが開いているならそのサイズを保存しておく
           var hidden = self._sidebar_box.hasAttribute('hidden') ? true : false;
           if (!hidden && self._sidebar_box.getAttribute('collapsed') != "true" ) {
             var size = self._sidebar_box.width;
-            //Aktuelle Befehlsumgebung verlassen
+            //現在のコマンドをget
             var _command =  self.getCommandId();
             if (!!_command){
               self._saveKeepItSizes(_command, size);
@@ -607,7 +521,7 @@ var ucjs_expand_sidebar = {
     }
   },
 
-  //Getrennt, um die Last zu verringern
+  //負荷軽減のため分離
   _mouseover: function(event){
     ucjs_expand_sidebar._checkWindowSideOrNot(event);
   },
