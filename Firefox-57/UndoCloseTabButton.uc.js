@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                 UndoCloseTabBtn.uc.js
 // @namespace            UndoCloseTab@gmail.com
-// @description          Geschlossene Tabs wieder herstellen, Schaltflaeche mit Popupmenu
+// @description          Geschlossene Tabs wieder herstellen, Schaltfläche mit Popupmenü
 // @author               defpt
 // @charset              UTF-8
 // @Compatibility        FF29 - FF58
