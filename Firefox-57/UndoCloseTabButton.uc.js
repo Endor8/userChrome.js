@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name                 UndoCloseTabBtn.uc.js
 // @namespace            UndoCloseTab@gmail.com
-// @description          恢复已关闭标签de可移动按钮
+// @description          Geschlossene Tabs wieder herstellen, Schaltflaeche mit Popupmenu
 // @author               defpt
 // @charset              UTF-8
 // @Compatibility        FF29 - FF58
@@ -15,8 +15,9 @@
 		tooltiptext: "Kürzlich geschlossene Tabs wiederherstellen",
 		class: "toolbarbutton-1 chromeclass-toolbar-additional",
 		removable: "true",
-		type: "menu-button", //点击按钮恢复最后一次关闭的标签，如果想左键恢复最后一次关闭的标签，右键打开已关闭标签列表，
-								// 那么改为(context: "_child",) 
+		type: "menu-button", // Linksklick auf die Schaltfläche, um den zuletzt geschlossenen Tab wiederherzustellen. 
+		                     // Mit rechtsklick, Liste, der zuletzt geschlossenen Tabs, anzeigen, dann 
+  				     // zum Wiederherstellen eines Tabs, klick auf entsprechenden Kontextmenüeintrag.
 		image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAADgUlEQVR42mL8//8/AyUAIIBYYIzVq1dLC4mIrvr08ZPV379/vjEzMwOZnycmxMV04DMAIIAYQC4A4dXr1oU+fvLk/5/fv/9//fzl/9ev3/6vWLnqK0weFwYIIBZ0A79//crw5+9fhh+//jBYWlhz1dc3fgIqZeDh4WHk4uaqysnKmoysHiCAwAbceHRD6uLdQ0kGunoMv9hYGX79/sPw7cdvhn///jNYWJjzgtRw8/AwvHz5smzutlbN4yeP/k8Pqeo11bW5BxBAjCBnFPbHd7EIMJRoiZgx8nBwMvz+85fhJ9CQf3//Mzx9+pQBFM483FwMQG8xMDL/ZXj46cZ/9v/sk6ZWriwACCCwC25eviprEKbGeOP/AYavb34wsHCwMPz9AzTg9z+GP7x/Gf7++ws07B/Djz+/GZiYGBhYBdgYrx68JwXUyggQQGADePgFfjD+ZGHgF+Bl+P7yHZDPycDGws2gKW7GIMAhwnDs4XaGJ1/uMPz+8Z2BnYOZ4fOnzwwsrMxfgVr/AwQQ2ABpGYkv/GLcDELSfEDn/2HgFeZh8JdLYfjw6SODvqw5g4KiPMOsMw0MDEDbOYWABrz5zsAtI/wJpBcggJhABD+P8MefX38x/AU6k+EvIwPHHx4GNgYuhuuPLzCcuL2f4QswZozEHBjYGDmAdjIw/Pn+l0FCVOoNSC9AAIENEBEQe/Pjy0+GP8CA42LgZ/BXTWb48OUdw6m7+xmm7W5hePTqLoOLaigD+28+hnfv3jN8ePMJaIDMc5BegAACGyApLPX82+fvDB/ev2f4/eU/Ax+bEMOLd08ZpITkGbTl9IHp4jfDsev7GL59/8Lw+9dvhp/ffjPISio+BekFCCCwAQpiyrdfPn3F8OrVa4bHr+8zXHxwioGbjY+hwq+PwVkzmCHYMpFBS84A6Pp/DP/+/2P4+/Mvg5Ks+gOQXoAAggSimNqTb59+/v7x7SfL289vGRccmMDAxyrEsO3sKmCC+sKw9+xmhicf7gLxfQZ2QSaG/38YfkvyyoPCgBEggMAGfPnyhV2eV6vzxs7LWr9//Gf+yPKS6f/fl8zAhMgISkX//11h+M/I+A/ohL/f2P7/1VA2uvb161cOkAMAAogRmp1Znz17xsrCwsL07ds3lu/fvzOD2D9+/GCCpXk2Nra/XFxc/4Bif7i5uf9ISUn9Bgr/BggwAMhljD12v/akAAAAAElFTkSuQmCC",
 		command: "History:UndoCloseTab"
 	};
@@ -33,7 +34,7 @@
 	uCTBtn._getClosedTabCount = HistoryMenu.prototype._getClosedTabCount;
 	uCTBtn.populateUndoSubmenu = eval("(" + HistoryMenu.prototype.populateUndoSubmenu.toString().replace(/._rootElt.*/, "") + ")");
 	
-	// 来自 User Agent Overrider 扩展
+    // Aus User Agent Overrider Erweiterung
     const log = function() { dump(Array.slice(arguments).join(' ') + '\n'); };
     const trace = function(error) { log(error); log(error.stack); };
     const ToolbarManager = (function() {
