@@ -26,7 +26,7 @@ obiges so ändern:
     min-width: 150px !important; /* Minimal Wert standardmäßig  76px */  
     max-width: 150px !important; /* Maximal Wert standardmäßig 225px */  
 }  
-Werte mit Vorischt ändern, bzw. hinzufügen  
+Werte mit Vorscht ändern, bzw. hinzufügen  
 Stellen Sie sicher, dass beide Zahlen identisch sind  
 
 #### Gewünschtes kopieren und der userChrome.css Datei hinzufügen  
