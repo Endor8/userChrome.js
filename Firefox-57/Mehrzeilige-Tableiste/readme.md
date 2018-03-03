@@ -1,4 +1,5 @@
-Mehrzeilige Tableiste für Firefox 57+
+   
+#### Mehrzeilige Tableiste für Firefox 57+
 
 Das Script gehört wie üblich in den Chrome Ordner,
 die CSS Datei mus über die userChrome.css geladen oder importiert werden.
