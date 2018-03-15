@@ -6,6 +6,7 @@
 // @description    und Schlüsselwort können ein-/ausgeblendet werden.
 // @include        main
 // @author         Alice0775
+// @version        2018/03/15 10:30 Fx59 by aborix
 // @version        2017/11/17 02:30 Fx57
 // @version        2016/03/20 02:30 remove tst hack
 // ==/UserScript==
@@ -44,7 +45,7 @@ var openbookResizer = {
 
   get getHideRow(){
     try {
-      return gPrefService.getCharPref(this.PREHIDEROW).replace(/\s/g,'').slice(',');
+      return Services.prefs.getCharPref(this.PREHIDEROW).replace(/\s/g,'').slice(',');
     } catch(e) {
       return [];
     }
@@ -52,14 +53,14 @@ var openbookResizer = {
 
   get getPrefTreeHeight(){
     try {
-      return gPrefService.getIntPref(this.PREFTREEHEIGHT);
+      return Services.prefs.getIntPref(this.PREFTREEHEIGHT);
     } catch(e) {
       return 150;
     }
   },
   get getPrefTreeWidth(){
     try {
-      return gPrefService.getIntPref(this.PREFTREEWIDTH);
+      return Services.prefs.getIntPref(this.PREFTREEWIDTH);
     } catch(e) {
       return 250;
     }
@@ -80,7 +81,7 @@ var openbookResizer = {
 
   get getPrefOpenTree(){
     try {
-      return gPrefService.getBoolPref(this.PREFOPENTREE);
+      return Services.prefs.getBoolPref(this.PREFOPENTREE);
     } catch(e) {
       return false;
     }
@@ -88,7 +89,7 @@ var openbookResizer = {
 
   get getPrefOpenTag(){
     try {
-      return gPrefService.getBoolPref(this.PREFOPENTAG);
+      return Services.prefs.getBoolPref(this.PREFOPENTAG);
     } catch(e) {
       return false;
     }
@@ -227,9 +228,9 @@ var openbookResizer = {
     if (this.editBookmarkPanel != event.originalTarget)
       return;
     var state = !gEditItemOverlay._element(this.folderTreeRow).collapsed;
-    gPrefService.setBoolPref(this.PREFOPENTREE, state);
+    Services.prefs.setBoolPref(this.PREFOPENTREE, state);
     var state = !gEditItemOverlay._element(this.tagsSelectorRow).collapsed;
-    gPrefService.setBoolPref(this.PREFOPENTAG, state);
+    Services.prefs.setBoolPref(this.PREFOPENTAG, state);
 
     gEditItemOverlay._element(this.folderTreeRow).collapsed = true;
     gEditItemOverlay._element(this.tagsSelectorRow).collapsed = true;
@@ -291,7 +292,7 @@ var openbookResizer = {
         gEditItemOverlay.toggleTagsSelector();
       }
       try {
-        gEditItemOverlay._element(gPrefService
+        gEditItemOverlay._element(Services.prefs
           .getCharPref("browser.bookmarks.editDialog.firstEditField")).focus();
       } catch(e) {}
   }, 100, this);
@@ -327,8 +328,8 @@ var openbookResizer = {
   },
   mouseup: function(event) {
     if (this.drag) {
-      gPrefService.setIntPref(this.PREFTREEHEIGHT, this.tree.height);
-      gPrefService.setIntPref(this.PREFTREEWIDTH, this.editBookmarkPanel.boxObject.width);
+      Services.prefs.setIntPref(this.PREFTREEHEIGHT, this.tree.height);
+      Services.prefs.setIntPref(this.PREFTREEWIDTH, this.editBookmarkPanel.boxObject.width);
     }
     this.drag = false;
   }
