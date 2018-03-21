@@ -28,7 +28,7 @@ Dieses Skript fügt der Navigationsliste ein frei verschiebbare Schaltfläche zu
 
 Das **Ergebniss des Scripts**
 
-![Screenshot Web Developer Toolbar Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/webdevelopertoolbarbutton/Webentwicklermenu.png)
+![Screenshot Web Developer Toolbar Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/webdevelopertoolbarbutton/Webentwickler-toolbar.png)
 
 ## Installation
 Kopiere die gewünschte Skript-Datei in den Chromeordner des Profils.
