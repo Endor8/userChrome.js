@@ -26,7 +26,7 @@ Das **Ergebnis des Skripts**
 Dieses Skript fügt der Navigationsliste ein frei verschiebbare Schaltfläche zum 
 Öffnen/Schließen der Entwickler-Werkzeuge hinzu.
 
-Das **Ergebniss des Scripts**
+Das **Ergebniss des Skripts**
 
 ![Screenshot Web Developer Toolbar Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/webdevelopertoolbarbutton/Webentwickler-toolbar.png)
 
