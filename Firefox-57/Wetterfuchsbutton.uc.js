@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           wetterfuchsbutton.uc.js
-// @compatibility  Firefox 33. - 58
+// @compatibility  Firefox 33. - 59
 // @include        main
 // @version        1.0.20180205
 // ==/UserScript==
@@ -124,7 +124,7 @@ var wetterfuchs = {
                         domain(wetterkontor.de) { \
           scrollbar {display: none !important} \
         }';
-      if (gAppInfo.version.split('.')[0] <= 56) {
+      if (Services.appinfo.version.split('.')[0] <= 56) {
         css +=
           '@-moz-document url(chrome://browser/content/browser.xul) { \
             #wetterfuchs-toolbarbutton .toolbarbutton-icon {max-width: none !important} \
