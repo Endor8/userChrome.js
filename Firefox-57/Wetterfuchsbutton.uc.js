@@ -2,7 +2,7 @@
 // @name           wetterfuchsbutton.uc.js
 // @compatibility  Firefox 33. - 59
 // @include        main
-// @version        1.0.20180205
+// @version        1.0.20180325
 // ==/UserScript==
 
 var wetterfuchs = {
