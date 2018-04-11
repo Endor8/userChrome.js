@@ -46,7 +46,9 @@
 			  button.setAttribute('id', 'open-page-in-sideber-viewer_button');
 			  button.setAttribute('observes', 'open-page-in-sideber-viewer');
 			  button.setAttribute('class', 'subviewbutton subviewbutton-iconic');
-		document.getElementById('sidebar-extensions').appendChild(button);
+		document.getElementById('sidebar-extensions-separator')
+					.parentNode.insertBefore(button,
+									document.getElementById('sidebar-extensions-separator'));
 
 //	Kontextmenü
 		const menu = document.createElementNS(NSxul, 'menu');
@@ -55,7 +57,7 @@
 			  menu.setAttribute('tooltiptext', 'In Seitenleiste öffnen');
 			  menu.setAttribute('class', 'menu-iconic');
 			  menu.setAttribute('image', 'chrome://browser/skin/sidebars.svg');
-		document.getElementById('contentAreaContextMenu').appendChild(menu);
+		document.getElementById('inspect-separator').parentNode.appendChild(menu);
 
 			  const menupopup = document.createElementNS(NSxul, 'menupopup');
 					menupopup.setAttribute('id', 'open-page-in-sideber-viewer_popup');
@@ -174,10 +176,10 @@
 						'{ width : 18px !important; height : 18px !important; }';
 			stylesheet.insertRule(uccss, slen);
 			uccss = '#open-page-in-sideber-viewer_contextItem-urlmenu .toolbarbutton-icon ' +
-						'{ margin : 0px 5px 0px 3px !important; }';
+						'{ margin : 0px 8px 0px 2px !important; }';
 			stylesheet.insertRule(uccss, slen + 1);
 			uccss = '#open-page-in-sideber-viewer_contextItem-urlmenu .toolbarbutton-text ' +
-						'{ width : auto !important; margin-left : 5px !important; ' +
+						'{ width : auto !important; margin-left : 3px !important; ' +
 							'text-align : left !important; }';
 			stylesheet.insertRule(uccss, slen + 2);
 
