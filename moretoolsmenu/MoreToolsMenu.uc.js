@@ -7,8 +7,8 @@
             
             menu = document.createElement("menu");
             menu.setAttribute("id", "moreTools-menu");
-            menu.setAttribute("label", "Tools");
-            menu.setAttribute("accesskey", "T");
+            menu.setAttribute("label", "Werkzeug");
+            menu.setAttribute("accesskey", "W");
             
             popup = document.createElement("menupopup");
             popup.setAttribute("id", "menu_MoreToolsPopup");
@@ -28,10 +28,18 @@
                             absorb(target);
             }, false);
 
-            function U(text) 1 < '?'.length ? decodeURIComponent(escape(text)) : text;
-            function $A(arr) Array.slice(arr);
-            function $W(str) str.split(' ');
-            function $(id) document.getElementById(id);
+            function U(text) {
+                return (1 < '?'.length) ? decodeURIComponent(escape(text)) : text;
+            };            
+            function $A(arr) {
+                return Array.slice(arr);
+            };            
+            function $W(str) {
+                return str.split(' ');
+            };                
+            function $(id) {
+                return document.getElementById(id); 
+            };
             function isMoreTools(item) {
                     switch (item.getAttribute('id')) {
                     case 'menu_search':
@@ -56,8 +64,10 @@
             function absorb(item) {
                     if (!isMoreTools(item)) return;
 
-                    if (item.localName === 'menuseparator') {
-                            setTimeout(function() document.adoptNode(item), 0);
+                    if (item.localName === 'menuseparator') {                    
+                            setTimeout(function() {
+                                document.adoptNode(item);
+                            }, 0);                            
                             return;
                     }
 
