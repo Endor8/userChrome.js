@@ -122,6 +122,7 @@
                    url("https://www.wetterkontor.de/de/wetter/deutschland/schleswigholstein-hamburg.asp"),
                    url("https://www.wetterkontor.de/de/wetter/deutschland/badenwuerttemberg.asp"),
                    url("https://www.wetterkontor.de/de/wetter/deutschland/brandenburg-berlin.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/niedersachsen.asp"),
                    url("https://www.wetterkontor.de/de/wetter/deutschland/niedersachsen-bremen.asp"),
                    url("https://www.wetterkontor.de/de/wetter/deutschland/hessen.asp"),
                    url("https://www.wetterkontor.de/de/wetter/deutschland/mecklenburgvorpommern.asp"),
@@ -136,7 +137,7 @@
     #wkFooter2, .cc_banner.cc_container.cc_container--open, #bnr, #maine0d59d447b, .mir_info.mir_info-outside  {display: none !important;}
 
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
-    #content > DIV > DIV:first-child > H1,
+    #content > DIV > DIV:first-child > H1, 
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
     #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
@@ -335,6 +336,7 @@
     #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), .uk-panel.uk-panel-box.uk-margin, .banner728x90,
     .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium, .uk-width-1-1.uk-hidden-small.uk-text-center,
     #content > DIV > DIV:first-child > P:nth-child(3), #content > DIV > DIV:first-child > P:nth-child(2),
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child > DIV,
     .cc_banner.cc_container.cc_container--open	{display: none !important;}
    
     #page{box-shadow: none!important; border: none !important;}
@@ -350,7 +352,9 @@
 		
     #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
     .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(7),
-    .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8), #content > DIV > DIV:first-child > DIV:nth-child(9),
+    .mir_container.mir_ad-800, div.uk-grid-small > div:nth-child(2),
+    div.uk-grid:nth-child(3), .banner728x90, #shr-admin-badge, 
+    #content > DIV > DIV:first-child > DIV:nth-child(8), #content > DIV > DIV:first-child > DIV:nth-child(9),
     .cc_banner.cc_container.cc_container--open {display: none !important;}	
 
     body {margin-left: 20px !important;}	
@@ -373,6 +377,8 @@
     #content > DIV > DIV:first-child > DIV:first-child > UL > LI:nth-child(3),	
     .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
     .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
+    div.uk-grid-small:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1),
+    div.uk-grid-small:nth-child(1) > div:nth-child(2), div.uk-grid:nth-child(3),
     .cc_banner.cc_container.cc_container--open {display: none !important;}	
 	
     body {margin-left: 25px !important;}	
@@ -392,7 +398,7 @@
     #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
     .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
     .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
-    div.uk-panel:nth-child(15),
+    div.uk-panel:nth-child(15), 
     #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
     .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium,
     .uk-panel.uk-panel-box.uk-margin,
@@ -502,98 +508,93 @@
 
     body {overflow: hidden !important;}
     }
-
     @-moz-document domain(www.daswetter.com) {
-    #contSup, #pubIzq, #pubAside, #pubAside2, .pubDesk, .modulo.bSocial, .modulo.fotoLoc, #divGota, .icons-de.liCompartir,.liCompartir.comp-svg,
-    #wrap > HEADER > ASIDE > DIV > _moz_generated_content_before,#bottom_newsletter, DIV[class="tCook"][style="display: block;"], #pubSup > DIV,
-    #top30, .modulo.pubMapa, .modulo.fase-lunar.sl-1, .modulo.locC, #foots, .leySocial, #modulos > ASIDE, #pIzq,
-    DIV[class="addthis-smartlayers addthis-smartlayers-desktop"][aria-labelledby="at4-share-label"],
+    #contSup, #pubIzq, #pubAside, #pubAside2, .pubDesk, .modulo.bSocial, .modulo.fotoLoc, #divGota, .liCompartir.comp-svg, .icons-de.liCompartir,
+    #wrap > HEADER > ASIDE > DIV > _moz_generated_content_before, #bottom_newsletter, DIV[class="tCook"][style="display: block;"], #pubSup > DIV,
+    #top30, .modulo.pubMapa, .modulo.fase-lunar.sl-1, .modulo.locC, FOOTER, #foots, .leySocial, #modulos > ASIDE, #pIzq, #top-prediccion, .galery-svg,
+    DIV[class="addthis-smartlayers addthis-smartlayers-desktop"][aria-labelledby="at4-share-label"],.locC.half-module, #pubInferior, .leaflet-bottom.leaflet-right,
     DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"]
     {display: none !important;}
-
+	
     #wrap {margin-top: -10px !important;}
-
-    #wrap > HEADER > ASIDE {min-height: 110px !important;}
-    #cookies {margin-top: 50px !important;  }
+	#mapid{margin-bottom: -500px !important; min-height: 500px !important;}
+   
+    #wrap > HEADER > ASIDE {min-height: 100px !important;}
+    #cookies {margin-top: 40px !important;  }
     #cookies > LI:first-child {margin-left: -380px !important;}
     #cookies > LI:nth-child(2){margin-left: -190px !important;}
-    #buscador {margin-left: 10px !important; margin-top: 5px !important;}
-
-    .icons-de.liFavoritoAct, .icons-de.liFavorito {margin-right: -130px !important;}
-
-    /*  Hintergrundfarbe ändern    */
-    #colAzul{background: #2952E1 !important;}
-
-    #colGris, #modulos > TABLE > THEAD > TR, #modulos > DIV:nth-child(17) > TABLE > THEAD > TR,
-    #title_actualizacion, #rmes > THEAD > TR {background: #386AFF !important;}
-
-    .dia.d-1.H.clearfix.dia-activo.color-activo-1, .dia.d-1.H.clearfix.dia-activo.color-activo-2, .dia.d-1.H.clearfix.dia-activo.color-activo-3,
-    .dia.d-1.H.clearfix.dia-activo.color-activo-5, .dia.d-1.H.clearfix.dia-activo.color-activo-6,.dia.d-1.H.clearfix.dia-activo.color-activo-7,
-    .dia.d-1.H.clearfix.dia-activo.color-activo-8, .dia.d-1.H.clearfix.dia-activo.color-activo-9, .dia.d-1.H.clearfix.dia-activo.color-activo-10,
-    .dia.d-1.H.clearfix.dia-activo.color-activo-11, .dia.d-1.H.clearfix.dia-activo.color-activo-12,
-    .dia.clearfix.dia-activo.color-activo-0, .dia.clearfix.dia-activo.color-activo-1, .dia.clearfix.dia-activo.color-activo-2,
-    .dia.clearfix.dia-activo.color-activo-3, .dia.clearfix.dia-activo.color-activo-4, .dia.clearfix.dia-activo.color-activo-5,
-    .dia.clearfix.dia-activo.color-activo-6, .dia.clearfix.dia-activo.color-activo-7, .dia.clearfix.dia-activo.color-activo-8,
+    #buscador {margin-left: 10px !important; margin-top: 5px !important; 
+	max-height: 31px !important; font-size: 13px !important;}
+   
+    .icons-de.liFavoritoAct, .icons-de.liFavorito {margin-right: -130px !important; margin-top: -15px !important;}
+	
+	.T1Loc.color-texto-t100-0, #divPestanas > LI:first-child {margin-left: 10px !important;}
+	
+	/*  Hintergrundfarbe ändern    */
+	#colAzul{background: #2952E1 !important;}
+	
+ 	#colGris, #modulos > TABLE > THEAD > TR, #modulos > DIV:nth-child(17) > TABLE > THEAD > TR, 
+	#title_actualizacion, #rmes > THEAD > TR {background: #386AFF !important; }
+	
+	.dia.d-1.H.clearfix.dia-activo.color-activo-1, .dia.d-1.H.clearfix.dia-activo.color-activo-2, .dia.d-1.H.clearfix.dia-activo.color-activo-3, 
+	.dia.d-1.H.clearfix.dia-activo.color-activo-5, .dia.d-1.H.clearfix.dia-activo.color-activo-6,.dia.d-1.H.clearfix.dia-activo.color-activo-7, 
+	.dia.d-1.H.clearfix.dia-activo.color-activo-8, .dia.d-1.H.clearfix.dia-activo.color-activo-9, .dia.d-1.H.clearfix.dia-activo.color-activo-10,
+	.dia.d-1.H.clearfix.dia-activo.color-activo-11, .dia.d-1.H.clearfix.dia-activo.color-activo-12, 
+	.dia.clearfix.dia-activo.color-activo-0, .dia.clearfix.dia-activo.color-activo-1, .dia.clearfix.dia-activo.color-activo-2 .dia.clearfix.dia-activo.color-activo-3, .dia.clearfix.dia-activo.color-activo-4, .dia.clearfix.dia-activo.color-activo-5, 
+	.dia.clearfix.dia-activo.color-activo-6, .dia.clearfix.dia-activo.color-activo-7, .dia.clearfix.dia-activo.color-activo-8,
     .dia.clearfix.dia-activo.color-activo-9, .dia.clearfix.dia-activo.color-activo-10, .dia.clearfix.dia-activo.color-activo-11,
-    .dia.clearfix.dia-activo.color-activo-12,
-    #contDl > DL:first-child > DD {background: #1C47C6 !important;}
+	.dia.clearfix.dia-activo.color-activo-12,
+	#contDl > DL:first-child > DD {background: #1C47C6 !important;}   
+	
+	/*   Pfeilspitze blau färben   */
+	DD {border-top-color: #1C47C6 !important;}
 
-    /*   Pfeilspitze blau färben   */
-    DD {border-top-color: #1C47C6 !important;}
-
-
+	
     /*  Textfarbe ändern   */
-    .fondoNB.color-fondo-flecha-0, .T1Loc.color-texto-t100-0, .ddHora.color-texto-t85-0, .ddDesc.T1Loc.color-texto-t100-0,
-    .ddTemp.T1Loc.color-texto-t100-0,.T1Loc.color-texto-t100-0, .T3Loc.color-texto-t70-0, .dayS.T3Loc.color-texto-t70-0,
-    .T2Loc.icons.tMax.color-texto-t90-0, .T2Loc.icons.tMin.color-texto-t90-0, .rain.T4Loc.color-texto-t50-0 ,
-    .xh-dir.color-texto-t85-0, .xh-temp.color-texto-t90-0, .fondoNB.color-fondo-flecha-1, .T1Loc.color-texto-t100-1,
-    .ddHora.color-texto-t85-1, .ddDesc.T1Loc.color-texto-t100-1, .ddTemp.T1Loc.color-texto-t100-1,
+    .fondoNB.color-fondo-flecha-0, .T1Loc.color-texto-t100-0, .ddHora.color-texto-t85-0, .ddDesc.T1Loc.color-texto-t100-0, .ddTemp.T1Loc.color-texto-t100-0,
+    .T1Loc.color-texto-t100-0, .T3Loc.color-texto-t70-0, .dayS.T3Loc.color-texto-t70-0, .T2Loc.icons.tMax.color-texto-t90-0,
+    .T2Loc.icons.tMin.color-texto-t90-0, .rain.T4Loc.color-texto-t50-0 , .xh-dir.color-texto-t85-0, .xh-temp.color-texto-t90-0,
+	.fondoNB.color-fondo-flecha-1, .T1Loc.color-texto-t100-1, .ddHora.color-texto-t85-1, .ddDesc.T1Loc.color-texto-t100-1, .ddTemp.T1Loc.color-texto-t100-1,
     .T1Loc.color-texto-t100-1, .T3Loc.color-texto-t70-1, .dayS.T3Loc.color-texto-t70-1, .T2Loc.icons.tMax.color-texto-t90-1,
     .T2Loc.icons.tMin.color-texto-t90-1, .rain.T4Loc.color-texto-t50-1, .xh-dir.color-texto-t85-1, .xh-temp.color-texto-t90-1,
-    .fondoNB.color-fondo-flecha-2, .T1Loc.color-texto-t100-2, .ddHora.color-texto-t85-2, .ddDesc.T1Loc.color-texto-t100-2,
-    .ddTemp.T1Loc.color-texto-t100-2, .T1Loc.color-texto-t100-2, .T3Loc.color-texto-t70-2, .dayS.T3Loc.color-texto-t70-2,
-    .T2Loc.icons.tMax.color-texto-t90-2, .T2Loc.icons.tMin.color-texto-t90-2, .rain.T4Loc.color-texto-t50-2,
-    .xh-dir.color-texto-t85-2, .xh-temp.color-texto-t90-2, .fondoNB.color-fondo-flecha-3, .T1Loc.color-texto-t100-3,
-    .ddHora.color-texto-t85-3, .ddDesc.T1Loc.color-texto-t100-3, .ddTemp.T1Loc.color-texto-t100-3,
+	.fondoNB.color-fondo-flecha-2, .T1Loc.color-texto-t100-2, .ddHora.color-texto-t85-2, .ddDesc.T1Loc.color-texto-t100-2, .ddTemp.T1Loc.color-texto-t100-2,
+    .T1Loc.color-texto-t100-2, .T3Loc.color-texto-t70-2, .dayS.T3Loc.color-texto-t70-2, .T2Loc.icons.tMax.color-texto-t90-2,
+    .T2Loc.icons.tMin.color-texto-t90-2, .rain.T4Loc.color-texto-t50-2, .xh-dir.color-texto-t85-2, .xh-temp.color-texto-t90-2,
+	.fondoNB.color-fondo-flecha-3, .T1Loc.color-texto-t100-3, .ddHora.color-texto-t85-3, .ddDesc.T1Loc.color-texto-t100-3, .ddTemp.T1Loc.color-texto-t100-3,
     .T1Loc.color-texto-t100-3, .T3Loc.color-texto-t70-3, .dayS.T3Loc.color-texto-t70-3, .T2Loc.icons.tMax.color-texto-t90-3,
     .T2Loc.icons.tMin.color-texto-t90-3, .rain.T4Loc.color-texto-t50-3,.xh-dir.color-texto-t85-3, .xh-temp.color-texto-t90-3,
-    .fondoNB.color-fondo-flecha-4, .T1Loc.color-texto-t100-4, .ddHora.color-texto-t85-4, .ddDesc.T1Loc.color-texto-t100-4,
-    .ddTemp.T1Loc.color-texto-t100-4, .T1Loc.color-texto-t100-4, .T3Loc.color-texto-t70-4, .dayS.T3Loc.color-texto-t70-4,
-    .T2Loc.icons.tMax.color-texto-t90-4,.T2Loc.icons.tMin.color-texto-t90-4, .rain.T4Loc.color-texto-t50-4,
-    .xh-dir.color-texto-t85-4, .xh-temp.color-texto-t90-4, .fondoNB.color-fondo-flecha-5, .T1Loc.color-texto-t100-5,
-    .ddHora.color-texto-t85-5, .ddDesc.T1Loc.color-texto-t100-5, .ddTemp.T1Loc.color-texto-t100-5,
+	.fondoNB.color-fondo-flecha-4, .T1Loc.color-texto-t100-4, .ddHora.color-texto-t85-4, .ddDesc.T1Loc.color-texto-t100-4, .ddTemp.T1Loc.color-texto-t100-4,
+    .T1Loc.color-texto-t100-4, .T3Loc.color-texto-t70-4, .dayS.T3Loc.color-texto-t70-4, .T2Loc.icons.tMax.color-texto-t90-4,
+    .T2Loc.icons.tMin.color-texto-t90-4, .rain.T4Loc.color-texto-t50-4, .xh-dir.color-texto-t85-4, .xh-temp.color-texto-t90-4,
+	.fondoNB.color-fondo-flecha-5, .T1Loc.color-texto-t100-5, .ddHora.color-texto-t85-5, .ddDesc.T1Loc.color-texto-t100-5, .ddTemp.T1Loc.color-texto-t100-5,
     .T1Loc.color-texto-t100-5, .T3Loc.color-texto-t70-5, .dayS.T3Loc.color-texto-t70-5, .T2Loc.icons.tMax.color-texto-t90-5,
     .T2Loc.icons.tMin.color-texto-t90-5, .rain.T4Loc.color-texto-t50-5, .xh-dir.color-texto-t85-5, .xh-temp.color-texto-t90-5,
-    .fondoNB.color-fondo-flecha-6, .T1Loc.color-texto-t100-6, .ddHora.color-texto-t85-6, .ddDesc.T1Loc.color-texto-t100-6,
-    .ddTemp.T1Loc.color-texto-t100-6, .T1Loc.color-texto-t100-6, .T3Loc.color-texto-t70-6, .dayS.T3Loc.color-texto-t70-6,
-    .T2Loc.icons.tMax.color-texto-t90-6, .T2Loc.icons.tMin.color-texto-t90-6, .rain.T4Loc.color-texto-t50-6,
-    .xh-dir.color-texto-t85-6, .xh-temp.color-texto-t90-6, .fondoNB.color-fondo-flecha-7, .T1Loc.color-texto-t100-7,
-    .ddHora.color-texto-t85-7, .ddDesc.T1Loc.color-texto-t100-7, .ddTemp.T1Loc.color-texto-t100-7,
+	.fondoNB.color-fondo-flecha-6, .T1Loc.color-texto-t100-6, .ddHora.color-texto-t85-6, .ddDesc.T1Loc.color-texto-t100-6, .ddTemp.T1Loc.color-texto-t100-6,
+    .T1Loc.color-texto-t100-6, .T3Loc.color-texto-t70-6, .dayS.T3Loc.color-texto-t70-6, .T2Loc.icons.tMax.color-texto-t90-6,
+    .T2Loc.icons.tMin.color-texto-t90-6, .rain.T4Loc.color-texto-t50-6, .xh-dir.color-texto-t85-6, .xh-temp.color-texto-t90-6,
+	.fondoNB.color-fondo-flecha-7, .T1Loc.color-texto-t100-7, .ddHora.color-texto-t85-7, .ddDesc.T1Loc.color-texto-t100-7, .ddTemp.T1Loc.color-texto-t100-7,
     .T1Loc.color-texto-t100-7, .T3Loc.color-texto-t70-7, .dayS.T3Loc.color-texto-t70-7, .T2Loc.icons.tMax.color-texto-t90-7,
     .T2Loc.icons.tMin.color-texto-t90-7, .rain.T4Loc.color-texto-t50-7, .xh-dir.color-texto-t85-7, .xh-temp.color-texto-t90-7,
-    .fondoNB.color-fondo-flecha-8, .T1Loc.color-texto-t100-8, .ddHora.color-texto-t85-8, .ddDesc.T1Loc.color-texto-t100-8,
-    .ddTemp.T1Loc.color-texto-t100-8, .T1Loc.color-texto-t100-8, .T3Loc.color-texto-t70-8, .dayS.T3Loc.color-texto-t70-8,
-    .T2Loc.icons.tMax.color-texto-t90-8, .T2Loc.icons.tMin.color-texto-t90-8, .rain.T4Loc.color-texto-t50-8,
-    .xh-dir.color-texto-t85-8, .xh-temp.color-texto-t90-8, .fondoNB.color-fondo-flecha-9, .T1Loc.color-texto-t100-9,
-    .ddHora.color-texto-t85-9, .ddDesc.T1Loc.color-texto-t100-9, .ddTemp.T1Loc.color-texto-t100-9,.T1Loc.color-texto-t100-9,
-    .T3Loc.color-texto-t70-9, .dayS.T3Loc.color-texto-t70-9, .T2Loc.icons.tMax.color-texto-t90-9,
+	.fondoNB.color-fondo-flecha-8, .T1Loc.color-texto-t100-8, .ddHora.color-texto-t85-8, .ddDesc.T1Loc.color-texto-t100-8, .ddTemp.T1Loc.color-texto-t100-8,
+    .T1Loc.color-texto-t100-8, .T3Loc.color-texto-t70-8, .dayS.T3Loc.color-texto-t70-8, .T2Loc.icons.tMax.color-texto-t90-8,
+    .T2Loc.icons.tMin.color-texto-t90-8, .rain.T4Loc.color-texto-t50-8, .xh-dir.color-texto-t85-8, .xh-temp.color-texto-t90-8,
+	.fondoNB.color-fondo-flecha-9, .T1Loc.color-texto-t100-9, .ddHora.color-texto-t85-9, .ddDesc.T1Loc.color-texto-t100-9, .ddTemp.T1Loc.color-texto-t100-9,
+    .T1Loc.color-texto-t100-9, .T3Loc.color-texto-t70-9, .dayS.T3Loc.color-texto-t70-9, .T2Loc.icons.tMax.color-texto-t90-9,
     .T2Loc.icons.tMin.color-texto-t90-9, .rain.T4Loc.color-texto-t50-9, .xh-dir.color-texto-t85-9, .xh-temp.color-texto-t90-9,
-    .fondoNB.color-fondo-flecha-10, .T1Loc.color-texto-t100-10, .ddHora.color-texto-t85-10, .ddDesc.T1Loc.color-texto-t100-10,
-    .ddTemp.T1Loc.color-texto-t100-10, .T1Loc.color-texto-t100-10, .T3Loc.color-texto-t70-10, .dayS.T3Loc.color-texto-t70-10,
-    .T2Loc.icons.tMax.color-texto-t90-10, .T2Loc.icons.tMin.color-texto-t90-10, .rain.T4Loc.color-texto-t50-10,
-    .xh-dir.color-texto-t85-10, .xh-temp.color-texto-t90-10, .fondoNB.color-fondo-flecha-11, .T1Loc.color-texto-t100-11,
-    .ddHora.color-texto-t85-11, .ddDesc.T1Loc.color-texto-t100-11, .ddTemp.T1Loc.color-texto-t100-11,
+	.fondoNB.color-fondo-flecha-10, .T1Loc.color-texto-t100-10, .ddHora.color-texto-t85-10, .ddDesc.T1Loc.color-texto-t100-10, .ddTemp.T1Loc.color-texto-t100-10,
+    .T1Loc.color-texto-t100-10, .T3Loc.color-texto-t70-10, .dayS.T3Loc.color-texto-t70-10, .T2Loc.icons.tMax.color-texto-t90-10,
+    .T2Loc.icons.tMin.color-texto-t90-10, .rain.T4Loc.color-texto-t50-10, .xh-dir.color-texto-t85-10, .xh-temp.color-texto-t90-10,
+	.fondoNB.color-fondo-flecha-11, .T1Loc.color-texto-t100-11, .ddHora.color-texto-t85-11, .ddDesc.T1Loc.color-texto-t100-11, .ddTemp.T1Loc.color-texto-t100-11,
     .T1Loc.color-texto-t100-11, .T3Loc.color-texto-t70-11, .dayS.T3Loc.color-texto-t70-11, .T2Loc.icons.tMax.color-texto-t90-11,
     .T2Loc.icons.tMin.color-texto-t90-11, .rain.T4Loc.color-texto-t50-11, .xh-dir.color-texto-t85-11, .xh-temp.color-texto-t90-11,
-    .fondoNB.color-fondo-flecha-12, .T1Loc.color-texto-t100-12, .ddHora.color-texto-t85-12, .ddDesc.T1Loc.color-texto-t100-12,
-    .ddTemp.T1Loc.color-texto-t100-12, .T1Loc.color-texto-t100-12, .T3Loc.color-texto-t70-12, .dayS.T3Loc.color-texto-t70-12,
-    .T2Loc.icons.tMax.color-texto-t90-12, .T2Loc.icons.tMin.color-texto-t90-12, .rain.T4Loc.color-texto-t50-12,
-    .xh-dir.color-texto-t85-12, .xh-temp.color-texto-t90-12, ABBR, #title_actualizacion, #fecha_act, #rmes > THEAD > TR > TH,
-    #pDer > SPAN {color: #FFFFFF !important;}
-
-    .despPaises {background: #FFFFFF !important; max-height: 34px !important;}
-
-    /*   Hintergrundfarbe Pfeil Links bzw. Rechts und anderes Symbol  */
+	.fondoNB.color-fondo-flecha-12, .T1Loc.color-texto-t100-12, .ddHora.color-texto-t85-12, .ddDesc.T1Loc.color-texto-t100-12, .ddTemp.T1Loc.color-texto-t100-12,
+    .T1Loc.color-texto-t100-12, .T3Loc.color-texto-t70-12, .dayS.T3Loc.color-texto-t70-12, .T2Loc.icons.tMax.color-texto-t90-12,
+    .T2Loc.icons.tMin.color-texto-t90-12, .rain.T4Loc.color-texto-t50-12, .xh-dir.color-texto-t85-12, .xh-temp.color-texto-t90-12,
+	#title_actualizacion, #fecha_act, #rmes > THEAD > TR > TH, ABBR, #pDer > SPAN {color: #FFFFFF !important;}
+	
+	.despPaises {background: #FFFFFF !important; max-height: 34px !important;}
+	
+	/*   Hintergrundfarbe Pfeil Links bzw. Rechts und anderes Symbol  */
 
     #contDl > DL:last-child > DD > A{
     width:0px!important;
@@ -633,29 +634,34 @@
     }
 
     @-moz-document domain(www.wetter.net) {
-    #menu,.rahmen,.schatten_links,.schatten_rechts,#breadcrumb,#content_home_titel > TBODY > TR > TD > DIV:nth-child(2), #container_ortszeit,
-    #content_links > TABLE:last-child > TBODY > TR > TD > TABLE:nth-child(2), #content_links > TABLE:last-child > TBODY > TR > TD > TABLE:last-child,
-    #rahmen_inhalt > TABLE > TBODY > TR:last-child,#topmenu > TBODY > TR:first-child,#zeitClient_Container,#buehne,#content_links > TABLE:first-child,
-    #rahmen_inhalt > TABLE > TBODY > TR:nth-child(2),#rahmen_inhalt > TABLE > TBODY > TR:first-child,#wetterseite > NOSCRIPT, #werbung_links,
-    .tab_infos.inaktiv,#content_links > TABLE:last-child > TBODY > TR > TD > B,#content_links > TABLE:last-child > TBODY > TR > TD > A,
-    #rahmen_inhalt > TABLE > TBODY > TR:nth-child(4), #rahmen_inhalt > TABLE > TBODY > TR:nth-child(5),.cc_banner-wrapper{
-    display: none !important;
+    header.row {background: transparent !important;}
+	
+    div.col-md-5:nth-child(3) {margin-top: 5px !important; margin-bottom: -30px !important; margin-left:-24px !important;}
+    .city-favs{margin-top: -10px !important; margin-left:-220px !important;}
+
+    .col-md-10 > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1) > p:nth-child(3),
+    .col-md-10 > ul:nth-child(1) > li:nth-child(2) > a:nth-child(1) > p:nth-child(3)	{background: white !important; 
+    color: black !important; font-weight: bold !important;}
+
+    #city_search_input {background: white !important; color: black !important; font-weight: bold !important;}
+	
+    .toggle-favs-icon-down:after ,
+    .toggle-favs-icon-up:after {
+    color: white !important;
     }
-    #topmenu {
-    background: none !important;
-    margin-bottom: -60px !important;
-    }
-    #topmenu > TBODY > TR:last-child > TD > FORM > TABLE{
-    margin-top: 50px !important;
-    margin-left: 615px !important;
-    }
-    #content_home_titel{
-    width: 450px !important;
-    }
-    #rahmen_inhalt{
-    width: 820px !important;
-    margin-top: -70px !important;
-    }
+
+    #bodyContainer_switch > DIV:nth-child(5) > DIV > UL,
+    HTML > BODY > DIV:first-child, NAV, FOOTER, HTML > BODY > DIV:nth-child(12),
+    .upArrow, .row.social_share_city , .advertising_pubperform.row,
+    .col-sm-4.teaser_block, .advertising_city.col-xs-12,
+    .col-sm-8.teaser_block.teaser_block_2, .teaser_container > div:nth-child(1),
+    div.container-fluid,
+    #banner, #sky, HTML > BODY > DIV:nth-child(9) > DIV > DIV > DIV, .col-md-3 > a:nth-child(1)
+    {display: none !important;}
+
+    .white.todayTextHeader{font-size: 24px !important;}
+    .white.center.todayText {font-size: 20px !important;}
+    p{font-size: 18px !important;}
     }
 
     @-moz-document url-prefix(https://www.wetter.de/deutschland/regenradar-karte-baden-wuerttemberg-c49p8.html),
@@ -705,3 +711,4 @@
     HTML {background: #FFFFFF !important;}
 		 
     }
+
