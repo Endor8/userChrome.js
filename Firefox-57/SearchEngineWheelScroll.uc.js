@@ -2,13 +2,13 @@
 //Einstellungen	- true = ein(aktiviert) false = aus(deaktiviert)
 
 //Namen und Symbol der Suchmaschine in der Suchleiste anzeigen
-  let label = true;//Namen anzeigen
+  let label = true; //Namen anzeigen
   let img = true;	//Symbol - Favicon anzeigen
 //Doppelklick auf Suchleiste, um zur Standard Suchmaschine zurück zukehren
   let only = false;	//Suchleiste leeren und nicht zur Standardsuchmaschine zurückkehren [Neu in Version 0.6]
   let dbl = true;	//Funktion aktivieren
   let zero = false;	//Bei Klick zur obersten Suchmaschine zurückkehren
-  let select = 'Google'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
+  let select = 'Google Deutschland'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
   let erase = true; //Nach Suche Suchleiste leeren
 //[Aktion nach dem Suchen mit der Suchleiste]
   let auto = true;	//Andere Einstellungen verwenden, durch einen Doppelklick auf die Suchleiste  
@@ -25,16 +25,16 @@
 
   const scrollRight = true;
   let bar = document.getElementById('searchbar');
-  let box = bar.textbox.inputField;
   let menu = document.getElementById('context-searchselect');
   let BSS = Components.classes["@mozilla.org/browser/search-service;1"]
   			.getService(Components.interfaces.nsIBrowserSearchService);
   
   if(!!dbl) bar.addEventListener('dblclick', ResetE, false);
   bar.addEventListener('DOMMouseScroll', ChangeE, false);
+if(!!auto) bar.addEventListener('load', autoreset, {once:true});
   if(!!cxt) menu.addEventListener('wheel', ChangeE, false);
   if(!!clk) menu.addEventListener('click', function(){
-  	if(!!sync) {box.value = this.searchTerms}else{box.value = box.value}
+  	if(!!sync) {bar.textbox.inputField.value = this.searchTerms}else{bar.textbox.inputField.value = bar.textbox.inputField.value}
   	if(!!hist) SyncHistory();
   	setTimeout(function(){ResetE()}, 0)
   }, false);
@@ -44,7 +44,7 @@
         bar.removeEventListener('DOMMouseScroll', ChangeE, false);
         menu.removeEventListener('wheel', function(e){if(!!con) ChangeE(e)} , false);
         menu.removeEventListener('click', function(){
-        	if(!!sync) {box.value = this.searchTerms}else{box.value = box.value}
+        	if(!!sync) {bar.textbox.inputField.value = this.searchTerms}else{bar.textbox.inputField.value = bar.textbox.inputField.value}
         	if(!!hist) SyncHistory();
         	setTimeout(function(){ResetE()}, 0)
         } , false);
@@ -60,7 +60,7 @@
   		BSS.currentEngine = BSS.getEngineByName(select)
 	  	}
   	}
-  	if(!!erase || !!only) box.value = '';
+  	if(!!erase || !!only) bar.textbox.inputField.value = '';
   }
   
   function CMenu() {
@@ -109,7 +109,7 @@
   
   function ShowCurrentE(){
   	let E = BSS.currentEngine;
-		if(!!label)box.setAttribute('placeholder', E.name);
+		if(!!label && !!bar.textbox)bar.textbox.inputField.setAttribute('placeholder', E.name);
 	let icon = document.getAnonymousElementByAttribute(bar, 'class', 'searchbar-search-icon');
 		if(!!img)icon.setAttribute('style', "list-style-image: url('"+ E.iconURI.spec +"') !important; -moz-image-region: auto !important; width: 16px !important; padding: 2px 0 !important;");
   }
@@ -118,12 +118,12 @@
     window.addEventListener("unload", () => {
       Services.obs.removeObserver(observe, "browser-search-engine-modified");
   });
-   
+/* 
   Services.obs.addObserver(ob2, "browser-search-service");
     window.addEventListener("unload", () => {
       Services.obs.removeObserver(ob2, "browser-search-service");
   });
-    
+ */
    
    function observe(aEngine, aTopic, aVerb) { 
     if (aTopic == "browser-search-engine-modified") {
@@ -133,7 +133,7 @@
       	CMenu();
   	}
   }
-
+/* 
    function ob2(aSubject, aTopic, aData) {
     if(aData === "init-complete" && aTopic === "browser-search-service") {
        if(!!start0) ResetE();
@@ -141,11 +141,15 @@
    	   CMenu();
    	 }
    }
-    
-  if(!auto) return;
+*/  
+  function autoreset(){
+  	if(!!start0) ResetE();
+  	ShowCurrentE();
+  	CMenu();
   	bar.cmd = bar.doSearch;
   	bar.doSearch = function(aData, aWhere, aEngine) {
   	this.cmd(aData, aWhere, aEngine);
   	ResetE()
-  }  
+    }  
+  }
 })()
