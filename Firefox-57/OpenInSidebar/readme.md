@@ -1,6 +1,7 @@
 **openinsidebar.uc.js**
 
 Dieses Script fügt das Menü Seitenleiste ins Hauptkontextmenü ein.  
+     
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox-57/OpenInSidebar/Bild%20001.png)      
    
 Dieses Menü bietet vier verschiedene Einträge zum Öffnen in der Seitenleiste:
