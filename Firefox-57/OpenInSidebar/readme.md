@@ -1,16 +1,24 @@
 **openinsidebar.uc.js**
 
-Dieses Script fügt ein Menü ins Hauptkontextmenü ein,    
+Dieses Script fügt das Menü Seitenleiste ins Hauptkontextmenü ein,  
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox-57/OpenInSidebar/Bild%20001.png)      
 mit verschiedenen Einträgen zum Öffnen in der Seitenleiste:
 * Seite öffnen
 * Add-ons Verwaltung öffnen
 * Download Panell öffnen
-* Adresse öffnen
+* Adresse öffnen    
 
-Bei klick auf Adresse öffnet sich darunter eine Eingabefeld zum Eingeben der gewünschten Adresse zbs.     
-https://www.camp-firefox.de      
-beachten muss man dabei nur dass immer die ganze Adresse also mit http usw. eingegeben wird.   
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox-57/OpenInSidebar/Bild%20002.png)    
+
+Bei klick auf Adresse öffnet sich darunter eine Eingabefeld 
+
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox-57/OpenInSidebar/Bild%20003.png)    
+ 
+Gewünschten Adresse eingeben zbs.     
+https://www.mozilla.org      
+beachten muss man dabei nur dass immer die ganze Adresse also mit http bzw. https usw. eingegeben wird.   
 Nach klick auf Enter wird die Adresse in der Seitenleiste geöffnet
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox-57/OpenInSidebar/Bild%20004.png)
 
 ## Installation
 
