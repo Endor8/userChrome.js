@@ -31,7 +31,7 @@
     };
     let frameScriptURI = 'data:,(' + frameScript.toString() + ')()';
     let window = event.target.ownerGlobal;
-    window.openUILinkIn('about:addons', 'tab');
+    window.openUILinkIn('about:addons', 'tab', {});
     window.gBrowser.selectedBrowser.messageManager.loadFrameScript(frameScriptURI, true);
   };
 
