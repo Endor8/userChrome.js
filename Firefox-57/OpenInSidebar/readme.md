@@ -1,6 +1,6 @@
 **openinsidebar.uc.js**
 
-Dieses Script fügt ein Menü ins Hauptkontextmenü ein, 
+Dieses Script fügt ein Menü ins Hauptkontextmenü ein,    
 mit verschiedenen Einträgen zum Öffnen in der Seitenleiste:
 * Seite öffnen
 * Add-ons Verwaltung öffnen
