@@ -2,10 +2,11 @@
 
 Dieses Script fügt das Menü Seitenleiste ins Hauptkontextmenü ein,  
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox-57/OpenInSidebar/Bild%20001.png)      
-mit verschiedenen Einträgen zum Öffnen in der Seitenleiste:
+   
+Dieses Menü bietet vier verschiedene Einträge zum Öffnen in der Seitenleiste:
 * Seite öffnen
-* Add-ons Verwaltung öffnen
-* Download Panell öffnen
+* Add-ons-Verwaltung öffnen
+* Downloads öffnen
 * Adresse öffnen    
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox-57/OpenInSidebar/Bild%20002.png)    
