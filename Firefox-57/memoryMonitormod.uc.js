@@ -31,8 +31,8 @@ var ucjsMM = {
 		label.setAttribute('value', ucjsMM._MemoryValue + ucjsMM._prefix);
 		memoryPanel.appendChild(label);
 
-		document.getElementById('bottom-toolbar').insertBefore(memoryPanel, document.getElementById('eom-button'));
-	//	document.getElementById('nav-bar-customization-target').insertBefore(memoryPanel, document.getElementById('search-container'));
+	//  document.getElementById('bottom-toolbar').insertBefore(memoryPanel, document.getElementById('eom-button'));
+	    document.getElementById('nav-bar-customization-target').insertBefore(memoryPanel, document.getElementById('search-container'));
 	//  document.getElementById('addon-bar').insertBefore(memoryPanel, document.getElementById('uAutoPagerize-icon'));
 	//  document.getElementById('urlbar-icons').insertBefore(memoryPanel, document.getElementById('uAutoPagerize-icon'));
 		this.start();
