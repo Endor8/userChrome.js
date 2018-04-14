@@ -7,7 +7,7 @@
 			let t = (message.data !== '');
 			let e = (document.charset || document.characterSet);
 			if (t) {
-				gBrowser.loadOneTab('http://translate.google.com/#auto/de/' + message.data, null, null, null, false, false);
+				gBrowser.loadOneTab('http://translate.google.com/#auto/de/' + encodeURIComponent(message.data), null, null, null, false, false);
 			} else {
 				gBrowser.loadOneTab('http://translate.google.com/translate?u=' + gBrowser.currentURI.spec + '&hl=de-DE&ie=' + e + '&sl=auto&tl=de-DE', null, null, null, false, false);
 			};
