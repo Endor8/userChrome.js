@@ -9,7 +9,7 @@
   const only = false; //Suchleiste leeren und nicht zur Standardsuchmaschine zurückkehren [Neu in Version 0.6]
   const dbl = true;	//Funktion aktivieren
   const zero = false; //Bei Klick zur obersten Suchmaschine zurückkehren
-  const select = 'Google Deutschland'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
+  const select = 'Google'; //Standard Suchmaschine angeben, zum Beispiel 'DuckDuckGo'.
   const erase = true; //Nach Suche Suchleiste leeren
 //[Aktion nach dem Suchen mit der Suchleiste]
   const auto = true; //Andere Einstellungen verwenden, durch einen Doppelklick auf die Suchleiste  
@@ -100,7 +100,7 @@
   }
   
   function ChangeE(event) {
-  	if(BUTTON_ONLY && event.originalTarget.className !== 'searchbar-search-button') return;
+  	if(BUTTON_ONLY && event.originalTarget.className !== 'searchbar-search-button' && event.originalTarget !== menu) return;
     let dir = (scrollRight ? 1 : -1) * Math.sign(event.detail || event.deltaY);
   	this.engines = BSS.getVisibleEngines({});
   	let index = this.engines.indexOf(BSS.currentEngine);
