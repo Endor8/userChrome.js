@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name			tabLockModoki.uc.js
-// @description		簡易型タブロック
-// @charset			UTF-8
+// @name		tabLockModoki.uc.js
+// @description		Tabs sperren
+// @charset		UTF-8
 // @include      	main
-// @note			実際の処理部分はopenLinkByLongPress.uc.jsに完全に依存
-// @note			拡張機能によるページでは動作しない（ようにしている）
+// @note		実際の処理部分はopenLinkByLongPress.uc.jsに完全に依存
+// @note		拡張機能によるページでは動作しない（ようにしている）
 // ==/UserScript==
 /*
 ■事前にopenLinkByLongPress.uc.js(ver.0.0.1)に以下の記述を施す
