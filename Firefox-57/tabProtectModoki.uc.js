@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name			tabProtectModoki.uc.js
+// @name		tabProtectModoki.uc.js
 // @description		Tab schützen Funktion, (zum Deaktivieren auf Tabschutz aufheben klicken)
-// @charset			UTF-8
+// @charset		UTF-8
 // @include      	main
-// @note			タブの保護状態復元はセッションではなく自前のファイルの読み書きによる
-// @note			タブバー上にファイルをドロップされた場合にタブを保護する機能はない
-// @note			代わりに保護タブを自動で巻き戻し、ファイル（のURL）を新規タブで開き直す
+// @note		タブの保護状態復元はセッションではなく自前のファイルの読み書きによる
+// @note		タブバー上にファイルをドロップされた場合にタブを保護する機能はない
+// @note		代わりに保護タブを自動で巻き戻し、ファイル（のURL）を新規タブで開き直す
 // ==/UserScript==
 (function(){
 
