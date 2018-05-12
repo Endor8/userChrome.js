@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AddOnLister.uc.js
-// @compatibility  Firefox 36.*, 37.*
+// @compatibility  Firefox 36.*, 37.*, 60.*
 // @include        main
 // @version        1.0.20180512
 // ==/UserScript==
