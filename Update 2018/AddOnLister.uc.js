@@ -13,7 +13,7 @@ var ADONLI = {
 	// einige Tests der Konfiguration durchführen (true oder false)?
 	CHECKCONFIG:		true,
 	// ans eigene System anpassen - Pfad mit Verzeichnistrenner abschliessen. Unter Windows den \ bitte verdoppeln
-	EXPORTPATH:			"C:\\Users\\Paulmichl\\Documents\\Firefox\\",
+	EXPORTPATH:			"C:\\Users\\XXXX\\Documents\\Firefox\\",
 	//Dateinamen ohne(!) Erweiterung eingeben - diese wird weiter unten im Wert "fileext" pro Ausgabeformat definiert
 	EXPORTFILE:			"addonlister",
 	// Ausgabeformat bbcode, html oder custom
