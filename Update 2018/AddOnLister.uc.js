@@ -2,7 +2,7 @@
 // @name           AddOnLister.uc.js
 // @compatibility  Firefox 36.*, 37.*
 // @include        main
-// @version        1.0.20150331
+// @version        1.0.20180512
 // ==/UserScript==
 
 var ADONLI = {
