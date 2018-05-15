@@ -24,3 +24,8 @@ färbt sich der Hintergrund der Suchleiste rot.
 ![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Neue%20Scripte%202018/Find%20in%20Searchbar%20Highlight%20By%20Mouse/Image%204.png)  
 
 Die Farben können im Script den eigenen Wünschen entsprechend angepasst werden.    
+
+## Installation
+
+Kopiere die uc.js-Datei in den Chromeordner des Profils und ziehe den Button an die gewünschte Stelle.    
+
