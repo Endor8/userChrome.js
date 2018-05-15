@@ -2,12 +2,22 @@
 
 ##### Herunterladen und Entpacken der ZIP-Datei: firefox-anpassungen.zip
 
-Das Archiv enthält folgendes:     
-   
-1. config.js       
-2. config-prefs.js      
-3. userChrome.js
-     
+Das Archiv enthält folgendes:   
+
+  #### 1. Unterverzeichnis userChromeJS mit den Dateien   
+   * main.js
+   * utilities.js
+   * Readme.txt
+
+  #### 2. Unterverzeichnis chrome mit den Dateien   
+   * userChrome.js
+   * userChrome.css
+   * userContent.css
+
+  #### 3. Datei config.js   
+
+  #### 4. Datei config-prefs.js   
+       
 ###### (Zum runterladen rechtsklick hier: [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/firefox-anpassungen.zip) und Ziel Speichern unter.)
 
 ##### Wo müssen die Dateien hin
@@ -16,9 +26,6 @@ Die Datei **config.js** und der Ordner **userChromeJS.js** müssen in den **Fire
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-400px.png?raw=true)  
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-600px.png?raw=true)
-
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot3-400px.png?raw=true)   
-[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot3-600px.png?raw=true)
 
 Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults\pref**
 
