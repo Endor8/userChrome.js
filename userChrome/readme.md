@@ -1,16 +1,18 @@
-### userChrome Verwendung auch in Firefox 57
+### userChrome Verwendung ab Firefox 57 und neuer
 
-##### Folgende Dateien werden zur Verwendung von userChrome Scripten benötigt, bzw. sind Voraussetzung:
- 
-[1. config.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/config.js)       
-[2. userChromeJS.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/userChromeJS.js)     
-[3. config-prefs.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/config-prefs.js)        
-[4. userChrome.js](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/userChrome.js) 
-###### (Zum runterladen rechtsklick auf obige Dateien und Ziel Speichern unter.)
+##### Herunterladen und Entpacken der ZIP-Datei: firefox-anpassungen.zip
+
+Das Archiv enthält folgendes:     
+   
+1. config.js       
+2. config-prefs.js      
+3. userChrome.js
+     
+###### (Zum runterladen rechtsklick hier: firefox-anpassungen.zip und Ziel Speichern unter.)
 
 ##### Wo müssen die Dateien hin
 
-Die Dateien **config.js** und **userChromeJS.js** müssen in den **Firefox Installationsordner**
+Die Datei **config.js** und der Ordner **userChromeJS.js** müssen in den **Firefox Installationsordner**
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-400px.png?raw=true)  
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-600px.png?raw=true)
