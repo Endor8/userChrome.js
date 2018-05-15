@@ -8,7 +8,7 @@ Das Archiv enthält folgendes:
 2. config-prefs.js      
 3. userChrome.js
      
-###### (Zum runterladen rechtsklick hier: firefox-anpassungen.zip und Ziel Speichern unter.)
+###### (Zum runterladen rechtsklick hier: [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/firefox-anpassungen.zip) und Ziel Speichern unter.)
 
 ##### Wo müssen die Dateien hin
 
@@ -67,6 +67,7 @@ pref("general.config.filename", "config.js");
 
 **userChrome.js**
 ```js
+userChrome.ignoreCache = true;
 userChrome.import("*", "UChrm");
 ```
 
