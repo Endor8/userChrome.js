@@ -58,27 +58,8 @@ In den **Profilordner\chrome** gehört die Datei:
 
 oder
 **Portable_Firefox\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
-
-
-##### Inhalt der Dateien:
-  
-**config.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/Dateien/config.js.md) 
-     
-**userChromeJS.js** siehe [hier](https://github.com/Endor8/userChrome.js/blob/master/userChrome/Dateien/userChromeJS.js.md)
-     
-**config-prefs.js**
-```js
-pref("general.config.obscure_value", 0);
-pref("general.config.filename", "config.js");
-```
-
-**userChrome.js**
-```js
-userChrome.ignoreCache = true;
-userChrome.import("*", "UChrm");
-```
-
-###### Alle 4 Dateien sind hier auch zum Herunterladen verfügbar:
+   
+###### Datei ist hier auch zum Herunterladen verfügbar:
 https://github.com/Endor8/userChrome.js/tree/master/userChrome/Dateien
 
 ###### Eine aktuelle Sammlung von Scripten gibt es hier:
