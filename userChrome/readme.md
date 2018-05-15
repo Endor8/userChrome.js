@@ -2,7 +2,7 @@
 
 ##### Herunterladen und Entpacken der ZIP-Datei: firefox-anpassungen.zip
 
-Das Archiv enthält folgendes:   
+#### Das Archiv enthält folgendes:   
 
   #### 1. Unterverzeichnis userChromeJS mit den Dateien   
    * main.js
