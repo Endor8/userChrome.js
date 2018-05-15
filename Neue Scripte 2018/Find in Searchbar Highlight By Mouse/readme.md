@@ -2,11 +2,11 @@
 Dieses Script ermöglicht es den Seiteninhalt über die Suchleiste zu durchsuchen.    
 
 ![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Neue%20Scripte%202018/Find%20in%20Searchbar%20Highlight%20By%20Mouse/Image%201.png)  
-
-Mit dem Scrollrad ist es möglich von eimem Treffer zum anderen zu wechseln,     
+Zu suchenden Text in die Suchleiste eingeben, nach Rechtklick auf Suchenpfeil    
+wird rechts neben der Suchleiste eine neue Scaltfläche, zum markieren der Übereinstimmungen    
+angezeigt. Nun ist es mit dem Scrollrad möglich von eimem Treffer zum anderen zu wechseln,     
 dazu den Mauspfeil auf die Markieren Schaltfläche bewegen.     
-Mit Klick auf die Markieren Schaltfläche welche rechts neben der Suchleiste,    
-beim Suchen, eingeblendet wird, können alle Übereinstimmungen auf der Seite     
+Mit Klick auf die Markieren Schaltfläche können alle Übereinstimmungen auf der Seite     
 hervorgehoben werden.
 
 ![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Neue%20Scripte%202018/Find%20in%20Searchbar%20Highlight%20By%20Mouse/Image%202.png)  
