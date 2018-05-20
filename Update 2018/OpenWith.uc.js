@@ -1,14 +1,14 @@
 // ==UserScript==
-// @name			OpenWith
+// @name		OpenWith
 // @description		Fügt dem Kontextmenü ein Menü hinzu, zum Öffnen der aktuelle Seite und eines ausgewählten Links in einem anderen Browser.
 // @description		und eines ausgewählten Links in einem anderen Browser.
-// @version			1.2.0
-// @author			y2k
-// @include			main
-// @charset			UTF-8
+// @version		1.2.0
+// @author		y2k
+// @include		main
+// @charset		UTF-8
 // @namespace		http://tabunfirefox.web.fc2.com/
-// @note			Anwendungssymbol anzeigen
-// @note			als .uc.js Script umgeschrieben
+// @note		Anwendungssymbol anzeigen
+// @note		als .uc.js Script umgeschrieben
 // ==/UserScript==
 (function() {
 "use strict";
