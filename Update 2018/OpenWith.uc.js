@@ -20,9 +20,9 @@
 */
 const BrowserPath = {
 	"Mozilla Firefox":	"C:\\Program Files\\Mozilla Firefox\\firefox.exe",
-	"Google Chrome":	"C:\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+	"Google Chrome":	"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
 	"Internet Explorer":	"C:\\Program Files\\Internet Explorer\\iexplore.exe",
-	"Opera":	"C:\\Program Files\\Opera\\Launcher.exe",
+	"Opera":		"C:\\Program Files\\Opera\\Launcher.exe",
 };
 
 const FlatMenu = false;
