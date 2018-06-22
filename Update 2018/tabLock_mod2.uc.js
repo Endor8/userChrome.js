@@ -1,10 +1,13 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name           tabLock_mod2.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Tab sperren
 // @include        *
 // @exclude        chrome://mozapps/content/downloads/unknownContentType.xul
-// @compatibility  60+
+// @compatibility  60
+// @version        2018/06/21 19:50 workaround regression
+// @version        2018/06/21 19:40 fix restore session if *.restore_on_demand is enabled
+// @version        2018/06/10 00:00 workaround restore session
 // @version        2018/05/23 00:00 Fixed typo(status is undeled when unlock)
 // @version        2018/05/12 15:30 workaround restore session for all window
 // @version        2018/05/05 23:00 cleanup (fix ancestor click event)
@@ -14,12 +17,12 @@
 // @version        2018/05/04 00:00 for 60
 // ==/UserScript==
 // @Note           about:config Einstellung
-//  userChrome.tabLock.ignoreBrowserBack_Forward Bei gesperrten Tab, setzen Sie Browser zurück/ vorwärt auf:
-//  [0]: Normalbetrieb, 1: um in neuem Tab zu öffnen, 2: um die Funktion zu beenden
+//  userChrome.tabLock.ignoreBrowserBack_Forward: Einstellung für Browser zurück/ vor Schaltflächen - Verhalten bei gesperrten Tab:
+//  [0]: Normalbetrieb, 1: um in neuem Tab zu öffnen, 2: zum Deaktivieren
 
 //  browser.tabs.loadInBackground           Tab im Hintergrund öffnen [true]/false
 //  browser.tabs.loadBookmarksInBackground  Lesezeichen in Hintergrundtab öffnen true/[false]
-//  browser.tabs.loadUrlInBackground        Adressleiste in Hintergrundtab öffnen true/[false]
+//  browser.tabs.loadUrlInBackground        Aus Adressleiste in Hintergrundtab öffnen true/[false]
 
 patch: {
   if ("openLinkIn" in window) {
@@ -76,7 +79,7 @@ patch: {
           return this.ss.deleteTabValue(aTab, aKey);
       }
     },
-  
+
     init: function(){
 
       //BrowserBack/Forward
@@ -172,7 +175,7 @@ patch: {
         return gotoHistoryIndex_org(aEvent);
       }
 
-      //D&D on TAB
+      //D&D beim TAB
       gBrowser.tabContainer.addEventListener('drop', this.onDrop, true);
 
 
@@ -184,8 +187,8 @@ patch: {
 
         var style = " \
         .tab-icon-lock{ \
-          margin-top: 6px; /*Notwendige Anpassung*/  \
-          margin-left: 6px; /*Notwendige Anpassung*/ \
+          margin-top: 0px; /*Notwendige Anpassung*/ \
+          margin-left: 0px; /*Notwendige Anpassung*/ \
           list-style-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAjElEQVQ4je3RsQ7CMAyE4S9pURl5/6csGxKJw1AKFBARK+IkD3Fyv86OQouHOhNBqzQcdJSPzCKIEMgkKFTMXcDmMI6LGzuGnvkFoBRQiWtn/x1g5dwBpx4gnalDxAZUcm4jad3HxwTpzaNxmtZef4RMkrNbDQPTtN53AanSniM0S6y8/ES82v76MV0AlREpDobXTpUAAAAASUVORK5CYII='); \
         } \
         .tab-icon-lock[hidden='true'] { \
@@ -201,16 +204,15 @@ patch: {
       return document.documentElement.getAttribute(name);
       };
 
-      //Wiederherstellung des Tabstatus beim Start
-      this.restoreAll();
+      this.restoreAll(0);
       gBrowser.tabContainer.addEventListener('TabMove', tabLock.TabMove, false);
       gBrowser.tabContainer.addEventListener('SSTabRestoring', tabLock.restore,false);
       window.addEventListener('unload',function(){ tabLock.uninit();},false)
     },
 
-    restoreAll: function() {
+    restoreAll: function(delay = 0) {
       var that = this;
-      setTimeout(init, 2000, 0);
+      setTimeout(init, delay, 0);
       function init(i){
         if(i < gBrowser.tabs.length){
           var aTab = gBrowser.tabs[i];
@@ -326,14 +328,13 @@ patch: {
       menuitem.id = "tabLock";
       menuitem.setAttribute("type", "checkbox");
       menuitem.setAttribute("label", "Tab sperren");
-      menuitem.setAttribute("accesskey", "s");
+      menuitem.setAttribute("accesskey", "S");
       menuitem.setAttribute("oncommand","tabLock.toggle(event);");
       tabContext.addEventListener('popupshowing',function(event){tabLock.setCheckbox(event);},false);
     },
 
     restore: function(event){
-      var aTab =  event.target;
-      tabLock.restoreForTab(aTab);
+      tabLock.restoreAll(0);
     },
 
     restoreForTab: function(aTab){
@@ -511,7 +512,7 @@ patch: {
   'use strict';
 
   let frameScript = function() {
-    addEventListener("click", onClick, false);  /*Da die EventListener-Priorität des Vorgängerelements auf true gesetzt ist, wird sie ignoriert*/
+    addEventListener("click", onClick, false);  /*Klick eventListener Priorität des Vorhergehenden Elements, Bei true ignorieren*/
 
     function onClick(event) {
       if (event.button !== 0) return;
@@ -519,7 +520,7 @@ patch: {
 
       if (!sendSyncMessage("linkclick_isLockedTab", {  })[0].isLockedTab)
         return;
-      /*Priorität des click eventListener des Vorfahrenelements*/
+      /*Priorität des klick eventListener des Vorhergehenden Elements*/
       if (event.defaultPrevented)
         return;
 
