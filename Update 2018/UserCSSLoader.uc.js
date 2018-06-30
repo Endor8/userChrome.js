@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           UserCSSLoader
-// @description    CSS Codes laden und verwalten
+// @description    CSS Codes - Styles laden und verwalten
 // @namespace      http://d.hatena.ne.jp/Griever/
 // @author         Griever
 // @include        main
@@ -11,16 +11,16 @@
 // @note           0.0.4 Remove E4X
 // @note           CSSEntry-Klasse erstellt
 // @note           Style-Test-Funktion überarbeitet
-// @note           Wenn die Datei gelöscht wurde, CSS beim Neuerstellen und Löschen des Menüs abbrechen
+// @note           Wenn die Datei gelöscht wurde, CSS beim Neu erstellen und Löschen des Menüs abbrechen
 // @note           uc einlesen .uc.css temporäre Korrespondenz zum erneuten Lesen
 // ==/UserScript==
 
 /****** Bedienungsanleitung ******
 
-Da der CSS-Ordner im Chrome-Ordner erstellt wird, legen Sie einfach die CSS-Dateien dort ab.
+Da der CSS-Ordner im Chrome-Ordner erstellt wurde, CSS-Dateien dort ablegen - speichern.
 Diejenigen, deren Dateiname mit "xul-" beginnen, diejenigen, die mit ".as.css" enden, sind AGENT_SHEET, 
 andere außer USER_SHEET werden gelesen. Da der Inhalt der Datei nicht überprüft wird,
-darauf achten, @ Namespace Angabe nicht zu vergessen.
+darauf achten, @ Namespace Angabe nicht zu vergessen!
 
 CSS-Menü wird zur Menüleiste hinzugefügt
 Linksklick auf Stil, zum aktivieren/deaktivieren
@@ -37,7 +37,7 @@ Ordner kann geändert werden, indem ein Pfad in "UserCSSLoader.FOLDER" eingefüg
 let { classes: Cc, interfaces: Ci, utils: Cu, results: Cr } = Components;
 if (!window.Services)
 	Cu.import("resource://gre/modules/Services.jsm");
-// 起動時に他の窓がある（２窓目の）場合は抜ける
+// Wenn beim Start ein anderes Fenster angezeigt wird (das zweite Fenster), wird es beendet
 let list = Services.wm.getEnumerator("navigator:browser");
 while(list.hasMoreElements()){ if(list.getNext() != window) return; }
 
@@ -70,7 +70,7 @@ window.UCL = {
 	get FOLDER() {
 		let aFolder;
 		try {
-			// UserCSSLoader.FOLDER があればそれを使う
+			// UserCSSLoader.FOLDER verwenden
 			let folderPath = this.prefs.getCharPref("FOLDER");
 			aFolder = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile)
 			aFolder.initWithPath(folderPath);
@@ -422,20 +422,20 @@ CSSEntry.prototype = {
 		var aFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile)
 		aFile.initWithPath(this.path);
 	
-		var isExists = aFile.exists(); // ファイルが存在したら true
+		var isExists = aFile.exists(); // Wenn die Datei existiert true
 		var lastModifiedTime = isExists ? aFile.lastModifiedTime : 0;
-		var isForced = this.lastModifiedTime != lastModifiedTime; // ファイルに変更があれば true
+		var isForced = this.lastModifiedTime != lastModifiedTime; // Wenn es eine Änderung in der Datei gibt true
 
 		var fileURL = Services.io.getProtocolHandler("file").QueryInterface(Ci.nsIFileProtocolHandler).getURLSpecFromFile(aFile);
 		var uri = Services.io.newURI(fileURL, null, null);
 
 		if (this.sss.sheetRegistered(uri, this.SHEET)) {
-			// すでにこのファイルが読み込まれている場合
+			// Wenn diese Datei bereits gelesen wurde
 			if (!isEnable || !isExists) {
 				this.sss.unregisterSheet(uri, this.SHEET);
 			}
 			else if (isForced) {
-				// 解除後に登録し直す
+				// Nach Stornierung erneut einlesen
 				this.sss.unregisterSheet(uri, this.SHEET);
 				this.sss.loadAndRegisterSheet(uri, this.SHEET);
 			}
