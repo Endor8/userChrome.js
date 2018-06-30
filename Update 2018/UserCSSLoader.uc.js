@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           UserCSSLoader
-// @description    Stylish みたいなもの
+// @description    CSS Codes laden und verwalten
 // @namespace      http://d.hatena.ne.jp/Griever/
 // @author         Griever
 // @include        main
@@ -9,27 +9,28 @@
 // @charset        UTF-8
 // @version        0.0.4f
 // @note           0.0.4 Remove E4X
-// @note           CSSEntry クラスを作った
-// @note           スタイルのテスト機能を作り直した
-// @note           ファイルが削除された場合 rebuild 時に CSS を解除しメニューを消すようにした
-// @note           uc で読み込まれた .uc.css の再読み込みに仮対応
+// @note           CSSEntry-Klasse erstellt
+// @note           Style-Test-Funktion überarbeitet
+// @note           Wenn die Datei gelöscht wurde, CSS beim Neuerstellen und Löschen des Menüs abbrechen
+// @note           uc einlesen .uc.css temporäre Korrespondenz zum erneuten Lesen
 // ==/UserScript==
 
-/****** 使い方 ******
+/****** Bedienungsanleitung ******
 
-chrome フォルダに CSS フォルダが作成されるのでそこに .css をぶち込むだけ。
-ファイル名が "xul-" で始まる物、".as.css" で終わる物は AGENT_SHEET で、それ以外は USER_SHEET で読み込む。
-ファイルの内容はチェックしないので @namespace 忘れに注意。
+Da der CSS-Ordner im Chrome-Ordner erstellt wird, legen Sie einfach die CSS-Dateien dort ab.
+Diejenigen, deren Dateiname mit "xul-" beginnen, diejenigen, die mit ".as.css" enden, sind AGENT_SHEET, 
+andere außer USER_SHEET werden gelesen. Da der Inhalt der Datei nicht überprüft wird,
+darauf achten, @ Namespace Angabe nicht zu vergessen.
 
-メニューバーに CSS メニューが追加される
-メニューを左クリックすると ON/OFF
-          中クリックするとメニューを閉じずに ON/OFF
-          右クリックするとエディタで開く
+CSS-Menü wird zur Menüleiste hinzugefügt
+Linksklick auf Stil, zum aktivieren/deaktivieren
+Mittelklick auf Stil zum aktivieren/deaktivieren, ohne Menü zu schließen
+Rechtsklick auf Stil zum Öffnen im Editor
 
-エディタは "view_source.editor.path" に指定されているものを使う
-フォルダは "UserCSSLoader.FOLDER" にパスを入れれば変更可能
+Verwenden des in "view_source.editor.path" angegebenen Editors
+Ordner kann geändert werden, indem ein Pfad in "UserCSSLoader.FOLDER" eingefügt wird
 
- **** 説明終わり ****/
+ **** Anleitung Ende ****/
 
 (function(){
 
