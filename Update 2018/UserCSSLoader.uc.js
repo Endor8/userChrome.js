@@ -174,7 +174,7 @@ window.UCL = {
 			label: "Importieren(.uc.js)",
 			oncommand: "UCL.UCrebuild();"
 		}));
-		mp.appendChild($C("menuseparator", { id: "usercssloader-ucsepalator" }));
+		mp.appendChild($C("menuseparator", { id: "usercssloader-ucseparator" }));
 
 		CustomizableUI.createWidget({
 			id: 'usercssloader-menu-item',
