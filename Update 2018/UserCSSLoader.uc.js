@@ -5,9 +5,12 @@
 // @author         Griever
 // @include        main
 // @license        MIT License
-// @compatibility  Firefox 4
+// @compatibility  Firefox 4 - 61*
 // @charset        UTF-8
-// @version        0.0.4f
+// @version        0.0.4g
+// @note           Version 0.0.4.g ermoeglicht "Styles importieren" per Mittelklick und Verwendung
+// @note           eines anderen Dateimanager (s. vFileManager in Zeile 53)
+// @note           Frei verschiebbare Schaltfläche eingebaut von aborix 
 // @note           0.0.4 Remove E4X
 // @note           CSSEntry-Klasse erstellt
 // @note           Style-Test-Funktion überarbeitet
@@ -47,6 +50,8 @@ if (window.UCL) {
 }
 
 window.UCL = {
+	// vFileManager: 'C:\\Programme\\totalcmd\\TOTALCMD.EXE',
+	vFileManager: '',
 	USE_UC: "UC" in window,
 	AGENT_SHEET: Ci.nsIStyleSheetService.AGENT_SHEET,
 	USER_SHEET : Ci.nsIStyleSheetService.USER_SHEET,
@@ -90,13 +95,12 @@ window.UCL = {
 		return win;
 	},
 
-
-
 	init: function() {
 		const cssmenu = $C("menu", {
 			id: "usercssloader-menu",
 			label: "CSS",
-			accesskey: "C"
+			accesskey: "C",
+			onclick: "if (event.button == 1) UCL.rebuild()"
 		});
 		const menupopup = $C("menupopup", {
 			id: "usercssloader-menupopup"
@@ -172,7 +176,18 @@ window.UCL = {
 		}));
 		mp.appendChild($C("menuseparator", { id: "usercssloader-ucsepalator" }));
 
-		$('main-menubar').appendChild(cssmenu);
+		CustomizableUI.createWidget({
+			id: 'usercssloader-menu-item',
+			type: 'custom',
+			defaultArea: CustomizableUI.AREA_MENUBAR,
+			onBuild: function(aDocument) {
+				let toolbaritem = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbaritem');
+				toolbaritem.id = 'usercssloader-menu-item';
+				toolbaritem.className = 'chromeclass-toolbar-additional';
+				return toolbaritem;
+			}
+		});
+		$('usercssloader-menu-item').appendChild(cssmenu);
 
 		$("mainKeyset").appendChild($C("key", {
 			id: "usercssloader-rebuild-key",
@@ -180,7 +195,6 @@ window.UCL = {
 			key: "R",
 			modifiers: "alt",
 		}));
-
 		this.rebuild();
 		this.initialized = true;
 		if (UCL.USE_UC) {
@@ -215,7 +229,6 @@ window.UCL = {
 		let ext = /\.css$/i;
 		let not = /\.uc\.css/i;
 		let files = this.FOLDER.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
-
 		while (files.hasMoreElements()) {
 			let file = files.getNext().QueryInterface(Ci.nsIFile);
 			if (!ext.test(file.leafName) || not.test(file.leafName)) continue;
@@ -258,7 +271,6 @@ window.UCL = {
 				menuitem.parentNode.removeChild(menuitem);
 			return;
 		}
-
 		if (!menuitem) {
 			menuitem = document.createElement("menuitem");
 			menuitem.setAttribute("label", aLeafName);
@@ -280,11 +292,9 @@ window.UCL = {
 	},
 	itemClick: function(event) {
 		if (event.button == 0) return;
-
 		event.preventDefault();
 		event.stopPropagation();
 		let label = event.currentTarget.getAttribute("label");
-
 		if (event.button == 1) {
 			this.toggle(label);
 		}
@@ -315,8 +325,19 @@ window.UCL = {
 		}
 		openLinkIn("https://userstyles.org/styles/search/" + word, "tab", {});
 	},
-	openFolder: function() {
-		this.FOLDER.launch();
+	openFolder:function(){
+		if (this.vFileManager.length != 0) {
+			var file = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
+			var process = Cc['@mozilla.org/process/util;1'].createInstance(Ci.nsIProcess);
+			var args=[this.FOLDER.path];
+			file.initWithPath(this.vFileManager);
+			process.init(file);
+			// Verzeichnis mit anderem Dateimanager öffnen
+			process.run(false, args, args.length);
+		} else {
+			// Verzeichnis mit Dateimanager des Systems öffnen
+			this.FOLDER.launch();
+		}
 	},
 	editUserCSS: function(aLeafName) {
 		let file = Services.dirsvc.get("UChrm", Ci.nsIFile);
@@ -327,12 +348,12 @@ window.UCL = {
 		var editor = Services.prefs.getCharPref("view_source.editor.path");
 		if (!editor) return alert("Unter about:config den vorhandenen Schalter:\n view_source.editor.path mit dem Editorpfad ergänzen");
 		try {
-			var UI = Cc["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Ci.nsIScriptableUnicodeConverter);
+			var UI = Components.classes["@mozilla.org/intl/scriptableunicodeconverter"].createInstance(Components.interfaces.nsIScriptableUnicodeConverter);
 			UI.charset = window.navigator.platform.toLowerCase().indexOf("win") >= 0? "Shift_JIS": "UTF-8";
 			var path = UI.ConvertFromUnicode(aFile.path);
-			var app = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
+			var app = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
 			app.initWithPath(editor);
-			var process = Cc["@mozilla.org/process/util;1"].createInstance(Ci.nsIProcess);
+			var process = Components.classes["@mozilla.org/process/util;1"].createInstance(Components.interfaces.nsIProcess);
 			process.init(app);
 			process.run(false, [path], 1);
 		} catch (e) {}
@@ -359,7 +380,7 @@ window.UCL = {
 		UCL.UCcreateMenuitem();
 	},
 	UCcreateMenuitem: function() {
-		let sep = $("usercssloader-ucsepalator");
+		let sep = $("usercssloader-ucseparator");
 		let popup = sep.parentNode;
 		if (sep.nextSibling) {
 			let range = document.createRange();
@@ -398,7 +419,7 @@ window.UCL = {
 		else if (event.button == 2) {
 			closeMenus(event.target);
 			let fileURL = event.currentTarget.getAttribute("tooltiptext");
-			let file = Services.io.getProtocolHandler("file").QueryInterface(Ci.nsIFileProtocolHandler).getFileFromURLSpec(fileURL);
+			let file = Services.io.getProtocolHandler("file").QueryInterface(Components.interfaces.nsIFileProtocolHandler).getFileFromURLSpec(fileURL);
 			this.edit(file);
 		}
 	},
@@ -413,20 +434,21 @@ function CSSEntry(aFile) {
 		Ci.nsIStyleSheetService.USER_SHEET;
 }
 CSSEntry.prototype = {
-	sss: Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService),
+	sss: Components.classes["@mozilla.org/content/style-sheet-service;1"]
+                    .getService(Components.interfaces.nsIStyleSheetService),
 	_enabled: false,
 	get enabled() {
 		return this._enabled;
 	},
 	set enabled(isEnable) {
-		var aFile = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile)
+		var aFile = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile)
 		aFile.initWithPath(this.path);
 	
 		var isExists = aFile.exists(); // Wenn die Datei existiert true
 		var lastModifiedTime = isExists ? aFile.lastModifiedTime : 0;
 		var isForced = this.lastModifiedTime != lastModifiedTime; // Wenn es eine Änderung in der Datei gibt true
 
-		var fileURL = Services.io.getProtocolHandler("file").QueryInterface(Ci.nsIFileProtocolHandler).getURLSpecFromFile(aFile);
+		var fileURL = Services.io.getProtocolHandler("file").QueryInterface(Components.interfaces.nsIFileProtocolHandler).getURLSpecFromFile(aFile);
 		var uri = Services.io.newURI(fileURL, null, null);
 
 		if (this.sss.sheetRegistered(uri, this.SHEET)) {
@@ -460,7 +482,8 @@ function CSSTester(aWindow, aCallback) {
 	this.init();
 }
 CSSTester.prototype = {
-	sss: Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService),
+	sss: Components.classes["@mozilla.org/content/style-sheet-service;1"]
+                    .getService(Components.interfaces.nsIStyleSheetService),
 	preview_code: "",
 	saved: false,
 	init: function() {
