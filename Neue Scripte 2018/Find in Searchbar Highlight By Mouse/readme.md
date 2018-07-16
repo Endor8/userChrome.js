@@ -27,5 +27,5 @@ Die Farben können im Script den eigenen Wünschen entsprechend angepasst werden
 
 ## Installation
 
-Kopiere die uc.js-Datei in den Chromeordner des Profils und ziehe den Button an die gewünschte Stelle.    
+Kopiere die uc.js-Datei in den Chromeordner des Profils.    
 
