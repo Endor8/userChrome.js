@@ -12,7 +12,7 @@
 // ==/UserScript==
 const addHistoryFindbar = {
   // --config --
-  // ENTER mit Schlüssel speichern [true] Mit beliebigen Schlüssel speichern false
+  // Mit ENTER Taste speichern = [true] Mit beliebiger Taste speichern=[false]
   ONLYENTER : true,
   //Speicherintervall(msec)
   KEY_TIMER : 800,
@@ -43,12 +43,12 @@ const addHistoryFindbar = {
         color: var(--lwt-toolbar-field-color, -moz-FieldText);
       }
 
-      /*フラッシュ*/
+      /*  Flash  */
       .findbar-textbox[flash="true"] textbox[anonid="findbar-history-textbox"]{
         -moz-appearance: none;
         background-color: yellow;
       }
-      /*検索語句が見つからない時*/
+      /*  Wenn der Suchbegriff nicht gefunden werden kann  */
       .findbar-textbox[status="notfound"] textbox[anonid="findbar-history-textbox"] {
         -moz-appearance: none;
         background-color: #FF6666;
