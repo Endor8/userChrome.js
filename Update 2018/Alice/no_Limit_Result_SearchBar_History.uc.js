@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         no_Limit_Result_SearchBar_History.uc.js
-// @description  履歴表示件数を上限なしにする
+// @description  Suchleisten-Chronik auf unbegrenzte Anzahl stellen
 // @charset      UTF-8
 // @include      main
 // @version      2018-07-21 fix at startup
@@ -28,7 +28,7 @@ const no_Limit_Result_SearchBar_History = {
 
   observe(aSubject, aTopic, aPrefstring) {
       if (aTopic == 'nsPref:changed') {
-        // 設定が変更された時の処理
+        // Verarbeitung bei Änderung der Einstellungen
         setTimeout(function(){no_Limit_Result_SearchBar_History.patch();}, 0);
       }
   },
