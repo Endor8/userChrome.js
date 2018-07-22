@@ -1,1 +1,1 @@
-Neue Scropte, bzw. Aktualisierungen von Alice
+Neue Scripte, bzw. Aktualisierungen von Alice
