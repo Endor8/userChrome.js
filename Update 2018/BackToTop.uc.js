@@ -1,4 +1,4 @@
-//  BackToTop.uc.js   E
+//  BackToTop.uc.js
   
 (function() {
 
