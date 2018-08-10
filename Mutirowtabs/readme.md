@@ -17,11 +17,12 @@ Anpassung der vertikalen Breite der Symbolleiste an Symbolleistensymbol-Anpassun
 
 #### Kleiner CSS Code für userChrome.css: #### 
 
+```css
 /*AGENT_SHEET*/ @charset "UTF-8";
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 #tabbrowser-tabs .tabbrowser-arrowscrollbox {
     -moz-binding: url("chrome://global/content/bindings/scrollbox.xml#arrowscrollbox") !important;
 }
-
+```
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils.
