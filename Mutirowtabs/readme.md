@@ -12,8 +12,8 @@ Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung
 Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung
 
 * Skript 4: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung
-Anpassung der vertikalen Breite der Symbolleiste an Symbolleistensymbol-Anpassung
+Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung,
+Anpassung der vertikalen Breite der Symbolleiste.
 
 #### Kleiner CSS Code für userChrome.css: #### 
 
