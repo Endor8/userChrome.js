@@ -2,7 +2,6 @@
 // @name           newtabfromhistory.uc.js
 // @namespace      https://www.camp-firefox.de/forum/viewtopic.php?p=1090093#p1090093
 // @description    Links aus Chronik in neuem Tab öffnen
-// @include        main
 // @author         aborix
 // @compatibility  61+
 // @version        2018/08/15 21:16 Erste Version
