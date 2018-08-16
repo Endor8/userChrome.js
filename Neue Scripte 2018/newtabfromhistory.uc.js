@@ -4,7 +4,7 @@
 // @description    Links aus Chronik in neuem Tab öffnen
 // @author         aborix
 // @compatibility  61+
-// @version        2018/08/15 21:16 Erste Version
+// @version        0.0.1
 // ==/UserScript==
 
 (function() {
