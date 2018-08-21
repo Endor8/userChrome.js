@@ -24,8 +24,8 @@
   folgende Zeile eingefügt werden:  **pref("general.config.sandbox_enabled", false);   
     
   #### Warnung!! 
-  #### Es muss jedem aber klar sein, dass verwendung der Scripte tendenziell unsicher(er) ist    
-  #### Verwendung also immer nur auf eigene Gefahr - Risiko! Es wird keinerlei haftung übernommen!    
+  #### Es muss jedem aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!    
+  #### Verwendung immer nur auf eigene Gefahr - Risiko! Es wird keinerlei Haftung übernommen!    
   
 ###### (Zum runterladen rechtsklick hier: [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/firefox-anpassungen.zip) und Ziel Speichern unter.)
 
