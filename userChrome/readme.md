@@ -16,8 +16,17 @@
 
   #### 3. Datei config.js   
 
-  #### 4. Datei config-prefs.js   
-       
+  #### 4. Datei config-prefs.js  
+
+  #### Hinweis:
+  Damit diese Methode ab Firefox 62 funktioniert, muss das mit Firefox 62 eingeführte    
+  Sandboxing der AutoConfig deaktiviert werden. Dazu musste in der Datei config-prefs.js    
+  folgende Zeile eingefügt werden:  **pref("general.config.sandbox_enabled", false);   
+    
+  #### Warnung!! 
+  #### Es muss jedem aber klar sein, dass verwendung der Scripte tendenziell unsicher(er) ist    
+  #### Verwendung also immer nur auf eigene Gefahr - Risiko! Es wird keinerlei haftung übernommen!    
+  
 ###### (Zum runterladen rechtsklick hier: [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/firefox-anpassungen.zip) und Ziel Speichern unter.)
 
 ##### Wo müssen die Dateien hin
