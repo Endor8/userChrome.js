@@ -25,8 +25,9 @@
   ``` 
     
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Warnung.png?raw=true)     
-  **Jeder sollte sich aber darüber im klaren sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
-  **Verwendung immer nur auf eigene Gefahr - eigenes Risiko! Es wird keinerlei Haftung übernommen!**    
+  **Jedem sollte aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
+  **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
+  **Es wird keinerlei Haftung übernommen!**    
   
 ###### (Zum runterladen rechtsklick hier: [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/firefox-anpassungen.zip) und Ziel Speichern unter.)
 
