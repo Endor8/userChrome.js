@@ -34,7 +34,7 @@
 
 ##### Wo müssen die Dateien hin
 
-Die Datei **config.js** und der Ordner **userChromeJS.js** müssen in den **Firefox Installationsordner**
+Die Datei **config.js** und der Ordner **userChromeJS** müssen in den **Firefox Installationsordner**
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-400px.png?raw=true)  
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-600px.png?raw=true)
