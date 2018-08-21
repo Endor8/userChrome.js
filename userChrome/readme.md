@@ -26,7 +26,7 @@
   pref("general.config.sandbox_enabled", false);
   ``` 
     
-  ****Warnung!!****    
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Warnung.png?raw=true)     
   **Es muss jedem aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko! Es wird keinerlei Haftung übernommen!**    
   
