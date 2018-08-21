@@ -11,8 +11,6 @@
 
   #### 2. Unterverzeichnis chrome mit den Dateien   
    * userChrome.js
-   * userChrome.css
-   * userContent.css
 
   #### 3. Datei config.js   
 
