@@ -22,9 +22,11 @@
   Damit diese Methode ab Firefox 62 funktioniert, muss das mit Firefox 62 eingeführte    
   Sandboxing der AutoConfig deaktiviert werden. Dazu musste in der Datei config-prefs.js    
   folgende Zeile eingefügt werden:  
-  **pref("general.config.sandbox_enabled", false);**   
+  ```CSS
+  pref("general.config.sandbox_enabled", false);
+  ``` 
     
-  **Warnung!!**  
+  ****Warnung!!****    
   **Es muss jedem aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
   **Verwendung immer nur auf eigene Gefahr - Risiko! Es wird keinerlei Haftung übernommen!**    
   
