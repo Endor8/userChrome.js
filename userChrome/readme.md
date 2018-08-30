@@ -9,7 +9,7 @@
    * utilities.js
    * Readme.txt
 
-  #### 2. Unterverzeichnis chrome mit den Dateien   
+  #### 2. Unterverzeichnis chrome mit der Datei     
    * userChrome.js
 
   #### 3. Datei config.js   
