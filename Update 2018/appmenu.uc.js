@@ -12,7 +12,7 @@
         autohideEmptySubDirs: true,
         //Submenüs ohne Inhalt im Hauptmenü automatisch ausblenden
         moveSubDirstoBottom: true,
-        //Submenüs im Hauptmenü nach unter verschieben
+        //Submenüs im Hauptmenü nach unten verschieben
         subdirPopupHash: [],
         subdirMenuHash: [],
         toolbar: {
