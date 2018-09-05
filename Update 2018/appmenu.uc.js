@@ -3,7 +3,7 @@
     // @namespace      Appmenu@gmail.com
     // @description    Basiert auf dem Script externalFuncButtonM.uc.js  Wiederherstellung der Orangenen FF-Menü Schaltfläche
     // @include        main
-	// @version        update for Firefox 62+ by aborix
+    // @version        update for Firefox 62+ by aborix
     // @author         defpt
     // @charset        UTF-8
     // @version        v2018.09.05
