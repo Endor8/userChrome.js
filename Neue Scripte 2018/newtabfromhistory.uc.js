@@ -3,8 +3,8 @@
 // @namespace      https://www.camp-firefox.de/forum/viewtopic.php?p=1090093#p1090093
 // @description    Links aus Chronik in neuem Tab öffnen
 // @author         aborix
-// @compatibility  61+
-// @version        0.0.1
+// @compatibility  62+
+// @version        0.0.2
 // ==/UserScript==
 
 (function() {
@@ -13,7 +13,10 @@
     return;
 
   eval('PlacesUIUtils.openNodeWithEvent = '  + PlacesUIUtils.openNodeWithEvent.toString()
-    .replace('PlacesUtils.nodeIsBookmark(aNode) && ', ''));
+    .replace(' && PlacesUtils.nodeIsBookmark(aNode)', '')
+    .replace('getBrowserWindow(window)', 
+      '(window && window.document.documentElement.getAttribute("windowtype") == "navigator:browser") ? window : BrowserWindowTracker.getTopWindow()')
+  );
 
   let onPopupshowing = function() {
     let historyMenu = document.getElementById('history-menu');
