@@ -23,7 +23,7 @@
 									Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULRuntime). \
 										invalidateCachesOnRestart(); \
 								 }; \
-								 Application.restart();'
+								 BrowserUtils.restartApplication();'
 				};				
 				for (var p in props)
 					toolbaritem.setAttribute(p, props[p]);				
