@@ -1,25 +1,25 @@
 // ==UserScript==
-// @name        saveUCJS.uc.js
-// @description    GitHubのファイルを保存する
-// @charset			UTF-8
-// @include     main
-// @note		Nightlyで使っているSaveUserChromeJS.uc.jsが60で動かなかったので作成
+// @name         saveUCJS.uc.js
+// @description  GitHub Datei speichern
+// @charset	     UTF-8
+// @include      main
+// @note         Nightlyで使っているSaveUserChromeJS.uc.jsが60で動かなかったので作成
 // ==/UserScript==
 (function(){
 	"use strict";
 // config
-	const addToolMenu = true	// ツールメニューにサブスクリプトローダー更新用メニューを追加する
-	const skipDialogTool = true		// ツールメニューからの更新で名前を付けて保存ダイアログを表示しない
-	const addCxtMenu = true	// contentAreaContextMenuにメニューを追加する = 
-	const skipDialogCxt = false	// contentAreaContextMenuからの保存で名前を付けて保存ダイアログを表示しない
-	const urgeRestart = true	//ダウンロード終了後、OKを選ぶと再起動する選択ウィンドウを表示する
+	const addToolMenu = true	 // Menüeintrag zum aktualisieren des Subscriptloaders dem Menü Extra hinzufügen
+	const skipDialogTool = true	 // Bei Aktualisierung aus dem Extra Menü, Dialogfeld "Speichern unter" nicht anzeigen
+	const addCxtMenu = true	     // Menüeintrag dem Hauptkontextmenü hinzufügen 
+	const skipDialogCxt = false	 // Beim Speichern aus dem Kontextmenü, Dialogfeld "Speichern unter" nicht anzeigen
+	const urgeRestart = true	 // Nach dem runter laden, Neustarten Dialog mit OK anzeigen
 //	config ここまで
 	const subloader = 'https://github.com/alice0775/userChrome.js/blob/master/userChrome.js';
 	const areaMenu = document.getElementById('contentAreaContextMenu');
 	const toolMenu = document.getElementById('menu_ToolsPopup');
 	const saveLink = document.getElementById('context-savelink');
 	const github = 'https://github.com/';
-	Cu.import('resource://gre/modules/osfile.jsm');
+	Cu.import('resource://gre/modules/FileUtils.jsm');
 	let PresentVer = xPref.get('userChrome.subloader.version');
 	if(PresentVer == null){
 		PresentVer = verCheck();
@@ -51,8 +51,8 @@
 		const menu = document.createElement('menuitem');
 			menu.setAttribute('hidden', (url.split(/\./).pop() != 'js')? 'true' : 'false');
 			menu.setAttribute('id', tool? 'ucjs_getUCJS_toolmenu' : 'ucjs_getUCJS_areamenu');
-			menu.setAttribute('label', tool? 'userChrome.js aktualisieren' : 'uc.js wie' + (file? 'Ziel verknüpfen ':' Seite') + 'Speichern');
-			menu.setAttribute('tooltiptext', tool? 'Save Subscript Loader von Alice 0775 ' : 'Speichern als uc.js');
+			menu.setAttribute('label', tool? 'userChrome.js Datei aktualisieren' : 'uc.js wie' + (file? 'Ziel verknüpfen ':' Seite') + 'Speichern');
+			menu.setAttribute('tooltiptext', tool? 'Subscript Loader Script von Alice 0775 ' : 'Speichern als uc.js');
 			menu.addEventListener('click', function(){getFile(skip, url, check)}, false);
 		tool? parentMenu.appendChild(menu) : parentMenu.insertBefore(menu, saveLink? saveLink : parentMenu.firstChild);
 	}
@@ -69,7 +69,7 @@
 				if(check){
 					const version = xhr.responseText.split(/\r\n/)[0].match(/(\d+\.\d+\.\d{2})/)[0]
 					if(PresentVer == version){
-						alert('Ist neueste Version');
+						alert('Neueste Version wird bereits verwendet');
 						return;
 					}else{
 						xPref.set('userChrome.subloader.version', version);
@@ -81,6 +81,7 @@
 
 	function saveUCJS(skip, str, title){
 	  	const string = str.replace(new RegExp('\r\n', 'g'), '\n').replace(new RegExp('\n', 'g'), `\r\n`);
+	  	const oTitle = (title == 'userChrome.js.uc.js')? 'userChrome.js' : title;
 	  if(!skip){
     	const nsIFilePicker = Components.interfaces.nsIFilePicker;
     	const fp = Components.classes['@mozilla.org/filepicker;1'].createInstance(nsIFilePicker);
@@ -88,7 +89,7 @@
     		fp.appendFilter('userChrome.js', '*.uc.js');
     		fp.displayDirectory = Services.dirsvc.get('UChrm', Ci.nsIFile);
     		fp.defaultExtension = 'uc.js';
-    		fp.defaultString = (title == 'userChrome.js.uc.js')? 'userChrome.js' : title;
+    		fp.defaultString = oTitle;
     	const result = fp.open(_saveUCJS);
     	function _saveUCJS(result){
     		if (result == nsIFilePicker.returnOK || result == Ci.nsIFilePicker.returnReplace){
@@ -98,8 +99,7 @@
 		}
 	  }else{
 		  	file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
-        	let path = OS.Constants.Path.profileDir + '/chrome/' +((title == 'userChrome.js.uc.js')? 'userChrome.js' : title);
-				path = path.replace(/\//g, '\\');
+        	let path = FileUtils.getFile("UChrm", [oTitle]);
         		file.initWithPath(path);
         		writeFile(file, string)
 	  }
@@ -122,7 +122,7 @@
         converterStream.close();
         fileStream.close();
         setTimeout(function(){
-         	if(urgeRestart && window.confirm('DL-Abschluss. Möchtest du Firefox sofort neu starten?')) BrowserUtils.restartApplication();
+         	if(urgeRestart && window.confirm('DL-Abschluss. Soll Firefox sofort neu gestartet werden?？')) BrowserUtils.restartApplication();
         },100);
 	}
 	
