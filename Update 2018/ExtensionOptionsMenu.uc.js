@@ -3,6 +3,7 @@
 // @description   Symbolleistenschaltfläche zur Add-ons-Verwaltung
 // @include       main
 // @charset       UTF-8
+// @version       3.1.5 Deaktivieren der Erweiterungen mit Rechtsklick repariert von aborix
 // @version       3.1.4 Anpassung an Firefox 61+ von aborix
 // @version       3.1.2 Auf Grund von Problemen, wurde die Fensteranzeige der Erweiterungseinstellungen entfernt
 // @version       3.1.1 Öffnen des Erweiterungen-Ordners funktionierte nicht
@@ -103,7 +104,7 @@ var EOM = {
 		var btn = document.createElementNS(XUL_NS, 'toolbarbutton');
 		btn.setAttribute('id', 'eom-button');
 		btn.setAttribute('label', 'Extension Options Menu');
-		btn.setAttribute('tooltiptext', 'Extension Options Menu');
+		btn.setAttribute('tooltiptext', 'Extension Options Menu\nLinksklick: Erweiterungsliste anzeigen\nMittelklick: Firefox neu starten\nRechtsklick: Add-ons-Manager öffnen');
 		btn.setAttribute('class', 'toolbarbutton-1 chromeclass-toolbar-additional');
 		btn.setAttribute('type', 'menu');
 		btn.setAttribute('oncontextmenu', 'return false');
@@ -302,7 +303,8 @@ var EOM = {
 				break;
 			case 2:
 				if (!hasMdf) {
-					var stateDisabled = addon.userDisabled = !addon.userDisabled;
+					var stateDisabled = !addon.userDisabled;
+					stateDisabled ? addon.disable() : addon.enable();
 					this.setDisable(mi, stateDisabled);
 					if (addon.operationsRequiringRestart && this.autoRestart) {
 						EOM.restart();
