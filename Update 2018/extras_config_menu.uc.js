@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           extras_config_menu.uc.js
-// @compatibility  Firefox 8.*, 9.*, 10.*, 11.*, 12.*, 13.*, 14.*, 15.*, 16.*, 17.*, 57.*
+// @compatibility  Firefox 8.*, 9.*, 10.*, 11.*, 12.*, 13.*, 14.*, 15.*, 16.*, 17.*, 57.*, 62.*
 // @include        main
-// @version        1.0.20170826
+// @version        1.0.20180914
 // ==/UserScript==
 
 var uProfMenu = {
@@ -16,13 +16,13 @@ var uProfMenu = {
   // In der folgenden Zeile (19) 'menu' eintragen, damit es unter "Extras" als Menue erscheint, sonst die id des gewuenschten
   // Elements *nach* dem der Button erscheinen soll (z.B. 'urlbar', 'searchbar', 'undoclosetab-button','abp-toolbarbutton')
   // Bitte nicht so etwas wie die Menue- oder Navigationsleiste (sondern einen Menuepunkt oder einen Button mit id auf diesen Leisten) eintragen:
-  warpmenuto: 'usercssloader-menu',
+  warpmenuto: 'searchbar',
  // Unter Linux sollte/kann versucht werden, die userChromeJS-Skripte zu sortieren, unter Windows ist das evtl. nicht noetig (die Sortierung wird Gross- und Kleinschreibung *nicht* beruecksichtigen - dazu wird die sort()-Funktion entsprechend mit einer Vergleichsfunktion aufgerufen)
   sortScripts: 0,   // 1 zum Erzwingen der Sortierung
   // Einbindung GM-Skripte-Ordner (0: nein, 1: Greasemonkey [Profil-Verzeichnis], 2: UserScriptLoader [Chrome-Verzeichnis], 3: Scriptish [Profil-Verzeichnis]):
-  gmOrdner: 1,
+  gmOrdner: 0,
   // Einbindung CSS-Ordner (0: nein, 1: UserCSSLoader-Ordner im Chrome-Verzeichnis):
-  cssOrdner: 1,
+  cssOrdner: 0,
   // In Zeile 30 gueltige about:Adressen eintragen, die ebenfalls aufgerufen werden sollen.
   // - Zum Ausblenden: abouts: [],
   // - Damit die about:-Seiten nicht als Untermenue, sondern direkt als Menuepunkte aufgefuehrt werden, muss das erste Element '0' sein:
@@ -31,7 +31,7 @@ var uProfMenu = {
   // Die normalen Firefox-Einstellungen auch zur Verfuegung stellen (0: nein, 1: ja):
   showNormalPrefs: 1,
   // Stellt "Skriptliste in Zwischenablage" zur Verfuegung (1: ja, 2: mit getrennter Nummerierung, 3: mit gemeinsamer Nummerierung) oder nicht (0):
-  enableScriptsToClip: 2,
+  enableScriptsToClip: 0,
   // Um den Eintrag "Neustart" zu erzwingen (falls z.B. das andere Skript zu spaet eingebunden und nicht erkannt wird), auf 1 setzen:
   enableRestart: 0,
   // Ende der Konfiguration
@@ -48,7 +48,7 @@ var uProfMenu = {
       }
       var menu = zielmenu.appendChild(this.createME("menu","Config Men\u00FC",0,0,"ExtraConfigMenu"));
       menu.setAttribute("class","menu-iconic");
-      menu.setAttribute("ondblclick","getBrowser (). selectedTab = getBrowser (). addTab ('about:config');");
+      menu.setAttribute("ondblclick","openTrustedLinkIn('about:config', 'tab');");
      } else {
       // als Button nach dem per warpmenuto gewaehlten Element anlegen (s. Kommentar ueber warpmenuto im Konfigurationsabschnitt)
       var zielmenu = document.getElementById(this.warpmenuto);
@@ -63,7 +63,7 @@ var uProfMenu = {
       menu.setAttribute("class", "toolbarbutton-1");
       menu.setAttribute("type", "menu");
       menu.setAttribute("tooltiptext", "Extra Config Menü\nMittelklick \öffnet about:config");
-      menu.setAttribute("onclick","if (event.button === 1 && !this.open) {getBrowser (). selectedTab = getBrowser (). addTab ('about:config')};");
+      menu.setAttribute("onclick", "if (event.button === 1 && !this.open) openTrustedLinkIn('about:config', 'tab');");
     }
     //ab hier ist alles gleich, egal ob Button oder Menue
     var css = " \
@@ -121,7 +121,7 @@ var uProfMenu = {
       // falls der erste Eintrag des arrays ='0' ist, dann kein Untermenue anlegen, sondern direkt als Menuepunkte einbinden
       if (this.abouts[0]=='0') {
         for (var i = 1; i < this.abouts.length; i++) {
-         menupopup.appendChild(this.createME("menuitem",this.abouts[i],"getBrowser (). selectedTab = getBrowser (). addTab ('"+this.abouts[i]+"')","uProfMenu_about"),0);
+         menupopup.appendChild(this.createME("menuitem",this.abouts[i],"openTrustedLinkIn('"+this.abouts[i]+"','tab')","uProfMenu_about"),0);
         }
        } else {
         // der erste Eintrag des arrays ist ungleich '0', deshalb als Untermenue einrichten
@@ -302,7 +302,7 @@ var uProfMenu = {
         mitem.setAttribute("onclick","uProfMenu.openAtGithub(event,'"+scriptArray[i]+"')");
         mitem.setAttribute("tooltiptext"," Linksklick: Bearbeiten,\n Mittelklick: https://github.com/.../"+this.cleanFileName(scriptArray[i])+" \u00F6ffnen,\n Rechtsklick: Suche auf GitHub");
        } else {
-        var mitem = this.createME("menuitem",scriptArray[i],"getBrowser (). selectedTab = getBrowser (). addTab ('"+scriptArray[i]+"')",sClass,0);
+        var mitem = this.createME("menuitem",scriptArray[i],"openTrustedLinkIn('"+scriptArray[i]+"','tab')",sClass,0);
       }
       popup.insertBefore(mitem, popup.firstChild);
     }
@@ -367,13 +367,13 @@ var uProfMenu = {
     if (e.button==1){
       // Mittelklick - Seite auf GitHub oeffnen (funktionier nur, wenn Ordner- und bereinigter Dateiname [ohne Erweiterung] uebereinstimmen):
       var sUrl="https://github.com/ardiman/userChrome.js/tree/master/"+this.cleanFileName(sScript);
-      getBrowser (). selectedTab = getBrowser (). addTab (sUrl);
+      openWebLinkIn(sUrl, 'tab');
     }
     if (e.button==2){
       // Rechtsklick - Suche auf GitHub starten (funktioniert nur, wenn der Dateiname im Code hinterlegt ist):
       e.preventDefault();
-      var sUrl="https://github.com/search?type=Everything&language=&q="+sScript+"&repo=&langOverride=&start_value=1";
-      getBrowser (). selectedTab = getBrowser (). addTab (sUrl);
+      var sUrl="https://github.com/search?langOverride=&language=&q="+sScript+"&repo=&start_value=1&type=Code";
+      openWebLinkIn(sUrl, 'tab');
     }
   },
 
