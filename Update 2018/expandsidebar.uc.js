@@ -54,7 +54,7 @@ var ucjs_expand_sidebar = {
   _TOLERANCE: 1,                //Bereich, der als linke Kante des Fensters erkannt wird (0 kann bei Verwendung von TreeStyleTab usw. verwendet werden)
   _DONOTCLOSE_XULELEMENT: true, //Wenn sich die Maus auf einem XUL-Element befindet, nicht schließen 
                                 //(Wird nicht geschlossen, selbst wenn XUL im Inhalt angezeigt wird)
-  _CLOSEWHENGOOUT:  false,  // Wenn sich die Maus aus dem Fenster bewegt: true: schließen, [false]: nicht schließen
+  _CLOSEWHENGOOUT:  false,  //Wenn sich die Maus aus dem Fenster bewegt: true: schließen, [false]: nicht schließen
   _FLOATING_SIDEBAR: false, //Schwebende Seitenleiste (Überlagerung des Seiteninhalts) aktivieren, 
                             //(bekanntes Problem: Seitenleiste kann nicht skaliert werden = mit Maus breiter oder schmaler ziehen)
   _SIDEBARPOSITION: "L",    //Seitenleistenposition Linke Seite: L Rechte Seite: R
