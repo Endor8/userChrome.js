@@ -8,6 +8,7 @@
 // @Note           Seitenleistenposition bei _SIDEBARPOSITION wählbar (links oder rechts)
 // @Note           Keyconfig und Mousegesten usw. SidebarUI.toggle (entsprechender Code);
 // @Note
+// @version        2018/09/03 regression resize width													 
 // @version        2018/07/03 Fx61 fix regression from remove loadoverlay
 // @version        2018/07/03 Fx61 remove loadoverlay																 
 // @version        2018/06/25 Fx61 wip
@@ -44,28 +45,30 @@
 // @version        2009/04/14 22:00 fx2削除
 var ucjs_expand_sidebar = {
 // --- config ---
-  //ここから
-  _OPEN_DELAY: 400,   //for open by mouseover
-  _OPEN_DELAY_DRAGOVER: 400,   //for open by dragover
-  _CLOSE_DELAY: 800,      //for close
-  _SCROLLBAR_DELAY: 1000, //for スクロールバーを操作後, 自動的に開閉を許可するまでの時間
+  //Anfang Konfiguration
+  _OPEN_DELAY: 400,             //Zeitverzögerung zum Öffnen bei Mouseover
+  _OPEN_DELAY_DRAGOVER: 400,    //Zeitverzögerung zum Öffnen per Dragover
+  _CLOSE_DELAY: 800,            //Zeitverzögerung beim Schließen
+  _SCROLLBAR_DELAY: 1000,       //Zeitverzögerung der Bildlaufleiste beim Öffnen / Schließen
   _DEFAULTCOMMAND: "viewBookmarksSidebar", // Standardseitenleiste
-  _TOLERANCE: 0,          // 認識するウィンドウ左端とする範囲(TreeStyleTab等使用の場合は0がいいかも)
-  _DONOTCLOSE_XULELEMENT: true, // マウスがXULエレメント上ならクローズしない(コンテンツにXULを表示している場合もクローズしなくなる)
-  _CLOSEWHENGOOUT:  false, // Wenn sich die Maus aus dem Fenster bewegt: true: schließen, [false]: nicht schließen
-  _FLOATING_SIDEBAR: false, //enable floating(overlay) sidebar, (known issue:can't resize sidebar.)
-  _SIDEBARPOSITION: "L",   //Seitenleistenposition Linke Seite: L Rechte Seite: R
-                           //ただし, バーチカルツールバーGomita氏作 VerticalToolbar.uc.js 0.1
-                           //(http://www.xuldev.org/blog/?p=113) を先に実行するようにしておく。
-  _KEEP_SIZES:true,        //サイドバーの種類毎に幅を記憶する
-  _defaultWidth: 234,      //デフォルトサイドバー幅
-  _inFullscreen: true,     //Fullscreen時の挙動をFirefox31当時の物にする
-  //ここまで
+  _TOLERANCE: 1,                //Bereich, der als linke Kante des Fensters erkannt wird (0 kann bei Verwendung von TreeStyleTab usw. verwendet werden)
+  _DONOTCLOSE_XULELEMENT: true, //Wenn sich die Maus auf einem XUL-Element befindet, nicht schließen 
+                                //(Wird nicht geschlossen, selbst wenn XUL im Inhalt angezeigt wird)
+  _CLOSEWHENGOOUT:  false,  // Wenn sich die Maus aus dem Fenster bewegt: true: schließen, [false]: nicht schließen
+  _FLOATING_SIDEBAR: false, //Schwebende Seitenleiste (Überlagerung des Seiteninhalts) aktivieren, 
+                            //(bekanntes Problem: Seitenleiste kann nicht skaliert werden = mit Maus breiter oder schmaler ziehen)
+  _SIDEBARPOSITION: "L",    //Seitenleistenposition Linke Seite: L Rechte Seite: R
+                            //VerticalToolbar.uc.js von Gomita - vertikale Symbolleiste 0.1 
+                            //(http://www.xuldev.org /blog/?p=113) muss zuerst ausgeführt werden!
+  _KEEP_SIZES:true,         //Breite für jeden Seitenleisten-Typ speichern
+  _defaultWidth: 234,       //Standardbreite der Seitenleiste
+  _inFullscreen: true,      //Bei Vollbild, Verhalten von Firefox 31 verwenden
+  //Ende Konfiguration
 // --- config ---
 
-  _MOUSEMOVEINTERVAL: 10,  //マウスの位置をチェックする間隔
-  _CHECKBOX_AT_STARUP:false, //チェックボックスの初期値
-  _CLOSE_AT_STARTUP:true, //最初は閉じておく
+  _MOUSEMOVEINTERVAL: 10,    //Intervall zum Überprüfen der Mausposition
+  _CHECKBOX_AT_STARUP:false, //Kontrollkästchen beim Start anzeigen
+  _CLOSE_AT_STARTUP:true,    //Seitenleiste beim Start geschlossen
   _lastcommand: null,
   _backup_lastcommand:null,
   _open_Timeout: null,
@@ -1036,7 +1039,7 @@ var sidebarpopuppanelResize = {
     var y = this.sidebar.boxObject.screenY;
     if (w && w <= screen.width && w >= 100) {
       this.sidebar.style.setProperty('width', w + "px", "important");
-      //this.sidebarbox.width = w;
+      this.sidebarbox.style.setProperty('width', w + "px", "important");
     }
   }
 };
