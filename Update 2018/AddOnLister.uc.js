@@ -23,7 +23,7 @@ var ADONLI = {
 	// Useragent anzeigen (true oder false)
 	SHOWUSERAGENT:		true,
 	// Versuche folgende userChromeJS-Skripte *nicht* mit GitHub zu verlinken, weil nicht gewünscht oder möglich. ["*"] für gar keine Verlinkung
-	GITHUBBLACKLIST:	["about-config.uc.js", "about-plugins.uc.js" ,"AddonsSidebar.uc.xul", "autopopupablepatch1.uc.js", "autopopupablepatch3.uc.js", "Chronik-Lesezeichen.uc.js", "Close-other-tabs.uc.js", "ContextHistory.uc.xul", "CustomAppMenu.uc.js", "Download-button.uc.js", "Einstellungen-Customize.uc.js", "element_inspector.uc.js", "Entwickler-Werkzeug.uc.js", "expandsidebar40.uc.js", "favicon-about-plugins.uc.js", "feedbutton-urlbar.uc.js",	"Fehlerkonsole.uc.js", "Link-per-Email.uc.js", "liste-leeren.uc.js", "memorymonitor.uc.js", "open-folder.uc.js", "OpenDownloadFolderButtonM.uc.js", "OpenLibraryContextMenu.uc.xul", "Preferences.uc.js", "RestartFirefox_plus.uc.js", "savefoldermodoki.uc.xul", "scrollTotop-bottom.uc.js", "searchplugin-4-aboutconfig.uc.js", "speedupErrorConsole.uc.js", "Statusbar-Date.uc.js", "Stylish-Fenster-Sidebar.uc.js", "Tabmixplus-Einstelungen-in-Tabkontext.uc.js", "Tabmixplus-Options.uc.js", "ucjs_PrivateToolMenus-APP.uc.js", "ucjs_statusbar_zoom_panel_1.3.uc.js", "WebDeveloper-Menu.uc.js"],
+	GITHUBBLACKLIST:	[],
 	// In der folgenden Zeile  den Pfad zum Texteditor eintragen (unter Ubuntu 10.04 z.B.: '/usr/bin/gedit'). Bei Fehleintrag wird view_source.editor.path ausgelesen:
 	TEXTOPENEXE :		'C:\\Program Files (x86)\\Notepad++\\notepad++.exe',
 	// Aufzulistende Add-On-Typen festlegen - möglich sind: ["extension","theme","plugin","dictionary","service","userstyle","greasemonkey-user-script","userchromejs"]
