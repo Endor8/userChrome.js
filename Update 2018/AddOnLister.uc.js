@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           AddOnLister.uc.js
-// @compatibility  Firefox 36.*, 37.*, 60.*
+// @compatibility  Firefox 36.*, 37.*, 60.* ,63.*
 // @include        main
-// @version        1.0.20180512
+// @version        1.0.20181102
 // ==/UserScript==
 
 var ADONLI = {
@@ -558,12 +558,12 @@ var ADONLI = {
 			case 1:
 				if (this.MYTPLS[format].opendatauri) {
 					var datastring = myoutput.replace(/\n/g,"%0A").replace(/#/g,"%23");
-					getBrowser().selectedTab = getBrowser().addTab('data:text/plain;charset=utf-8,' + datastring);
+					getBrowser().selectedTab = getBrowser().addTrustdTab('data:text/plain;charset=utf-8,' + datastring);
 					XULBrowserWindow.statusTextField.label = "Export nach  »"+ OpenPath + "« ist erfolgt.";
 				} else {
 					// alert sorgt ein wenig dafür, dem OS Zeit fürs Speichern der Datei zu geben ...
 					alert("Export nach »"+ OpenPath + "« ("+ format + "-format) ist erfolgt.");
-					getBrowser().selectedTab = getBrowser().addTab(OpenPath);
+					getBrowser().selectedTab = getBrowser().addTrustedTab(OpenPath);
 				}
 				break;
 			default:
