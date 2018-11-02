@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           AddOnLister.uc.js
-// @compatibility  Firefox 36.*, 37.*
+// @compatibility  Firefox 36.*, 37.*, 60.* ,63.*
 // @include        main
-// @version        1.0.20150331
+// @version        1.0.20181102
 // ==/UserScript==
 
 var ADONLI = {
@@ -13,7 +13,7 @@ var ADONLI = {
 	// einige Tests der Konfiguration durchführen (true oder false)?
 	CHECKCONFIG:		true,
 	// ans eigene System anpassen - Pfad mit Verzeichnistrenner abschliessen. Unter Windows den \ bitte verdoppeln
-	EXPORTPATH:			"d:\\ein\\pfad\\der\\mit\\Verzeichnistrenner\\endet\\",
+	EXPORTPATH:			"C:\\Users\\XXXX\\Documents\\Firefox\\",
 	//Dateinamen ohne(!) Erweiterung eingeben - diese wird weiter unten im Wert "fileext" pro Ausgabeformat definiert
 	EXPORTFILE:			"addonlister",
 	// Ausgabeformat bbcode, html oder custom
@@ -27,11 +27,11 @@ var ADONLI = {
 	// In der folgenden Zeile  den Pfad zum Texteditor eintragen (unter Ubuntu 10.04 z.B.: '/usr/bin/gedit'). Bei Fehleintrag wird view_source.editor.path ausgelesen:
 	TEXTOPENEXE :		'C:\\Program Files (x86)\\Notepad++\\notepad++.exe',
 	// Aufzulistende Add-On-Typen festlegen - möglich sind: ["extension","theme","plugin","dictionary","service","userstyle","greasemonkey-user-script","userchromejs"]
-	WHICHTYPES:			["extension","theme","plugin","dictionary","service","greasemonkey-user-script","userchromejs"],
+	WHICHTYPES:			["extension","theme","plugin","dictionary","userchromejs"],
 // ----- Ende Konfiguration
 
 // ----- Start Expertenkonfiguration
-	ICON_URL:	"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB0klEQVQ4jaVTz0sbQRQeQm628VCpCv2hh+JfINSjbVmvXtoeSv8Mb9JDb2LSgxRCJTPGZgZncCGhpwhbEz1kuxtH7I8NWRuP8eAlQYJEKHw9rNnWZNMefPAOM7z38d73fY+QvpCcGlLQlOTMVoK2laBtyZkd/FGjvz6MrY30lOQ0KTnrKMEQlZKzjuQ0ubWRnhpoVjyTU4LBlNmWVcyfaqd87ntu1/fcrnbK51Yxf2rKbEsJBsUzuWsgktOkEgyFbdGsVnbPTvxDRGW1sntW2BbNYBqa/LMzZx1TZlv/av4bxJTZ1tU6BpGCppRgsHYKzV6RVcxjwXiK0dEEbo2MwHg2j6r9OQSxdgrBFIKmSMA2g3bKF72CmZlH4Jsf4H2t4OhgD69fvcSL54shgHbKF1ek2iSQisH33O6wsY/0PibG74Zv33O7gTK0HQmQN3OYezyLROI2CCEghCAWi0UDRK3w4P49rK68hXZKOK5VoZ0SCCHRK0SRODZ2B+n3KdS+f0HJ+oQF48k1gD4SB2XMrK9hevoh4vE4Jicn8GZ5KQToycg31zuhtYcZqeFr/KxrNOp6wEgfWfrdf618XHN/NeoH+PHNvjzxDzHUyjc+ppuc82/5232er8x59AAAAABJRU5ErkJggg==",
+	ICON_URL:	"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAACGUlEQVR42mL8//8/AzJYtWy+G5ByB2IrINaECl8H4mNAvDMsKnEXsnqAAGIEGXDv1nmGM2cuKAD5OUCcAcTcDNjBVyCeAcRTTEwMHiipGTIABBALSBSquRmIY5iZmT8ICvI/FxQU4OHm5mID6/r67df79x++vH//kfPv37/FQCFxoJ5aoAEPAAKIBWoyyOYYdnb2Z9LSkqxCQgKSyNby8/OxAzEvH9+H10+fPn/28+fPGKDwSyAuAQggZi01eZCfu4E2f5OVlWYAahaFaTx95jyDnaM3Ax8fL4OhgS4DJycHNysr649Pnz7/Bnrd/OrlC2cAAogJGmDcQGd/Q9YMAv8YORmSkpIY+Hh54GIgNSC10HByBwggFmhoMwD9LIgeYrKSAgz+Ps4MOtqaKOIgtW/evAMxrQACiAkWVcAAY0JWBHQmg7d/ONgb6ABJrSZAADHhiC6G3Xv2gw1xdXFgwAcAAogJmkhAUfUPWeL+w8cMamoqDDLSUgxMbKi+Q1J7HSCAmKApjAEYz++RFV2/fouBg52dYeXqDQzHj+xGMQBJ7TGAAAIZsBNkKDCRcL179+E1TJGXpysDCysbw4dPPxjMzUzgmkFqQGqhqXInQACBkzIw/fcAOcVICUkUm39BmoEJ6TcwIUkBub3AfFECEECwlDgFlDxBKezhw8cfPn36hC8pgwxfAtXDABBAFGcmgABipDQ7AwQYAOqo3UvZE3l2AAAAAElFTkSuQmCC",
 	MYTPLS:{
 		'html':	//für Darstellung als vollständiges html5-Dokument
 			{
@@ -63,10 +63,10 @@ var ADONLI = {
 			'tpladdon_without_url':'<li class="%%class%%">%%name%% %%version%%: %%description%%%%disabled%%</li>\n',
 			'activeclass':'addonactive',
 			'inactiveclass':'addoninactive',
-			'disabledtext':' <small>[deaktiviert]</small>',
+			'disabledtext':'<small><span style="color:#ff0000;">[deaktiviert]</span></small>',
 			'tpladdongrp_list_outro':'</ul>\n',
 			'tpladdongrp_outro':'</div>\n\n',
-			'outro':'<p>Diese Liste wurde mit <a href="https://github.com/ardiman/userChrome.js/tree/master/addonlister">AddonLister.uc.js</a> erstellt.</p>\n</body>\n</html>'
+			'outro':'</body>\n</html>'
 			},
 		'bbcode':	//für Postings in Foren, die bbcode unterstützen
 			{
@@ -97,10 +97,10 @@ var ADONLI = {
 			'tpladdon_without_url':'[*]%%name%% %%version%%: %%description%%%%disabled%%\n',
 			'activeclass':'addonactive',
 			'inactiveclass':'addoninactive',
-			'disabledtext':' [deaktiviert]',
+			'disabledtext':' [color=red][deaktiviert][/color]',
 			'tpladdongrp_list_outro':'[/list]\n',
 			'tpladdongrp_outro':'\n',
-			'outro':'Diese Liste wurde mit [url=https://github.com/ardiman/userChrome.js/tree/master/addonlister]AddonLister.uc.js[/url] erstellt.'
+			'outro':''
 			},
 		'custom':	//Beispiel - für Darstellung als "include" in einem anderen (x)html-Dokument
 			{
@@ -183,45 +183,140 @@ var ADONLI = {
 			});
 		} catch(e) { };
 		// Menü
-		this.createME("menu_ToolsPopup","menu_openAddons",'\
-		<menu id="menu_ucjsAddonLister" accesskey="L" label="AddonLister" class="menu-iconic" style="list-style-image: url(' + ADONLI.ICON_URL + ')">\
-			<menupopup id="menu_ucjsAddonLister-popup">\
-				<menu id="menu_ucjsAddonLister-bbcode" accesskey="B" label="BBCODE" class="menu-iconic">\
-					<menupopup id="menu_ucjsAddonLister-popup-bbcode">\
-						<menuitem id="menu_ucjsAddonLister_editor-bbcode" class="menAddonLister_item" oncommand="ADONLI.launch(0,\'bbcode\')" accesskey="E" label="Liste erstellen und im Editor anzeigen"/>\
-						<menuitem id="menu_ucjsAddonLister_browser-bbcode" class="menAddonLister_item" oncommand="ADONLI.launch(1,\'bbcode\')" accesskey="A" label="Liste erstellen und im Browser anzeigen"/>\
-						<menuitem id="menu_ucjsAddonLister_write-bbcode" class="menAddonLister_item" oncommand="ADONLI.launch(2,\'bbcode\')" accesskey="o" label="Liste erstellen ohne Anzeige"/>\
-					</menupopup>\
-				</menu>\
-				<menu id="menu_ucjsAddonLister-html" accesskey="H" label="HTML" class="menu-iconic">\
-					<menupopup id="menu_ucjsAddonLister-popup-html">\
-						<menuitem id="menu_ucjsAddonLister_editor-html" class="menAddonLister_item" oncommand="ADONLI.launch(0,\'html\')" accesskey="E" label="Liste erstellen und im Editor anzeigen"/>\
-						<menuitem id="menu_ucjsAddonLister_browser-html" class="menAddonLister_item" oncommand="ADONLI.launch(1,\'html\')" accesskey="A" label="Liste erstellen und im Browser anzeigen"/>\
-						<menuitem id="menu_ucjsAddonLister_write-html" class="menAddonLister_item" oncommand="ADONLI.launch(2,\'html\')" accesskey="o" label="Liste erstellen ohne Anzeige"/>\
-					</menupopup>\
-				</menu>\
-				<menu id="menu_ucjsAddonLister-custom" accesskey="C" label="Custom" class="menu-iconic">\
-					<menupopup id="menu_ucjsAddonLister-popup-custom">\
-						<menuitem id="menu_ucjsAddonLister_editor-custom" class="menAddonLister_item" oncommand="ADONLI.launch(0,\'custom\')" accesskey="E" label="Liste erstellen und im Editor anzeigen"/>\
-						<menuitem id="menu_ucjsAddonLister_browser-custom" class="menAddonLister_item" oncommand="ADONLI.launch(1,\'custom\')" accesskey="A" label="Liste erstellen und im Browser anzeigen"/>\
-						<menuitem id="menu_ucjsAddonLister_write-custom" class="menAddonLister_item" oncommand="ADONLI.launch(2,\'custom\')" accesskey="o" label="Liste erstellen ohne Anzeige"/>\
-					</menupopup>\
-				</menu>\
-				<menuitem tooltiptext="Erstellung im Format »'+ADONLI.FORMAT+'«" id="menu_ucjsAddonLister_editor" class="menAddonLister_item" oncommand="ADONLI.launch(0,\''+ADONLI.FORMAT+'\')" accesskey="E" label="Liste erstellen und im Editor anzeigen"/>\
-				<menuitem tooltiptext="Erstellung im Format »'+ADONLI.FORMAT+'«" id="menu_ucjsAddonLister_browser" class="menAddonLister_item" oncommand="ADONLI.launch(1,\''+ADONLI.FORMAT+'\')" accesskey="A" label="Liste erstellen und im Browser anzeigen"/>\
-				<menuitem tooltiptext="Erstellung im Format »'+ADONLI.FORMAT+'«" id="menu_ucjsAddonLister_write" class="menAddonLister_item" oncommand="ADONLI.launch(2,\''+ADONLI.FORMAT+'\')" accesskey="o" label="Liste erstellen ohne Anzeige"/>\
-			</menupopup>\
-		</menu>'
-		);
-	},
-
-	createME: function (zId,zPos,sXml) {
-		var range = document.createRange();
-		var mytarget = document.getElementById(zPos);
-		range.selectNodeContents(document.getElementById(zId));
-		range.collapse(false);
-		mytarget.parentNode.insertBefore(range.createContextualFragment(sXml.replace(/\n|\t/g, '')), mytarget.nextSibling);
-		range.detach();
+		function addNode(parentId, type, attributes) {
+			let node = document.createElement(type);
+			for (let a in attributes) {
+				node.setAttribute(a, attributes[a]);
+			};
+			document.getElementById(parentId).appendChild(node);
+		};
+		addNode("menu_ToolsPopup", "menu", {
+			id: "menu_ucjsAddonLister",
+			accesskey: "L",
+			label: "AddonLister",
+			class: "menu-iconic",
+			style: "list-style-image: url(" + ADONLI.ICON_URL + ")"
+		});
+		document.getElementById("menu_ToolsPopup")
+			.insertBefore(document.getElementById("menu_ucjsAddonLister"),
+			              document.getElementById("menu_openAddons").nextSibling);
+		addNode("menu_ucjsAddonLister", "menupopup", {
+			id: "menu_ucjsAddonLister-popup"
+		});
+		addNode("menu_ucjsAddonLister-popup", "menu", {
+			id: "menu_ucjsAddonLister-bbcode",
+			accesskey: "B",
+			label: "BBCODE",
+			class: "menu-iconic"
+		});
+		addNode("menu_ucjsAddonLister-bbcode", "menupopup", {
+			id: "menu_ucjsAddonLister-popup-bbcode"
+		});
+		addNode("menu_ucjsAddonLister-popup-bbcode", "menuitem", {
+			id: "menu_ucjsAddonLister_editor-bbcode",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(0,\'bbcode\')",
+			accesskey: "E",
+			label: "Liste erstellen und im Editor anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup-bbcode", "menuitem", {
+			id: "menu_ucjsAddonLister_browser-bbcode",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(1,\'bbcode\')",
+			accesskey: "A",
+			label: "Liste erstellen und im Browser anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup-bbcode", "menuitem", {
+			id: "menu_ucjsAddonLister_write-bbcode",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(2,\'bbcode\')",
+			accesskey: "o",
+			label: "Liste erstellen ohne Anzeige"
+		});
+		addNode("menu_ucjsAddonLister-popup", "menu", {
+			id: "menu_ucjsAddonLister-html",
+			accesskey: "H",
+			label: "HTML",
+			class: "menu-iconic"
+		});
+		addNode("menu_ucjsAddonLister-html", "menupopup", {
+			id: "menu_ucjsAddonLister-popup-html"
+		});
+		addNode("menu_ucjsAddonLister-popup-html", "menuitem", {
+			id: "menu_ucjsAddonLister_editor-html",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(0,\'html\')",
+			accesskey: "E",
+			label: "Liste erstellen und im Editor anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup-html", "menuitem", {
+			id: "menu_ucjsAddonLister_browser-html",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(1,\'html\')",
+			accesskey: "A",
+			label: "Liste erstellen und im Browser anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup-html", "menuitem", {
+			id: "menu_ucjsAddonLister_write-html",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(2,\'html\')",
+			accesskey: "o",
+			label: "Liste erstellen ohne Anzeige"
+		});
+		addNode("menu_ucjsAddonLister-popup", "menu", {
+			id: "menu_ucjsAddonLister-custom",
+			accesskey: "C",
+			label: "Custom",
+			class: "menu-iconic"
+		});
+		addNode("menu_ucjsAddonLister-custom", "menupopup", {
+			id: "menu_ucjsAddonLister-popup-custom"
+		});
+		addNode("menu_ucjsAddonLister-popup-custom", "menuitem", {
+			id: "menu_ucjsAddonLister_editor-custom",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(0,\'custom\')",
+			accesskey: "E",
+			label: "Liste erstellen und im Editor anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup-custom", "menuitem", {
+			id: "menu_ucjsAddonLister_browser-custom",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(1,\'custom\')",
+			accesskey: "A",
+			label: "Liste erstellen und im Browser anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup-custom", "menuitem", {
+			id: "menu_ucjsAddonLister_write-custom",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(2,\'custom\')",
+			accesskey: "o",
+			label: "Liste erstellen ohne Anzeige"
+		});
+		addNode("menu_ucjsAddonLister-popup", "menuitem", {
+			tooltiptext: "Erstellung im Format »" + ADONLI.FORMAT + "«",
+			id: "menu_ucjsAddonLister_editor",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(0,\'" + ADONLI.FORMAT + "\')",
+			accesskey: "E",
+			label: "Liste erstellen und im Editor anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup", "menuitem", {
+			tooltiptext: "Erstellung im Format »" + ADONLI.FORMAT + "«",
+			id: "menu_ucjsAddonLister_browser",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(1,\'" + ADONLI.FORMAT + "\')",
+			accesskey: "A",
+			label: "Liste erstellen und im Browser anzeigen"
+		});
+		addNode("menu_ucjsAddonLister-popup", "menuitem", {
+			tooltiptext: "Erstellung im Format »" + ADONLI.FORMAT + "«",
+			id: "menu_ucjsAddonLister_write",
+			class: "menAddonLister_item",
+			oncommand: "ADONLI.launch(2,\'" + ADONLI.FORMAT + "\')",
+			accesskey: "o",
+			label: "Liste erstellen ohne Anzeige"
+		});
 	},
 
 	launch: function(e,format) {
@@ -296,7 +391,7 @@ var ADONLI = {
 	getAddons: function() {
 		// speichert die gewaehlten Addons (s. WHICHTYPES) im JSON-Object
 		var i, x, j, iAo, Addons, added, storedItems;
-		AddonManager.getAddonsByTypes(this.WHICHTYPES, function(addonlist) {
+		AddonManager.getAddonsByTypes(this.WHICHTYPES).then(function(addonlist) {
 			Addons = addonlist;
 		});
 		var thread = Cc['@mozilla.org/thread-manager;1'].getService().mainThread;
@@ -313,12 +408,12 @@ var ADONLI = {
 				// Ablage gleich sortiert vornehmen
 				for (j = 0; j < storedItems; j++) {
 					if (iAo.name.toLowerCase() < this.MYSTOR[iAo.type][j].name.toLowerCase()) {
-						this.MYSTOR[iAo.type].splice(j,0,{ 'name': iAo.name, 'version': iAo.version, 'active': iAo.isActive, 'description': iAo.description, 'homepage': iAo.homepageURL});
+						this.MYSTOR[iAo.type].splice(j,0,{ 'name': iAo.name, 'version': iAo.version, 'active': iAo.isActive, 'homepage': iAo.homepageURL});
 						added = true;
 						break;
 					}
 				}
-				if (!added) this.MYSTOR[iAo.type].push({ 'name': iAo.name, 'version': iAo.version, 'active': iAo.isActive, 'description': iAo.description, 'homepage': iAo.homepageURL});
+				if (!added) this.MYSTOR[iAo.type].push({ 'name': iAo.name, 'version': iAo.version, 'active': iAo.isActive, 'homepage': iAo.homepageURL});
 			}
 		}
 	},
@@ -463,12 +558,12 @@ var ADONLI = {
 			case 1:
 				if (this.MYTPLS[format].opendatauri) {
 					var datastring = myoutput.replace(/\n/g,"%0A").replace(/#/g,"%23");
-					getBrowser().selectedTab = getBrowser().addTab('data:text/plain;charset=utf-8,' + datastring);
+					getBrowser().selectedTab = getBrowser().addTrustdTab('data:text/plain;charset=utf-8,' + datastring);
 					XULBrowserWindow.statusTextField.label = "Export nach  »"+ OpenPath + "« ist erfolgt.";
 				} else {
 					// alert sorgt ein wenig dafür, dem OS Zeit fürs Speichern der Datei zu geben ...
 					alert("Export nach »"+ OpenPath + "« ("+ format + "-format) ist erfolgt.");
-					getBrowser().selectedTab = getBrowser().addTab(OpenPath);
+					getBrowser().selectedTab = getBrowser().addTrustedTab(OpenPath);
 				}
 				break;
 			default:
