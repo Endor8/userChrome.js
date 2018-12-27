@@ -1,6 +1,6 @@
 ### Mehrzeilige Tableiste ###
 
-Es stehen 4 verschiedene Scripte dazu zur Verfügung.
+Es stehen 7 verschiedene Scripte dazu zur Verfügung.
 
 * Skript 1:  Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Zeilen,
 Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung
