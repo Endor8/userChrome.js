@@ -24,80 +24,58 @@ function MultiRowTabLiteforFx() {
         margin-bottom: calc(var(--tab-min-height) * -1 + 8px) !important;
     }
     #titlebar-buttonbox {
-        display: block !important;
+        height: var(--tab-min-height) !important;
     }
     /* 多段タブ */
-    #tabbrowser-tabs .arrowscrollbox-scrollbox {
-        overflow: visible !important;
-        display: block !important;
+    tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
+    tabs scrollbox>box {
+        display:flex;flex-wrap:wrap;
+        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        overflow-x:hidden;overflow-y:auto;
     }
-    #tabbrowser-tabs .scrollbox-innerbox {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        max-height: calc(var(--tab-min-height) * 5 /* 段数 */) !important;
-    }
-    .tabbrowser-tab:not([pinned]) {
-        flex-grow: 1 !important;
-    }
-    .tabbrowser-tab,.tab-background {
-        height: var(--tab-min-height) !important;
-        display: -webkit-box !important;
+    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} /* タブが指定段数以上になると出てくるスクロールバーをマウスドラッグで上下出来るようにする */
+    tabs tab:not([pinned]){flex-grow:1;}
+    tabs:not(stack) tab,tab>.tab-stack>.tab-background {
+        height: var(--tab-min-height);
         z-index: 1 !important;
     }
-    .tabs-newtab-button {
-        width: var(--tab-min-height) !important;
-        height: calc(var(--tab-min-height) + -1px) !important;
-    }
-    .tab-stack {
-        width: 100% !important;
-    }
-    /* 多段タブ時指定した段数以上になった時タブバーに出てくるスクロールバーをマウスドラッグで上下出来るようにする */
-    #tabbrowser-tabs .scrollbox-innerbox scrollbar {
-        -moz-window-dragging: no-drag !important;
+    tab>.tab-stack{width:100%;}
+    box>.tabs-newtab-button {
+        height: calc(var(--tab-min-height) + -1px);
+        width: var(--tab-min-height);
     }
     /* -- 非表示 -- */
-    #tabbrowser-tabs [anonid^="scrollbutton"],#alltabs-button,
-    hbox.titlebar-placeholder:not([type="caption-buttons"]) {
-        display: none !important;
-    }
+    hbox.titlebar-placeholder:not([type="caption-buttons"]),#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
     /* 000-addToolbarInsideLocationBar.uc.js アイコン */
     #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
-        width: 22px !important;
-        height: 22px !important;
-        padding: 3px !important;
+        width: 24px !important;
+        height: 24px !important;
+        padding: 4px !important;
     }
     #ucjs-Locationbar-toolbar toolbarbutton#downloads-button .toolbarbutton-icon,
     #ucjs-Locationbar-toolbar .webextension-browser-action .toolbarbutton-badge-stack {
-        width: 22px !important;
-        height: 22px !important;
+        width: 24px !important;
+        height: 24px !important;
         padding: 0 !important;
     }
-    #ucjs-Locationbar-toolbar toolbarbutton.toolbarbutton-1:hover,
-    #ucjs-Locationbar-toolbar toolbaritem toolbarbutton:hover {
-        background-color: hsla(0,0%,80%,.25) !important;
-    }
-    /* MultiRowTab_LiteforFx */
-    .tabbrowser-tab, {
-        z-index: 1 !important;
-    }
-    .tabbrowser-tab[last-visible-tab="true"]::after {
-        border-left: 1px none !important;
-    }
-    .tabbrowser-tab[style="border-left-color: red !important;"] .tab-background {
-        border-left: 1px solid red !important;
-    }
-    .tabbrowser-tab[style="border-right-color: red !important;"] .tab-background {
-        border-right: 1px solid red !important;
-    }
-    .tabbrowser-tab:not([style="border-right-color: red !important;"]):not([selected="true"])[last-visible-tab="true"] .tab-background {
-        border-right: 1px solid rgba(249, 249, 250, 0.3) !important;
-    }`;
+    #ucjs-Locationbar-toolbar toolbarbutton:hover {
+        background-color: hsla(0,0%,70%,.3) !important;
+    } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
-    gBrowser.tabContainer._getDropEffectForTabDrag = function(event){return "";}; // multirow fix: to make the default "dragover" handler does nothing
+    var style = ' \
+    tabs tab:not(stack) { \
+        border-left: solid 1px hsla(0,0%,50%,.5) !important; \
+        border-right: solid 1px hsla(0,0%,50%,.5) !important; \
+    } \
+    tabs tab:after,tabs tab:before{display:none!important;} \
+    ';
+    var sspi = document.createProcessingInstruction('xml-stylesheet',
+    'type="text/css" href="data:text/css,' + encodeURIComponent(style) + '"');
+    document.insertBefore(sspi, document.documentElement);
+    gBrowser.tabContainer._animateTabMove = function(event){}
+    gBrowser.tabContainer._finishAnimateTabMove = function(event){}
     gBrowser.tabContainer.lastVisibleTab = function() {
         var tabs = this.childNodes;
         for (let i = tabs.length - 1; i >= 0; i--){
@@ -114,8 +92,7 @@ function MultiRowTabLiteforFx() {
             tab_s.removeProperty("border-right-color");
         }
     };
-    gBrowser.tabContainer.addEventListener("drop",function(event){this.onDrop(event);},true);
-    gBrowser.tabContainer.addEventListener("dragleave",function(event){this.clearDropIndicator(event);},true);
+    gBrowser.tabContainer.addEventListener("dragleave",gBrowser.tabContainer.clearDropIndicator, false);
     gBrowser.tabContainer._onDragOver = function(event) {
         event.preventDefault();
         event.stopPropagation();
@@ -131,24 +108,21 @@ function MultiRowTabLiteforFx() {
                 this.childNodes[newIndex].style.setProperty("border-right-color","red","important");
         }
     };
-    gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, true);
+    gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, false);
     gBrowser.tabContainer._getDropIndex = function(event, isLink) {
-        var tabs = this.childNodes;
+        var tabs = this.children;
         var tab = this._getDragTargetTab(event, isLink);
         if (window.getComputedStyle(this).direction == "ltr") {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
-                let boxObject = tabs[i].boxObject;
-                if (event.screenX < boxObject.screenX + boxObject.width / 2
-                 && event.screenY < boxObject.screenY + boxObject.height) // multirow fix
-                   return i;
-            }
-        } else {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
-                let boxObject = tabs[i].boxObject;
-                if (event.screenX > boxObject.screenX + boxObject.width / 2
-                 && event.screenY < boxObject.screenY + boxObject.height) // multirow fix
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
+                if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
+                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
+                
                     return i;
-            }
+        } else {
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
+                if (event.screenX > tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
+                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
+                    return i;
         }
         return tabs.length;
     };
@@ -156,22 +130,23 @@ function MultiRowTabLiteforFx() {
         var newIndex;
         this.clearDropIndicator();
         var dt = event.dataTransfer;
-        var dropEffect = dt.dropEffect;
         var draggedTab;
         if (dt.mozTypesAt(0)[0] == TAB_DROP_TYPE) {
             draggedTab = dt.mozGetDataAt(TAB_DROP_TYPE, 0);
             if (!draggedTab)
                 return;
         }
-        if (draggedTab && dropEffect == "copy") {
-        } else if (draggedTab && draggedTab.parentNode == this) {
+        this._tabDropIndicator.collapsed = true;
+        event.stopPropagation();
+        if (draggedTab && draggedTab.parentNode == this) {
             newIndex = this._getDropIndex(event, false);
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
         }
         if (draggedTab) {
-          delete draggedTab._dragData;
+            delete draggedTab._dragData;
         }
     };
+    gBrowser.tabContainer.addEventListener("drop",gBrowser.tabContainer.onDrop, false);
 }
