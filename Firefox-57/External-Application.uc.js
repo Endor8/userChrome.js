@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           External-Aplication.uc.js
+// @name           External-Application.uc.js
 // @namespace      ithinc#mozine.cn
 // @description    External Applications
 // @include        main
