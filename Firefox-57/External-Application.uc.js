@@ -6,7 +6,8 @@
 // @compatibility  Firefox 3.5.x
 // @author         ithinc
 // @version        20091212.0.0.1 Initial release
-// @version        20170911.0.0.2  Fix by aborix
+// @version        20170911.0.0.2 Fix by aborix
+// @version        20190103.0.0.3 Frei verschiebbare Schaltflächen by aborix
 // ==/UserScript==
 
 /* :::: External Applications :::: */
@@ -15,13 +16,13 @@ var gExternalApplications = {
   type: 'button', //'menu' or 'button'
   insertafter: 'menubar-items',
 
-  apps: [    
+  apps: [
     {name: 'Notepad', path: 'C:\\WINDOWS\\system32\\notepad.exe'},
     {name: 'Notepad++', path: 'C:\\Program Files (x86)\\Notepad++\\notepad++.exe'},
     {name: 'Calculator', path: '.\\.\\..\\..\\WINDOWS\\system32\\calc.exe'},
     {name: 'Command Prompt', path: 'C:\\WINDOWS\\system32\\cmd.exe'},
     {name: 'separator'},
-    {name: 'Windows Explorer', path: 'C:\\Windows\\explorer.exe'},  
+    {name: 'Windows Explorer', path: 'C:\\Windows\\explorer.exe'},
   ],
 
   init: function() {
@@ -52,13 +53,18 @@ var gExternalApplications = {
       }
     }
     else {
+    /*
       var menubarItems = document.getElementById(this.insertafter);
       var toolbaritem = menubarItems.parentNode.insertBefore(document.createElement('toolbaritem'), menubarItems.nextSibling);
-	  toolbaritem.id = 'ExtAppButtons';
+      toolbaritem.id = 'ExtAppButtons';
       toolbaritem.setAttribute("class", "chromeclass-toolbar-additional");
       toolbaritem.setAttribute("orient", "horizontal");
       for (var i=0; i<this.apps.length; i++) {
         toolbaritem.appendChild(this.createButton(this.apps[i]));
+      }
+    */
+      for (var i=0; i<this.apps.length; i++) {
+        this.createButton(this.apps[i]);
       }
     }
   },
@@ -85,6 +91,7 @@ var gExternalApplications = {
   },
 
   createButton: function(app) {
+  /*
     if (app.name == 'separator')
       return document.createElement('toolbarseparator');
 
@@ -93,10 +100,38 @@ var gExternalApplications = {
     item.setAttribute('label', app.name);
     item.setAttribute('image', 'moz-icon:file:///' + app.path + '?size=16');
     item.setAttribute('oncommand', 'gExternalApplications.exec(this.path, this.args);');
-   // item.setAttribute('tooltiptext', app.name);
+    //item.setAttribute('tooltiptext', app.name);
     item.path = app.path;
     item.args = app.args;
     return item;
+  */
+    if (app.name == 'separator')
+      return;
+    var buttonId = app.name.replace(/ /g, '_').replace(/\+/g, 'Plus') + '-ExtApp-button';
+    try {
+      CustomizableUI.createWidget({
+        id: buttonId,
+        type: 'custom',
+        defaultArea: CustomizableUI.AREA_MENUBAR,
+        onBuild: function(aDocument) {
+          var toolbaritem = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
+          var attributes = {
+            id: buttonId,
+            class: 'toolbarbutton-1 chromeclass-toolbar-additional',
+            label: app.name,
+            tooltiptext: app.name,
+            image: 'moz-icon:file:///' + app.path + '?size=16',
+            oncommand: 'gExternalApplications.exec(this.path, this.args);'
+          };
+          for (var a in attributes) {
+            toolbaritem.setAttribute(a, attributes[a]);
+          };
+          toolbaritem.path = app.path;
+          toolbaritem.args = app.args;
+          return toolbaritem;
+        }
+      });
+    } catch(e) {};
   },
 
   createMenuitem: function(app) {
