@@ -1,10 +1,14 @@
 // ==UserScript==
 // @name           ucjsDownloadsStatusModoki.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    Download Statusleiste
+// @description    Downloads Status Modoki
 // @include        main
-// @compatibility  Firefox 57
+// @compatibility  Firefox 64+
 // @author         Alice0775
+// @version        2018/10/27 12:00 fix for 64+
+// @version        2018/06/12 21:00 fix for private window mode
+// @version        2018/06/07 12:00 fix file name for history
+// @version        2018/02/10 12:00 try catch error when DO_NOT_DELETE_HISTORY = true
 // @version        2017/12/10 12:00 fix error when DO_NOT_DELETE_HISTORY = true
 // @version        2017/12/10 12:00 remove workaround Bug 1279329. Disable btn while clear list is doing, close button styling for 57.
 // @version        2016/06/10 12:00 modify style independent of font-family
@@ -226,10 +230,15 @@ var ucjsDownloadsStatusModoki = {
         max-width: calc(100% - 50px) !important; 
         min-width: calc(100% - 50px) !important; 
       } 
- 
+
+      .download-state[state="0"] * .downloadTarget,
+      .download-state[state="4"] * .downloadTarget { 
+        padding-bottom:0px; 
+      } 
+
       .downloadTarget:-moz-system-metric(windows-default-theme) { 
         margin-top:2px; 
-        /*padding-bottom:10px; */ windows7 ?
+        /*padding-bottom:10px;  windows7 ?*/
       } 
  
       .downloadProgress { 
@@ -337,25 +346,35 @@ var ucjsDownloadsStatusModoki = {
         });
       }
       function moveDownloads2History() {
-        if (DO_NOT_DELETE_HISTORY) {
-          for (let element of richListBox.childNodes) {
-            let download = element._shell.download;
-            let aURI = makeURI(download.source.url);
-            let aTitle = document.getAnonymousElementByAttribute(element, "class", "downloadTarget").value
-            let aVisitDate = download.endTime || download.startTime;
-            addPlace(aURI, aTitle, aVisitDate)
-          }
+        if (DO_NOT_DELETE_HISTORY &&
+            !PrivateBrowsingUtils.isWindowPrivate(window)) {
+          try {
+            for (let element of richListBox.childNodes) {
+              let download = element._shell.download;
+              let aURI = makeURI(download.source.url);
+              // let aTitle = document.getAnonymousElementByAttribute(element, "class", "downloadTarget").value
+              let aTitle = download.target.path;
+              aTitle = aTitle.match( /[^\\]+$/i )[0];
+              aTitle = aTitle.match( /[^/]+$/i )[0];
+
+              let aVisitDate = download.endTime || download.startTime;
+              addPlace(aURI, aTitle, aVisitDate)
+            }
+          } catch(ex) {}
         }
 
         // Clear List
         richListBox._placesView.doCommand('downloadsCmd_clearDownloads');
 
-        if (DO_NOT_DELETE_HISTORY) {
-          if (places.length > 0) {
-            var asyncHistory = Components.classes["@mozilla.org/browser/history;1"]
-                     .getService(Components.interfaces.mozIAsyncHistory);
-              asyncHistory.updatePlaces(places);
-          }
+        if (DO_NOT_DELETE_HISTORY &&
+            !PrivateBrowsingUtils.isWindowPrivate(window)) {
+          try {
+            if (places.length > 0) {
+              var asyncHistory = Components.classes["@mozilla.org/browser/history;1"]
+                       .getService(Components.interfaces.mozIAsyncHistory);
+                asyncHistory.updatePlaces(places);
+            }
+          } catch(ex) {}
         }
       }
       var btn = doc.getElementById("ucjs_clearListButton");
