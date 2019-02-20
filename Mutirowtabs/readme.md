@@ -1,19 +1,12 @@
 ### Mehrzeilige Tableiste ###
 
-Es stehen 7 verschiedene Scripte dazu zur Verfügung.
+Es stehen je nach Firefox Version verschiedene Scriptversionen dazu zur Verfügung.
+Siehe dazu jeweils in den entsprechenden Ordner.
 
-* Skript 1:  Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung
+[Firefox 60esr](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-60esr)     
+[Firefox 65](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-65)     
+[Firefox 66](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-66)     
 
-* Skript 2: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung
-
-* Skript 3: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung
-
-* Skript 4: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung,
-Anpassung der vertikalen Breite der Symbolleiste.
 
 #### Kleiner CSS Code für userChrome.css: #### 
 
