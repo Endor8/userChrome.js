@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
 // @include        main
-// @compatibility  Firefox 60
+// @compatibility  Firefox 65
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -15,136 +15,38 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* タイトルバーボタン｢－□×｣ 幅 */
-    #titlebar-buttonbox .titlebar-button {
-        padding: 7px 17px !important;
+    /* タブバーを下に並べ替え */
+    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton,
+    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button {
+        color: rgb(24, 25, 26) !important;
     }
-    /* ツールバー 並べ替え */
-    #nav-bar {/* デフォルトテーマの場合｢－□×｣の色がかぶって見えないので margin-right に変えたほうがいいかも */
-        padding-right: 139px !important;
+    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton:not([id="close-button"]):hover,
+    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button:not([class="titlebar-button titlebar-close"]):hover {
+        background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important;
     }
-    #PersonalToolbar {
-        -moz-box-ordinal-group: 2 !important;
-        margin-block-start: -1px !important;
-    }
-    #TabsToolbar {
-        -moz-box-ordinal-group: 3 !important;
-    }
-    /* 多段タブ時のタイトルバーボタン｢－□×｣の不具合対策 */
-    #main-window:not([customizing]):not([pinned]) #titlebar {
-        height: var(--tab-min-height) !important;
-        margin-bottom: calc(var(--tab-min-height) * -1 + 0px) !important;
-    }
-    #main-window:not([customizing])[sizemode="maximized"] #titlebar {
-        margin-bottom: calc(var(--tab-min-height) * -1 + 8px) !important;
-    }
-    #titlebar-buttonbox {
-        height: 26px !important;
-    }
+    #titlebar { -moz-box-ordinal-group: 2; -moz-appearance: none !important; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls,.titlebar-buttonbox-container {
+        position: fixed;
+        top: 0; right:0;
+        height: 26px; }
+    [sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
+    [sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
+    [sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    :not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
+    [sizemode="fullscreen"] #nav-bar { padding-right: 109px !important; }
     /* 多段タブ */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
     tabs scrollbox>box {
         display:flex;flex-wrap:wrap;
-        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
-        overflow-x:hidden;overflow-y:auto;
     }
-    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} /* タブが指定段数以上になると出てくるスクロールバーをマウスドラッグで上下出来るようにする */
     tabs tab:not([pinned]){flex-grow:1;}
     tabs:not(stack) tab,tab>.tab-stack>.tab-background {
         height: var(--tab-min-height);
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    box>.tabs-newtab-button {
-        height: calc(var(--tab-min-height) + -1px);
-        width: var(--tab-min-height);
-    }
     /* -- 非表示 -- */
-    hbox.titlebar-placeholder,#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-
-    /* ナビゲーションツールバー 幅 */
-    #urlbar,.searchbar-textbox {
-        margin: var(--tab-min-height) !important;
-        min-height: var(--tab-min-height) !important;
-    }
-    #urlbar-zoom-button,
-    #nav-bar .toolbarbutton-1 {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    /* urlbar searchbar 幅 */
-    #page-action-buttons,
-    .search-go-container {
-        height: 24px !important;
-    }
-    .urlbar-textbox-container {
-        max-height: 26px !important;
-    }
-    /* メインツールバー アイコン 幅 */
-    #nav-bar [id="back-button"] .toolbarbutton-icon {
-        width: 26px !important;
-        height: 26px !important;
-        padding: 4px !important;
-    }
-    #nav-bar [id="forward-button"] .toolbarbutton-icon {
-        width: 22px !important;
-        height: 22px !important;
-        padding: 3px !important;
-    }
-    #main-window[uidensity=compact] [id="back-button"] .toolbarbutton-icon,
-    #main-window[uidensity=compact] [id="forward-button"] .toolbarbutton-icon,
-    #nav-bar toolbarbutton.toolbarbutton-1.chromeclass-toolbar-additional:not([id="back-button"]):not([id="forward-button"]) .toolbarbutton-icon,
-    #nav-bar toolbarbutton.toolbarbutton-1.chromeclass-toolbar-additional .toolbarbutton-badge-stack,
-    #nav-bar toolbaritem toolbarbutton.toolbarbutton-1 .toolbarbutton-badge-stack,
-    #urlbar .urlbar-icon,.search-go-button.urlbar-icon {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 4px !important;
-    }
-    #nav-bar toolbarbutton#downloads-button .toolbarbutton-icon,
-    #nav-bar toolbarbutton.toolbarbutton-1.webextension-browser-action .toolbarbutton-badge-stack {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 0 !important;
-    }
-    #PanelUI-button {
-        margin-inline-start: 0px !important;
-        border-inline-start: none !important;
-    }
-    /* メインツールバー toolbarbutton-badge */
-    #nav-bar .toolbarbutton-badge {
-        margin-block-start: 1px !important;
-        margin-inline-end: 0px !important;
-        min-width: var(--arrowpanel-padding) !important;
-        font-size: 8px !important;
-    }
-    /* ブックマークツールバー toolbarbutton-badge */
-    #PersonalToolbar .toolbarbutton-badge {
-        margin-block-start: -2px !important;
-        margin-inline-end: -3px !important;
-        min-width: var(--arrowpanel-padding) !important;
-        font-size: 8px !important;
-    }
-    /* ブックマークツールバー */
-    #navigator-toolbox > #PersonalToolbar {
-        padding: 0px 2px 0px 2px !important;
-        visibility: visible !important;
-    }
-    #PersonalToolbar > #personal-bookmarks {
-        height: 22px !important;
-    }
-    #PlacesToolbarItems toolbarbutton.bookmark-item {
-        max-height: 22px !important;
-        max-width: 160px !important;
-        padding: 0px 3px 0px 3px !important;
-        margin: 0 !important;
-    }
-    #PersonalToolbar toolbarbutton.chromeclass-toolbar-additional {
-        max-width: 24px !important;
-        max-height: 24px !important;
-        padding: 0px 3px 0px 3px !important;
-        margin: 0 !important;
-    }
+    hbox.titlebar-spacer[type$="-tabs"],#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
     /* 000-addToolbarInsideLocationBar.uc.js アイコン */
     #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
         width: 24px !important;
@@ -176,7 +78,7 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer._animateTabMove = function(event){}
     gBrowser.tabContainer._finishAnimateTabMove = function(event){}
     gBrowser.tabContainer.lastVisibleTab = function() {
-        var tabs = this.childNodes;
+        var tabs = this.children;
         for (let i = tabs.length - 1; i >= 0; i--){
             if (!tabs[i].hasAttribute("hidden"))
                 return i;
@@ -184,7 +86,7 @@ function MultiRowTabLiteforFx() {
         return -1;
     };
     gBrowser.tabContainer.clearDropIndicator = function() {
-        var tabs = this.childNodes;
+        var tabs = this.children;
         for (let i = 0, len = tabs.length; i < len; i++){
             let tab_s= tabs[i].style;
             tab_s.removeProperty("border-left-color");
@@ -199,19 +101,19 @@ function MultiRowTabLiteforFx() {
         var newIndex = this._getDropIndex(event);
         if (newIndex == null)
             return;
-        if (newIndex < this.childNodes.length) {
-            this.childNodes[newIndex].style.setProperty("border-left-color","red","important");
+        if (newIndex < this.children.length) {
+            this.children[newIndex].style.setProperty("border-left-color","red","important");
         } else {
             newIndex = gBrowser.tabContainer.lastVisibleTab();
             if (newIndex >= 0)
-                this.childNodes[newIndex].style.setProperty("border-right-color","red","important");
+                this.children[newIndex].style.setProperty("border-right-color","red","important");
         }
     };
     gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, false);
     gBrowser.tabContainer._getDropIndex = function(event, isLink) {
         var tabs = this.children;
         var tab = this._getDragTargetTab(event, isLink);
-        if (window.getComputedStyle(this).direction == "ltr") {
+        if (!RTL_UI) {
             for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
                 if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
                  && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
@@ -226,7 +128,6 @@ function MultiRowTabLiteforFx() {
         return tabs.length;
     };
     gBrowser.tabContainer.onDrop = function(event) {
-        var newIndex;
         this.clearDropIndicator();
         var dt = event.dataTransfer;
         var draggedTab;
@@ -238,7 +139,7 @@ function MultiRowTabLiteforFx() {
         this._tabDropIndicator.collapsed = true;
         event.stopPropagation();
         if (draggedTab && draggedTab.parentNode == this) {
-            newIndex = this._getDropIndex(event, false);
+            let newIndex = this._getDropIndex(event, false);
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
