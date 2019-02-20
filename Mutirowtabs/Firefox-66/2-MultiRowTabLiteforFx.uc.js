@@ -19,10 +19,14 @@ function MultiRowTabLiteforFx() {
     tabs>arrowscrollbox{display:block;}
     tabs arrowscrollbox>scrollbox {
         display:flex;flex-wrap:wrap;
+        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        overflow-x:hidden;overflow-y:auto;
     }
+    tabs>arrowscrollbox>scrollbox>scrollbar{-moz-window-dragging:no-drag;} /* タブが指定段数以上になると出てくるスクロールバーをマウスドラッグで上下出来るようにする */
     tabs tab:not([pinned]){flex-grow:1;}
     tabs:not(stack) tab,tab>.tab-stack>.tab-background {
         height: var(--tab-min-height);
+        overflow: hidden;
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}

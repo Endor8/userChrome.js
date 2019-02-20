@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
 // @include        main
-// @compatibility  Firefox 66
+// @compatibility  Firefox 65
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -16,26 +16,112 @@ MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
     /* 多段タブ */
+    /* タブバーを下に並べ替え */
+    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton,
+    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button {
+        color: rgb(24, 25, 26) !important;
+    }
+    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton:not([id="close-button"]):hover,
+    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button:not([class="titlebar-button titlebar-close"]):hover {
+        background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important;
+    }
+    #titlebar { -moz-box-ordinal-group: 2; -moz-appearance: none !important; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls,.titlebar-buttonbox-container {
+        position: fixed;
+        top: 0; right:0;
+        height: 26px; }
+    [sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
+    [sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
+    [sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    :not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
+    [sizemode="fullscreen"] #nav-bar { padding-right: 109px !important; }
     tabs>arrowscrollbox{display:block;}
     tabs arrowscrollbox>scrollbox {
         display:flex;flex-wrap:wrap;
+        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        overflow-x:hidden;overflow-y:auto;
     }
+    tabs>arrowscrollbox>scrollbox>scrollbar{-moz-window-dragging:no-drag;} /* タブが指定段数以上になると出てくるスクロールバーをマウスドラッグで上下出来るようにする */
     tabs tab:not([pinned]){flex-grow:1;}
     tabs:not(stack) tab,tab>.tab-stack>.tab-background {
         height: var(--tab-min-height);
+        overflow: hidden;
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls,
-    .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
-        padding: 10px 12px !important;
-    }
-    .titlebar-buttonbox>.titlebar-button {
-        padding: 10px 17px !important;
-    }
     /* -- 非表示 -- */
     hbox.titlebar-spacer[type$="-tabs"],#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
+    /* ナビゲーションツールバー 幅 */
+    #urlbar,.searchbar-textbox {
+        margin: 0 !important;
+        min-height: 26px !important;
+    }
+    #urlbar-zoom-button,
+    #nav-bar toolbarbutton,#nav-bar toolbaritem {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    /* urlbar searchbar 幅 */
+    .urlbar-history-dropmarker,
+    #page-action-buttons,
+    .search-go-container {
+        height: 26px !important;
+    }
+    .urlbar-textbox-container {
+        max-height: 26px !important;
+    }
+    /* メインツールバー アイコン 幅 */
+    #nav-bar [id="back-button"] .toolbarbutton-icon {
+        width: 28px !important;
+        height: 28px !important;
+        padding: 4px !important;
+    }
+    #nav-bar [id="forward-button"] .toolbarbutton-icon {
+        width: 26px !important;
+        height: 26px !important;
+        padding: 4px !important;
+    }
+    #PanelUI-button {
+        margin-inline-start: 0px !important;
+        border-inline-start: none !important;
+    }
+    /* メインツールバー toolbarbutton-badge */
+    #nav-bar .toolbarbutton-badge {
+        margin-block-start: 1px !important;
+        margin-inline-end: 0px !important;
+        min-width: var(--arrowpanel-padding) !important;
+        font-size: 8px !important;
+    }
+    /* ブックマークツールバー toolbarbutton-badge */
+    #PersonalToolbar .toolbarbutton-badge {
+        margin-block-start: -2px !important;
+        margin-inline-end: -3px !important;
+        min-width: var(--arrowpanel-padding) !important;
+        font-size: 8px !important;
+    }
+    /* ブックマークツールバー */
+    #navigator-toolbox > #PersonalToolbar {
+        padding: 0px 2px 0px 2px !important;
+        visibility: visible !important;
+    }
+    #PersonalToolbar > #personal-bookmarks {
+        height: 20px !important;
+    }
+    #PlacesToolbarItems {
+        max-height: 20px !important;
+    }
+    #PlacesToolbarItems toolbarbutton.bookmark-item {
+        max-height: 20px !important;
+        max-width: 160px !important;
+        padding: 0px 2px 0px 2px !important;
+        margin: 0 !important;
+    }
+    #PersonalToolbar toolbarbutton.chromeclass-toolbar-additional {
+        max-width: 24px !important;
+        max-height: 24px !important;
+        padding: 0px 3px 0px 3px !important;
+        margin: 0 !important;
+    }
     /* 000-addToolbarInsideLocationBar.uc.js アイコン */
     #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
         width: 24px !important;

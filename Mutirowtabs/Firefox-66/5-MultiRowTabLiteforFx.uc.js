@@ -15,25 +15,40 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
+    /* タブバーを下に並べ替え */
+    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton,
+    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button {
+        color: rgb(24, 25, 26) !important;
+    }
+    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton:not([id="close-button"]):hover,
+    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button:not([class="titlebar-button titlebar-close"]):hover {
+        background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important;
+    }
+    #titlebar { -moz-box-ordinal-group: 2; -moz-appearance: none !important; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls,.titlebar-buttonbox-container {
+        position: fixed;
+        top: 0; right:0;
+        height: 26px; }
+    [sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
+    [sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
+    [sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    :not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
+    [sizemode="fullscreen"] #nav-bar { padding-right: 109px !important; }
     /* 多段タブ */
     tabs>arrowscrollbox{display:block;}
     tabs arrowscrollbox>scrollbox {
         display:flex;flex-wrap:wrap;
+        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        overflow-x:hidden;overflow-y:auto;
     }
+    tabs>arrowscrollbox>scrollbox>scrollbar{-moz-window-dragging:no-drag;} /* タブが指定段数以上になると出てくるスクロールバーをマウスドラッグで上下出来るようにする */
     tabs tab:not([pinned]){flex-grow:1;}
     tabs:not(stack) tab,tab>.tab-stack>.tab-background {
         height: var(--tab-min-height);
+        overflow: hidden;
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls,
-    .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
-        padding: 10px 12px !important;
-    }
-    .titlebar-buttonbox>.titlebar-button {
-        padding: 10px 17px !important;
-    }
     /* -- 非表示 -- */
     hbox.titlebar-spacer[type$="-tabs"],#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
     /* 000-addToolbarInsideLocationBar.uc.js アイコン */
