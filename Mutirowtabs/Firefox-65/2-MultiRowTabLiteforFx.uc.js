@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
 // @include        main
-// @compatibility  Firefox 60
+// @compatibility  Firefox 65
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -15,17 +15,6 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* 多段タブ時のタイトルバーボタン｢－□×｣の不具合対策 */
-    #main-window:not([customizing]):not([pinned]) #titlebar {
-        height: var(--tab-min-height) !important;
-        margin-bottom: calc(var(--tab-min-height) * -1 + 0px) !important;
-    }
-    #main-window:not([customizing])[sizemode="maximized"] #titlebar {
-        margin-bottom: calc(var(--tab-min-height) * -1 + 8px) !important;
-    }
-    #titlebar-buttonbox {
-        height: var(--tab-min-height) !important;
-    }
     /* 多段タブ */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
     tabs scrollbox>box {
@@ -37,15 +26,16 @@ function MultiRowTabLiteforFx() {
     tabs tab:not([pinned]){flex-grow:1;}
     tabs:not(stack) tab,tab>.tab-stack>.tab-background {
         height: var(--tab-min-height);
+        overflow: hidden;
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    box>.tabs-newtab-button {
-        height: calc(var(--tab-min-height) + -1px);
-        width: var(--tab-min-height);
+    .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
+    .titlebar-buttonbox>.titlebar-button {
+        padding: 10px 17px !important;
     }
     /* -- 非表示 -- */
-    hbox.titlebar-placeholder:not([type="caption-buttons"]),#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
+    hbox.titlebar-spacer[type$="-tabs"],#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
     /* 000-addToolbarInsideLocationBar.uc.js アイコン */
     #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
         width: 24px !important;
@@ -77,7 +67,7 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer._animateTabMove = function(event){}
     gBrowser.tabContainer._finishAnimateTabMove = function(event){}
     gBrowser.tabContainer.lastVisibleTab = function() {
-        var tabs = this.childNodes;
+        var tabs = this.children;
         for (let i = tabs.length - 1; i >= 0; i--){
             if (!tabs[i].hasAttribute("hidden"))
                 return i;
@@ -85,7 +75,7 @@ function MultiRowTabLiteforFx() {
         return -1;
     };
     gBrowser.tabContainer.clearDropIndicator = function() {
-        var tabs = this.childNodes;
+        var tabs = this.children;
         for (let i = 0, len = tabs.length; i < len; i++){
             let tab_s= tabs[i].style;
             tab_s.removeProperty("border-left-color");
@@ -100,19 +90,19 @@ function MultiRowTabLiteforFx() {
         var newIndex = this._getDropIndex(event);
         if (newIndex == null)
             return;
-        if (newIndex < this.childNodes.length) {
-            this.childNodes[newIndex].style.setProperty("border-left-color","red","important");
+        if (newIndex < this.children.length) {
+            this.children[newIndex].style.setProperty("border-left-color","red","important");
         } else {
             newIndex = gBrowser.tabContainer.lastVisibleTab();
             if (newIndex >= 0)
-                this.childNodes[newIndex].style.setProperty("border-right-color","red","important");
+                this.children[newIndex].style.setProperty("border-right-color","red","important");
         }
     };
     gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, false);
     gBrowser.tabContainer._getDropIndex = function(event, isLink) {
         var tabs = this.children;
         var tab = this._getDragTargetTab(event, isLink);
-        if (window.getComputedStyle(this).direction == "ltr") {
+        if (!RTL_UI) {
             for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
                 if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
                  && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
@@ -127,7 +117,6 @@ function MultiRowTabLiteforFx() {
         return tabs.length;
     };
     gBrowser.tabContainer.onDrop = function(event) {
-        var newIndex;
         this.clearDropIndicator();
         var dt = event.dataTransfer;
         var draggedTab;
@@ -139,7 +128,7 @@ function MultiRowTabLiteforFx() {
         this._tabDropIndicator.collapsed = true;
         event.stopPropagation();
         if (draggedTab && draggedTab.parentNode == this) {
-            newIndex = this._getDropIndex(event, false);
+            let newIndex = this._getDropIndex(event, false);
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
