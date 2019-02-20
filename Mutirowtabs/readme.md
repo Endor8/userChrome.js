@@ -1,6 +1,6 @@
 ### Mehrzeilige Tableiste ###
 
-Es stehen je nach Firefox Version verschiedene Scriptversionen dazu zur Verfügung.
+Es stehen je nach Firefox Version verschiedene Scriptversionen dazu zur Verfügung.     
 Siehe dazu jeweils in den entsprechenden Ordner.
 
 [Firefox 60esr](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-60esr)     
