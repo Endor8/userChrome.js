@@ -18,8 +18,12 @@ Anpassung der vertikalen Breite der Symbolleiste.
 #### Kleiner CSS Code für userChrome.css: #### 
 
 ```css
-/*AGENT_SHEET*/ @charset "UTF-8";
+@charset "UTF-8";
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+toolbarbutton#alltabs-button{-moz-binding: url("userChrome.xml#js");}
+
+/* ↓ 必要ない場合は 消してください。 */
+/* 多段タブ時指定した段数以上になった時タブバーに出てくるスクロールバーをマウスホイールで上下出来るようにする */
 #tabbrowser-tabs .tabbrowser-arrowscrollbox {
     -moz-binding: url("chrome://global/content/bindings/scrollbox.xml#arrowscrollbox") !important;
 }
