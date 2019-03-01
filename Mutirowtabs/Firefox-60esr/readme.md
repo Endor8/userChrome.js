@@ -49,17 +49,18 @@ tabs tab:not([pinned]) {
     min-width: 100px !important;/* Minimale Tabbreite  76px */
     max-width: 100px !important;/* Maximale Tabbreite 225px */
 }
+```
 Werte mit Vorsicht verändern.
 
-/*Oder CSS Code in userChrome.css einfügen*/
+Oder CSS Code in userChrome.css einfügen
   
+```css  
 tabs tab:not([pinned]) {
     min-width: 100px !important;/* Minimale Tabbreite  76px */
     max-width: 100px !important;/* Maximale Tabbreite 225px */
 }
- 
-/*Mit gleichen Werten bei, min-width und max-width, wird die Tabbreite fixiert.*/
 ```
+Mit gleichen Werten bei, min-width und max-width, wird die Tabbreite fixiert.
 
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils.
