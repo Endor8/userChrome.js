@@ -1,0 +1,36 @@
+﻿/* AGENT_SHEET */
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+@-moz-document url(chrome://browser/content/browser.xul){
+
+/*   about-button Menü  und Rechtsklick Kontextmenüeinträge   */
+	
+    #context-about-menu{
+    -moz-binding:
+    url("chrome://global/content/bindings/menu.xml#menu-iconic") !important;
+    list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAvdJREFUeNp8U1tIVFEUXefOnTuj+EpFJTEETSQKogdkBBYRIWERBoZ9BRlYQhj9mH75kUlg9mlhJUEgGZmRRWrkKx+NlD0U0zRmeljojKPjzJ37Ou17nfoQ6Vw253DuWevsddberKbxIRjnrZyjiIODARQMNgEQuN7ijss9KXCDdjnWDoExiIZhtGZu2liUmpIMzlcJRAK/mdMxOS8XM1kpXgs2zwiCAElkj1F14z5fDmvctyxz75JszSvBMC+5Ncx1YlQiEY6EuVb56ihtdnHKgCOsaBiZcFtpmmlJNgZO+xrt1PbNYUtqAtKTnNbV3/0cn+f9uLw7wTxtStCh6TqSExIJTGeIwG7qZ17IJL1waxpa37nhDTjBPnTDM/kRjNJvHs+Bg2cTAcnTNB2d/SOki1kkIjM1JsGgufXtV5zZl4k7d1twMCsFp05UYnHRj5npaXgGhyDCMKBqGgry91gEzCJgGOuaAilBxYFMa1anXNhccAGd3a8w/mkcqhyE3Wa6QEoUkvC81/VPggmI4U6U3x4lO4lUEJHhlBAIBpG4IRErAT/md5QitPCj3bQRiqKiYH/eag2wiE1ELLEgmu61oa76/K72By0ukbTHxsZADmtIdt2EKNqOimQ+STDQ+XrYun2VwPw4juzNRYeSjMKWiZKd2xHyBgJRkiShuroSuqqjvqHBsDKQNRW52WlWidiYSC7Y4RAMVPW4MRudjabDuRev9c/gkDz2q3tgJBU28+mM6YGBvkuiWaRKWLWcsO4mcO3gZsyGTmNRqkB/2TacbfMgNS4OjUPCQOh6/ZVIQYYovlguKASOcsZjRfbB6YhGVd44jnf7MWiCH3mQHichGPQhNtoR47jaP1qx3AGVHtYsfIGTZp2KKawuUQ/YEFK84EyhalRR/nQO6fFOhIJ+jL13vfhdc+ycHYb1wCyShiivLPc8edabbzbS30ZxMAM5LA2eb8C83YaFn+6Xc3UlZRm1XTPhdRoriyIB/x8+ipn1fvwRYABPz3B9ncIrWwAAAABJRU5ErkJggg==") !important;
+    padding-left:4px !important;}
+	
+	#context-about-menu .menu-iconic-text{
+    padding-left:10px !important;}	
+	
+	#context-about-menu > menupopup:nth-child(1) menuitem{
+    -moz-binding:
+    url("chrome://global/content/bindings/menu.xml#menuitem-iconic") !important;
+    list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaUlEQVQ4jXWTX0iTYRSHX9SrLDWJoIugG6F/ULIokC5SIsIgiLwrhCnO9FPLtU2t5VSM5TSEsHRmFkXQhRcmiZEaYrWZTm0V5tRS5ip1iSup5P2ipwvFtpoHHs7V73nhvOcIEa50LoTORV33Z1QpsdhuhGXNYJyiJU7RroZ/Q1hCJToXiUXRJBZFU+fehpe9K4J65heXmJ4L4J1dwDu7gM8fYH5xCYutntVwZHoy9Y51QDRm5z4U91FUKTFb62jvGaD1iSOE9p4BzNa6vwL9gyg+kUADhTR9OczmnB2oUlJcUctaVVxRy+rro+ykgQKqA6eJyBBktjSiSompvIZxr5+3E74Qxr1+TOU1y4KIrFhuoeUOeWxRNpDfPUWlB1QpMVhsTPj8jHz4GMKEz4/BYlsWiKujxOQLzFMnuPZ8E7vOx6K5O4YqJXqzlY5eF62djhA6el3ozVaE0NgRtu+ImyBObqWHQ0AUefejUKUkr6hizRnkmyqDBNUSoT1IoTuFy/7jNM4loUqJYixjaGQSx7AHx7CHwSEvZ2aSOBtIRm+oChKUziBK3rP/SjyNaIkpEKhSkmMoZfjdJH1uD31uD+7XPta3COLbItEbq1a+UWNHlEwjdE2UDW7nyL0ERK4NVUqyz13k8bMh2rqctHU5edTdT+fTN/S+GCO38FKQoHYJkZ1Fdv8exKmNCPM3VCnJUExrziBDMQWtssaOuK4ilGOIC7cRth+oUqLNNfBqdIqHXc7/ujbX8M9BaewIjR3RDKJ5eQ8yFSMv3eN8/fmLdN25kJ6pGMNcZJBIlZLUtHR2H0gJS2paOn8Aay+SGqAm06EAAAAASUVORK5CYII=") !important;
+    -moz-image-region: rect(0px 16px 16px 0px) !important;
+    padding-left:4px !important;}
+
+    #context-about-menu > menupopup:nth-child(1) menuitem .menu-iconic-text{
+    padding-left:10px !important;}
+	
+	#about-button-popup menuitem{
+    -moz-binding:
+    url("chrome://global/content/bindings/menu.xml#menuitem-iconic") !important;
+    list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACaUlEQVQ4jXWTX0iTYRSHX9SrLDWJoIugG6F/ULIokC5SIsIgiLwrhCnO9FPLtU2t5VSM5TSEsHRmFkXQhRcmiZEaYrWZTm0V5tRS5ip1iSup5P2ipwvFtpoHHs7V73nhvOcIEa50LoTORV33Z1QpsdhuhGXNYJyiJU7RroZ/Q1hCJToXiUXRJBZFU+fehpe9K4J65heXmJ4L4J1dwDu7gM8fYH5xCYutntVwZHoy9Y51QDRm5z4U91FUKTFb62jvGaD1iSOE9p4BzNa6vwL9gyg+kUADhTR9OczmnB2oUlJcUctaVVxRy+rro+ykgQKqA6eJyBBktjSiSompvIZxr5+3E74Qxr1+TOU1y4KIrFhuoeUOeWxRNpDfPUWlB1QpMVhsTPj8jHz4GMKEz4/BYlsWiKujxOQLzFMnuPZ8E7vOx6K5O4YqJXqzlY5eF62djhA6el3ozVaE0NgRtu+ImyBObqWHQ0AUefejUKUkr6hizRnkmyqDBNUSoT1IoTuFy/7jNM4loUqJYixjaGQSx7AHx7CHwSEvZ2aSOBtIRm+oChKUziBK3rP/SjyNaIkpEKhSkmMoZfjdJH1uD31uD+7XPta3COLbItEbq1a+UWNHlEwjdE2UDW7nyL0ERK4NVUqyz13k8bMh2rqctHU5edTdT+fTN/S+GCO38FKQoHYJkZ1Fdv8exKmNCPM3VCnJUExrziBDMQWtssaOuK4ilGOIC7cRth+oUqLNNfBqdIqHXc7/ujbX8M9BaewIjR3RDKJ5eQ8yFSMv3eN8/fmLdN25kJ6pGMNcZJBIlZLUtHR2H0gJS2paOn8Aay+SGqAm06EAAAAASUVORK5CYII=") !important;
+    -moz-image-region: rect(0px 16px 16px 0px) !important;
+    padding-left:4px !important;}
+	
+	#about-button-popup menuitem .menu-iconic-text{
+    padding-left:10px !important;}
+	
+	}
