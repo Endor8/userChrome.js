@@ -5,25 +5,25 @@ Es stehen 6 verschiedene Scripte dazu zur Verfügung.
 * Skript 1:  Mehrzeilige Tableiste (CSS) Unbegrenzte Anzahl von Tabzeilen,   
 Tabs ziehen und ablegen möglich, sowie notwendige Symbolleisten-Symbolanpassung    
 
-* Skript 2: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,    
+* Skript 2: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Tabzeilen,    
 Tabs ziehen und ablegen möglich, sowie notwendige Symbolleistensymbol-Anpassung    
 
-* Skript 3: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,   
+* Skript 3: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Tabzeilen,   
 Tabs ziehen und ablegen möglich, Symbolleistensymbol-Anpassung,    
 Anpassung - Darstellung der vertikalen Breite der Symbolleiste auf schmal.    
 
-* Skript 4: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Zeilen,
-Tabs ziehen und ablegen möglich, notwendige Symbolleistensymbol-Anpassung,
-Tableiste Tabs absteigend sortieren.
+* Skript 4: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Tabzeilen,    
+Tabs ziehen und ablegen möglich, notwendige Symbolleistensymbol-Anpassung,    
+Tableiste Tabs absteigend sortieren.    
 
-* Skript 5: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und ablegen möglich, notwendige Symbolleistensymbol-Anpassung,
-Tableiste Tabs absteigend sortieren.
+* Skript 5: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Tabzeilen,   
+Tabs ziehen und ablegen möglich, notwendige Symbolleistensymbol-Anpassung,    
+Tableiste Tabs absteigend sortieren.    
 
-* Skript 6: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und ablegen möglich, notwendige Symbolleistensymbol-Anpassung,
-Anpassung - Darstellung der vertikalen Breite der Symbolleiste auf schmal,
-Tableiste Tabs absteigend sortieren
+* Skript 6: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Tabzeilen,    
+Tabs ziehen und ablegen möglich, notwendige Symbolleistensymbol-Anpassung,    
+Anpassung - Darstellung der vertikalen Breite der Symbolleiste auf schmal,    
+Tableiste Tabs absteigend sortieren   
 
 
 #### Kleiner CSS Code für userChrome.css: #### 
