@@ -1,6 +1,6 @@
 ### Mehrzeilige Tableiste für Firefox 65 ###
 
-Es stehen 4 verschiedene Scripte dazu zur Verfügung.
+Es stehen 6 verschiedene Scripte dazu zur Verfügung.
 
 * Skript 1:  Mehrzeilige Tableiste (CSS) Unbegrenzte Anzahl von Tabzeilen,
 Tabs ziehen und ablegen moglich, sowie notwendige Symbolleisten-Symbolanpassung
