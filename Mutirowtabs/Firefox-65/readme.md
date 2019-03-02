@@ -2,25 +2,28 @@
 
 Es stehen 4 verschiedene Scripte dazu zur Verfügung.
 
-* Skript 1:  Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung
+* Skript 1:  Mehrzeilige Tableiste (CSS) Unbegrenzte Anzahl von Tabzeilen,
+Tabs ziehen und ablegen moglich, sowie notwendige Symbolleisten-Symbolanpassung
 
 * Skript 2: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung
+Tabs ziehen und ablegen moglich, sowie notwendige Symbolleistensymbol-Anpassung
 
 * Skript 3: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung
-
-* Skript 4: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
 Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung,
-Anpassung der vertikalen Breite der Symbolleiste.
+Anpassung - Darstellung der vertikalen Breite der Symbolleiste auf schmal.
+
+* Skript 4: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Zeilen,
+Tabs ziehen und verschieben, notwendige Symbolleisten Symbolleistensymbol-Anpassung,
+Tableiste Tabs absteigend sortieren.
 
 * Skript 5: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung
+Tabs ziehen und verschieben, notwendige Symbolleisten Symbolleistensymbol-Anpassung,
+Tableiste Tabs absteigend sortieren.
 
 * Skript 6: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-Anpassung,
-Anpassung der vertikalen Breite der Symbolleiste.
+Tabs ziehen und verschieben, notwendige Symbolleisten Symbolleistensymbol-Anpassung,
+Anpassung - Darstellung der vertikalen Breite der Symbolleiste auf schmal,
+Tableiste Tabs absteigend sortieren
 
 
 #### Kleiner CSS Code für userChrome.css: #### 
