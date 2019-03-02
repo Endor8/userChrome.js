@@ -13,15 +13,15 @@ Tabs ziehen und verschieben, Symbolleisten Sortierung und Symbolleistensymbol-An
 Anpassung - Darstellung der vertikalen Breite der Symbolleiste auf schmal.
 
 * Skript 4: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, notwendige Symbolleisten Symbolleistensymbol-Anpassung,
+Tabs ziehen und verschieben, notwendige Symbolleistensymbol-Anpassung,
 Tableiste Tabs absteigend sortieren.
 
 * Skript 5: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, notwendige Symbolleisten Symbolleistensymbol-Anpassung,
+Tabs ziehen und verschieben, notwendige Symbolleistensymbol-Anpassung,
 Tableiste Tabs absteigend sortieren.
 
 * Skript 6: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,
-Tabs ziehen und verschieben, notwendige Symbolleisten Symbolleistensymbol-Anpassung,
+Tabs ziehen und verschieben, notwendige Symbolleistensymbol-Anpassung,
 Anpassung - Darstellung der vertikalen Breite der Symbolleiste auf schmal,
 Tableiste Tabs absteigend sortieren
 
