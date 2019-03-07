@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
 // @compatibility  Firefox 60
 // @author         Alice0775
@@ -15,7 +15,7 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* 多段タブ時のタイトルバーボタン｢－□×｣の不具合対策 */
+    /* Fehlerbehebung für die Titelleistenschaltfläche "- □ ×" bei mehreren geöffneten Tabs */
     #main-window #titlebar {
         height: var(--tab-min-height) !important;
         margin-bottom: calc(var(--tab-min-height) * -1 + 0px) !important;
@@ -32,19 +32,19 @@ function MultiRowTabLiteforFx() {
     #titlebar-buttonbox {
         height: var(--tab-min-height) !important;
     }
-    /* 多段タブ */
+    /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
     tabs .scrollbox-innerbox{display:flex;flex-wrap:wrap;}
-    tabs tab:not([pinned]){flex-grow:1;}
-    tabs:not(stack) tab,tab>.tab-stack>.tab-background {
+    tabs tab[fadein]:not([pinned]){flex-grow:1;}
+    tabs tab,.tab-background {
         height: var(--tab-min-height);
         overflow: hidden;
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    /* -- 非表示 -- */
+    /* -- ausblenden -- */
     hbox.titlebar-placeholder:not([type="caption-buttons"]),#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    /* 000-addToolbarInsideLocationBar.uc.js アイコン */
+    /* 000-addToolbarInsideLocationBar.uc.js Symbol */
     #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
         width: 24px !important;
         height: 24px !important;
@@ -141,9 +141,6 @@ function MultiRowTabLiteforFx() {
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
-        }
-        if (draggedTab) {
-            delete draggedTab._dragData;
         }
     };
     gBrowser.tabContainer.addEventListener("drop",gBrowser.tabContainer.onDrop, false);

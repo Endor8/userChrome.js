@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
 // @compatibility  Firefox 60
 // @author         Alice0775
@@ -15,7 +15,7 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* ツールバー 並べ替え */
+    /* Sortierung der Symbolleisten - Reihenfolge */
     #main-window:not([inFullscreen="true"]) #nav-bar {
         padding-right: 139px !important;
     }
@@ -26,7 +26,7 @@ function MultiRowTabLiteforFx() {
     #TabsToolbar {
         -moz-box-ordinal-group: 3 !important;
     }
-    /* 多段タブ時のタイトルバーボタン｢－□×｣の不具合対策 */
+    /* Fehlerbehebung für die Titelleistenschaltflächen "- □ ×" bei mehreren geöffneten Tabs */
     #main-window:not([lwthemetextcolor="dark"]):not([lwthemetextcolor="bright"]) #titlebar-buttonbox .titlebar-button {
         color: rgb(24, 25, 26) !important;
     }
@@ -53,20 +53,21 @@ function MultiRowTabLiteforFx() {
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
     tabs scrollbox>box {
         display:flex;flex-wrap:wrap;
-        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto;
     }
-    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} /* タブが指定段数以上になると出てくるスクロールバーをマウスドラッグで上下出来るようにする */
-    tabs tab:not([pinned]){flex-grow:1;}
-    tabs:not(stack) tab,tab>.tab-stack>.tab-background {
+	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
+    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} 
+    tabs tab[fadein]:not([pinned]){flex-grow:1;}
+    tabs tab,.tab-background {
         height: var(--tab-min-height);
         overflow: hidden;
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    /* -- 非表示 -- */
+    /* -- Ausblenden -- */
     hbox.titlebar-placeholder,#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    /* 000-addToolbarInsideLocationBar.uc.js アイコン */
+    /* 000-addToolbarInsideLocationBar.uc.js Symbol */
     #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
         width: 24px !important;
         height: 24px !important;
@@ -163,9 +164,6 @@ function MultiRowTabLiteforFx() {
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
-        }
-        if (draggedTab) {
-            delete draggedTab._dragData;
         }
     };
     gBrowser.tabContainer.addEventListener("drop",gBrowser.tabContainer.onDrop, false);
