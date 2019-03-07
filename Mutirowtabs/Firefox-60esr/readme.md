@@ -3,10 +3,11 @@
 Es stehen 4 verschiedene Scripte dazu zur Verfügung.
 
 * Skript 1:  Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Zeilen,   
-Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung   
+Tabs ziehen und verschieben, sowie Fehlerbehebung für Titelleistenschaltflächen "- □ ×"   
 
-* Skript 2: Mehrzeilige Tableiste als (CSS Code) Begrenzte Anzahl von Zeilen,   
-Tabs ziehen und verschieben, sowie notwendige Symbolleistensymbol-Anpassung   
+* Skript 2: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
+kann aber im Script in Zeile 39 gändert werden.       
+Tabs ziehen und verschieben, Fehlerbehebung für Titelleistenschaltflächen "- □ ×"   
 
 * Skript 3: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
 kann aber im Script in Zeile 56 gändert werden.    
