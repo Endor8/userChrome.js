@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
 // @compatibility  Firefox 65
 // @author         Alice0775
@@ -15,7 +15,7 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* タブバーを下に並べ替え */
+    /* Tableiste unter Adressleiste und Lesezeichen verschieben */
     #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton,
     #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button {
         color: rgb(24, 25, 26) !important;
@@ -29,39 +29,36 @@ function MultiRowTabLiteforFx() {
         position: fixed;
         top: 0; right:0;
         height: 26px; }
-    [sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    [sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
-    [sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
-    :not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
+    [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
+    [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
+    [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    [tabsintitlebar="true"]:not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
     [sizemode="fullscreen"] #nav-bar { padding-right: 109px !important; }
-    /* 多段タブ */
+    /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
-    tabs scrollbox>box {
-        display:flex;flex-wrap:wrap;
-    }
-    tabs tab:not([pinned]){flex-grow:1;}
-    tabs:not(stack) tab,tab>.tab-stack>.tab-background {
+    tabs scrollbox>box{display:flex;flex-wrap:wrap;}
+    tabs tab[fadein]:not([pinned]){flex-grow:1;}
+    tabs tab,.tab-background {
         height: var(--tab-min-height);
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    /* -- 非表示 -- */
-    hbox.titlebar-spacer[type$="-tabs"],#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    /* 000-addToolbarInsideLocationBar.uc.js アイコン */
-    #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 4px !important;
+    [sizemode="fullscreen"] #TabsToolbar>#window-controls,
+    .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
+    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
+        padding: 10px 12px !important;
     }
-    #ucjs-Locationbar-toolbar toolbarbutton#downloads-button .toolbarbutton-icon,
-    #ucjs-Locationbar-toolbar .webextension-browser-action .toolbarbutton-badge-stack {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 0 !important;
+    .titlebar-buttonbox>.titlebar-button {
+        padding: 10px 17px !important;
     }
-    #ucjs-Locationbar-toolbar toolbarbutton:hover {
-        background-color: hsla(0,0%,70%,.3) !important;
-    } `;
+    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken
+       Links und rechts → hbox.titlebar-spacer 
+	   links → hbox.titlebar-spacer[type="pre-tabs"] 
+	   rechts → hbox.titlebar-spacer[type="post-tabs"] */
+    hbox.titlebar-spacer,
+    /* Ausblenden - verstecken */
+    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,tab:not([fadein]) { display: none; }
+    `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
@@ -143,9 +140,6 @@ function MultiRowTabLiteforFx() {
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
-        }
-        if (draggedTab) {
-            delete draggedTab._dragData;
         }
     };
     gBrowser.tabContainer.addEventListener("drop",gBrowser.tabContainer.onDrop, false);
