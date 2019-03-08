@@ -16,7 +16,7 @@ MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
     /* Sortierung der Symbolleisten - Reihenfolge */
-    #main-window:not([inFullscreen="true"]) #nav-bar {
+    #main-window[tabsintitlebar="true"]:not([inFullscreen="true"]) #nav-bar {
         padding-right: 139px !important;
     }
     #PersonalToolbar {
@@ -49,15 +49,19 @@ function MultiRowTabLiteforFx() {
     #titlebar-buttonbox {
         height: 32px !important;
     }
-    /* 多段タブ */
+    [sizemode="fullscreen"] #window-controls { display: block; }
+    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
+        padding: 10px 12px !important;
+    }
+    /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
-    tabs scrollbox>box {
+    tabs scrollbox box {
         display:flex;flex-wrap:wrap;
         max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto;
     }
-	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
-    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} 
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
+    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;}
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {
         height: var(--tab-min-height);

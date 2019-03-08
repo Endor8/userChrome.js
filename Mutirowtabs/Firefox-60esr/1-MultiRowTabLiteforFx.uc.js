@@ -32,9 +32,13 @@ function MultiRowTabLiteforFx() {
     #titlebar-buttonbox {
         height: var(--tab-min-height) !important;
     }
+    [sizemode="fullscreen"] #window-controls { display: block; }
+    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
+        padding: 10px 12px !important;
+    }
     /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
-    tabs .scrollbox-innerbox{display:flex;flex-wrap:wrap;}
+    tabs scrollbox box{display:flex;flex-wrap:wrap;}
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {
         height: var(--tab-min-height);
