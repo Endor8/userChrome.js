@@ -6,16 +6,16 @@ Es stehen 4 verschiedene Scripte dazu zur Verfügung.
 Tabs ziehen und verschieben, sowie Fehlerbehebung für Titelleistenschaltflächen "- □ ×"   
 
 * Skript 2: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
-kann aber im Script in Zeile 43 geendert werden.       
+kann aber im Script in Zeile 43 geändert werden.       
 Tabs ziehen und verschieben, Fehlerbehebung für Titelleistenschaltflächen "- □ ×"   
 
 * Skript 3: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
-kann aber im Script in Zeile 60 geendert werden.    
+kann aber im Script in Zeile 60 geändert werden.    
 Tabs ziehen und verschieben, Symbolleisten Sortierung (Tableiste unter Adressleiste und    
 Lesezeichen verschieben) und Fehlerbehebung für Titelleistenschaltflächen "- □ ×"    
 
 * Skript 4: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
-kann aber im Script in Zeile 64 geendert werden.    
+kann aber im Script in Zeile 64 geändert werden.    
 Tabs ziehen und verschieben, Symbolleisten Sortierung (Tableiste unter Adressleiste und     
 Lesezeichen verschieben) und Fehlerbehebung für Titelleistenschaltflächen "- □ ×"      
 Anpassung der vertikalen Breite der Symbolleiste.    
