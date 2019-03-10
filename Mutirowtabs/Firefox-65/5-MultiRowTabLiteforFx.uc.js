@@ -61,8 +61,8 @@ function MultiRowTabLiteforFx() {
     }
     /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken
        Links und rechts → hbox.titlebar-spacer 
-	   Links → hbox.titlebar-spacer[type="pre-tabs"] 
-	   Rechts → hbox.titlebar-spacer[type="post-tabs"] */
+       Links → hbox.titlebar-spacer[type="pre-tabs"] 
+       Rechts → hbox.titlebar-spacer[type="post-tabs"] */
     hbox.titlebar-spacer,
     /* Ausblenden - verstecken */
     #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,tab:not([fadein]) { display: none; }
