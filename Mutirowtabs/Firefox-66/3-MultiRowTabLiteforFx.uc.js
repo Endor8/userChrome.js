@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 65
+// @compatibility  Firefox 66
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -15,16 +15,18 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* 多段タブ */
+    /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox{display:block;}
     tabs arrowscrollbox>scrollbox {
         display:flex;flex-wrap:wrap;
-        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto;
     }
-    tabs>arrowscrollbox>scrollbox>scrollbar{-moz-window-dragging:no-drag;} /* タブが指定段数以上になると出てくるスクロールバーをマウスドラッグで上下出来るようにする */
-    tabs tab:not([pinned]){flex-grow:1;}
-    tabs:not(stack) tab,tab>.tab-stack>.tab-background {
+    [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;} 
+	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, 
+	   über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
+    tabs tab[fadein]:not([pinned]){flex-grow:1;}
+    tabs tab,.tab-background {
         height: var(--tab-min-height);
         overflow: hidden;
         z-index: 1 !important;
@@ -38,9 +40,16 @@ function MultiRowTabLiteforFx() {
     .titlebar-buttonbox>.titlebar-button {
         padding: 10px 17px !important;
     }
-    /* -- 非表示 -- */
-    hbox.titlebar-spacer[type$="-tabs"],#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    /* ナビゲーションツールバー 幅 */
+    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken,
+	bei Bedarf gewünschten Code aktivieren,:
+       Links und rechts → hbox.titlebar-spacer
+	   links → hbox.titlebar-spacer [type = "pre-tabs"] 
+	   rechts → hbox.titlebar-spacer[type="post-tabs"] */
+    hbox.titlebar-spacer,
+    /* Ausblenden - verstecken */
+    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,tab:not([fadein]) { display: none; }
+
+    /* Breite der Navigationsleiste */
     #urlbar,.searchbar-textbox {
         margin: 0 !important;
         min-height: 26px !important;
@@ -50,7 +59,7 @@ function MultiRowTabLiteforFx() {
         padding: 0 !important;
         margin: 0 !important;
     }
-    /* urlbar searchbar 幅 */
+    /* urlbar searchbar Breite */
     .urlbar-history-dropmarker,
     #page-action-buttons,
     .search-go-container {
@@ -59,7 +68,7 @@ function MultiRowTabLiteforFx() {
     .urlbar-textbox-container {
         max-height: 26px !important;
     }
-    /* メインツールバー アイコン 幅 */
+    /* Hauptsymbolleisten-Symbolbreite */
     #nav-bar [id="back-button"] .toolbarbutton-icon {
         width: 28px !important;
         height: 28px !important;
@@ -74,32 +83,32 @@ function MultiRowTabLiteforFx() {
         margin-inline-start: 0px !important;
         border-inline-start: none !important;
     }
-    /* メインツールバー toolbarbutton-badge */
+    /* Hauptsymbolleiste toolbarbutton-badge */
     #nav-bar .toolbarbutton-badge {
         margin-block-start: 1px !important;
         margin-inline-end: 0px !important;
         min-width: var(--arrowpanel-padding) !important;
         font-size: 8px !important;
     }
-    /* ブックマークツールバー toolbarbutton-badge */
+    /* Lesezeichenleiste toolbarbutton-badge */
     #PersonalToolbar .toolbarbutton-badge {
         margin-block-start: -2px !important;
         margin-inline-end: -3px !important;
         min-width: var(--arrowpanel-padding) !important;
         font-size: 8px !important;
     }
-    /* ブックマークツールバー */
-    #navigator-toolbox > #PersonalToolbar {
+    /* Lesezeichenleiste */
+    #PersonalToolbar {
         padding: 0px 2px 0px 2px !important;
         visibility: visible !important;
     }
     #PersonalToolbar > #personal-bookmarks {
         height: 20px !important;
     }
-    #PlacesToolbarItems {
+    #PersonalToolbar #PlacesToolbarItems {
         max-height: 20px !important;
     }
-    #PlacesToolbarItems toolbarbutton.bookmark-item {
+    #PersonalToolbar #PlacesToolbarItems toolbarbutton.bookmark-item {
         max-height: 20px !important;
         max-width: 160px !important;
         padding: 0px 2px 0px 2px !important;
@@ -110,21 +119,6 @@ function MultiRowTabLiteforFx() {
         max-height: 24px !important;
         padding: 0px 3px 0px 3px !important;
         margin: 0 !important;
-    }
-    /* 000-addToolbarInsideLocationBar.uc.js アイコン */
-    #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 4px !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton#downloads-button .toolbarbutton-icon,
-    #ucjs-Locationbar-toolbar .webextension-browser-action .toolbarbutton-badge-stack {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 0 !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton:hover {
-        background-color: hsla(0,0%,70%,.3) !important;
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
@@ -207,9 +201,6 @@ function MultiRowTabLiteforFx() {
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
-        }
-        if (draggedTab) {
-            delete draggedTab._dragData;
         }
     };
     gBrowser.tabContainer.addEventListener("drop",gBrowser.tabContainer.onDrop, false);
