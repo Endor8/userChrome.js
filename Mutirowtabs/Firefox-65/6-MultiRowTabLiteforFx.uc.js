@@ -61,13 +61,13 @@ function MultiRowTabLiteforFx() {
     }
     /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken
        Links und rechts → hbox.titlebar-spacer 
-	   Links → hbox.titlebar-spacer[type="pre-tabs"] 
-	   Rechts → hbox.titlebar-spacer[type="post-tabs"] */
+       Links → hbox.titlebar-spacer[type="pre-tabs"] 
+       Rechts → hbox.titlebar-spacer[type="post-tabs"] */
     hbox.titlebar-spacer,
     /* Ausblenden - verstecken */
     #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,tab:not([fadein]) { display: none; }
 
-    /* Breite der Navigationssymbolleiste */
+    /* Breite der Navigationsleiste */
     #urlbar,.searchbar-textbox {
         margin: 0 !important;
         min-height: 26px !important;
@@ -86,7 +86,7 @@ function MultiRowTabLiteforFx() {
     .urlbar-textbox-container {
         max-height: 26px !important;
     }
-    /* Hauptsymbolleisten-Symbolbreite */
+    /* Hauptsymbolleistenbreite */
     #nav-bar [id="back-button"] .toolbarbutton-icon {
         width: 28px !important;
         height: 28px !important;
