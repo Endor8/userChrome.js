@@ -5,11 +5,11 @@ Es stehen 6 verschiedene Scripte dazu zur Verfügung.
 * Skript 1:  Mehrzeilige Tableiste (CSS) Unbegrenzte Anzahl von Tabzeilen,    
 Tabs ziehen und ablegen möglich, sowie Anpassungen für Symbolleisten.         
 
-* Skript 2: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,
+* Skript 2: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
 kann aber im Script in Zeile 22 geändert werden.     
 Tabs ziehen und ablegen möglich, sowie Anpassungen für Symbolleisten.
      
-* Skript 3: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,
+* Skript 3: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
 kann aber im Script in Zeile 22 geändert werden.      
 Tabs ziehen und ablegen möglich, sowie Anpassungen für Symbolleisten.           
 
