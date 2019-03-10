@@ -94,7 +94,7 @@ function MultiRowTabLiteforFx() {
     .urlbar-textbox-container {
         max-height: 26px !important;
     }
-    /* Hauptsymbolleisten-Symbolbreite */
+    /* Hauptsymbolleistenbreite */
     #nav-bar [id="back-button"] .toolbarbutton-icon {
         width: 28px !important;
         height: 28px !important;
@@ -116,14 +116,14 @@ function MultiRowTabLiteforFx() {
         min-width: var(--arrowpanel-padding) !important;
         font-size: 8px !important;
     }
-    /* Lesezeichen-Symbolleiste toolbarbutton-badge */
+    /* Lesezeichenleiste toolbarbutton-badge */
     #PersonalToolbar .toolbarbutton-badge {
         margin-block-start: -2px !important;
         margin-inline-end: -3px !important;
         min-width: var(--arrowpanel-padding) !important;
         font-size: 8px !important;
     }
-    /* Lesezeichen-Symbolleiste */
+    /* Lesezeichenleiste */
     #PersonalToolbar {
         padding: 0px 2px 0px 2px !important;
         visibility: visible !important;
