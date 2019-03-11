@@ -1,0 +1,38 @@
+    scrollbar {
+        position: relative !important;
+        z-index: 2147483647 !important;
+    }
+    :not(select):not(hbox) > scrollbar {
+        -moz-appearance: none !important;
+        position: relative !important;
+        background-color: transparent !important;
+    }
+    :not(select):not(hbox) > scrollbar thumb {
+        -moz-appearance: none !important;
+        position: relative !important;
+        background-color: transparent !important;
+    }
+    :not(select):not(hbox) > scrollbar[orient="vertical"] {
+        margin-inline-start: -12px !important;
+    }
+    :not(select):not(hbox) > scrollbar[orient="horizontal"] {
+        margin-block-start: -12px !important;
+    }
+    :not(select):not(hbox) > scrollbar[orient="vertical"] thumb {
+        border-right: 2px solid hsla(0, 0%, 50%, 1) !important;
+        min-height: 12px !important;
+    }
+    :not(select):not(hbox) > scrollbar[orient="horizontal"] thumb {
+        border-bottom: 2px solid hsla(0, 0%, 50%, 1) !important;
+        min-width: 12px !important;
+    }
+    :not(select):not(hbox) > scrollbar:hover {
+        background-color: hsla(0, 0%, 50%, .1) !important;
+    }
+    :not(select):not(hbox) > scrollbar:hover thumb {
+        background-color: hsla(0, 0%, 50%, 1) !important;
+        border-radius: 6px !important;
+    }
+    :not(select):not(hbox) > scrollbar > scrollbarbutton {
+        display: none !important;
+    }
