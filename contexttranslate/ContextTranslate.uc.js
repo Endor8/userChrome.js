@@ -1,3 +1,5 @@
+// ContextTranslate.uc.js
+
 (function () {
 	if (location != 'chrome://browser/content/browser.xul')
 		return;
@@ -7,9 +9,9 @@
 			let t = (message.data !== '');
 			let e = (document.charset || document.characterSet);
 			if (t) {
-				gBrowser.loadOneTab('http://translate.google.com/#auto/de/' + encodeURIComponent(message.data), null, null, null, false, false);
+				openWebLinkIn('https://translate.google.com/#view=home&op=translate&sl=auto&tl=de&text=' + encodeURIComponent(message.data), 'tab');
 			} else {
-				gBrowser.loadOneTab('http://translate.google.com/translate?u=' + encodeURIComponent(gBrowser.currentURI.spec) + '&hl=de-DE&ie=' + e + '&sl=auto&tl=de-DE', null, null, null, false, false);
+				openWebLinkIn('https://translate.google.com/translate?u=' + encodeURIComponent(gBrowser.currentURI.spec) + '&hl=de-DE&ie=' + e + '&sl=auto&tl=de-DE', 'tab');
 			};
 			browserMM.removeMessageListener('getSelection', listener, true);
 		});
