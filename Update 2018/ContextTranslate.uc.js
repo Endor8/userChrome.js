@@ -9,9 +9,9 @@
 			let t = (message.data !== '');
 			let e = (document.charset || document.characterSet);
 			if (t) {
-				openWebLinkIn('http://translate.google.com/#auto/de/' + encodeURIComponent(message.data), 'tab');
+				openWebLinkIn('https://translate.google.com/#view=home&op=translate&sl=auto&tl=de&text=' + encodeURIComponent(message.data), 'tab');
 			} else {
-				openWebLinkIn('http://translate.google.com/translate?u=' + encodeURIComponent(gBrowser.currentURI.spec) + '&hl=de-DE&ie=' + e + '&sl=auto&tl=de-DE', 'tab');
+				openWebLinkIn('https://translate.google.com/translate?u=' + encodeURIComponent(gBrowser.currentURI.spec) + '&hl=de-DE&ie=' + e + '&sl=auto&tl=de-DE', 'tab');
 			};
 			browserMM.removeMessageListener('getSelection', listener, true);
 		});
@@ -19,8 +19,8 @@
 	}
 	let menuitem = document.createElement('menuitem');
 	menuitem.id = 'context-googletranslate';
-	menuitem.setAttribute('label', ' \u00dcbersetzen');
-	menuitem.setAttribute('tooltiptext', 'Mit GoogleTranslate \u00fcbersetzen');
+	menuitem.setAttribute('label', 'Übersetzen');
+	menuitem.setAttribute('tooltiptext', 'Mit GoogleTranslate übersetzen');
 	menuitem.setAttribute('oncommand', '(' + translate.toString() + ')()');
 	menuitem.classList.add('menuitem-iconic');
 	//Wer kein Icon möchte kann die nächsten beiden Zeilen auskommentieren/löschen
