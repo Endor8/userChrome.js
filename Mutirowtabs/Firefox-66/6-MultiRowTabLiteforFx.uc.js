@@ -117,6 +117,7 @@ function MultiRowTabLiteforFx() {
     }
     /* Lesezeichenleiste */
     #PersonalToolbar {
+        min-height: 20px !important;
         padding: 0px 2px 0px 2px !important;
         visibility: visible !important;
     }
@@ -124,17 +125,19 @@ function MultiRowTabLiteforFx() {
         height: 20px !important;
     }
     #PersonalToolbar #PlacesToolbarItems {
+        min-height: 20px !important;
         max-height: 20px !important;
     }
     #PersonalToolbar #PlacesToolbarItems toolbarbutton.bookmark-item {
+        min-height: 20px !important;
         max-height: 20px !important;
         max-width: 160px !important;
         padding: 0px 2px 0px 2px !important;
         margin: 0 !important;
     }
     #PersonalToolbar toolbarbutton.chromeclass-toolbar-additional {
-        max-width: 24px !important;
-        max-height: 24px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
         padding: 0px 3px 0px 3px !important;
         margin: 0 !important;
     } `;
