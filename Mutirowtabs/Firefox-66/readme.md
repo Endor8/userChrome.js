@@ -50,13 +50,13 @@ MultiRowTabLiteforFx.uc.js
 Fixieren der Tabbreite:   
 
 ```css
-tabs tab:not([pinned]){flex-grow:1;}
+tabs tab[fadein]:not([pinned]){flex-grow:1;}
 ```
 
 ↑Mit obigem CSS Code:
 
 ```css
-tabs tab:not([pinned]) {
+tabs tab[fadein]:not([pinned]) {
     flex-grow: 1 !important;
     min-width: 100px !important;/* Minimale Tabbreite  76px */
     max-width: 100px !important;/* Maximale Tabbreite 225px */
@@ -67,7 +67,7 @@ Werte mit Vorsicht verändern.
 Oder CSS Code in userChrome.css einfügen
   
 ```css  
-tabs tab:not([pinned]) {
+tabs tab[fadein]:not([pinned]) {
     min-width: 100px !important;/* Minimale Tabbreite  76px */
     max-width: 100px !important;/* Maximale Tabbreite 225px */
 }
