@@ -90,7 +90,7 @@
    menuitem.setAttribute('accesskey', "r");
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:preferences#containers", "tab");');
    menupopup.appendChild(menuitem);   
-   
+    
    menuitem = document.createElement('menuitem');
    menuitem.setAttribute('label', "about:debugging");
    menuitem.setAttribute('tooltiptext', "about:debugging öffnen");
@@ -104,6 +104,13 @@
    menuitem.setAttribute('accesskey', "h");
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:home", "tab");');
    menupopup.appendChild(menuitem);
+   
+   menuitem = document.createElement('menuitem');
+   menuitem.setAttribute('label', "about:license");
+   menuitem.setAttribute('tooltiptext', "about:license öffnen");
+   menuitem.setAttribute('accesskey', "l");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:license", "tab");');
+   menupopup.appendChild(menuitem);   
    
    menuitem = document.createElement('menuitem');
    menuitem.setAttribute('label', "about:memory");
@@ -147,10 +154,18 @@
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:preferences", "tab");');
    menupopup.appendChild(menuitem);
    
+   menupopup.appendChild(menuitem);
+   menuitem = document.createElement('menuitem');
+   menuitem.setAttribute('label', "about:privatebrowsing");
+   menuitem.setAttribute('tooltiptext', "about:privatebrowsing öffnen");
+   menuitem.setAttribute('accesskey', "b");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:privatebrowsing", "tab");');
+   menupopup.appendChild(menuitem);
+   
    menuitem = document.createElement('menuitem');
    menuitem.setAttribute('label', "about:profiles");
    menuitem.setAttribute('tooltiptext', "about:profiles öffnen");
-   menuitem.setAttribute('accesskey', "i");
+   menuitem.setAttribute('accesskey', "l");
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:profiles", "tab");');
    menupopup.appendChild(menuitem);
    
@@ -160,6 +175,13 @@
    menuitem.setAttribute('accesskey', "v");
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:serviceworkers", "tab");');
    menupopup.appendChild(menuitem); 
+   
+   menuitem = document.createElement('menuitem');
+   menuitem.setAttribute('label', "about:studies");
+   menuitem.setAttribute('tooltiptext', "about:studies öffnen");
+   menuitem.setAttribute('accesskey', "i");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:studies", "tab");');
+   menupopup.appendChild(menuitem);  
    
    menuitem = document.createElement('menuitem');
    menuitem.setAttribute('label', "about:support");
@@ -274,6 +296,14 @@
    menupopup.appendChild(menuitem);
    
    menuitem = document.createElement('menuitem');
+   menuitem.id = "context-about:license";
+   menuitem.setAttribute('label', "about:license");
+   menuitem.setAttribute('tooltiptext', "about:license öffnen");
+   menuitem.setAttribute('accesskey', "n");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:license", "tab");');
+   menupopup.appendChild(menuitem);   
+   
+   menuitem = document.createElement('menuitem');
    menuitem.id = "context-about:memory";
    menuitem.setAttribute('label', "about:memory");
    menuitem.setAttribute('tooltiptext', "about:memory öffnen");
@@ -293,7 +323,7 @@
    menuitem.id = "context-about:newtab";
    menuitem.setAttribute('label', "about:newtab");
    menuitem.setAttribute('tooltiptext', "about:newtab");
-   menuitem.setAttribute('accesskey', "n");
+   menuitem.setAttribute('accesskey', "w");
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:newtab", "tab");');
    menupopup.appendChild(menuitem);   
    
@@ -322,10 +352,18 @@
    menupopup.appendChild(menuitem);
    
    menuitem = document.createElement('menuitem');
+   menuitem.id = "context-about:privatebrowsing";
+   menuitem.setAttribute('label', "about:privatebrowsing");
+   menuitem.setAttribute('tooltiptext', "about:privatebrowsing öffnen");
+   menuitem.setAttribute('accesskey', "r");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:privatebrowsing", "tab");');
+   menupopup.appendChild(menuitem);
+   
+   menuitem = document.createElement('menuitem');
    menuitem.id = "context-about:profiles";
    menuitem.setAttribute('label', "about:profiles");
    menuitem.setAttribute('tooltiptext', "about:profiles öffnen");
-   menuitem.setAttribute('accesskey', "i");
+   menuitem.setAttribute('accesskey', "l");
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:profiles", "tab");');
    menupopup.appendChild(menuitem);
    
@@ -335,6 +373,14 @@
    menuitem.setAttribute('tooltiptext', "about:serviceworkers öffnen");
    menuitem.setAttribute('accesskey', "v");
    menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:serviceworkers", "tab");');
+   menupopup.appendChild(menuitem); 
+   
+   menuitem = document.createElement('menuitem');
+   menuitem.id = "context-about:studies";
+   menuitem.setAttribute('label', "about:studies");
+   menuitem.setAttribute('tooltiptext', "about:studies öffnen");
+   menuitem.setAttribute('accesskey', "i");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:studies", "tab");');
    menupopup.appendChild(menuitem); 
    
    menuitem = document.createElement('menuitem');
