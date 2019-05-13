@@ -1,0 +1,796 @@
+/* AGENT_SHEET */
+    @namespace url(http://www.w3.org/1999/xhtml);
+
+    /*  Vorhersage klick auf Fahnen   */
+
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/wetter/schweden/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/norwegen/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/finnland/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/daenemark/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/niederlande/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/belgien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/grossbritannien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/irland/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/island/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/griechenland/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/luxemburg/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/frankreich/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/spanien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/oesterreich/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/schweiz/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/italien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/tschechische-republik/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/slowakei/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/slowenien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/polen/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/russische-foederation/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/estland/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/lettland/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/litauen/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/ukraine/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/ungarn/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/rumaenien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/bulgarien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/tuerkei/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/griechenland/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/serbien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/kroatien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/bosnien-herzegowina/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/montenegro/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/mazedonien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/albanien/"),
+                   url-prefix("https://www.wetterkontor.de/de/wetter/portugal/")
+                   {
+    #header, H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider,
+    #wkFooter2, .cc_banner.cc_container.cc_container--open, #shr-admin-badge  {display: none !important;}
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #content > DIV > DIV:first-child > UL:nth-child(3),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
+    #content > DIV > DIV:first-child > UL:nth-child(8) > LI > A,
+    #content > DIV > DIV:first-child > DIV:nth-child(8) > A,
+    .uk-panel,
+    .uk-width-small-1-2.uk-width-medium-1-2, 
+    .uk-panel.uk-panel-box{display: none !important;}
+
+    #page{box-shadow: none!important; border: none !important;}
+ 
+    #content {height: 670px !important;}
+
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > UL:last-child {margin-top: 100px !important; margin-bottom: -45px !important;}
+
+    H1{margin-left: 210px !important;}
+    }
+
+	
+    @-moz-document url("https://www.wetterkontor.de/de/wetter/deutschland/") {
+    #header, H1,H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, 
+    .uk-grid.uk-grid-small.uk-grid-divider,	#wkFooter2, .uk-list, .cc_banner.cc_container.cc_container--open {display: none !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
+    #content > DIV > DIV:first-child > H1, #shr-admin-badge,
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
+
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+
+    .uk-width-small-1-2.uk-width-medium-1-2,
+    .uk-text-right.uk-text-small.uk-text-muted, .uk-form-row,
+    .uk-panel.uk-panel-box{display: none !important;}
+
+    #page_margins { margin-top: -115px !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > UL:last-child {margin-top: 100px !important; margin-bottom: -45px !important;}
+
+    #wkRCol > TABLE > TBODY > TR > TD:first-child > DIV > DIV:nth-child(8), 
+    #wkRCol > TABLE > TBODY > TR > TD:first-child > DIV > DIV:nth-child(9) {
+    width: 0px !important;}
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/wetter-vorhersage/deutschland/muenchen"){
+    #header, H1,H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider, 
+    #wkFooter2, .uk-list, .cc_banner.cc_container.cc_container--open  {display: none !important;}
+	
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A, 
+    #content > DIV > DIV:first-child > H1, #shr-admin-badge,
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8), 
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
+    .uk-width-small-1-2.uk-width-medium-1-2,
+    .uk-text-right.uk-text-small.uk-text-muted, .uk-form-row,
+    .uk-panel.uk-panel-box{display: none !important;}
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/wetter-vorhersage/deutschland/(*)"){
+    #page {margin-top: -10px !important;}
+    .breadcrumb {margin-top: 5px !important;}
+    #header > DIV:first-child, #header > DIV:last-child, #wkFooter2,
+    #content > DIV > DIV:last-child > DIV:nth-child(14), #shr-admin-badge,
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child
+    {display: none !important;}
+    }
+
+    @-moz-document url("https://www.wetterkontor.de/de/wetter/deutschland/bayern.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/schleswigholstein-hamburg.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/badenwuerttemberg.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/brandenburg-berlin.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/niedersachsen.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/niedersachsen-bremen.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/hessen.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/mecklenburgvorpommern.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/nordrheinwestfalen.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/rheinlandpfalz-saarland.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/sachsen.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/sachsenanhalt.asp"),
+                   url("https://www.wetterkontor.de/de/wetter/deutschland/thueringen.asp"){
+
+    #header, H1,H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider,
+    #wkFooter2, .cc_banner.cc_container.cc_container--open, #bnr, #maine0d59d447b, .mir_info.mir_info-outside  {display: none !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
+    #content > DIV > DIV:first-child > H1, 
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
+    .uk-width-small-1-2.uk-width-medium-1-2, #shr-admin-badge,
+    .uk-text-right.uk-text-small.uk-text-muted, .uk-form-row,
+    .uk-panel.uk-panel-box{display: none !important;}
+
+    #page_margins { margin-top: -100px !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+
+    #content > DIV > DIV:first-child > DIV:nth-child(3) > UL:last-child > LI:first-child {margin-top: 100px !important; margin-bottom: -50px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(3) > UL:last-child > LI:last-child  {margin-top: 100px !important; margin-bottom: -50px !important;}
+    }
+
+
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/wetter/deutschland/wetter-vorhersage-ort.asp"){
+    #header, H1, H2, HR, P, #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  
+    .uk-panel.uk-panel-box.uk-margin, 
+    .uk-grid.uk-grid-small.uk-grid-divider, #wkFooter2, .cc_banner.cc_container.cc_container--open  {display: none !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
+    #content > DIV > DIV:first-child > H1, #shr-admin-badge,
+    #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
+    #content > DIV > DIV:first-child > DIV:nth-child(6) > DIV > UL,
+    #content > DIV > DIV:first-child > DIV:first-child,
+    #content > DIV > DIV:first-child > DIV:nth-child(20),
+    #content > DIV > DIV:first-child > P:nth-child(27),
+    #content > DIV > DIV:first-child > P:last-child,
+    #content > DIV > DIV:first-child > DIV:nth-child(14) > DIV,
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > P:last-child > A,
+    .uk-subnav.uk-subnav-pill, .uk-subnav.uk-subnav-line,
+    .uk-width-small-1-2.uk-width-medium-1-2,
+    .uk-form-row    {display: none !important;}
+
+    #content > DIV > DIV:first-child > UL:nth-child(9) > LI:nth-child(2),
+    #content > DIV > DIV:first-child > UL:nth-child(9) > LI:first-child,
+    #content > DIV > DIV:first-child > UL:nth-child(9) > LI:nth-child(3),
+    #content > DIV > DIV:first-child > UL:nth-child(9) > LI:last-child,
+    #content > DIV > DIV:first-child > UL:nth-child(17) > LI:first-child,
+    #content > DIV > DIV:first-child > UL:nth-child(17) > LI:nth-child(2),
+    #content > DIV > DIV:first-child > UL:nth-child(17) > LI:nth-child(3),
+    #content > DIV > DIV:first-child > UL:nth-child(17) > LI:last-child
+    {max-width: 150px !important; margin-left: 15px !important; margin-right: -15px !important;}
+
+
+    #warnungen > H2{margin-left: 10px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > DIV > DIV:last-child{min-width: 200px !important;}
+    #content > DIV > DIV:first-child > H2:nth-child(5){ margin-left: 70px !important; margin-top: -25px !important;}
+    #content > DIV > DIV:first-child > H2:nth-child(8){ margin-left: 130px !important;}
+    #content > DIV > DIV:first-child > H2:nth-child(16){ margin-left: 220px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > P:nth-child(2) > SPAN { margin-left: 12px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > H3 { margin-left: 12px !important; margin-right: -10px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > DIV > DIV:first-child {width: 360px !important;
+    margin-left: 10px !important; margin-right: -30px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > DIV > DIV:first-child > DL {width: 500px !important;
+    margin-left: 10px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > DIV > DIV:nth-child(2),
+    #content > DIV > DIV:first-child > DIV:nth-child(23) > DIV > DIV:last-child  {max-width: 110px !important; }
+    }
+
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-wind.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-wetter.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-niederschlag.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-temperatur.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-sonnenscheindauer.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-druck.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-feuchte.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-gefuehlte-temperatur.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-sichtweite.asp"){
+    #header, H1, H2, P, .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5),
+    .uk-text-right.uk-text-small.uk-text-muted, #content > DIV > DIV:first-child > ARTICLE > UL > LI:last-child, #content > DIV > DIV:first-child >
+    ARTICLE > UL > LI:first-child > A, 
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .uk-panel.uk-panel-box.uk-margin, #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child
+    > UL > LI:first-child > A, .cc_banner.cc_container.cc_container--open, #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > HR,
+    #start > IMG {display: none !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:last-child > LI:first-child {margin-top: -30px !important; }
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:last-child > LI:last-child{margin-top: -30px !important; }
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:first-child > LI:nth-child(7){margin-left: 215px !important;}
+	
+    #shr-admin-badge,	
+    #content > DIV > DIV:first-child > ARTICLE > UL > LI:first-child,
+    #content > DIV > DIV:first-child > ARTICLE > UL > LI:last-child {display: none !important;}
+
+    .uk-panel.uk-panel-box {max-height: 42px !important; margin-top: -8px !important;}
+
+    .uk-h4.wk-header-margins {margin-bottom: 2px !important; margin-top: 3px !important;}
+
+    LI{margin-top: 3px !important;}
+
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+    }
+
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/radar/radar-vorhersage.asp"){
+    #header, H1, H2, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, 
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,.uk-width-medium-1-1, .uk-width-large-2-5.uk-width-medium-1-2,  
+    #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), .uk-text-right.uk-text-small.uk-text-muted, 
+    .cc_banner.cc_container.cc_container--open, .uk-panel.uk-panel-box.uk-margin, #shr-admin-badge {display: none !important;}	
+		
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+		
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/radar/radar-ost.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/radar/radar-suedost.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/radar/radar-nordost.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/radar/radar-suedwest.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/radar/radar-west.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/radar/radar-nordwest.asp"){
+		
+    #header, H1, H2, P,   .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  
+    #wkFooter2, .uk-text-right.uk-text-small.uk-text-muted, .uk-width-small-1-2.uk-width-medium-1-3.uk-row-first,
+    #content > DIV > DIV:first-child > DIV:nth-child(3) > DIV > DIV:first-child > UL > LI > A ,
+    #content > DIV > DIV:first-child > DIV:nth-child(3) > DIV > DIV:first-child > UL, 
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #shr-admin-badge, .cc_banner.cc_container.cc_container--open {display: none !important;}	
+	
+    #r1 {margin-left: 50px !important;}
+
+    #content > DIV > DIV:first-child > DIV:nth-child(3){width: 500px !important; margin-left: 55px !important;}
+    #content > DIV > DIV:first-child > DIV:nth-child(3) > DIV {width: 490px !important; margin-left: 5px !important; 
+    background: transparent !important; }
+    .uk-subnav.uk-subnav-pill.uk-align-medium-right {min-width: 380px !important;}    
+
+	
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/radar.asp")	               {
+		
+    #header, H1, H2, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, 
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), 
+    .uk-text-right.uk-text-small.uk-text-muted, #shr-admin-badge, .uk-panel.uk-panel-box.uk-margin,
+    #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium, div.uk-grid:nth-child(3),
+    #page_margins > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1),
+    div.uk-panel:nth-child(14), .cc_banner.cc_container.cc_container--open {display: none !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/bio/uv-index.asp")	{
+
+    #header, H1, H2, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, 
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), 
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .uk-text-right.uk-text-small.uk-text-muted,#shr-admin-badge, .uk-panel.uk-panel-box.uk-margin, 
+    .uk-width-large-2-5.uk-width-medium-1-2, H5, .cc_banner.cc_container.cc_container--open, #start > IMG
+    {display: none !important;}
+    }
+	
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-hasel.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-erle.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-birke.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-graeser.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-ambrosia.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-beifuss.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-roggen.asp"),
+                   url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-esche.asp"){
+
+    #header, H1, H2, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, .uk-breadcrumb,
+    .uk-width-large-2-5.uk-width-medium-1-3,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), .uk-text-right.uk-text-small.uk-text-muted,
+    .uk-panel.uk-panel-box.uk-margin, .uk-width-large-2-5.uk-width-medium-1-2, H5, TABLE, .uk-panel.uk-panel-box.uk-panel-box-primary, #start > IMG,
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .cc_banner.cc_container.cc_container--open {display: none !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+    }
+
+    @-moz-document url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-bayern.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-badenwuerttemberg.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-brandenburg-berlin.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-hessen.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-mecklenburgvorpommern.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-niedersachsen-bremen.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-nordrheinwestfalen.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-rheinlandpfalz-saarland.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-sachsen.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-sachsenanhalt.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-schleswigholstein-hamburg.asp"),
+                   url-prefix("https://www.wetterkontor.de/warnungen/wetterwarnungen-thueringen.asp"){
+
+    #header,H1, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right, #content > DIV > DIV:first-child > P:nth-child(6),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, .uk-breadcrumb,
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), .uk-panel.uk-panel-box.uk-margin, .banner728x90,
+    .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium, .uk-width-1-1.uk-hidden-small.uk-text-center,
+    #content > DIV > DIV:first-child > P:nth-child(3), #content > DIV > DIV:first-child > P:nth-child(2),
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child > DIV,
+    .cc_banner.cc_container.cc_container--open	{display: none !important;}
+   
+    #page{box-shadow: none!important; border: none !important;}
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+    
+    DIV[class="warnungen_box uk-panel uk-panel-box uk-panel-box-primary"]{margin-top: -300px !important;}
+
+    #karte {margin-left: -100px !important;}
+    }
+
+    @-moz-document url-prefix("https://www.wetterkontor.de/warnungen/warnung.asp"){
+
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,		
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(7),
+    .mir_container.mir_ad-800, div.uk-grid-small > div:nth-child(2),
+    div.uk-grid:nth-child(3), .banner728x90, #shr-admin-badge, 
+    #content > DIV > DIV:first-child > DIV:nth-child(8), #content > DIV > DIV:first-child > DIV:nth-child(9),
+    .cc_banner.cc_container.cc_container--open {display: none !important;}	
+
+    body {margin-left: 20px !important;}	
+	
+    #content {height: 700px !important; width: 1200px !important;}
+    
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    .uk-grid.uk-grid-width-medium-1-2 {margin-left: 0px !important;}
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important; }
+	
+    #karte {margin-left: -110px !important; margin-top: 80px !important;}
+    }
+
+
+    @-moz-document url("https://www.wetterkontor.de/warnungen/"){
+	
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,
+    #content > DIV > DIV:first-child > DIV:first-child > UL > LI:nth-child(3),	
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
+    .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
+    div.uk-grid-small:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1),
+    div.uk-grid-small:nth-child(1) > div:nth-child(2), div.uk-grid:nth-child(3),
+    .cc_banner.cc_container.cc_container--open {display: none !important;}	
+	
+    body {margin-left: 25px !important;}	
+	
+    #content {height: 700px !important; width: 1200px !important;}
+  
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    .uk-grid.uk-grid-width-medium-1-2 {margin-left: 0px !important;}
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important; }
+    }
+
+
+    @-moz-document url-prefix("https://www.wetterkontor.de/wetter-warnungen/"){
+
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
+    .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
+    div.uk-panel:nth-child(15), 
+    #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
+    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium,
+    .uk-panel.uk-panel-box.uk-margin,
+    #content > DIV > DIV:first-child > DIV:nth-child(7),
+    #content > DIV > DIV:first-child > P:nth-child(4),
+    #content > DIV > DIV:first-child > P:nth-child(5),
+    .cc_banner.cc_container.cc_container--open {display: none !important;}	
+	
+    #content {height: 700px !important; }
+    
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important; }
+	
+    #content > DIV > DIV:first-child > DIV:nth-child(6) > UL {margin-left: 0px !important;}
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/wetter-vorhersage/deutschland/"){
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-width-large-2-5.uk-width-medium-1-3, 
+    #content > DIV > DIV:first-child > DIV:first-child,
+    #content > DIV > DIV:first-child > DIV:nth-child(2) > UL > LI:nth-child(5),
+    #content > DIV > DIV:first-child > DIV:nth-child(21), 
+    #content > DIV > DIV:first-child > FORM > DIV,
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #aktuelle_beobachtung > P:last-child, div.uk-panel:nth-child(15),
+    #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
+    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium,
+    #content > DIV > DIV:first-child > DIV:nth-child(2) > UL > LI:last-child,
+    #content > DIV > DIV:first-child > DIV:nth-child(2) > UL > LI:nth-child(6),
+    #content > DIV > DIV:first-child > P:nth-child(27),
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
+    .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
+    .cc_banner.cc_container.cc_container--open {display: none !important;}
+	
+    .uk-panel, H1, H2, #content > DIV > DIV:first-child > P:nth-child(4),
+    .uk-subnav.uk-subnav-line {margin-left: 30px !important;}
+	
+    #content > DIV > DIV:first-child > DIV:nth-child(7){margin-left: -15px !important;}
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/biowetter/"){
+    #content > DIV > DIV:first-child > DIV:first-child > UL > LI:last-child,
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-width-large-2-5.uk-width-medium-1-2, #content > DIV > DIV:first-child > DIV:nth-child(21),
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
+    .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
+    .cc_banner.cc_container.cc_container--open, div.uk-panel:nth-child(6),
+    #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
+    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium,
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .uk-panel.uk-panel-box.uk-margin {display: none !important;}
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+
+    body {margin-top: 25px !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/blitze/"){
+    #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-width-large-2-5.uk-width-medium-1-3, #content > DIV > DIV:first-child > DIV:nth-child(21),
+    #content > DIV > DIV:first-child > ARTICLE > P:nth-child(7),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(8),
+    #content > DIV > DIV:first-child > ARTICLE > P:nth-child(9),
+    #content > DIV > DIV:first-child > ARTICLE > P:nth-child(10),
+    #content > DIV > DIV:first-child > ARTICLE > P:nth-child(11),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(12),
+    #content > DIV > DIV:first-child > ARTICLE > P:nth-child(13),
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
+    div.uk-panel:nth-child(15), div.uk-panel:nth-child(5),
+    #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
+    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium,
+    .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(6),
+    .cc_banner.cc_container.cc_container--open {display: none !important;}
+
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}	
+	
+    H1{margin-left: 160px !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+    }		
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/wetter/europa/"){
+    #header,H1, H2, .uk-width-large-2-5.uk-width-medium-1-3, .uk-text-right, .uk-text-muted, #content > DIV > DIV:first-child > ARTICLE >
+    DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5),
+    .uk-panel, .div_part,#content > DIV > DIV:first-child > P:nth-child(2), .uk-grid.uk-grid-small.uk-grid-match,
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .cc_banner.cc_container.cc_container--open, #start > IMG {display: none !important;}
+	
+    #page{box-shadow: none!important; border: none !important;}	
+	
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/pegel/"){
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #header, H1, H2, P, #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), #shr-admin-badge,
+    #content > DIV > DIV:first-child > DIV, #content > DIV > DIV:first-child > ARTICLE > DIV:last-child > HR,
+    .breadcrumb,.uk-width-large-2-5.uk-width-medium-1-3, #start > IMG, .cc_banner-wrapper {display: none !important;}	
+
+    .uk-panel.uk-panel-box.uk-margin {margin-top: -5px !important;}
+    }
+
+    @-moz-document domain(www.msn.com) {
+		
+	#nav a {color: #ffffff !important;}
+		
+	.head,	#header-common, .data-attribution,
+    #conditionalbanner, .pagingsection, #foot,NOSCRIPT, .addfavorite, .gps, .actions, #precontent, 
+    .newlist, .-axuqt, .aaiyvru, div.buttons:nth-child(3), .aside, div.normalsection:nth-child(4) > div:nth-child(1) > div:nth-child(1),
+	div.normalsection:nth-child(6), div.normalsection:nth-child(5),	.-aqttvqlehyju, #prefooter, .asidead {display: none! important;}
+
+	#maincontent{margin-top: 0px !important;}
+    #nav{background:#3c6ea7 !important; margin-top: 0px !important; }
+	
+    div.outer:nth-child(2) {margin-left: 50px !important;}
+    }
+	
+	
+	@-moz-document url-prefix("https://www.daswetter.com/wetterkarten/"),
+	               url-prefix("https://www.daswetter.com/wetter_"){
+	body{margin-left: -30px !important; margin-top: -50px !important;}		
+	
+	#cabecera {margin-left: 30px !important;}
+	}
+	
+    @-moz-document domain(www.daswetter.com) {.estado-actual > span:nth-child(1) > span:nth-child(2), 
+	.publicidad, ul.enlaces:nth-child(2), span.secundaria:nth-child(4), .mas-noticias, .publicidad-pie,
+	span.columnas:nth-child(2) > span:nth-child(1) > span:nth-child(2), #bannerSupPC, 
+	span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(2), div.megabanner,
+	aside.caja, span.columnas:nth-child(6), span.franja:nth-child(7), #gpdr, #colBlanca,
+	span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1) > span:nth-child(1) > a:nth-child(2),
+	.lluvia-nieve > span:nth-child(1) > a:nth-child(2), #izquierda, #news1, .fuente,
+	#sat > div:nth-child(2), li.mLi:nth-child(6), .menu > ul:nth-child(1) > li:nth-child(6),
+	span.franja:nth-child(4), span.principal:nth-child(3), span.secundaria:nth-child(4), 
+	.navegacion > a:nth-child(1) > img:nth-child(1), #pubIzq, #pubAside, #pubAside2, .pubDesk, 
+	.modulo.bSocial, .modulo.fotoLoc, #divGota, .liCompartir.comp-svg, .icons-de.liCompartir,
+    #wrap > HEADER > ASIDE > DIV > _moz_generated_content_before, #bottom_newsletter, 
+	DIV[class="tCook"][style="display: block;"], #pubSup > DIV,#top30, .modulo.pubMapa, 
+	.modulo.fase-lunar.sl-1, .modulo.locC, FOOTER, #foots, .leySocial, #modulos > ASIDE, 
+	#pIzq, #top-prediccion, .galery-svg, #mod_izquierda, #mod_derechos_uso, span.boton:nth-child(2),
+    DIV[class="addthis-smartlayers addthis-smartlayers-desktop"][aria-labelledby="at4-share-label"], 
+	.locC.half-module, #pubInferior, .leaflet-bottom.leaflet-right, #contPag, #meteored_share,
+	.selectMapaLugar, #full_screen, .botonera, #selectRadarLugar, #selector_estilo, #selector_tipos,
+	span.secundaria:nth-child(2),
+    DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"],#mmt_vermas,#mapa-loc-shared {display: none !important;}
+
+    header #contSup .logo-svg img {display: none !important;}
+	
+	span.columnas:nth-child(3),.titulo-horas, .franja	{  
+    box-shadow: none!important; border: none !important;} 
+	
+    span.columnas:nth-child(1) > span:nth-child(1) > span:nth-child(1),
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1),
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1) > span:nth-child(1){  
+    box-shadow: none!important; border: none !important;} 
+	
+	[class="secundaria"]{ 
+	margin-left:35px !important; margin-right: -80px !important;}
+	
+    [class="prevision-hoy-horas"]{
+	margin-left:280px !important; margin-right: -280px !important; margin-top:30px !important;
+	margin-bottom: -50px !important; box-shadow: none!important;}
+	
+	[class="tabla-horas"]{
+	margin-right: -30px !important; margin-top:50px !important;
+	width: 730px !important;}
+	
+	[class="por-horas"]{ margin-top:-15px !important; }
+	
+	#divPestanas, #buscador,
+    .loc-dia {margin-left: 30px !important;}
+	
+	#cookies {margin-right: -30px !important;}
+
+	.grafica{margin-left: 15px !important; width: 740px !important;}
+	
+    .sin_prob{margin-left: 285px !important; margin-right: -255px !important;
+	margin-bottom: -70px !important; }
+	
+	span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(2)
+	{margin-left: 50px !important; margin-right: -30px !important; margin-top: 50px !important;}
+	
+	.titulo-horas{margin-left: 50px !important; margin-right: -30px !important;
+	margin-bottom: 30px !important; margin-top: -20px !important;}
+		
+	span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(1) > section:nth-child(1)
+	{margin-left: 15px !important; margin-right: 20px !important;}
+	span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(2) > section:nth-child(1) > table:nth-child(1) > tbody:nth-child(2)
+	{margin-left: 50px !important; margin-right: -30px !important;}
+	
+	.map-loc-titulo{margin-left: -70px !important;}
+
+    .dos-semanas .dia.activo::after {
+    border-right: 51px solid transparent !important;
+    border-left: 51px solid transparent !important;}
+
+    header #contSup{margin-left: -40px !important; 
+    box-shadow: none!important; border: none !important;}
+    .navegacion{margin-left: -100px !important; 
+    box-shadow: none!important; border: none !important;}
+
+    span.columnas:nth-child(2){margin-left: -270px !important; 
+    box-shadow: none!important; border: none !important;}
+	
+	#contenedorHora{margin-left: 70px !important;}
+	
+	#mod_derecha{margin-left: -145px !important;}
+	
+	#mods_cont
+	{width: 85% !important; margin-left: 60px !important;
+    box-shadow: none!important; border: none !important;}
+
+    #pCentro {margin-left: 120px !important;}	
+	
+    #mapid{min-width: 740px !important; min-height: 500px !important; 
+	margin-left: -80px !important;
+    box-shadow: none!important; border: none !important;}
+
+    #controles_mm {margin-left: -70px !important;}
+
+    #h1Ul > h1:nth-child(1){margin-left: 120px !important;}
+    #mapaAlertas{margin-left: 90px !important;}
+
+    #tipAlert{margin-left: 50px !important;}	
+
+    span.columnas:nth-child(5){margin-top: -50px !important;}
+    span.columnas:nth-child(2){margin-top: -60px !important;}
+
+    .subcabecera {padding-left: 20px !important; 
+    box-shadow: none!important; border: none !important;}
+
+    .dos-semanas{padding-left: 40px !important; 
+    box-shadow: none!important; border: none !important;}
+
+    .estado-actual, span.columnas:nth-child(1),
+    span.franja:nth-child(4),span.columnas:nth-child(5),
+    span.columnas:nth-child(6), span.columnas:nth-child(7){padding-left: 50px !important; 
+    box-shadow: none!important; border: none !important;}
+
+    .franjas{background: #FFFFFF !important; box-shadow: none!important; border: none !important; margin-left:-45px !important;}
+    .lluvia-nieve > span:nth-child(1){box-shadow: none!important; border: none !important;}
+
+    navegacion label{border: none !important;}	
+    }
+
+    @-moz-document domain(www.meteocentrale.ch) {
+    #header,#top,#left,#c8548,#right,#footer,#wetterapp_border > NOSCRIPT,#content > H1,#page > NOSCRIPT,
+    body > div:nth-child(10),body > div:nth-child(9), body > div:nth-child(16),body > div:nth-child(13), 
+    #lower-content > center:nth-child(6){display: none !important;}
+
+    #wetterapp_border{
+    margin-left: -30px !important;
+    margin-top: -10px !important;}
+    }
+
+    @-moz-document domain(www.wetter.net) {
+    header.row {background: transparent !important;}
+	
+    div.col-md-5:nth-child(3) {margin-top: 5px !important; margin-bottom: -30px !important; margin-left:-24px !important;}
+    .city-favs{margin-top: -10px !important; margin-left:-220px !important;}
+
+    .col-md-10 > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1) > p:nth-child(3),
+    .col-md-10 > ul:nth-child(1) > li:nth-child(2) > a:nth-child(1) > p:nth-child(3)	{background: white !important; 
+    color: black !important; font-weight: bold !important;}
+
+    #city_search_input {background: white !important; color: black !important; font-weight: bold !important;}
+	
+    .toggle-favs-icon-down:after ,
+    .toggle-favs-icon-up:after {
+    color: white !important;
+    }
+
+    #bodyContainer_switch > DIV:nth-child(5) > DIV > UL,
+    HTML > BODY > DIV:first-child, NAV, FOOTER, HTML > BODY > DIV:nth-child(12),
+    .upArrow, .row.social_share_city , .advertising_pubperform.row,
+    .col-sm-4.teaser_block, .advertising_city.col-xs-12, .advertising_left,
+    .col-sm-8.teaser_block.teaser_block_2, .teaser_container > div:nth-child(1),
+    div.container-fluid, .weather_container > div:nth-child(10), .share_buttons_float_right,
+    #banner, #sky, HTML > BODY > DIV:nth-child(9) > DIV > DIV > DIV, .col-md-3 > a:nth-child(1)
+    {display: none !important;}
+
+    .white.todayTextHeader{font-size: 24px !important;}
+    .white.center.todayText {font-size: 20px !important;}
+    p{font-size: 18px !important;}
+    }
+
+    @-moz-document domain(www.unwetterzentrale.de),
+                   domain(www.niederschlagsradar.de),
+                   url-prefix(http://db.eurad.uni-koeln.de/prognose/data/aktuell/trh_eur_1h_movd1.gif),
+                   url-prefix(https://www.dwd.de/DWD/wetter/wv_allg/deutschland/film/vhs_deutschland.jpg),
+                   url-prefix(https://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/wx_deutschland.jpg),
+                   domain(www.meteox.de){
+    HTML {background: #FFFFFF !important;} 
+    }
+
+	@-moz-document url-prefix("https://www.wetteronline.de/regenradar/berlin-bundesland"),
+	               url-prefix("https://www.wetteronline.de/regenradar/hamburg-bundesland"),
+	               url-prefix("https://www.wetteronline.de/regenradar/bremen-bundesland"),				   
+				   url-prefix("https://www.wetteronline.de/regenradar/mecklenburg-vorpommern"),
+	               url-prefix("https://www.wetteronline.de/regenradar/niedersachsen"),
+	               url-prefix("https://www.wetteronline.de/regenradar/nordrhein-westfalen"),
+	               url-prefix("https://www.wetteronline.de/regenradar/sachsen"),
+				   url-prefix("https://www.wetteronline.de/regenradar/bayern"),
+	               url-prefix("https://www.wetteronline.de/regenradar/baden-wuerttemberg"),
+	               url-prefix("https://www.wetteronline.de/regenradar/thueringen"),
+	               url-prefix("https://www.wetteronline.de/regenradar/sachsen-anhalt"),
+	               url-prefix("https://www.wetteronline.de/regenradar/saarland"),				   
+				   url-prefix("https://www.wetteronline.de/regenradar/hessen"),
+	               url-prefix("https://www.wetteronline.de/regenradar/schleswig-holstein"),
+	               url-prefix("https://www.wetteronline.de/regenradar/brandenburg-bundesland"),
+	               url-prefix("https://www.wetteronline.de/regenradar/rheinland-pfalz"){
+	
+	#top, #searchbox, #favorites, #memberarea_wrapper, #woBillboard, div._3Sb_2c:nth-child(12),
+	#map-searchform, div.leaflet-top:nth-child(2), ._1KFpPt, div.leaflet-bottom:nth-child(4),
+	#content-navigation, #header	{display: none !important;}
+		
+	._1OzLNe {margin-bottom: 0px !important; margin-left: -120px !important;}
+	#content{margin-top: -100px !important;}	
+	}
+	
+	
