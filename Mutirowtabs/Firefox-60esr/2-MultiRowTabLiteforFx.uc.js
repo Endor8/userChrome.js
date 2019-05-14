@@ -33,9 +33,6 @@ function MultiRowTabLiteforFx() {
         height: var(--tab-min-height) !important;
     }
     [sizemode="fullscreen"] #window-controls { display: block; }
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
-        padding: 10px 12px !important;
-    }
     /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
     tabs scrollbox box {
@@ -43,8 +40,8 @@ function MultiRowTabLiteforFx() {
         max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto;
     }
-    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
-    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} 
+    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, 
+	   über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {
         height: var(--tab-min-height);
@@ -54,21 +51,7 @@ function MultiRowTabLiteforFx() {
     tab>.tab-stack{width:100%;}
     /* -- ausblenden -- */
     hbox.titlebar-placeholder:not([type="caption-buttons"]),#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    /* 000-addToolbarInsideLocationBar.uc.js Symbol */
-    #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 4px !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton#downloads-button .toolbarbutton-icon,
-    #ucjs-Locationbar-toolbar .webextension-browser-action .toolbarbutton-badge-stack {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 0 !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton:hover {
-        background-color: hsla(0,0%,70%,.3) !important;
-    } `;
+    `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);

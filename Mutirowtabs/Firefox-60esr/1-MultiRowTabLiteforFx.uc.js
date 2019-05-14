@@ -33,9 +33,6 @@ function MultiRowTabLiteforFx() {
         height: var(--tab-min-height) !important;
     }
     [sizemode="fullscreen"] #window-controls { display: block; }
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
-        padding: 10px 12px !important;
-    }
     /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
     tabs scrollbox box{display:flex;flex-wrap:wrap;}
@@ -48,28 +45,14 @@ function MultiRowTabLiteforFx() {
     tab>.tab-stack{width:100%;}
     /* -- ausblenden -- */
     hbox.titlebar-placeholder:not([type="caption-buttons"]),#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    /* 000-addToolbarInsideLocationBar.uc.js Symbol */
-    #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 4px !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton#downloads-button .toolbarbutton-icon,
-    #ucjs-Locationbar-toolbar .webextension-browser-action .toolbarbutton-badge-stack {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 0 !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton:hover {
-        background-color: hsla(0,0%,70%,.3) !important;
-    } `;
+    `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
     var style = ' \
     tabs tab:not(stack) { \
-        border-left: solid 1px hsla(0,0%,70%,.3) !important; \
-        border-right: solid 1px hsla(0,0%,70%,.3) !important; \
+        border-left: solid 1px hsla(0,0%,50%,.5) !important; \
+        border-right: solid 1px hsla(0,0%,50%,.5) !important; \
     } \
     tabs tab:after,tabs tab:before{display:none!important;} \
     ';

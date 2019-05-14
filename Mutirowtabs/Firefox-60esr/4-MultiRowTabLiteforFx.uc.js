@@ -15,10 +15,6 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* Titelleistenschaltflächen "- □ ×" Anpassung der Breite */
-    #titlebar-buttonbox .titlebar-button {
-        padding: 7px 17px !important;
-    }
     /* Sortierung der Symbolleisten - Reihenfolge */
     #main-window[tabsintitlebar="true"]:not([inFullscreen="true"]) #nav-bar {
         padding-right: 139px !important;
@@ -51,12 +47,9 @@ function MultiRowTabLiteforFx() {
         margin-bottom: calc(var(--tab-min-height) * -1 + 6px) !important;
     }
     #titlebar-buttonbox {
-        height: 28px !important;
+        height: var(--tab-min-height) !important;
     }
     [sizemode="fullscreen"] #window-controls { display: block; }
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
-        padding: 10px 12px !important;
-    }
     /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox,tabs>arrowscrollbox>scrollbox{display:block;}
     tabs scrollbox box {
@@ -64,8 +57,7 @@ function MultiRowTabLiteforFx() {
         max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto;
     }
-    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
-    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} 
+    #main-window[tabsintitlebar] tabs box>scrollbar{-moz-window-dragging:no-drag;} /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {
         height: var(--tab-min-height);
@@ -75,92 +67,7 @@ function MultiRowTabLiteforFx() {
     tab>.tab-stack{width:100%;}
     /* -- Ausblenden -- */
     hbox.titlebar-placeholder,#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    /* Breite der Navigationssymbolleiste */
-    #urlbar,.searchbar-textbox {
-        margin: 0 !important;
-        min-height: 26px !important;
-    }
-    #urlbar-zoom-button,
-    #nav-bar toolbarbutton,#nav-bar toolbaritem {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    /* Breite der Adressleiste und Suchleiste */
-    #page-action-buttons,
-    .search-go-container,
-    .urlbar-history-dropmarker {
-        height: 26px !important;
-    }
-    .urlbar-textbox-container {
-        max-height: 26px !important;
-    }
-    /* Hauptsymbolleistenbreite */
-    #nav-bar [id="back-button"] .toolbarbutton-icon {
-        width: 28px !important;
-        height: 28px !important;
-        padding: 4px !important;
-    }
-    #nav-bar [id="forward-button"] .toolbarbutton-icon {
-        width: 26px !important;
-        height: 26px !important;
-        padding: 4px !important;
-    }
-    #PanelUI-button {
-        margin-inline-start: 0px !important;
-        border-inline-start: none !important;
-    }
-    /* Hauptsymbolleiste toolbarbutton-badge */
-    #nav-bar .toolbarbutton-badge {
-        margin-block-start: 1px !important;
-        margin-inline-end: 0px !important;
-        min-width: var(--arrowpanel-padding) !important;
-        font-size: 8px !important;
-    }
-    /* Lesezeichenleiste toolbarbutton-badge */
-    #PersonalToolbar .toolbarbutton-badge {
-        margin-block-start: -2px !important;
-        margin-inline-end: -3px !important;
-        min-width: var(--arrowpanel-padding) !important;
-        font-size: 8px !important;
-    }
-    /* Lesezeichenleiste */
-    #PersonalToolbar {
-        padding: 0px 2px 0px 2px !important;
-        visibility: visible !important;
-    }
-    #PersonalToolbar > #personal-bookmarks {
-        height: 20px !important;
-    }
-    #PersonalToolbar #PlacesToolbarItems {
-        max-height: 20px !important;
-    }
-    #PersonalToolbar #PlacesToolbarItems toolbarbutton.bookmark-item {
-        max-height: 20px !important;
-        max-width: 160px !important;
-        padding: 0px 2px 0px 2px !important;
-        margin: 0 !important;
-    }
-    #PersonalToolbar toolbarbutton.chromeclass-toolbar-additional {
-        max-width: 24px !important;
-        max-height: 24px !important;
-        padding: 0px 3px 0px 3px !important;
-        margin: 0 !important;
-    }
-    /* 000-addToolbarInsideLocationBar.uc.js Symbol */
-    #ucjs-Locationbar-toolbar .toolbarbutton-1 .toolbarbutton-icon {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 4px !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton#downloads-button .toolbarbutton-icon,
-    #ucjs-Locationbar-toolbar .webextension-browser-action .toolbarbutton-badge-stack {
-        width: 24px !important;
-        height: 24px !important;
-        padding: 0 !important;
-    }
-    #ucjs-Locationbar-toolbar toolbarbutton:hover {
-        background-color: hsla(0,0%,70%,.3) !important;
-    } `;
+    `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
