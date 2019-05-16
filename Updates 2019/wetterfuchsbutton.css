@@ -771,23 +771,23 @@
 	@-moz-document url-prefix("https://www.wetteronline.de/regenradar/berlin-bundesland"),
 	               url-prefix("https://www.wetteronline.de/regenradar/hamburg-bundesland"),
 	               url-prefix("https://www.wetteronline.de/regenradar/bremen-bundesland"),				   
-				   url-prefix("https://www.wetteronline.de/regenradar/mecklenburg-vorpommern"),
+                       url-prefix("https://www.wetteronline.de/regenradar/mecklenburg-vorpommern"),
 	               url-prefix("https://www.wetteronline.de/regenradar/niedersachsen"),
 	               url-prefix("https://www.wetteronline.de/regenradar/nordrhein-westfalen"),
 	               url-prefix("https://www.wetteronline.de/regenradar/sachsen"),
-				   url-prefix("https://www.wetteronline.de/regenradar/bayern"),
+                       url-prefix("https://www.wetteronline.de/regenradar/bayern"),
 	               url-prefix("https://www.wetteronline.de/regenradar/baden-wuerttemberg"),
 	               url-prefix("https://www.wetteronline.de/regenradar/thueringen"),
 	               url-prefix("https://www.wetteronline.de/regenradar/sachsen-anhalt"),
 	               url-prefix("https://www.wetteronline.de/regenradar/saarland"),				   
-				   url-prefix("https://www.wetteronline.de/regenradar/hessen"),
+                       url-prefix("https://www.wetteronline.de/regenradar/hessen"),
 	               url-prefix("https://www.wetteronline.de/regenradar/schleswig-holstein"),
 	               url-prefix("https://www.wetteronline.de/regenradar/brandenburg-bundesland"),
 	               url-prefix("https://www.wetteronline.de/regenradar/rheinland-pfalz"){
 	
 	#top, #searchbox, #favorites, #memberarea_wrapper, #woBillboard, div._3Sb_2c:nth-child(12),
 	#map-searchform, div.leaflet-top:nth-child(2), ._1KFpPt, div.leaflet-bottom:nth-child(4),
-	#content-navigation, #header	{display: none !important;}
+	#content-navigation, #header, #topcontainer{display: none !important;}
 		
 	._1OzLNe {margin-bottom: 0px !important; margin-left: -120px !important;}
 	#content{margin-top: -100px !important;}	
