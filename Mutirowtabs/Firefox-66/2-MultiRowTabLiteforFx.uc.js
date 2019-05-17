@@ -19,7 +19,7 @@ function MultiRowTabLiteforFx() {
     tabs>arrowscrollbox{display:block;}
     tabs arrowscrollbox>scrollbox {
         display:flex;flex-wrap:wrap;
-        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto;
     }
     [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;} 
@@ -35,10 +35,10 @@ function MultiRowTabLiteforFx() {
     [sizemode="fullscreen"] #TabsToolbar>#window-controls,
     .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
     /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken,
-	   bei Bedarf Code aktivieren,:
+        bei Bedarf Code aktivieren,:
         Links und rechts → hbox.titlebar-spacer 
-		links → hbox.titlebar-spacer [type = "pre-tabs"] 
-		rechts → hbox.titlebar-spacer [type = "post-tabs"] */
+	links → hbox.titlebar-spacer [type = "pre-tabs"] 
+	rechts → hbox.titlebar-spacer [type = "post-tabs"] */
     hbox.titlebar-spacer,
     /* Ausblenden - Verstecken */
     #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
