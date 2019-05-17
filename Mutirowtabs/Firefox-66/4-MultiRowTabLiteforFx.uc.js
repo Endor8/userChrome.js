@@ -35,7 +35,7 @@ function MultiRowTabLiteforFx() {
     #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls { top: 0; }
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die 
-	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
+       Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"]:not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
     [sizemode="fullscreen"] #nav-bar { padding-right: 109px !important; }
     /* Mehrzeilige Tableiste */
@@ -58,10 +58,10 @@ function MultiRowTabLiteforFx() {
     [sizemode="fullscreen"] #TabsToolbar>#window-controls,
     .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
     /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken,
-	   bei Bedarf Code aktivieren,:
+	bei Bedarf Code aktivieren,:
         Links und rechts → hbox.titlebar-spacer 
-		links → hbox.titlebar-spacer [type = "pre-tabs"] 
-		rechts → hbox.titlebar-spacer [type = "post-tabs"] */
+	links → hbox.titlebar-spacer [type = "pre-tabs"] 
+	rechts → hbox.titlebar-spacer [type = "post-tabs"] */
     hbox.titlebar-spacer,
     /* Ausblenden - Verstecken */
     #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
