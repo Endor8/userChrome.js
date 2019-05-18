@@ -96,5 +96,66 @@ Mit gleichen Werten bei, min-width und max-width, wird die Tabbreite fixiert.
    background-color: rgb(12, 12, 13) !important;
 }
 ```
+
+```css   
+/ * Breite der Tableiste * /
+    [sizemode = "fullscreen"] #TabsToolbar> # window-controls> toolbarbutton {
+    
+/ * Vollbild * /
+    padding: 6px 12px! important; / * Standardbreite 6px 12px Mehrstufige Standardbreite 8px 12px * /
+    }
+    # toolbar-menubar [autohide = "false"] .titlebar-buttonbox> .titlebar-button {
+        / * Menüleiste * /
+        padding: 8px 17px! important; / * Standardbreite 8px 17px * /
+    }
+    # toolbar-menubar [autohide = "true"]: not ([inactive = "true"]) .titlebar-buttonbox> .titlebar-button {
+        / * Menüleiste (ALT) * /
+        padding: 8px 17px! important; / * Standardbreite 8px 17px * /
+    }
+    #TabsToolbar .titlebar-buttonbox> .titlebar-button {
+        / * Tab Bar * /
+        padding: 8px 17px! important; / * Standardbreite 8px 17px Mehrstufige Standardbreite 10px 17px * /
+    }
+```
+Sie können das Auf und Ab mit der linken Zahl einstellen. Sie können links und rechts mit der richtigen Zahl einstellen.
+
+Wenn Sie Zahlen wie Auffüllen schreiben: 6px 12px 6px 12px! Wichtig: Sie können von links nach oben, rechts, unten und links einstellen.
+
+Ich denke, dass es einfach zu verstehen ist, wenn Sie die Polstergröße anpassen: 0px 0px! Important;
+
+Wenn Sie ein Skript von 03 bis 06 verwenden und die Breite anpassen möchten, wird es im Skript geschrieben
+Möglicherweise möchten Sie das ↓ -Kabel gemeinsam einstellen.
+
+03 und 04
+
+```css 
+/ * Ordnen Sie auf der rechten Seite Platz für die Schaltflächen der Titelleiste zu,     
+    damit die Schaltflächen der Titelleiste und der Hauptsymbolleiste nicht verdeckt werden * /      
+    [tabsintitlebar = "true"]: not ([sizemode = "fullscreen"]) # nav-bar {padding-right: 139 px! important;}
+    [sizemode = "fullscreen"] # nav-bar {padding-right: 109 px! important;}
+```
+
+05 und 06
+```css 
+/ * Ordnen Sie auf der rechten Seite Platz für die Schaltflächen der Titelleiste zu, damit die     
+Schaltflächen der Titelleiste und der Hauptsymbolleiste nicht verdeckt werden * /
+    [sizemode = "fullscreen"] # nav-bar {padding-right: 109 px! important;}    
+```
+
+03 und 04 sind Code für normalen Bildschirm und Vollbild
+05 und 06 haben Code für den Vollbildmodus.
+
+
+Vertikale Breiteneinstellung der Menüleisten 05 und 06
+
+Ich denke, dass Sie die vertikale Breite der Menüleiste dünner oder dicker machen können, indem Sie die vertikale Breite anderer Symbole als des Vollbilds und des im Skript geschriebenen ↓ -Codes anpassen.
+
+```css 
+/ * Platz für Menüleiste oberhalb der Symbolleiste zuweisen * /
+    [sizemode = "maximized"]: not ([tabsintitlebar = "true"]) # navigator-toolbox,
+    [sizemode = "normal"] # navigator-toolbox {padding-top: 28px! important;}
+    [sizemode = "maximiert"] # navigator-toolbox {padding-top: 36 px! important;}
+```
+
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils.
