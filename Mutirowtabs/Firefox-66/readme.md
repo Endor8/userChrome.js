@@ -17,7 +17,7 @@ sowie Anpassungen für Symbolleisten.
 kann aber im Script in Zeile 45 geändert werden. Tableiste unter Adressleiste verschieben,      
 Tabs ziehen und ablegen möglich, sowie Anpassungen für Symbolleisten.           
 
-* Skript 5: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Tabzeilen,
+* Skript 5: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Tabzeilen,    
 Tabs ziehen und ablegen möglich, Tableiste unter Adressleiste verschieben,     
 Erstellen eines Menüleistenbereiches über der Symbolleiste um das Menü nach oben     
 zu verschieben, sowie Anpassungen für Symbolleisten.    
