@@ -93,29 +93,29 @@ Mit gleichen Werten bei, min-width und max-width, wird die Tabbreite fixiert.
    Dunkle Farbe bei nicht aktiven Firefox Fenster verwenden
 ```css 
 [lwthemetextcolor="bright"]:root[tabsintitlebar]:not(:-moz-window-inactive) {
-   background-color: rgb(12, 12, 13) !important;
+ background-color: rgb(12, 12, 13) !important;
 }
 ```
 
 ```css   
 / * Breite der Tableiste * /
-    [sizemode = "fullscreen"] #TabsToolbar> # window-controls> toolbarbutton {
+[sizemode = "fullscreen"] #TabsToolbar> # window-controls> toolbarbutton {
     
 / * Vollbild * /
-    padding: 6px 12px! important; / * Standardbreite 6px 12px Mehrstufige Standardbreite 8px 12px * /
-    }
-    # toolbar-menubar [autohide = "false"] .titlebar-buttonbox> .titlebar-button {
-        / * Menüleiste * /
-        padding: 8px 17px! important; / * Standardbreite 8px 17px * /
-    }
-    # toolbar-menubar [autohide = "true"]: not ([inactive = "true"]) .titlebar-buttonbox> .titlebar-button {
-        / * Menüleiste (ALT) * /
-        padding: 8px 17px! important; / * Standardbreite 8px 17px * /
-    }
-    #TabsToolbar .titlebar-buttonbox> .titlebar-button {
-        / * Tab Bar * /
-        padding: 8px 17px! important; / * Standardbreite 8px 17px Mehrstufige Standardbreite 10px 17px * /
-    }
+padding: 6px 12px! important; / * Standardbreite 6px 12px Mehrstufige Standardbreite 8px 12px * /
+}
+# toolbar-menubar [autohide = "false"] .titlebar-buttonbox> .titlebar-button {
+/ * Menüleiste * /
+padding: 8px 17px! important; / * Standardbreite 8px 17px * /
+}
+#toolbar-menubar [autohide = "true"]: not ([inactive = "true"]) .titlebar-buttonbox> .titlebar-button {
+/ * Menüleiste (ALT) * /
+padding: 8px 17px! important; / * Standardbreite 8px 17px * /
+}
+#TabsToolbar .titlebar-buttonbox> .titlebar-button {
+/ * Tab Bar * /
+padding: 8px 17px! important; / * Standardbreite 8px 17px Mehrstufige Standardbreite 10px 17px * /
+}
 ```
 Sie können das Auf und Ab mit der linken Zahl einstellen.     
 Sie können links und rechts mit der richtigen Zahl einstellen.
