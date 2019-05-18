@@ -50,10 +50,10 @@ function MultiRowTabLiteforFx() {
     [sizemode="fullscreen"] #TabsToolbar>#window-controls,
     .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
     /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken,
-	   bei Bedarf Code aktivieren,:
-        Links und rechts → hbox.titlebar-spacer 
-		links → hbox.titlebar-spacer [type = "pre-tabs"] 
-		rechts → hbox.titlebar-spacer [type = "post-tabs"] */
+       bei Bedarf Code aktivieren,:
+       Links und rechts → hbox.titlebar-spacer 
+       Links → hbox.titlebar-spacer [type = "pre-tabs"] 
+       Rechts → hbox.titlebar-spacer [type = "post-tabs"] */
     hbox.titlebar-spacer,
     /* Ausblenden - Verstecken */
     #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
