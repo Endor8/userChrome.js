@@ -34,7 +34,8 @@ function MultiRowTabLiteforFx() {
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
     #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls { top: 0; }
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
-    /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
+    /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit    
+       die Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"]:not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
     [sizemode="fullscreen"] #nav-bar { padding-right: 109px !important; }
     /* Mehrzeilige Tableiste */
