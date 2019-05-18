@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 66
+// @compatibility  Firefox 67
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -23,8 +23,8 @@ function MultiRowTabLiteforFx() {
         overflow-x:hidden;overflow-y:auto;
     }
     [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;} 
-    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, 
-       über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
+	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, 
+	   über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {
         height: var(--tab-min-height);
@@ -34,20 +34,14 @@ function MultiRowTabLiteforFx() {
     tab>.tab-stack{width:100%;}
     [sizemode="fullscreen"] #TabsToolbar>#window-controls,
     .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
-        padding: 10px 12px !important;
-    }
-    .titlebar-buttonbox>.titlebar-button {
-        padding: 10px 17px !important;
-    }
-    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken,
-       bei Bedarf Code aktivieren,:
-       Links und rechts → hbox.titlebar-spacer
-       links → hbox.titlebar-spacer [type = "pre-tabs"]
-       rechts → hbox.titlebar-spacer [type = "post-tabs"] */
+    /* Drag-Bereich auf der linken und rechten Seite der
+       Tab-Leiste auslenden - verstecken
+       Links und rechts → hbox.titlebar-spacer 
+       links → hbox.titlebar-spacer[type="pre-tabs"] 
+       rechts → hbox.titlebar-spacer[type="post-tabs"] */
     hbox.titlebar-spacer,
-    /* Ausblenden - verstecken */
-    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,tab:not([fadein]) { display: none; }
+    /* Ausblenden - Verstecken */
+    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
     `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
@@ -102,18 +96,17 @@ function MultiRowTabLiteforFx() {
         var tab = this._getDragTargetTab(event, isLink);
         if (!RTL_UI) {
             for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
-                
+                if (event.screenX < tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
+                 && event.screenY < tabs[i].screenY + tabs[i].getBoundingClientRect().height) // multirow fix
                     return i;
         } else {
             for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX > tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
+                if (event.screenX > tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
+                 && event.screenY > tabs[i].screenY + tabs[i].getBoundingClientRect().height) // multirow fix
                     return i;
         }
         return tabs.length;
-    };
+    }
     gBrowser.tabContainer.onDrop = function(event) {
         this.clearDropIndicator();
         var dt = event.dataTransfer;

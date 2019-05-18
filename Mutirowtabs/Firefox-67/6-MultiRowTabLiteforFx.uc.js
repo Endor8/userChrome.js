@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
+// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
 // @include        main
-// @compatibility  Firefox 66
+// @compatibility  Firefox 67
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -15,24 +15,27 @@
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
     var css =`
-    /* Tableiste unter Adressleiste und Lesezeichenleiste verschieben */
-    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton,
-    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button {
-        color: rgb(24, 25, 26) !important;
-    }
-    #main-window[lwthemetextcolor="dark"] #window-controls toolbarbutton:not([id="close-button"]):hover,
-    #main-window[lwthemetextcolor="dark"] .titlebar-buttonbox .titlebar-button:not([class="titlebar-button titlebar-close"]):hover {
-        background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important;
-    }
+    /* Tableiste unter Adressleiste verschieben */
     #titlebar { -moz-box-ordinal-group: 2; -moz-appearance: none !important; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls,.titlebar-buttonbox-container {
-        position: fixed;
-        top: 0; right:0;
-        height: 26px; }
+    /* Menüleiste nach oben verschieben */
+    #toolbar-menubar { position: fixed; display: inline-flex; flex-wrap: nowrap; left:0; }
+    [sizemode="maximized"]:not([tabsintitlebar="true"]) #toolbar-menubar,
+    [sizemode="normal"] #toolbar-menubar { top: 1px; }
+    [sizemode="maximized"] #toolbar-menubar { top: 8px; }
+    /* Titelleisten-Schaltfläche nach oben verschieben */
+    #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls,
+    [tabsintitlebar="true"] .titlebar-buttonbox-container { position: fixed; right:0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
-    [tabsintitlebar="true"]:not([sizemode="fullscreen"]) #nav-bar { padding-right: 139px !important; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""] #window-controls { top: 0; }
+    /* Menüleiste über der Symbolleiste Platz zuweisen */
+    [sizemode="maximized"]:not([tabsintitlebar="true"]) #navigator-toolbox,
+    [sizemode="normal"] #navigator-toolbox { padding-top: 28px !important; }
+    [sizemode="maximized"] #navigator-toolbox { padding-top: 36px !important; }
+    /* Anderen leeren Bereich als die Menü- oder Titelleistenschaltflächen als Ziehbereich angeben */
+    [tabsintitlebar="true"] #navigator-toolbox { -moz-window-dragging:drag; }
+    /* Auf der rechten Seite Platz für die Schaltflächen der Titelleiste zuweißen, damit die   
+	Schaltflächen der Titelleiste und der Naigationssymbolleiste nicht verdeckt werden */
     [sizemode="fullscreen"] #nav-bar { padding-right: 109px !important; }
     /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox{display:block;}
@@ -42,7 +45,7 @@ function MultiRowTabLiteforFx() {
         overflow-x:hidden;overflow-y:auto;
     }
     [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;} 
-	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, 
+	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {
@@ -53,94 +56,15 @@ function MultiRowTabLiteforFx() {
     tab>.tab-stack{width:100%;}
     [sizemode="fullscreen"] #TabsToolbar>#window-controls,
     .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
-    [sizemode="fullscreen"] #TabsToolbar>#window-controls>toolbarbutton {
-        padding: 8px 12px !important;
-    }
-    .titlebar-buttonbox>.titlebar-button {
-        padding: 8px 17px !important;
-    }
-    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken
+    /* Drag-Bereich auf der linken und rechten Seite der
+       Tab-Leiste auslenden - verstecken
        Links und rechts → hbox.titlebar-spacer 
-	   Links → hbox.titlebar-spacer[type="pre-tabs"] 
-	   Rechts → hbox.titlebar-spacer[type="post-tabs"] */
+       links → hbox.titlebar-spacer[type="pre-tabs"] 
+       rechts → hbox.titlebar-spacer[type="post-tabs"] */
     hbox.titlebar-spacer,
-    /* Ausblenden - verstecken */
-    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,tab:not([fadein]) { display: none; }
-
-    /* Breite der Navigationleiste */
-    #urlbar,.searchbar-textbox {
-        margin: 0 !important;
-        min-height: 26px !important;
-    }
-    #urlbar-zoom-button,
-    #nav-bar toolbarbutton,#nav-bar toolbaritem {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    /* urlbar searchbar Breite */
-    .urlbar-history-dropmarker,
-    #page-action-buttons,
-    .search-go-container {
-        height: 26px !important;
-    }
-    .urlbar-textbox-container {
-        max-height: 26px !important;
-    }
-    /* Hauptsymbolleistenbreite */
-    #nav-bar [id="back-button"] .toolbarbutton-icon {
-        width: 28px !important;
-        height: 28px !important;
-        padding: 4px !important;
-    }
-    #nav-bar [id="forward-button"] .toolbarbutton-icon {
-        width: 26px !important;
-        height: 26px !important;
-        padding: 4px !important;
-    }
-    #PanelUI-button {
-        margin-inline-start: 0px !important;
-        border-inline-start: none !important;
-    }
-    /* Hauptsymbolleiste toolbarbutton-badge */
-    #nav-bar .toolbarbutton-badge {
-        margin-block-start: 1px !important;
-        margin-inline-end: 0px !important;
-        min-width: var(--arrowpanel-padding) !important;
-        font-size: 8px !important;
-    }
-    /* Lesezeichenleiste toolbarbutton-badge */
-    #PersonalToolbar .toolbarbutton-badge {
-        margin-block-start: -2px !important;
-        margin-inline-end: -3px !important;
-        min-width: var(--arrowpanel-padding) !important;
-        font-size: 8px !important;
-    }
-    /* Lesezeichenleiste */
-    #PersonalToolbar {
-        min-height: 20px !important;
-        padding: 0px 2px 0px 2px !important;
-        visibility: visible !important;
-    }
-    #PersonalToolbar > #personal-bookmarks {
-        height: 20px !important;
-    }
-    #PersonalToolbar #PlacesToolbarItems {
-        min-height: 20px !important;
-        max-height: 20px !important;
-    }
-    #PersonalToolbar #PlacesToolbarItems toolbarbutton.bookmark-item {
-        min-height: 20px !important;
-        max-height: 20px !important;
-        max-width: 160px !important;
-        padding: 0px 2px 0px 2px !important;
-        margin: 0 !important;
-    }
-    #PersonalToolbar toolbarbutton.chromeclass-toolbar-additional {
-        max-width: 20px !important;
-        max-height: 20px !important;
-        padding: 0px 3px 0px 3px !important;
-        margin: 0 !important;
-    } `;
+    /* Ausblenden - Verstecken */
+    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
+    `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
@@ -194,18 +118,17 @@ function MultiRowTabLiteforFx() {
         var tab = this._getDragTargetTab(event, isLink);
         if (!RTL_UI) {
             for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
-                
+                if (event.screenX < tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
+                 && event.screenY < tabs[i].screenY + tabs[i].getBoundingClientRect().height) // multirow fix
                     return i;
         } else {
             for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX > tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
+                if (event.screenX > tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
+                 && event.screenY > tabs[i].screenY + tabs[i].getBoundingClientRect().height) // multirow fix
                     return i;
         }
         return tabs.length;
-    };
+    }
     gBrowser.tabContainer.onDrop = function(event) {
         this.clearDropIndicator();
         var dt = event.dataTransfer;
