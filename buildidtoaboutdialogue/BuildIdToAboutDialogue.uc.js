@@ -3,28 +3,17 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description
 // @include        chrome://browser/content/aboutDialog.xul
-// @compatibility  Firefox 3.0 3.1
+// @compatibility  Firefox 3.0 3.1 69.*
 // @author         Alice0775
-// @version        2014/05/28 23:00 e10s
-// @version        2014/05/22 23:00 size of window
+// @version        2019/05/29 22.00 Anpassung von milupo - Reparatur der mehrzeiligen Darstellung
 // @version        2013/02/11 23:00 Bug 755724
 // @version        2008/11/22 12:00
-// @Note           Help > About画面に にBuilsIDを付加するとともにクリップボードにUA+IDをコピー
+// @Note           Unter Firefox Hilfe - Über Firefox Textfeld mit BuildsID hinzufügen 
+// @Note           und automatisches Kopieren in die Zwischenablage der BuildsID.
 // ==/UserScript==
 var addBuildid = {
   buildid: function (){
     return navigator.buildID;
-    /*
-    // after Fx1.5
-    if ("@mozilla.org/xre/app-info;1" in Components.classes &&
-        Components.classes["@mozilla.org/xre/app-info;1"]
-          .getService(Components.interfaces.nsIXULAppInfo) &&
-        Components.classes["@mozilla.org/xre/app-info;1"]
-          .getService(Components.interfaces.nsIXULAppInfo).appBuildID)
-     var buildid = Components.classes["@mozilla.org/xre/app-info;1"]
-                         .getService(Components.interfaces.nsIXULAppInfo).appBuildID;
-    return buildid;
-    */
   },
 
   addBuildid: function () {
@@ -33,14 +22,16 @@ var addBuildid = {
     var userAgentField = document.getElementById("userAgent");
     if (!userAgentField) {
       userAgentField = document.getElementById("rightBox");
-      var label = document.createElementNS("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul", 'textbox');
+      var label = document.createElementNS("http://www.w3.org/1999/xhtml", 'textarea');
       userAgentField = userAgentField.appendChild(label);
       userAgentField.setAttribute("id", "agent");
       userAgentField.setAttribute("value", navigator.userAgent);
       userAgentField.setAttribute("multiline", true);
       userAgentField.setAttribute("rows", "5");
     }
+	userAgentField.value = this.getBuildSource() + "\n" + ua;
     userAgentField.setAttribute("value", this.getBuildSource() + "\n" + ua);
+	window.resizeBy(0, 100);
   },
 
   convUA: function(){
@@ -71,7 +62,7 @@ var addBuildid = {
     if (!userAgentField)
       userAgentField = document.getElementById("agent");
     Components.classes["@mozilla.org/widget/clipboardhelper;1"]
-      .getService(Components.interfaces.nsIClipboardHelper).copyString(userAgentField.getAttribute("value"));
+      .getService(Components.interfaces.nsIClipboardHelper).copyString(userAgentField.value);
   },
 
   getBuildSource: function (){
@@ -84,15 +75,19 @@ var addBuildid = {
     var file = ds.get("CurProcD", Ci.nsIFile);
     if (/browser$/.test(file.path)) {
 	    var path = file.path.replace(/browser$/,"");
-			file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
+			file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsIFile);
 			file.initWithPath(path);
     }
     file.append("application.ini");
     var text = this.readFile(file);
-    var SourceRepository = text.match(/SourceRepository=(.*)/)[1];
-    var SourceStamp = text.match(/SourceStamp=(.*)/)[1];
-    //alert(SourceRepository + "/rev/" + SourceStamp);
-    return SourceRepository + "/rev/" + SourceStamp;
+    try {
+      var SourceRepository = text.match(/SourceRepository=(.*)/)[1];
+      var SourceStamp = text.match(/SourceStamp=(.*)/)[1];
+      //alert(SourceRepository + "/rev/" + SourceStamp);
+      return SourceRepository + "/rev/" + SourceStamp;
+    } catch (ex) {
+      return ""
+    }
   },
 
   readFile: function (aFile){
@@ -111,6 +106,7 @@ var addBuildid = {
         return content.replace(/\r\n?/g, "\n");
       }
 }
+
 addBuildid.addBuildid();
 addBuildid.copyUA();
 setTimeout(function(){window.resizeBy(0, 0);},0);
