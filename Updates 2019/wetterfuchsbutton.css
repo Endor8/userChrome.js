@@ -787,7 +787,7 @@
 	
      #top, #searchbox, #favorites, #memberarea_wrapper, #woBillboard, div._3Sb_2c:nth-child(12),
      #map-searchform, div.leaflet-top:nth-child(2), ._1KFpPt, div.leaflet-bottom:nth-child(4),
-     #content-navigation, #header, #topcontainer{display: none !important;}
+     #content-navigation, #header, #topcontainer, #rightcontainer, #ultraleftcontainer {display: none !important;}
 		
      ._1OzLNe {margin-bottom: 0px !important; margin-left: -120px !important;}
      #content{margin-top: -100px !important;}	
