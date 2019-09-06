@@ -6,7 +6,7 @@ Siehe dazu jeweils in den entsprechenden Ordner.
 [Firefox 60esr](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-60esr)     
 [Firefox 68](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-68)     
 [Firefox 69](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-69)     
-[Firefox 70](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-70) 
+
 
 #### Kleiner CSS Code für userChrome.css: #### 
 
