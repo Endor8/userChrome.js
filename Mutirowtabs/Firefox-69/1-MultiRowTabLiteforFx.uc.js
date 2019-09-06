@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 67
+// @compatibility  Firefox 69
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -14,15 +14,14 @@
 "user strict";
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
-    var css =`
+    var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
     /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox{display:block;}
-    tabs arrowscrollbox>scrollbox{display:flex;flex-wrap:wrap;}
+    tabs arrowscrollbox>scrollbox{display:flex;display:-webkit-box;flex-wrap:wrap;}
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {
         height: var(--tab-min-height);
-        z-index: 1 !important;
-    }
+        z-index: 1 !important; }
     tab>.tab-stack{width:100%;}
     [sizemode="fullscreen"] #TabsToolbar>#window-controls,
     .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
@@ -31,10 +30,10 @@ function MultiRowTabLiteforFx() {
        Links und rechts → hbox.titlebar-spacer 
        links → hbox.titlebar-spacer[type="pre-tabs"] 
        rechts → hbox.titlebar-spacer[type="post-tabs"] */
-    hbox.titlebar-spacer,
+    hbox.titlebar-spacer
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
-    `;
+    ,#alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
+    } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
@@ -49,23 +48,23 @@ function MultiRowTabLiteforFx() {
     'type="text/css" href="data:text/css,' + encodeURIComponent(style) + '"');
     document.insertBefore(sspi, document.documentElement);
     gBrowser.tabContainer._animateTabMove = function(event){}
-    gBrowser.tabContainer._finishAnimateTabMove = function(event){}
+    gBrowser.tabContainer._finishAnimateTabMove = function(){}
     gBrowser.tabContainer.lastVisibleTab = function() {
-        var tabs = this.children;
+        var tabs = this.allTabs;
         for (let i = tabs.length - 1; i >= 0; i--){
             if (!tabs[i].hasAttribute("hidden"))
                 return i;
         }
         return -1;
-    };
+    }
     gBrowser.tabContainer.clearDropIndicator = function() {
-        var tabs = this.children;
+        var tabs = this.allTabs;
         for (let i = 0, len = tabs.length; i < len; i++){
             let tab_s= tabs[i].style;
             tab_s.removeProperty("border-left-color");
             tab_s.removeProperty("border-right-color");
         }
-    };
+    }
     gBrowser.tabContainer.addEventListener("dragleave",gBrowser.tabContainer.clearDropIndicator, false);
     gBrowser.tabContainer._onDragOver = function(event) {
         event.preventDefault();
@@ -74,48 +73,100 @@ function MultiRowTabLiteforFx() {
         var newIndex = this._getDropIndex(event);
         if (newIndex == null)
             return;
-        if (newIndex < this.children.length) {
-            this.children[newIndex].style.setProperty("border-left-color","red","important");
+        let children = this.allTabs;
+        if (newIndex < children.length) {
+            children[newIndex].style.setProperty("border-left-color","red","important");
         } else {
             newIndex = gBrowser.tabContainer.lastVisibleTab();
             if (newIndex >= 0)
-                this.children[newIndex].style.setProperty("border-right-color","red","important");
+                children[newIndex].style.setProperty("border-right-color","red","important");
         }
-    };
-    gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, false);
-    gBrowser.tabContainer._getDropIndex = function(event, isLink) {
-        var tabs = this.children;
-        var tab = this._getDragTargetTab(event, isLink);
-        if (!RTL_UI) {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX < tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
-                 && event.screenY < tabs[i].screenY + tabs[i].getBoundingClientRect().height) // multirow fix
-                    return i;
-        } else {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX > tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
-                 && event.screenY > tabs[i].screenY + tabs[i].getBoundingClientRect().height) // multirow fix
-                    return i;
-        }
-        return tabs.length;
     }
+    gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, false);
     gBrowser.tabContainer.onDrop = function(event) {
         this.clearDropIndicator();
         var dt = event.dataTransfer;
         var draggedTab;
         if (dt.mozTypesAt(0)[0] == TAB_DROP_TYPE) {
             draggedTab = dt.mozGetDataAt(TAB_DROP_TYPE, 0);
-            if (!draggedTab)
+            if (!draggedTab) {
                 return;
+            }
         }
-        this._tabDropIndicator.collapsed = true;
+        this._tabDropIndicator.hidden = true
         event.stopPropagation();
-        if (draggedTab && draggedTab.parentNode == this) {
+        if (draggedTab && draggedTab.container == this) {
             let newIndex = this._getDropIndex(event, false);
             if (newIndex > draggedTab._tPos)
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
         }
-    };
+    }
     gBrowser.tabContainer.addEventListener("drop",gBrowser.tabContainer.onDrop, false);
+    gBrowser.tabContainer._getDragTargetTab = function(event, isLink) {
+        let tab = event.target;
+        while (tab && tab.localName != "tab") {
+            tab = tab.parentNode;
+        }
+        if (tab && isLink) {
+            let { width } = tab.getBoundingClientRect();
+            if (
+                event.screenX < tab.screenX + width * 0.25 ||
+                event.screenX > tab.screenX + width * 0.75
+            ) {
+                return null;
+            }
+        }
+        return tab;
+    }
+    gBrowser.tabContainer._getDropIndex = function(event, isLink) {
+        var tabs = this.allTabs;
+        var tab = this._getDragTargetTab(event, isLink);
+        if (!RTL_UI) {
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
+                if (
+                    event.screenY <
+                    tabs[i].screenY + tabs[i].getBoundingClientRect().height
+                ) {
+                    if (
+                        event.screenX <
+                        tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
+                    ) {
+                        return i;
+                    }
+                    if (
+                        event.screenX >
+                        tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2 &&
+                        event.screenX <
+                        tabs[i].screenX + tabs[i].getBoundingClientRect().width
+                    ) {
+                        return i + 1;
+                    }
+                }
+            }
+        } else {
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
+                if (
+                    event.screenY <
+                    tabs[i].screenY + tabs[i].getBoundingClientRect().height
+                ) {
+                    if (
+                        event.screenX <
+                        tabs[i].screenX + tabs[i].getBoundingClientRect().width &&
+                        event.screenX >
+                        tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
+                    ) {
+                        return i;
+                    }
+                    if (
+                        event.screenX <
+                        tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2
+                    ) {
+                        return i + 1;
+                    }
+                }
+            }
+        }
+        return tabs.length;
+    }
 }
