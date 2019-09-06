@@ -1,4 +1,4 @@
-### Mehrzeilige Tableiste für Firefox 66 ###
+### Mehrzeilige Tableiste für Firefox 68 ###
 
 Es stehen 6 verschiedene Scripte dazu zur Verfügung.
 
