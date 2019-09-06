@@ -4,9 +4,9 @@ Es stehen je nach Firefox Version verschiedene Scriptversionen dazu zur Verfügu
 Siehe dazu jeweils in den entsprechenden Ordner.
 
 [Firefox 60esr](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-60esr)     
-[Firefox 65](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-65)     
-[Firefox 66](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-66)     
-[Firefox 67](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-67) 
+[Firefox 68](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-68)     
+[Firefox 69](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-69)     
+[Firefox 70](https://github.com/Endor8/userChrome.js/tree/master/Mutirowtabs/Firefox-70) 
 
 #### Kleiner CSS Code für userChrome.css: #### 
 
