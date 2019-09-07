@@ -19,7 +19,7 @@ function MultiRowTabLiteforFx() {
     tabs>arrowscrollbox{display:block;}
     tabs arrowscrollbox>scrollbox {
         display:flex;display:-webkit-box;flex-wrap:wrap;
-        max-height: calc(var(--tab-min-height) * 5); /* 段数 */
+        max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto; }
     [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;}
 	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, 

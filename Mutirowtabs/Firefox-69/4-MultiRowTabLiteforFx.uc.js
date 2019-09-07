@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
 // @compatibility  Firefox 69
 // @author         Alice0775
@@ -14,7 +14,7 @@
 "user strict";
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
-    /* toolbar-menubar を titlebar から navigator-toolbox に移動 */
+    /* Symbolleisten und Menüleiste von der Titelleiste in die Navigator-Toolbox verschieben */
     document.getElementById("navigator-toolbox").appendChild(document.getElementById("toolbar-menubar"));
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
     /*Symbolleiste Sortieren */
