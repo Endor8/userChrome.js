@@ -14,7 +14,7 @@
 "user strict";
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
-    var css =`
+    var css =` @-moz-document url-prefix("chrome://browser/content/browser.xul") {
     /* Sortierung der Symbolleisten - Reihenfolge */
     #main-window[tabsintitlebar="true"]:not([inFullscreen="true"]) #nav-bar {
         padding-right: 139px !important;
@@ -60,9 +60,9 @@ function MultiRowTabLiteforFx() {
         z-index: 1 !important;
     }
     tab>.tab-stack{width:100%;}
-    /* -- Ausblenden -- */
+    /* -- Ausblenden - Verstecken -- */
     hbox.titlebar-placeholder,#alltabs-button,tabs [anonid^="scrollbutton"],tabs spacer{display:none;}
-    `;
+    } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
@@ -111,20 +111,39 @@ function MultiRowTabLiteforFx() {
         }
     };
     gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, false);
+    gBrowser.tabContainer._getDragTargetTab = function(event, isLink) {
+        let tab = event.target.localName == "tab" ? event.target : null;
+        if (tab && isLink) {
+            let boxObject = tab.boxObject;
+            if (event.screenX < boxObject.screenX + boxObject.width * .25 ||
+                event.screenX > boxObject.screenX + boxObject.width * .75)
+                return null;
+        }
+        return tab;
+    };
     gBrowser.tabContainer._getDropIndex = function(event, isLink) {
-        var tabs = this.children;
+        var tabs = this.childNodes;
         var tab = this._getDragTargetTab(event, isLink);
         if (window.getComputedStyle(this).direction == "ltr") {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
-                
-                    return i;
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
+                if (event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) {
+                    if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2)
+                        return i;
+                    if (event.screenX > tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2 &&
+                        event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width)
+                        return i + 1;
+                }
+            }
         } else {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX > tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
-                    return i;
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
+                if (event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) {
+                    if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width &&
+                        event.screenX > tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2)
+                        return i;
+                    if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2)
+                        return i + 1;
+                }
+            }
         }
         return tabs.length;
     };
