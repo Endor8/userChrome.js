@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 66
+// @compatibility  Firefox 67
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -14,14 +14,13 @@
 "user strict";
 MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
-    var css =`
+    var css =` @-moz-document url-prefix("chrome://browser/content/browser.xul") {
     /* Mehrzeilige Tableiste */
     tabs>arrowscrollbox{display:block;}
     tabs arrowscrollbox>scrollbox {
-        display:flex;flex-wrap:wrap;
+        display:flex;display:-webkit-box;flex-wrap:wrap;
         max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
-        overflow-x:hidden;overflow-y:auto;
-    }
+        overflow-x:hidden;overflow-y:auto; }
     [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;} 
 	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus, 
 	   über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
@@ -29,20 +28,19 @@ function MultiRowTabLiteforFx() {
     tabs tab,.tab-background {
         height: var(--tab-min-height);
         overflow: hidden;
-        z-index: 1 !important;
-    }
+        z-index: 1 !important; }
     tab>.tab-stack{width:100%;}
     [sizemode="fullscreen"] #TabsToolbar>#window-controls,
     .titlebar-buttonbox-container>.titlebar-buttonbox{display:block;}
-    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken,
-        bei Bedarf Code aktivieren,:
-        Links und rechts → hbox.titlebar-spacer 
-	links → hbox.titlebar-spacer [type = "pre-tabs"] 
-	rechts → hbox.titlebar-spacer [type = "post-tabs"] */
-    hbox.titlebar-spacer,
+    /* Drag-Bereich auf der linken und rechten Seite der
+       Tab-Leiste auslenden - verstecken
+       Links und rechts → hbox.titlebar-spacer 
+       links → hbox.titlebar-spacer[type="pre-tabs"] 
+       rechts → hbox.titlebar-spacer[type="post-tabs"] */
+    hbox.titlebar-spacer
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
-    `;
+    ,#alltabs-button,tabs [class^="scrollbutton"],tabs spacer,[autohide="true"][inactive="true"] .titlebar-buttonbox { display: none; }
+    } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
@@ -57,7 +55,7 @@ function MultiRowTabLiteforFx() {
     'type="text/css" href="data:text/css,' + encodeURIComponent(style) + '"');
     document.insertBefore(sspi, document.documentElement);
     gBrowser.tabContainer._animateTabMove = function(event){}
-    gBrowser.tabContainer._finishAnimateTabMove = function(event){}
+    gBrowser.tabContainer._finishAnimateTabMove = function(){}
     gBrowser.tabContainer.lastVisibleTab = function() {
         var tabs = this.children;
         for (let i = tabs.length - 1; i >= 0; i--){
@@ -65,7 +63,7 @@ function MultiRowTabLiteforFx() {
                 return i;
         }
         return -1;
-    };
+    }
     gBrowser.tabContainer.clearDropIndicator = function() {
         var tabs = this.children;
         for (let i = 0, len = tabs.length; i < len; i++){
@@ -73,7 +71,7 @@ function MultiRowTabLiteforFx() {
             tab_s.removeProperty("border-left-color");
             tab_s.removeProperty("border-right-color");
         }
-    };
+    }
     gBrowser.tabContainer.addEventListener("dragleave",gBrowser.tabContainer.clearDropIndicator, false);
     gBrowser.tabContainer._onDragOver = function(event) {
         event.preventDefault();
@@ -89,24 +87,48 @@ function MultiRowTabLiteforFx() {
             if (newIndex >= 0)
                 this.children[newIndex].style.setProperty("border-right-color","red","important");
         }
-    };
+    }
     gBrowser.tabContainer.addEventListener("dragover", gBrowser.tabContainer._onDragOver, false);
+    gBrowser.tabContainer._getDragTargetTab = function(event, isLink) {
+        let tab = event.target.localName == "tab" ? event.target : null;
+        if (tab && isLink) {
+            let {width} = tab.getBoundingClientRect();
+            if (event.screenX < tab.screenX + width * .25 ||
+                event.screenX > tab.screenX + width * .75)
+                return null;
+        }
+        return tab;
+    }
     gBrowser.tabContainer._getDropIndex = function(event, isLink) {
         var tabs = this.children;
         var tab = this._getDragTargetTab(event, isLink);
         if (!RTL_UI) {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX < tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
-                    return i;
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
+                if (event.screenY < tabs[i].screenY + tabs[i].getBoundingClientRect().height) {
+                    if (event.screenX < tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2) {
+                        return i;
+                    }
+                    if (event.screenX > tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2 &&
+                        event.screenX < tabs[i].screenX + tabs[i].getBoundingClientRect().width) {
+                        return i + 1;
+                    }
+                }
+            }
         } else {
-            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++)
-                if (event.screenX > tabs[i].boxObject.screenX + tabs[i].boxObject.width / 2
-                 && event.screenY < tabs[i].boxObject.screenY + tabs[i].boxObject.height) // multirow fix
-                    return i;
+            for (let i = tab ? tab._tPos : 0; i < tabs.length; i++) {
+                if (event.screenY < tabs[i].screenY + tabs[i].getBoundingClientRect().height) {
+                    if (event.screenX < tabs[i].screenX + tabs[i].getBoundingClientRect().width &&
+                        event.screenX > tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2) {
+                        return i;
+                    }
+                    if (event.screenX < tabs[i].screenX + tabs[i].getBoundingClientRect().width / 2) {
+                        return i + 1;
+                    }
+                }
+            }
         }
         return tabs.length;
-    };
+    }
     gBrowser.tabContainer.onDrop = function(event) {
         this.clearDropIndicator();
         var dt = event.dataTransfer;
@@ -124,6 +146,6 @@ function MultiRowTabLiteforFx() {
                 newIndex--;
             gBrowser.moveTabTo(draggedTab, newIndex);
         }
-    };
+    }
     gBrowser.tabContainer.addEventListener("drop",gBrowser.tabContainer.onDrop, false);
 }
