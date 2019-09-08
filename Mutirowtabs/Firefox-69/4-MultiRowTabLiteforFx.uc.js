@@ -17,7 +17,7 @@ function MultiRowTabLiteforFx() {
     /* Symbolleisten und Menüleiste von der Titelleiste in die Navigator-Toolbox verschieben */
     document.getElementById("navigator-toolbox").appendChild(document.getElementById("toolbar-menubar"));
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
-    /*Symbolleiste Sortieren */
+    /* Symbolleiste Sortieren */
     #toolbar-menubar { -moz-box-ordinal-group: 1 !important; }
     #nav-bar { -moz-box-ordinal-group: 2 !important; }
     #PersonalToolbar { -moz-box-ordinal-group: 3 !important; }
@@ -51,7 +51,8 @@ function MultiRowTabLiteforFx() {
         display:flex;display:-webkit-box;flex-wrap:wrap;
         max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen */
         overflow-x:hidden;overflow-y:auto; }
-    [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;} /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
+    [tabsintitlebar="true"] tabs scrollbar{-moz-window-dragging:no-drag;} 
+	/* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zu Zeile wechseln */
     tabs tab[fadein]:not([pinned]){flex-grow:1;}
     tabs tab,.tab-background {

@@ -27,16 +27,16 @@ function MultiRowTabLiteforFx() {
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     [tabsintitlebar="true"][sizemode="maximized"] #titlebar { -moz-appearance: none !important; }
     [tabsintitlebar="true"] #toolbar-menubar { height: 32px; }
-    /* Titelleistenschaltfläche ausblenden und anzeigen, wenn Sie den Mauszeiger über die rechte obere Ecke bewegen */
-    /* Bereich beim Überfahren mit der Maus reagieren lassen und Titelleistenschaltflächen oben rechts verbergen,
-       um Bereich transparent zu machen */
+    /* Titelleistenschaltfläche ausblenden und anzeigen, wenn Sie den Mauszeiger über die */
+	/* rechte obere Ecke bewegen Bereich beim Überfahren mit derMaus reagieren lassen */
+    /* Titelleistenschaltflächen oben rechts verbergen , um Bereich transparent zu machen */
     #navigator-toolbox:not([style^="margin-top:"])[style=""] #TabsToolbar>#window-controls,
     [tabsintitlebar="true"] #TabsToolbar>.titlebar-buttonbox-container { opacity: 0; right: -80px;
         position: fixed; z-index: 2147483647 !important; background-color: hsla(0, 0%, 60%, 0.5); }
     [tabsintitlebar="true"][sizemode="normal"] #TabsToolbar>.titlebar-buttonbox-container { top: -21px; }
     [tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar>.titlebar-buttonbox-container { top: -14px; }
     #navigator-toolbox:not([style^="margin-top:"])[style=""] #TabsToolbar>#window-controls { top: -18px; }
-    /* npassung für Titelleistenschaltflächen */
+    /* Anpassung für Titelleistenschaltflächen */
     #navigator-toolbox:not([style^="margin-top:"])[style=""] #TabsToolbar>#window-controls:hover,
     [tabsintitlebar="true"] #TabsToolbar>.titlebar-buttonbox-container:hover { opacity: 1; right:0; }
     [tabsintitlebar="true"][sizemode="normal"] #TabsToolbar>.titlebar-buttonbox-container:hover { top: 1px; }
