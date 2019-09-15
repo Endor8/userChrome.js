@@ -19,43 +19,43 @@
 // @note    その他のボタンは、ツールバーのカスタマイズ内に格納されていると思います。
 // @note    カスタマイズから追加したいボタンを好きなところに出して使ってください。
 // @note	
-// @note	label と tooltiptext が環境によっては、文字化けするので、 Unicode に変換してます。
+// @note    label と tooltiptext が環境によっては、文字化けするので、 Unicode に変換してます。
 // @note	
-// @note	再起動
-// @note	about:config
-// @note	新しいタブ
-// @note	プロファイルフォルダ
-// @note	クッキー (Firefox60ESR)
-// @note	ブックマーク サイドバー
-// @note	履歴 サイドバー
-// @note	同期タブ サイドバー
-// @note	ブラウジングライブラリー「ダウンロード」
-// @note	タブを更新(保存されているキャッシュを無視して更新)
-// @note	オプション
-// @note	プラグインについて
-// @note	ブラウジングライブラリー「ブックマーク」
-// @note	Chromeフォルダ
-// @note	ページ情報
-// @note	証明書マネージャー
-// @note	保存されたログイン情報
-// @note	履歴を削除
-// @note	拡大 (Ctrl++)
-// @note	縮小 (Ctrl+-)
-// @note	タブ移動（左：左にタブを移動｜右：右にタブを移動｜ホイール↑：左のタブに移動｜ホイール↓：右のタブに移動）
-// @note	ズームコントロール (左 or ホイール↑： 拡大｜中： リセット｜右 or ホイール↓： 縮小)
-// @note	開発ツール
-// @note	Cookieとサイトデータを管理(一度Firefoxのオプションを開かないとCookieやサイトデータが表示されないようです。)
-// @note	カスタムボタン (左 or ホイール↑↓：新しいタブ | 中：about:config | 右：Chromeフォルダ)
-// @note	
-// @note	Firefox Nightly 69.0a1で動作確認しました。
-// @note	http://wiki.nothing.sh/page?userChrome.js%CD%D1%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8#m5c944e2
-// @note	↑ここの「サンドボックスが有効になった62以降でもuserChrome.js用スクリプトを利用する方法」を導入して確認しています。
-// @note	
-// @note	Firefox60ESRなどでabout:系を使いたい場合 openTrustedLinkIn ⇒ openUILinkIn に変更してください。
-// @note	
-// @note	Firefox61以降クッキーマネージャ？がCookieとサイトデータに変わり廃止されたのでクッキーマネージャ？を開くボタンが使え無くなります。
-// @note	
-// @note	Firefox68以下でこのスクリプトを使いたい場合 aDocument.createXULElement ⇒ document.createElement に変更してください。
+// @note    再起動
+// @note    about:config
+// @note    新しいタブ
+// @note    プロファイルフォルダ
+// @note    クッキー (Firefox60ESR)
+// @note    ブックマーク サイドバー
+// @note    履歴 サイドバー
+// @note    同期タブ サイドバー
+// @note    ブラウジングライブラリー「ダウンロード」
+// @note    タブを更新(保存されているキャッシュを無視して更新)
+// @note    オプション
+// @note    プラグインについて
+// @note    ブラウジングライブラリー「ブックマーク」
+// @note    Chromeフォルダ
+// @note    ページ情報
+// @note    証明書マネージャー
+// @note    保存されたログイン情報
+// @note    履歴を削除
+// @note    拡大 (Ctrl++)
+// @note    縮小 (Ctrl+-)
+// @note    タブ移動（左：左にタブを移動｜右：右にタブを移動｜ホイール↑：左のタブに移動｜ホイール↓：右のタブに移動）
+// @note    ズームコントロール (左 or ホイール↑： 拡大｜中： リセット｜右 or ホイール↓： 縮小)
+// @note    開発ツール
+// @note    Cookieとサイトデータを管理(一度Firefoxのオプションを開かないとCookieやサイトデータが表示されないようです。)
+// @note    カスタムボタン (左 or ホイール↑↓：新しいタブ | 中：about:config | 右：Chromeフォルダ)
+// @note    
+// @note    Firefox Nightly 69.0a1で動作確認しました。
+// @note    http://wiki.nothing.sh/page?userChrome.js%CD%D1%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8#m5c944e2
+// @note    ↑ここの「サンドボックスが有効になった62以降でもuserChrome.js用スクリプトを利用する方法」を導入して確認しています。
+// @note
+// @note    Firefox60ESRなどでabout:系を使いたい場合 openTrustedLinkIn ⇒ openUILinkIn に変更してください。
+// @note
+// @note    Firefox61以降クッキーマネージャ？がCookieとサイトデータに変わり廃止されたのでクッキーマネージャ？を開くボタンが使え無くなります。
+// @note
+// @note    Firefox68以下でこのスクリプトを使いたい場合 aDocument.createXULElement ⇒ document.createElement に変更してください。
 // ==/UserScript==
 
 (function() {
