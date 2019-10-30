@@ -26,51 +26,27 @@ function MultiRowTabLiteforFx() {
     #PersonalToolbar { -moz-box-ordinal-group: 3 !important; } /* Lesezeichen-Symbolleiste */
     #titlebar { -moz-box-ordinal-group: 4 !important; }        /* Titelleiste */
 
-    /* Anpassung der Symbolleiste */
-    [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
-    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
-
-    /* Windows 10 und Firefox Standardtheme, Fensterausenlinie in weiß. 
-       Anpassung für Titelleistenschaltflächen wenn sie in den Hintergrund verschoben sind */
-    #main-window:not([lwtheme="true"]) #window-controls toolbarbutton,
-    #main-window:not([lwtheme="true"]) .titlebar-buttonbox .titlebar-button { color: rgb(24, 25, 26) !important; }
-    #main-window:not([lwtheme="true"]) #window-controls toolbarbutton:not([id="close-button"]):hover,
-    #main-window:not([lwtheme="true"]) .titlebar-buttonbox .titlebar-button:not(.titlebar-close):hover {
-    background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }
-
-    /* Anpassung für Titelleistenschaltflächen */
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
-    [tabsintitlebar="true"] .titlebar-buttonbox-container { position: fixed; right:0; }
-    [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
-    [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
-
-    /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
-	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
-    [tabsintitlebar="true"]:not([inFullscreen="true"]) #nav-bar { padding-right: 139px !important; }
-    #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
+    /* Anpassung der Symbolleisten */
+    #main-window[inFullscreen="true"] #window-controls { display: block; }
 
     /* Mehrzeilige Tableiste */
     tabs > arrowscrollbox { display: block; }
     tabs > arrowscrollbox > scrollbox {
         display: flex;
-        flex-wrap: wrap; }
+        display: -webkit-box;
+        flex-wrap: wrap;
+        max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
+        overflow-x: hidden;
+        overflow-y: auto; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab,.tab-background {
         height: var(--tab-min-height);
+        overflow: hidden;
         z-index: 1 !important; }
     tab > .tab-stack { width: 100%; }
 
-    /* Drag-Bereich auf der linken und rechten Seite der
-       Tab-Leiste ausblenden - verstecken
-       Links und rechts → hbox.titlebar-spacer 
-       links → hbox.titlebar-spacer[type="pre-tabs"] 
-       rechts → hbox.titlebar-spacer[type="post-tabs"] */
-    hbox.titlebar-spacer
-    ,
     /* Ausblenden - Verstecken */
     #alltabs-button,tabs tab:not([fadein]),
-    #toolbar-menubar .titlebar-buttonbox,
     tabs > arrowscrollbox [class^="scrollbutton"],
     tabs > arrowscrollbox spacer { display: none; }
 
