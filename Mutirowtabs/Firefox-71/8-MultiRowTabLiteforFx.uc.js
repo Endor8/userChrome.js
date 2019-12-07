@@ -16,18 +16,32 @@ MultiRowTabLiteforFx();
 function MultiRowTabLiteforFx() {
 
     /* Symbolleisten und Menüleiste von der Titelleiste in die Navigator-Toolbox verschieben */
-    document.getElementById("navigator-toolbox").appendChild(document.getElementById("toolbar-menubar"));
+    document.getElementById("titlebar").parentNode.insertBefore(document.getElementById("toolbar-menubar"),document.getElementById("nav-bar"));
+    /* #Titel-Leiste aus der # Navigator-Toolbox in die # Browser-Bottombox verschieben */
+    document.getElementById("navigator-toolbox").parentNode.insertBefore(document.getElementById("titlebar"), document.getElementById("browser-bottombox"));
 
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
-    /* Symbolleiste Sortieren */
-    #toolbar-menubar { -moz-box-ordinal-group: 1 !important; } /* Menüleiste */
-    #nav-bar { -moz-box-ordinal-group: 2 !important; }         /* Navigationsleiste */
-    #PersonalToolbar { -moz-box-ordinal-group: 3 !important; } /* Lesezeichen-Symbolleiste */
-    #titlebar { -moz-box-ordinal-group: 4 !important; }        /* Titelleiste */
-
     /* Anpassung der Symbolleisten */
+    [tabsintitlebar="true"] #toolbar-menubar { height: 29px; }
     #main-window[inFullscreen="true"] #window-controls { display: block; }
+    [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
+    #main-window:not([tabsintitlebar="true"]) .tab-background { border-top-style: none !important; }
+
+    /* Windows 10 und Firefox Standardtheme, Fensterausenlinie in weiß. 
+       Anpassung für Titelleistenschaltflächen wenn sie in den Hintergrund verschoben sind */
+    #main-window:not([lwtheme="true"]) #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-button { color: rgb(24, 25, 26) !important; }
+    #main-window:not([lwtheme="true"]) #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-button:not(.titlebar-close):hover {
+        background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }
+
+    /* Position der Titelleistenschaltflächen anpassen */
+    [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container {
+        display: block; position: fixed; z-index: 1 !important; right:0; }
+
+    /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
+	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
+    [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
 
     /* Mehrzeilige Tableiste */
     tabs > arrowscrollbox { display: block; }
@@ -40,15 +54,24 @@ function MultiRowTabLiteforFx() {
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab,.tab-background {
         height: var(--tab-min-height);
-        overflow: hidden;
-        z-index: 1 !important; }
+        overflow: hidden; }
     tab > .tab-stack { width: 100%; }
 
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
+	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
+
+    /* Drag-Bereich auf der linken und rechten Seite der
+       Tab-Leiste ausblenden - verstecken
+       Links und rechts → hbox.titlebar-spacer 
+       links → hbox.titlebar-spacer[type="pre-tabs"] 
+       rechts → hbox.titlebar-spacer[type="post-tabs"] */
+    hbox.titlebar-spacer
+    ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]), 
-    [class="scrollbutton-up"],
-    [class="scrollbutton-up"] + spacer,
-    scrollbox[part][orient="horizontal"] + spacer,
+    #alltabs-button,tabs tab:not([fadein]),
+    [tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox-container,
+    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
     [class="scrollbutton-down"] { display: none; }
 
     } `;
@@ -86,46 +109,6 @@ function MultiRowTabLiteforFx() {
         }
         event.preventDefault();
         event.stopPropagation();
-        var arrowScrollbox = this.arrowScrollbox;
-        // autoscroll the tab strip if we drag over the scroll
-        // buttons, even if we aren't dragging a tab, but then
-        // return to avoid drawing the drop indicator
-        var pixelsToScroll = 0;
-        if (this.getAttribute("overflow") == "true") {
-            switch (event.originalTarget) {
-                case arrowScrollbox._scrollButtonUp:
-                    pixelsToScroll = arrowScrollbox.scrollIncrement * -1;
-                    break;
-                case arrowScrollbox._scrollButtonDown:
-                    pixelsToScroll = arrowScrollbox.scrollIncrement;
-                    break;
-            }
-            if (pixelsToScroll) {
-                arrowScrollbox.scrollByPixels(
-                    (RTL_UI ? -1 : 1) * pixelsToScroll,
-                    true
-                );
-            }
-        }
-/*
-        let draggedTab = event.dataTransfer.mozGetDataAt(TAB_DROP_TYPE, 0);
-        if (
-            (effects == "move" || effects == "copy") &&
-            this == draggedTab.container
-        ) {
-            ind.hidden = true;
-            if (!this._isGroupTabsAnimationOver()) {
-                // Wait for grouping tabs animation to finish
-                return;
-            }
-            this._finishGroupSelectedTabs(draggedTab);
-            if (effects == "move") {
-                this._animateTabMove(event);
-                return;
-            }
-        }
-        this._finishAnimateTabMove();
-*/
         if (effects == "link") {
             let tab = this._getDragTargetTab(event, true);
             if (tab) {
@@ -139,52 +122,13 @@ function MultiRowTabLiteforFx() {
                 return;
             }
         }
-        var rect = arrowScrollbox.getBoundingClientRect();
-        var newMargin;
-        if (pixelsToScroll) {
-            // if we are scrolling, put the drop indicator at the edge
-            // so that it doesn't jump while scrolling
-            let scrollRect = arrowScrollbox.scrollClientRect;
-            let minMargin = scrollRect.left - rect.left;
-            let maxMargin = Math.min(
-                minMargin + scrollRect.width,
-                scrollRect.right
-            );
-            if (RTL_UI) {
-                [minMargin, maxMargin] = [
-                    this.clientWidth - maxMargin,
-                    this.clientWidth - minMargin,
-                ];
-            }
-            newMargin = pixelsToScroll > 0 ? maxMargin : minMargin;
+        let newIndex = this._getDropIndex(event, effects == "link");
+        let children = this.allTabs;
+        if (newIndex == children.length) {
+            children[newIndex - 1].style.setProperty("border-right-color","red","important");
         } else {
-            let newIndex = this._getDropIndex(event, effects == "link");
-            let children = this.allTabs;
-            if (newIndex == children.length) {
-                let tabRect = children[newIndex - 1].getBoundingClientRect();
-                if (RTL_UI) {
-                    newMargin = rect.right - tabRect.left;
-                } else {
-                    newMargin = tabRect.right - rect.left;
-                }
-                children[newIndex - 1].style.setProperty("border-right-color","red","important");
-            } else {
-                let tabRect = children[newIndex].getBoundingClientRect();
-                if (RTL_UI) {
-                    newMargin = rect.right - tabRect.right;
-                } else {
-                    newMargin = tabRect.left - rect.left;
-                }
-                children[newIndex].style.setProperty("border-left-color","red","important");
-            }
+            children[newIndex].style.setProperty("border-left-color","red","important");
         }
-        ind.hidden = false;
-        newMargin += ind.clientWidth / 2;
-        if (RTL_UI) {
-            newMargin *= -1;
-        }
-        ind.style.transform = "translate(" + Math.round(newMargin) + "px)";
-        ind.style.marginInlineStart = -ind.clientWidth + "px";
     }
 
     gBrowser.tabContainer.on_drop = function(event) {

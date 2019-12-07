@@ -31,9 +31,7 @@ function MultiRowTabLiteforFx() {
         display: flex;
         flex-wrap: wrap; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
-    tabs tab,.tab-background {
-        height: var(--tab-min-height);
-        z-index: 1 !important; }
+    tabs tab,.tab-background { height: var(--tab-min-height); }
     tab > .tab-stack { width: 100%; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
@@ -44,10 +42,8 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]), 
-    [class="scrollbutton-up"],
-    [class="scrollbutton-up"] + spacer,
-    scrollbox[part][orient="horizontal"] + spacer,
+    #alltabs-button,tabs tab:not([fadein]),
+    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
     [class="scrollbutton-down"] { display: none; }
 
     } `;
@@ -85,46 +81,6 @@ function MultiRowTabLiteforFx() {
         }
         event.preventDefault();
         event.stopPropagation();
-        var arrowScrollbox = this.arrowScrollbox;
-        // autoscroll the tab strip if we drag over the scroll
-        // buttons, even if we aren't dragging a tab, but then
-        // return to avoid drawing the drop indicator
-        var pixelsToScroll = 0;
-        if (this.getAttribute("overflow") == "true") {
-            switch (event.originalTarget) {
-                case arrowScrollbox._scrollButtonUp:
-                    pixelsToScroll = arrowScrollbox.scrollIncrement * -1;
-                    break;
-                case arrowScrollbox._scrollButtonDown:
-                    pixelsToScroll = arrowScrollbox.scrollIncrement;
-                    break;
-            }
-            if (pixelsToScroll) {
-                arrowScrollbox.scrollByPixels(
-                    (RTL_UI ? -1 : 1) * pixelsToScroll,
-                    true
-                );
-            }
-        }
-/*
-        let draggedTab = event.dataTransfer.mozGetDataAt(TAB_DROP_TYPE, 0);
-        if (
-            (effects == "move" || effects == "copy") &&
-            this == draggedTab.container
-        ) {
-            ind.hidden = true;
-            if (!this._isGroupTabsAnimationOver()) {
-                // Wait for grouping tabs animation to finish
-                return;
-            }
-            this._finishGroupSelectedTabs(draggedTab);
-            if (effects == "move") {
-                this._animateTabMove(event);
-                return;
-            }
-        }
-        this._finishAnimateTabMove();
-*/
         if (effects == "link") {
             let tab = this._getDragTargetTab(event, true);
             if (tab) {
@@ -138,52 +94,13 @@ function MultiRowTabLiteforFx() {
                 return;
             }
         }
-        var rect = arrowScrollbox.getBoundingClientRect();
-        var newMargin;
-        if (pixelsToScroll) {
-            // if we are scrolling, put the drop indicator at the edge
-            // so that it doesn't jump while scrolling
-            let scrollRect = arrowScrollbox.scrollClientRect;
-            let minMargin = scrollRect.left - rect.left;
-            let maxMargin = Math.min(
-                minMargin + scrollRect.width,
-                scrollRect.right
-            );
-            if (RTL_UI) {
-                [minMargin, maxMargin] = [
-                    this.clientWidth - maxMargin,
-                    this.clientWidth - minMargin,
-                ];
-            }
-            newMargin = pixelsToScroll > 0 ? maxMargin : minMargin;
+        let newIndex = this._getDropIndex(event, effects == "link");
+        let children = this.allTabs;
+        if (newIndex == children.length) {
+            children[newIndex - 1].style.setProperty("border-right-color","red","important");
         } else {
-            let newIndex = this._getDropIndex(event, effects == "link");
-            let children = this.allTabs;
-            if (newIndex == children.length) {
-                let tabRect = children[newIndex - 1].getBoundingClientRect();
-                if (RTL_UI) {
-                    newMargin = rect.right - tabRect.left;
-                } else {
-                    newMargin = tabRect.right - rect.left;
-                }
-                children[newIndex - 1].style.setProperty("border-right-color","red","important");
-            } else {
-                let tabRect = children[newIndex].getBoundingClientRect();
-                if (RTL_UI) {
-                    newMargin = rect.right - tabRect.right;
-                } else {
-                    newMargin = tabRect.left - rect.left;
-                }
-                children[newIndex].style.setProperty("border-left-color","red","important");
-            }
+            children[newIndex].style.setProperty("border-left-color","red","important");
         }
-        ind.hidden = false;
-        newMargin += ind.clientWidth / 2;
-        if (RTL_UI) {
-            newMargin *= -1;
-        }
-        ind.style.transform = "translate(" + Math.round(newMargin) + "px)";
-        ind.style.marginInlineStart = -ind.clientWidth + "px";
     }
 
     gBrowser.tabContainer.on_drop = function(event) {

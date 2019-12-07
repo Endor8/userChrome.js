@@ -22,6 +22,11 @@ function MultiRowTabLiteforFx() {
 
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
+    /* Symbolleiste Sortieren */
+    #toolbar-menubar { -moz-box-ordinal-group: 1 !important; } /* Menüleiste */
+    #nav-bar { -moz-box-ordinal-group: 2 !important; }         /* Navigationsleiste */
+    #PersonalToolbar { -moz-box-ordinal-group: 3 !important; } /* Lesezeichen-Symbolleiste */
+
     /* Anpassung der Symbolleisten */
     [tabsintitlebar="true"] #toolbar-menubar { height: 29px; }
     #main-window[inFullscreen="true"] #window-controls { display: block; }
@@ -29,19 +34,17 @@ function MultiRowTabLiteforFx() {
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
     #main-window:not([tabsintitlebar="true"]) .tab-background { border-top-style: none !important; }
 
-    /* Windows 10 und Firefox Standardtheme, Fensterausenlinie in weiß. 
-       Anpassung für Titelleistenschaltflächen wenn sie in den Hintergrund verschoben sind */
-    #main-window:not([lwtheme="true"]) #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-button { color: rgb(24, 25, 26) !important; }
-    #main-window:not([lwtheme="true"]) #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-button:not(.titlebar-close):hover {
-        background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }
-
-    /* Position der Titelleistenschaltflächen anpassen */
-    [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container {
-        display: block; position: fixed; z-index: 1 !important; right:0; }
-
-    /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
-	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
-    [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
+    /* Titelleistenschaltfläche ausblenden und anzeigen, wenn Sie den Mauszeiger über die */
+	/* rechte obere Ecke bewegen Bereich beim Überfahren mit der Maus reagieren lassen */
+    /* Titelleistenschaltflächen oben rechts verbergen , um Bereich transparent zu machen */
+    [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container { opacity: 0; right: -80px;
+        display: block; position: fixed; z-index: 1 !important; background-color: hsla(0, 0%, 60%, 0.5); }
+    [tabsintitlebar="true"][sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container { top: -21px; }
+    [tabsintitlebar="true"][sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container { top: -14px; }
+    /* Anpassung für Titelleistenschaltflächen */
+    [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container:hover { opacity: 1; right:0; }
+    [tabsintitlebar="true"][sizemode="normal"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container:hover { top: 1px; }
+    [tabsintitlebar="true"][sizemode="maximized"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container:hover { top: 8px; }
 
     /* Mehrzeilige Tableiste */
     tabs > arrowscrollbox { display: block; }
