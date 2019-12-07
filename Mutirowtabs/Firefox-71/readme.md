@@ -30,8 +30,8 @@ zu verschieben, sowie Anpassungen für Symbolleisten.
 
 * Skript 9: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Tabzeilen,     
 Tabs ziehen und ablegen möglich, Tableiste ganz nach unten, unter den Fensterinhalt,    
-verschieben, Erstellen eines Menüleistenbereiches über der Symbolleiste um das Menü 
-nach oben zu verschieben, sowie Anpassungen für Symbolleisten.  
+verschieben, Erstellen eines Menüleistenbereiches über der Symbolleiste um das Menü    
+nach oben zu verschieben, sowie Anpassungen für Symbolleisten.   
 
 * Skript 10:Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,   
 kann aber im Script in Zeile 54 geändert werden.     
