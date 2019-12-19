@@ -2,4 +2,4 @@
 
 - about-logins.uc.js
 - Firefox_ToolBarButtons.uc.js    
-- openpassword.uc.js
+- open-password.uc.js
