@@ -1,4 +1,4 @@
-### userChrome Scripte -  Verwendung ab Firefox 57 und neuer
+### userChrome Scripte -  Verwendung in Firefox    
 
 ##### Herunterladen und Entpacken der ZIP-Datei: firefox-anpassungen.zip
 
