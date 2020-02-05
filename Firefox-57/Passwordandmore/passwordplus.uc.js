@@ -1,6 +1,6 @@
    (function() {
 
-    if (location != 'chrome://browser/content/browser.xul')
+    if (location != 'chrome://browser/content/browser.xhtml')
        return;
 
     try {
@@ -23,6 +23,7 @@
              return toolbaritem;
         }
        });
+     CustomizableUI.registerToolbarNode(tb);
    } catch(e) { };
 
    var css = '\
@@ -38,96 +39,189 @@
 
    // menupopup of toolbarbutton
 
-   menupopup = document.createElement('menupopup');
+   menupopup = document.createXULElement('menupopup');
    menupopup.id = "pwuco-button-popup";
    document.getElementById('pwuco-toolbarbutton').appendChild(menupopup);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.setAttribute('label', "Passwörter öffnen");
    menuitem.setAttribute('tooltiptext', "Passwörter anzeigen");
    menuitem.setAttribute('accesskey', "P");
-   menuitem.setAttribute('oncommand', "window.open('chrome://passwordmgr/content/passwordManager.xul', 'Toolkit:PasswordManager', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:logins", "tab");');
    menupopup.appendChild(menuitem);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.setAttribute('label', "Cookies öffnen");
    menuitem.setAttribute('tooltiptext', "Cookies anzeigen");
    menuitem.setAttribute('accesskey', "C");
-   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/cookies.xul', 'Browser:Cookies', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/siteDataSettings.xhtml', 'Browser:Cookies', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.setAttribute('label', "Cookies Web-Entwickler öffnen");
+   menuitem.setAttribute('accesskey', "E");
+   menuitem.setAttribute('oncommand', 'document.getElementById("menuitem_storage").click();');
    menupopup.appendChild(menuitem);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
+   menuitem.setAttribute('label', "Ausnahmen - Cookies öffnen");
+   menuitem.setAttribute('tooltiptext', "Ausnahmen - Cookies anzeigen");
+   menuitem.setAttribute('accesskey', "A");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/permissions.xhtml', 'Browser:permissions', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);
+
+   menuitem = document.createXULElement('menuitem');
    menuitem.setAttribute('label', "Zertifikate öffnen");
    menuitem.setAttribute('tooltiptext', "Zertifikate anzeigen");
    menuitem.setAttribute('accesskey', "z");
-   menuitem.setAttribute('oncommand', "window.open('chrome://pippki/content/certManager.xul', 'mozilla:certmanager', 'chrome,resizable=yes,all,width=830,height=400');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://pippki/content/certManager.xhtml', 'mozilla:certmanager', 'chrome,resizable=yes,all,width=830,height=400');");
    menupopup.appendChild(menuitem);
    
-   menuseparator = document.createElement('menuseparator');
+   menuseparator = document.createXULElement('menuseparator');
    menupopup.appendChild(menuseparator);
    
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.setAttribute('label', "Chronik löschen");
    menuitem.setAttribute('tooltiptext', "Chronik löschen");
    menuitem.setAttribute('accesskey', "l");
-   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/sanitize.xul', 'Toolkit:SanitizeDialog', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/sanitize.xhtml', 'Toolkit:SanitizeDialog', 'chrome,resizable=yes');");
    menupopup.appendChild(menuitem);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.setAttribute('label', "Update-Chronik öffnen");
    menuitem.setAttribute('tooltiptext', "Update-Chronik öffnen");
    menuitem.setAttribute('accesskey', "U");
-   menuitem.setAttribute('oncommand', "window.open('chrome://mozapps/content/update/history.xul', 'Update:History', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://mozapps/content/update/history.xhtml', 'Update:History', 'chrome,resizable=yes');");
    menupopup.appendChild(menuitem);
 
    // submenu of context menu
 
-   menu = document.createElement('menu');
+   menu = document.createXULElement('menu');
    menu.id = "context-pwuco-menu";
    menu.setAttribute('label', "Passwörter und co.");
    menu.setAttribute('accesskey', "o");
    document.getElementById('contentAreaContextMenu')
      .insertBefore(menu, document.getElementById('context-sep-viewbgimage').nextSibling);
 
-   menupopup = document.createElement('menupopup');
+   menupopup = document.createXULElement('menupopup');
    menu.appendChild(menupopup);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.id = "context-password";
    menuitem.setAttribute('label', "Passwörter öffnen");
    menuitem.setAttribute('accesskey', "P");
-   menuitem.setAttribute('oncommand', "window.open('chrome://passwordmgr/content/passwordManager.xul', 'Toolkit:PasswordManager', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:logins", "tab");');
    menupopup.appendChild(menuitem);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.id = "context-opencookies";
    menuitem.setAttribute('label', "Cookies öffnen");
    menuitem.setAttribute('accesskey', "C");
-   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/cookies.xul', 'Browser:Cookies', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/siteDataSettings.xhtml', 'Browser:Cookies', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);   
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-opencookies-tools";
+   menuitem.setAttribute('label', "Cookies Web-Entwickler öffnen");
+   menuitem.setAttribute('accesskey', "E");
+   menuitem.setAttribute('oncommand', 'document.getElementById("menuitem_storage").click();');
+   menupopup.appendChild(menuitem);
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-open-permissions";
+   menuitem.setAttribute('label', "Ausnahmen - Cookies öffnen");
+   menuitem.setAttribute('tooltiptext', "Ausnahmen - Cookies anzeigen");
+   menuitem.setAttribute('accesskey', "A");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/permissions.xhtml', 'Browser:permissions', 'chrome,resizable=yes');");
    menupopup.appendChild(menuitem);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.id = "context-opencert";
    menuitem.setAttribute('label', "Zertifikate öffnen");
    menuitem.setAttribute('accesskey', "z");
-   menuitem.setAttribute('oncommand', "window.open('chrome://pippki/content/certManager.xul', 'mozilla:certmanager', 'chrome,resizable=yes,all,width=830,height=400');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://pippki/content/certManager.xhtml', 'mozilla:certmanager', 'chrome,resizable=yes,all,width=830,height=400');");
    menupopup.appendChild(menuitem);
       
-   menuseparator = document.createElement('menuseparator');
+   menuseparator = document.createXULElement('menuseparator');
    menupopup.appendChild(menuseparator);
    
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.id = "context-opensanitize";
    menuitem.setAttribute('label', "Chronik löschen");
    menuitem.setAttribute('accesskey', "l");
-   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/sanitize.xul', 'Toolkit:SanitizeDialog', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/sanitize.xhtml', 'Toolkit:SanitizeDialog', 'chrome,resizable=yes');");
    menupopup.appendChild(menuitem);
 
-   menuitem = document.createElement('menuitem');
+   menuitem = document.createXULElement('menuitem');
    menuitem.id = "context-openupdate";
    menuitem.setAttribute('label', "Update-Chronik öffnen");
    menuitem.setAttribute('accesskey', "U");
-   menuitem.setAttribute('oncommand', "window.open('chrome://mozapps/content/update/history.xul', 'Update:History', 'chrome,resizable=yes');");
+   menuitem.setAttribute('oncommand', "window.open('chrome://mozapps/content/update/history.xhtml', 'Update:History', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);
+   
+      // submenu of context menu2
+
+   menu = document.createXULElement('menu');
+   menu.id = "context-pwuco-menu2";
+   menu.setAttribute('label', "Passwörter und co.");
+   menu.setAttribute('accesskey', "o");
+   document.getElementById('menu_ToolsPopup')
+     .insertBefore(menu, document.getElementById('menu_openDownloads').nextSibling);
+
+   menupopup = document.createXULElement('menupopup');
+   menu.appendChild(menupopup);
+
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-password";
+   menuitem.setAttribute('label', "Passwörter öffnen");
+   menuitem.setAttribute('accesskey', "P");
+   menuitem.setAttribute('oncommand', 'openTrustedLinkIn("about:logins", "tab");');
+   menupopup.appendChild(menuitem);
+
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-opencookies";
+   menuitem.setAttribute('label', "Cookies öffnen");
+   menuitem.setAttribute('accesskey', "C");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/siteDataSettings.xhtml', 'Browser:Cookies', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-opencookies-tools";
+   menuitem.setAttribute('label', "Cookies Web-Entwickler öffnen");
+   menuitem.setAttribute('accesskey', "E");
+   menuitem.setAttribute('oncommand', 'document.getElementById("menuitem_storage").click();');
+   menupopup.appendChild(menuitem);
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-open-permissions";
+   menuitem.setAttribute('label', "Ausnahmen - Cookies öffnen");
+   menuitem.setAttribute('tooltiptext', "Ausnahmen - Cookies anzeigen");
+   menuitem.setAttribute('accesskey', "A");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/permissions.xhtml', 'Browser:permissions', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);
+
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-opencert";
+   menuitem.setAttribute('label', "Zertifikate öffnen");
+   menuitem.setAttribute('accesskey', "z");
+   menuitem.setAttribute('oncommand', "window.open('chrome://pippki/content/certManager.xhtml', 'mozilla:certmanager', 'chrome,resizable=yes,all,width=830,height=400');");
+   menupopup.appendChild(menuitem);
+      
+   menuseparator = document.createXULElement('menuseparator');
+   menupopup.appendChild(menuseparator);
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-opensanitize";
+   menuitem.setAttribute('label', "Chronik löschen");
+   menuitem.setAttribute('accesskey', "l");
+   menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/sanitize.xhtml', 'Toolkit:SanitizeDialog', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);
+
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-openupdate";
+   menuitem.setAttribute('label', "Update-Chronik öffnen");
+   menuitem.setAttribute('accesskey', "U");
+   menuitem.setAttribute('oncommand', "window.open('chrome://mozapps/content/update/history.xhtml', 'Update:History', 'chrome,resizable=yes');");
    menupopup.appendChild(menuitem);
 
 })();
