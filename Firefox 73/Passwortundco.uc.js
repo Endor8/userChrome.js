@@ -56,6 +56,12 @@
    menuitem.setAttribute('accesskey', "C");
    menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/siteDataSettings.xhtml', 'Browser:Cookies', 'chrome,resizable=yes');");
    menupopup.appendChild(menuitem);
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.setAttribute('label', "Cookies Web-Entwickler öffnen");
+   menuitem.setAttribute('accesskey', "E");
+   menuitem.setAttribute('oncommand', 'document.getElementById("menuitem_storage").click();');
+   menupopup.appendChild(menuitem);
 
    menuitem = document.createXULElement('menuitem');
    menuitem.setAttribute('label', "Ausnahmen - Cookies öffnen");
@@ -115,6 +121,13 @@
    menupopup.appendChild(menuitem);   
    
    menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-opencookies-tools";
+   menuitem.setAttribute('label', "Cookies Web-Entwickler öffnen");
+   menuitem.setAttribute('accesskey', "E");
+   menuitem.setAttribute('oncommand', 'document.getElementById("menuitem_storage").click();');
+   menupopup.appendChild(menuitem);
+   
+   menuitem = document.createXULElement('menuitem');
    menuitem.id = "context-open-permissions";
    menuitem.setAttribute('label', "Ausnahmen - Cookies öffnen");
    menuitem.setAttribute('tooltiptext', "Ausnahmen - Cookies anzeigen");
@@ -170,6 +183,13 @@
    menuitem.setAttribute('label', "Cookies öffnen");
    menuitem.setAttribute('accesskey', "C");
    menuitem.setAttribute('oncommand', "window.open('chrome://browser/content/preferences/siteDataSettings.xhtml', 'Browser:Cookies', 'chrome,resizable=yes');");
+   menupopup.appendChild(menuitem);
+   
+   menuitem = document.createXULElement('menuitem');
+   menuitem.id = "context-opencookies-tools";
+   menuitem.setAttribute('label', "Cookies Web-Entwickler öffnen");
+   menuitem.setAttribute('accesskey', "E");
+   menuitem.setAttribute('oncommand', 'document.getElementById("menuitem_storage").click();');
    menupopup.appendChild(menuitem);
    
    menuitem = document.createXULElement('menuitem');
