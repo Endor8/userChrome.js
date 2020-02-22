@@ -73,7 +73,8 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]),
+    #alltabs-button,
+    tabs tab:not([fadein]),
     #toolbar-menubar[autohide="false"] + #titlebar #TabsToolbar .titlebar-buttonbox-container,
     [class="scrollbutton-up"],
     [class="scrollbutton-up"] ~ spacer,
@@ -84,22 +85,11 @@ function MultiRowTabLiteforFx() {
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
 
-    var css =`
-    tabs tab {
-        border-left: solid 1px hsla(0,0%,50%,.5) !important;
-        border-right: solid 1px hsla(0,0%,50%,.5) !important;
-    }
-    tabs tab:after,tabs tab:before { display: none !important; }
-    `;
-    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
-    var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
-    sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
-
     gBrowser.tabContainer.clearDropIndicator = function() {
-        var tabs = this.allTabs;
+        var tabs = document.getElementsByClassName("tab-background");
         for (let i = 0, len = tabs.length; i < len; i++) {
-            tabs[i].style.removeProperty("border-left-color");
-            tabs[i].style.removeProperty("border-right-color");
+            tabs[i].style.removeProperty("border-left-style");
+            tabs[i].style.removeProperty("border-right-style");
         }
     }
     gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);
@@ -107,11 +97,6 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.on_dragover = function(event) {
         this.clearDropIndicator();
         var effects = this._getDropEffectForTabDrag(event);
-        var ind = this._tabDropIndicator;
-        if (effects == "" || effects == "none") {
-            ind.hidden = true;
-            return;
-        }
         event.preventDefault();
         event.stopPropagation();
         if (effects == "link") {
@@ -123,16 +108,15 @@ function MultiRowTabLiteforFx() {
                 if (Date.now() >= this._dragTime + this._dragOverDelay) {
                     this.selectedItem = tab;
                 }
-                ind.hidden = true;
                 return;
             }
         }
         let newIndex = this._getDropIndex(event, effects == "link");
-        let children = this.allTabs;
+        let children = document.getElementsByClassName("tab-background");
         if (newIndex == children.length) {
-            children[newIndex - 1].style.setProperty("border-right-color","red","important");
+            children[newIndex - 1].style.setProperty("border-right","2px solid red","important");
         } else {
-            children[newIndex].style.setProperty("border-left-color","red","important");
+            children[newIndex].style.setProperty("border-left","2px solid red","important");
         }
     }
 

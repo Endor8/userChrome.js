@@ -22,12 +22,20 @@ function MultiRowTabLiteforFx() {
 
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
+    /* Symbolleiste Sortieren */
+    #toolbar-menubar { -moz-box-ordinal-group: 1 !important; } /* Menüleiste */
+    #nav-bar { -moz-box-ordinal-group: 2 !important; }         /* Navigationsleiste */
+    #PersonalToolbar { -moz-box-ordinal-group: 3 !important; } /* Lesezeichen-Symbolleiste */
+
     /* Anpassung der Symbolleisten */
     [tabsintitlebar="true"] #toolbar-menubar { height: 29px; }
     #main-window[inFullscreen="true"] #window-controls { display: block; }
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
-    #main-window:not([tabsintitlebar="true"]) .tab-background { border-top-style: none !important; }
+
+    /* Tableiste an den unteren Rand des Fensters verschieben. Beim aktiven Tab wird ein weißer Rand angezeigt. Diesen transparent machen */
+    #main-window:not([tabsintitlebar="true"]) .tab-background { border-top-color: transparent !important; }
+    tabs tab[beforeselected-visible]:after,tabs tab[selected]:after { border-left-color: transparent !important; }
 
     /* Windows 10 und Firefox Standardtheme, Fensterausenlinie in weiß. 
        Anpassung für Titelleistenschaltflächen wenn sie in den Hintergrund verschoben sind */
@@ -69,9 +77,11 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]),
+    #alltabs-button,
+    tabs tab:not([fadein]),
     [tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox-container,
-    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
+    [class="scrollbutton-up"],
+    [class="scrollbutton-up"] ~ spacer,
     [class="scrollbutton-down"] { display: none; }
 
     } `;
@@ -79,22 +89,11 @@ function MultiRowTabLiteforFx() {
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
 
-    var css =`
-    tabs tab {
-        border-left: solid 1px hsla(0,0%,50%,.5) !important;
-        border-right: solid 1px hsla(0,0%,50%,.5) !important;
-    }
-    tabs tab:after,tabs tab:before { display: none !important; }
-    `;
-    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
-    var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
-    sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
-
     gBrowser.tabContainer.clearDropIndicator = function() {
-        var tabs = this.allTabs;
+        var tabs = document.getElementsByClassName("tab-background");
         for (let i = 0, len = tabs.length; i < len; i++) {
-            tabs[i].style.removeProperty("border-left-color");
-            tabs[i].style.removeProperty("border-right-color");
+            tabs[i].style.removeProperty("border-left-style");
+            tabs[i].style.removeProperty("border-right-style");
         }
     }
     gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);
@@ -102,11 +101,6 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.on_dragover = function(event) {
         this.clearDropIndicator();
         var effects = this._getDropEffectForTabDrag(event);
-        var ind = this._tabDropIndicator;
-        if (effects == "" || effects == "none") {
-            ind.hidden = true;
-            return;
-        }
         event.preventDefault();
         event.stopPropagation();
         if (effects == "link") {
@@ -118,16 +112,15 @@ function MultiRowTabLiteforFx() {
                 if (Date.now() >= this._dragTime + this._dragOverDelay) {
                     this.selectedItem = tab;
                 }
-                ind.hidden = true;
                 return;
             }
         }
         let newIndex = this._getDropIndex(event, effects == "link");
-        let children = this.allTabs;
+        let children = document.getElementsByClassName("tab-background");
         if (newIndex == children.length) {
-            children[newIndex - 1].style.setProperty("border-right-color","red","important");
+            children[newIndex - 1].style.setProperty("border-right","2px solid red","important");
         } else {
-            children[newIndex].style.setProperty("border-left-color","red","important");
+            children[newIndex].style.setProperty("border-left","2px solid red","important");
         }
     }
 
