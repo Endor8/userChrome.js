@@ -27,9 +27,10 @@ folgende Zeilen in gewünschten CSS Code einfügen und anpassen
 	
 Wenn man bei beiden Werten den selben Wert angibt wird die **Tabbreite fixiert.**
 
-Css Code 05-Mehrzeilige-Tableiste.css ist eine modifizierte Version von CSS Code **04-Mehrzeilige-Tableiste.css**    
-mit fixierter Tabbreite, Abpassung verschiedener Abstände und Tabzeilenbegrenzug auf **5**    
-
+Css Code **05-Mehrzeilige-Tableiste.css** ist eine modifizierte Version von CSS Code **04-Mehrzeilige-Tableiste.css**    
+mit fixierter Tabbreite, Anpassung verschiedener Abstände der Leisten und Tabzeilenbegrenzug auf **2**    
+Bei mehr Tabreihen als **2** wird dann die Scrollbar angezeigt.   
+   
 ### Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
 
 ![Screenshot](Zwischenablage01a.png)
