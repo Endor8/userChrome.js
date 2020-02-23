@@ -12,7 +12,7 @@ Bei mehr Zeilen wird eine Scrollbar eingeblendet. Die Anzahl kann im CSS Code an
  
 - **03-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste**   
 
-- **04-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste +** 
+- **04-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste +**     
      **Anpassungen + Tabzeilen Anzahlbegrenzung. Standard ist 5 Zeilen, kann in Zeile 34 geändert werden.**    
 
 ## Anpassen - fixieren der Tabbreite 
