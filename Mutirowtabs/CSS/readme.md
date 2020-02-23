@@ -22,19 +22,19 @@ Bei mehr als **2** Tabreihen, wird dann eine Scrollbar angezeigt.
    
 ### Mit CSS Code 1-2 sieht es so aus:
 
-![Screenshot](Mehrzeilig obena.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Mehrzeilig%20obena.png)
 
 Tabs oben mehrzeilige Tableiste
 
-![Screenshot](X nur auf aktiven Tab bei 100pxa.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/X%20nur%20auf%20aktiven%20Tab%20bei%20100pxa.png)
 
 Tabs oben, mehrzeilige Tableiste Tabbreite auf 100px begrenzt.    
 Schließenkreuz nur bei aktivem Tab sichtbar    
 
-![Screenshot](Feste Breite mit Schließenkreuza.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Feste%20Breite%20mit%20Schlie%C3%9Fenkreuza.png)
 
 Tabs oben, mehrzeilige Tableiste Tabbreite auf 150px begrenzt.    
-Schließenkreuz nur bei allen Tab sichtbar
+Schließenkreuz bei allen Tab sichtbar
 
 ### Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
 
