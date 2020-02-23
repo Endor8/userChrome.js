@@ -1,26 +1,34 @@
 ### CSS Codes für Mehrzeilige Tableiste und Änderung der Reihenfolge der Leisten
 
-Es stehen 4 verschiedenen CSS Codes zur Verfügung:
-Alle vier, ermöglichen eine Mehrzeilige Tableiste.
-2 Css Codes verschieben die Tableiste zusätzlich unter die
+Es stehen **4** verschiedenen CSS Codes zur Verfügung:
+Alle **4**, ermöglichen eine Mehrzeilige Tableiste.
+**2** Css Codes verschieben die Tableiste zusätzlich unter die
 Adressleiste - bzw. Lesezeichenleiste.
 
+- **01-Mehrzeilige-Tableiste.css Tabs Oben + Mehrzeilige Tableiste**      
 
+- **02-Mehrzeilige-Tableiste.css Tabs Oben + Mehrzeilige Tableiste + verschiedene Anpassungen** 
  
+- **03-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste** 
 
+- **04-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste + Anpassungen**
 
-Tabbreite anpassen - fixieren
+## Anpassen - fixieren der Tabbreite 
 
-Über userChrome.css Datei unten stehenden Code↓ laden lassen.     
+**Zum Anpassen - fixieren der Tabbreite**    
+folgende Zeilen in gewünschten CSS Code einfügen und anpassen     
 
     tabs tab[fadein]:not([pinned]) {
 		 min-width: 100px !important;/* Minimale Tabbreite  76px */
 		 max-width: 100px !important;/* Maximale Tabbreite 225px */
     }
 	
-Wenn man bei beiden Werten den selben Wert angibt wird die Tabbreite fixiert.
+Wenn man bei beiden Werten den selben Wert angibt wird die **Tabbreite fixiert.**
 
 
-###Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
+### Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
 
 ![Screenshot](Zwischenablage01a.png)
+
+Css Code5 ist eine modifizierte Version von CSS Code **4**
+mit fixierter Tabbreite und Abpassung verschiedener Abstände.
