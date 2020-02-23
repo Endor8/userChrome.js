@@ -20,6 +20,22 @@ Css Code **05-Mehrzeilige-Tableiste.css** ist eine modifizierte Version von CSS 
 mit fixierter Tabbreite, Anpassung verschiedener Abstände der Leisten und Tabzeilenbegrenzug auf **2**    
 Bei mehr als **2** Tabreihen, wird dann eine Scrollbar angezeigt.   
    
+### Mit CSS Code 1-2 sieht es so aus:
+
+![Screenshot](Mehrzeilig obena.png)
+
+Tabs oben mehrzeilige Tableiste
+
+![Screenshot](X nur auf aktiven Tab bei 100pxa.png)
+
+Tabs oben, mehrzeilige Tableiste Tabbreite auf 100px begrenzt.    
+Schließenkreuz nur bei aktivem Tab sichtbar    
+
+![Screenshot](Feste Breite mit Schließenkreuza.png)
+
+Tabs oben, mehrzeilige Tableiste Tabbreite auf 150px begrenzt.    
+Schließenkreuz nur bei allen Tab sichtbar
+
 ### Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
 
 ![Screenshot](Zwischenablage01b.png)
