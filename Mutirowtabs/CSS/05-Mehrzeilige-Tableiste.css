@@ -1,0 +1,62 @@
+    @charset "UTF-8"; 
+    /* Tabbreite anpassen - fixieren */    
+    .tabbrowser-tab:not([pinned]) {
+    min-width: 150px !important; 
+    max-width: 150px !important; 
+    }
+
+    /* Titelleiste verschieben */
+    #titlebar { -moz-box-ordinal-group: 2!important;}
+
+    /* Menüleiste nach oben verschieben */
+    #toolbar-menubar { position: fixed; display: inline-flex; }
+    [sizemode="maximized"]:not([tabsintitlebar="true"]) #toolbar-menubar,
+    [sizemode="normal"] #toolbar-menubar { top: 1px; }
+    [sizemode="maximized"] #toolbar-menubar { top: 8px; }
+
+    /* Platz für die Menüleiste über der Symbolleiste schaffen */
+    #main-window[tabsintitlebar="true"] #navigator-toolbox:not([inFullscreen="true"]) { border-top: solid 39px transparent !important; }
+    #main-window:not([tabsintitlebar="true"]) #navigator-toolbox:not([inFullscreen="true"]) { border-top: solid 34px transparent !important; }
+
+    /* Anderen leeren Bereich, als Menü und Titelleistenschaltflächen zu einem Ziehbereich machen */
+    [tabsintitlebar="true"] #navigator-toolbox { -moz-window-dragging: drag; }
+
+    /* Titelleistenschaltfläche nach rechts oben verschieben */
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
+    [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right: 0; }
+    [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
+    [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
+
+    /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
+    #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
+
+    /* Mehrzeilige Tableiste */
+    tabs > arrowscrollbox { display: block; }
+    scrollbox[part][orient="horizontal"] {
+        display: flex;
+        flex-wrap: wrap;
+        max-height: calc(var(--tab-min-height) * 2); /* Anzahl der Tabzeilen(Standard = 2 Zeilen) */
+        overflow-x: hidden;
+        overflow-y: auto; }
+    tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
+    tabs tab,.tab-background {
+        height: var(--tab-min-height);
+        overflow: hidden; }
+    tab > .tab-stack { width: 100%; }
+
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
+       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    scrollbox[part][orient="horizontal"] { -moz-window-dragging: no-drag; }
+
+    /* Drag-Bereich auf der linken und rechten Seite der
+       Tab-Leiste ausblenden - verstecken
+       Links und rechts → hbox.titlebar-spacer 
+       links → hbox.titlebar-spacer[type="pre-tabs"] 
+       rechts → hbox.titlebar-spacer[type="post-tabs"] */
+    hbox.titlebar-spacer
+    ,
+    /* Ausblenden - Verstecken */
+    #alltabs-button,tabs tab:not([fadein]),
+    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
+    [class="scrollbutton-down"] { display: none; }
