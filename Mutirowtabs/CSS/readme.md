@@ -44,7 +44,9 @@ Schließenkreuz bei allen Tab sichtbar
 ![Screenshot](Zwischenablage01b.png)
 Tabs unten, mehrzeilige Tableiste Tabbreite auf 150px begrenzt.    
 Schließenkreuz bei allen Tab sichtbar 
-       
+<br />
+<br />
+<br />
 ### Anpassen - fixieren der Tabbreite 
 
 **Zum Anpassen - fixieren der Tabbreite**    
