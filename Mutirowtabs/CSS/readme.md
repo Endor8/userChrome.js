@@ -5,14 +5,13 @@ Es stehen **4** verschiedenen CSS Codes zur Verfügung. Alle **4** Codes, ermög
 Verwendung mit und ohne Titelleiste möglich. In CSS Code 2 und 4 ist die Anzahl der Tabzeilen auf 5 begrenzt.    
 Bei mehr Zeilen wird eine Scrollbar eingeblendet. Die Anzahl kann im CSS Code angepasst werden.    
 
-- **01-Mehrzeilige-Tableiste.css    
-  Tabs Oben + Mehrzeilige Tableiste**      
+- **01-Mehrzeilige-Tableiste.css Tabs Oben + Mehrzeilige Tableiste**      
 
-- **02-Mehrzeilige-Tableiste.css Tabs Oben + Mehrzeilige Tableiste + verschiedene Anpassungen** 
+- **02-Mehrzeilige-Tableiste.css Tabs Oben + Mehrzeilige Tableiste + verschiedene Anpassungen**   
  
-- **03-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste** 
+- **03-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste**   
 
-- **04-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste + Anpassungen**
+- **04-Mehrzeilige-Tableiste.css Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste + Anpassungen**    
 
 ## Anpassen - fixieren der Tabbreite 
 
