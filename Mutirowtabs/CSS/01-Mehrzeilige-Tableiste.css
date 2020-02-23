@@ -1,0 +1,31 @@
+    @charset "UTF-8";
+
+    /* CSS Version für Mehrzeilige Tableiste */
+    [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
+
+    /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
+    [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container,
+    #main-window[inFullscreen="true"] #window-controls { display: block; }
+
+    /* Mehrzeilige Tableiste */
+    tabs > arrowscrollbox { display: block; }
+    scrollbox[part][orient="horizontal"] {
+        display: flex;
+        flex-wrap: wrap; }
+    tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
+    tabs tab,.tab-background { height: var(--tab-min-height); }
+    tab > .tab-stack { width: 100%; }
+
+    /* Drag-Bereich auf der linken und rechten Seite der
+       Tab-Leiste auslenden - verstecken
+       Links und rechts → hbox.titlebar-spacer 
+       links → hbox.titlebar-spacer[type="pre-tabs"] 
+       rechts → hbox.titlebar-spacer[type="post-tabs"] */
+    hbox.titlebar-spacer
+    ,
+    /* Ausblenden - Verstecken */
+    #alltabs-button,tabs tab:not([fadein]),
+    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
+    [class="scrollbutton-down"] { display: none; }
+
