@@ -1,8 +1,8 @@
 ### CSS Codes für Mehrzeilige Tableiste und Änderung der Reihenfolge der Leisten
 
-Es stehen **4** verschiedenen CSS Codes zur Verfügung:     
+Es stehen **4** verschiedenen CSS Codes zur Verfügung:
 Alle **4**, ermöglichen eine Mehrzeilige Tableiste.     
-**2** Css Codes verschieben die Tableiste zusätzlich unter die     
+**2** Css Codes verschieben die Tableiste zusätzlich unter die
 Adressleiste - bzw. Lesezeichenleiste.    
 
 - **01-Mehrzeilige-Tableiste.css Tabs Oben + Mehrzeilige Tableiste**      
