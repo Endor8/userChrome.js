@@ -21,5 +21,6 @@ Tabbreite anpassen - fixieren
 Wenn man bei beiden Werten den selben Wert angibt wird die Tabbreite fixiert.
 
 
-Mit CSS Code 3-5 sieht es dann ungefähr so aus:
+###Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
+
 ![Screenshot](Zwischenablage01a.png)
