@@ -2,8 +2,8 @@
 
 Es stehen **4** verschiedenen CSS Codes zur Verfügung. Alle **4** Codes, ermöglichen eine Mehrzeilige Tableiste.     
 **2** Css Codes verschieben die Tableiste zusätzlich unter die Adressleiste - bzw. Lesezeichenleiste.    
-Verwendung mit und ohne Titelleiste möglich. In CSS Code 2 und 4 ist die Anzahl der Tabzeilen auf 5 begrenzt.    
-Bei mehr Zeilen wird eine Scrollbar eingeblendet. Die Anzahl kann im CSS Code angepasst werden.    
+Verwendung mit und ohne Titelleiste möglich. In CSS Code **2** und **4** ist die Anzahl der Tabzeilen auf **5** begrenzt.    
+Bei mehr Zeilen wird eine Scrollbar eingeblendet. Die Anzahl der Zeilen kann im CSS Code angepasst werden.    
 
 - **01-Mehrzeilige-Tableiste.css Tabs Oben + Mehrzeilige Tableiste**      
 
