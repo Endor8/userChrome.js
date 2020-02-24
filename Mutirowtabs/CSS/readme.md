@@ -22,7 +22,7 @@ Bei mehr als **2** Tabreihen, wird dann eine Scrollbar angezeigt.
    
 ### Mit CSS Code 1-2 sieht es so aus:
 
-![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Mehrzeilig%20obena.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Bilder/Mehrzeilig%20obena.png)
 Tabs oben mehrzeilige Tableiste
 <br />
 <br />
@@ -33,25 +33,25 @@ Schließenkreuz nur bei aktivem Tab sichtbar
 <br />
 <br />
 <br />
-![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Feste%20Breite%20mit%20Schlie%C3%9Fenkreuza.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Bilder/Feste%20Breite%20mit%20Schlie%C3%9Fenkreuza.png)
 Tabs oben, mehrzeilige Tableiste, Tabbreite auf 150px fixiiert.    
 Schließenkreuz bei allen Tab sichtbar
 <br />
 <br />
 ### Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
 
-![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/ohne%20Breite%2C%20Tabs%20schmaler%2C%20x%20vorhandena.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Bilder/ohne%20Breite%2C%20Tabs%20schmaler%2C%20x%20vorhandena.png)
 Tabs unten mehrzeilige Tableiste
 <br />
 <br />
 <br />
-![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Breite%20100%2C%20x%20nur%20auf%20aktiven%20Taba.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Bilder/Breite%20100%2C%20x%20nur%20auf%20aktiven%20Taba.png)
 Tabs unten, mehrzeilige Tableiste, Tabbreite auf 100px fixiert.    
 Schließenkreuz nur bei aktivem Tab sichtbar
 <br />
 <br />
 <br />
-![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Breite%20150%2C%20x%20vorhanden1.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Bilder/Breite%20150%2C%20x%20vorhanden1.png)
 Tabs unten, mehrzeilige Tableiste, Tabbreite auf 150px fixiert.    
 Schließenkreuz bei allen Tab sichtbar 
 <br />
