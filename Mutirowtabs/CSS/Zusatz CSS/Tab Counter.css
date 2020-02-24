@@ -1,0 +1,25 @@
+/*
+Tab-Anzahl wird auf der linken Seite der Tableiste angezeigt.
+Beim verschieben auf die rechte Seite der Tableiste wird es
+rechts neben der Tableiste angezeigt
+*/
+
+/* Tabanzahl in Tableiste */
+@-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
+    #main-window {
+        counter-reset: tabs;
+    }
+    .tabbrowser-tab:not(:-moz-any([pinned],[concealed])){
+        counter-increment: tabs;
+    }
+    #tabbrowser-tabs:after {
+        content: "tabs:"counter(tabs);
+        z-index: 1 !important;
+        display: block;
+        position: fixed;
+        font-size: 10px !important;
+        margin-top: -1px;
+        left: 2px;
+    }
+}
+
