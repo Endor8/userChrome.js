@@ -41,6 +41,17 @@ Schließenkreuz bei allen Tab sichtbar
 <br />
 ### Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
 
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/ohne%20Breite%2C%20Tabs%20schmaler%2C%20x%20vorhandena.png)
+Tabs unten mehrzeilige Tableiste
+<br />
+<br />
+<br />
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Breite%20100%2C%20x%20nur%20auf%20aktiven%20Taba.png)
+Tabs unten, mehrzeilige Tableiste, Tabbreite auf 100px fixiert.    
+Schließenkreuz nur bei aktivem Tab sichtbar
+<br />
+<br />
+<br />
 ![Screenshot](Zwischenablage01b.png)
 Tabs unten, mehrzeilige Tableiste, Tabbreite auf 150px fixiert.    
 Schließenkreuz bei allen Tab sichtbar 
