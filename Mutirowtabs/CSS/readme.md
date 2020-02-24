@@ -38,7 +38,6 @@ Tabs oben, mehrzeilige Tableiste, Tabbreite auf 150px fixiiert.
 Schließenkreuz bei allen Tab sichtbar
 <br />
 <br />
-<br />
 ### Mit CSS Code 3-5 sieht es dann ungefähr so aus:    
 
 ![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/ohne%20Breite%2C%20Tabs%20schmaler%2C%20x%20vorhandena.png)
