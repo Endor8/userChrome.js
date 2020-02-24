@@ -1,0 +1,21 @@
+/*
+Tabnummerierung für Mehrzeilige Tableiste, bei 5 Tabzeilen.
+Angeheftete Tabs werden nicht mitgezählt. Nummer wird auf 
+der Linken Seite des Tabs angezeigt.
+*/
+
+/* Tab Nummer in Tab */
+@-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
+    #main-window { counter-reset: tabs;}
+    .tabbrowser-tab:not(:-moz-any([pinned],[concealed])) {
+        counter-increment: tabs;
+    }
+    .tabbrowser-tab:not(:-moz-any([pinned],[concealed])) .tab-loading-burst:after {
+        content: ""counter(tabs);
+        display: -moz-box;
+        font-size: 10px !important;
+        margin-top: 0px;
+        margin-left: 1px;
+    }
+}
+
