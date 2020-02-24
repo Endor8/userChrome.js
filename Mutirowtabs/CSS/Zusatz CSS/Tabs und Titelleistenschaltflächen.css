@@ -1,0 +1,9 @@
+@-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
+
+    /* Entfernen Sie die Transluzenz von Tabs und Titelleistenschaltflächen, wenn Firefox inaktiv ist. */
+    .titlebar-button:not(:hover) > .toolbarbutton-icon:-moz-window-inactive,
+    :root[tabsintitlebar] .tab-label:-moz-window-inactive {
+        opacity: 1 !important;
+    }
+
+}
