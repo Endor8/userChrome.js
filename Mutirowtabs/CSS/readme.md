@@ -57,7 +57,6 @@ Tabs unten, mehrzeilige Tableiste, Tabbreite auf 150px fixiert.
 Schließenkreuz bei allen Tab sichtbar 
 <br />
 <br />
-<br />
 ### Anpassen - fixieren der Tabbreite 
 
 **Zum Anpassen - fixieren der Tabbreite**    
