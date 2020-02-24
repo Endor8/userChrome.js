@@ -1,4 +1,4 @@
-CSS Code über oder durch userChrome.css laden.
+/* CSS Code über oder durch userChrome.css laden. */
 
 /* Vorwärts Schaltfläche (→) Wenn kein Verlauf vorhanden ist Ausblenden */
 #forward-button[disabled="true"] {
