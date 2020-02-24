@@ -1,0 +1,19 @@
+/* Zum verwenden des folgenden Codes, CSS Code kopieren
+und über die userChrome.css Datei laden. */
+
+/* Lesezeichen-Symbolleiste Astand ändern */
+#PersonalToolbar,
+#PersonalToolbar toolbarbutton {
+    padding: 0px 2px !important;
+}
+#PersonalToolbar[collapsed="false"] {
+    visibility: visible !important;
+}
+
+/* Lesezeichen-Symbolleiste toolbarbutton-badge */
+#PersonalToolbar .toolbarbutton-badge {
+    margin-block-start: -2px !important;
+    margin-inline-end: -2px !important;
+    min-width: var(--arrowpanel-padding) !important;
+    font-size: 8px !important;
+}

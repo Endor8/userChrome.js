@@ -1,0 +1,60 @@
+/* Symbol der Titelleistenschaltfläche Breite des äußeren Randes*/
+
+/* Vollbild */
+#main-window[inFullscreen="true"] #window-controls > toolbarbutton {
+    padding: 6px 12px !important; /* Standardbreite 6px 12px */
+}
+
+/* Menüleiste */
+#toolbar-menubar[autohide="false"] {
+    height: 29px !important; /* Standardbreite 29px */
+}
+#toolbar-menubar[autohide="false"] .titlebar-buttonbox > .titlebar-button {
+    padding: 8px 17px !important; /* Standardbreite 8px 17px */
+}
+
+/* Menüleiste(ALT) */
+#toolbar-menubar[autohide="true"]:not([inactive="true"]) {
+    height: 29px !important; /* Standardbreite 29px */
+}
+#toolbar-menubar[autohide="true"]:not([inactive="true"]) .titlebar-buttonbox > .titlebar-button {
+    padding: 8px 17px !important; /* Standardbreite 8px 17px */
+}
+
+/* Titelleistenschaltfläche der Menüleiste 
+   (Version mit erzwungener Anzeige für den ausgeblendeten Status der Menüleiste) */
+#toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox > .titlebar-button {
+    padding: 8px 17px !important; /* Standardbreite 8px 17px */
+}
+
+/* Tableiste */
+#TabsToolbar .titlebar-buttonbox > .titlebar-button {
+    padding: 8px 17px !important; /* Standardbreite 8px 17px */
+}
+
+/* Zum verwenden des obigen ↑ CSS Codes, CSS Code kopieren
+und über die userChrome.css Datei laden.
+
+Mit den Werten auf der Linken Seite kann man den Abstand nach oben und unten einstellen. 
+Abstand Rechts und links kann mit dem beiden rechten Wert eingestellt werden.
+zbs.: padding: 6px 12px 6px 12px !important; So kann man den Abstand:
+oben, rechts, unten und links, einstellen.
+
+padding: 0px 0px !important; Beim Testen ist es ratsam, die Mindestgröße des Objekts zu überprüfen.
+
+Verwendung des CSS-Codes zum Ausblenden der Titelleistenschaltfläche und Anzeigen, 
+wenn man mit dem Mauszeiger nach rechts oben fährt.
+
+Ich verwende den CSS-Code, um die Titelleistenschaltfläche auszublenden und anzuzeigen, 
+wenn Sie mit der Maus über die obere rechte Maustaste fahren.
+
+Wenn Sie die vertikale Breite der Titelleistenschaltfläche verringern, wird der Teil, 
+der mit der Maus darüber reagiert, vollständig ausgeblendet und kann nicht reagieren.
+
+Entsprechenden CSS Code vom Script MultiRowTabLiteforFx.uc.js, oder den aus der Textdatei ↓ anpassen.
+
+[tabsintitlebar="true"][sizemode="normal"] #TabsToolbar > .titlebar-buttonbox-container { top: -21px; }
+[tabsintitlebar="true"][sizemode="maximized"] #TabsToolbar > .titlebar-buttonbox-container { top: -14px; }
+#navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: -18px; }
+
+Beispiel: Wenn Sie den Wert -21px → auf -18px verringern, wird der Teil, der reagiert kleiner.*/

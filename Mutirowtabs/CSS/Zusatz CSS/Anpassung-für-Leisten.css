@@ -1,0 +1,42 @@
+Zum verwenden des folgenden Codes, CSS Code kopieren
+und über die userChrome.css Datei laden.
+
+/* Breite der Navigationssymbolleiste */
+#urlbar,#searchbar,
+.searchbar-textbox {
+    margin: 0 !important;
+    min-height: 24px !important;
+}
+#nav-bar toolbarbutton,
+#nav-bar toolbaritem {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+/* Adressleiste und Suchleiste Symbolhöhe anpassen */
+.urlbar-icon,
+#page-action-buttons,
+.search-go-container {
+    height: 24px !important;
+}
+/* Zurück (←) Vorwärts (→) Schaltflächenbreite */
+#nav-bar [id="back-button"] .toolbarbutton-icon {
+    width: 28px !important;
+    height: 28px !important;
+    padding: 5px !important;
+}
+#nav-bar [id="forward-button"] .toolbarbutton-icon {
+    width: 26px !important;
+    height: 26px !important;
+    padding: 5px !important;
+}
+/* vertikale Linie links von ☰ ← Schaltfläche entfernen  */
+window:not([uidensity="compact"]) #PanelUI-button {
+    border-inline-start: none !important;
+}
+/* Anpassung für Navigations und Symbolleisten toolbarbutton-badge */
+#nav-bar .toolbarbutton-badge {
+    margin-block-start: 0px !important;
+    margin-inline-end: 1px !important;
+    min-width: var(--arrowpanel-padding) !important;
+    font-size: 8px !important;
+}

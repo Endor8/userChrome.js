@@ -1,0 +1,12 @@
+
+Tabbreite anpassen - fixieren
+
+Über userChrome.css Datei unten stehenden Code↓ laden lassen.
+
+    tabs tab[fadein]:not([pinned]) {
+		 min-width: 100px !important;/* Minimale Tabbreite  76px */
+		 max-width: 100px !important;/* Maximale Tabbreite 225px */
+    }
+	
+Wenn man bei beiden Werten den selben Wert angibt wird die Tabbreite fixiert.
+
