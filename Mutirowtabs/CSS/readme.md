@@ -68,4 +68,4 @@ folgende Zeilen in gewünschten CSS Code einfügen und anpassen
 	
 Wenn man bei beiden Werten den selben Wert angibt wird die **Tabbreite fixiert.**
 
-Hier noch ein paar Anspassungen: [Link](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/readme.md)
+Hier noch einige weitere CSS Code für Firefox-Anspassungen: [Link](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/readme.md)
