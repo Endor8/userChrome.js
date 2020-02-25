@@ -7,6 +7,9 @@ Er wirkt allgemein platzsparend.
 
 **Verschiedene CSS Codes**
 
+- Anpassung-für-Leisten-usw.css    
+  Symbol der Titelleistenschaltfläche Breite des äußeren Randes
+  
 - Mehrzeilige-Lesezeichenleiste.css    
 - Tab-Zähler.css     
 - Tab-Nummerierung.css    
