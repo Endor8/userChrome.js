@@ -8,8 +8,8 @@ Er wirkt allgemein platzsparend.
 **Verschiedene CSS Codes**
 
 - Mehrzeilige-Lesezeichenleiste.css    
-- Tab Counter.css     
-- Tab number.css    
+- Tab-Zähler.css     
+- Tab-Nummerierung.css    
 - Tabs und Titelleistenschaltflächen.css
 - Tabbreite anpassen-fixieren.css    
 - Vorwärtsschaltfläche-ausblenden.css    
