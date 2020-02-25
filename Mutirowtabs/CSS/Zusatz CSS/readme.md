@@ -4,6 +4,10 @@
   Dieser CSS Code kann zusätzlich zu den CSS Codes für Mehrzeilige Tableiste    
   verwendet werden. Er rückt unter anderem die Navbar etwas zusammen.    
   Er wirkt allgemein platzsparend.    
+  
+  ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Bilder/Navbar%20schmalera.png)
+  Tabs unten, mehrzeilige Tableiste, Tabbreite auf 150px fixiert.    
+  Schließenkreuz bei allen Tab sichtbar.     
 
 - [Anpassung-für-Leisten-usw.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Anpassung-f%C3%BCr-Leisten-usw.css)    
   Titelleistenschaltflächen-Symbole - Breite des äußeren Randes
