@@ -10,6 +10,8 @@ Er wirkt allgemein platzsparend.
 - Mehrzeilige-Lesezeichenleiste.css    
 - Tab-Zähler.css     
 - Tab-Nummerierung.css    
-- Tabs und Titelleistenschaltflächen.css
+- Tabs und Titelleistenschaltflächen.css    
+  Transparenz von Tabs und Titelleistenschaltflächen entfernen.    
+     
 - Tabbreite anpassen-fixieren.css    
 - Vorwärtsschaltfläche-ausblenden.css    
