@@ -1,7 +1,7 @@
 /* Zum verwenden des folgenden Codes, CSS Code kopieren
 und über die userChrome.css Datei laden. */
 
-/* Lesezeichen-Symbolleiste Astand ändern */
+/* Lesezeichenleiste Astand ändern */
 #PersonalToolbar,
 #PersonalToolbar toolbarbutton {
     padding: 0px 2px !important;
