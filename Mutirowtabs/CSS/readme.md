@@ -27,7 +27,7 @@ Tabs oben mehrzeilige Tableiste
 <br />
 <br />
 <br />
-![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/X%20nur%20auf%20aktiven%20Tab%20bei%20100pxa.png)
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Bilder/X%20nur%20auf%20aktiven%20Tab%20bei%20100pxa.png)
 Tabs oben, mehrzeilige Tableiste, Tabbreite auf 100px fixiert.    
 Schließenkreuz nur bei aktivem Tab sichtbar
 <br />
