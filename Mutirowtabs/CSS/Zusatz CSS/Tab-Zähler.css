@@ -19,7 +19,7 @@ rechts neben der Tableiste angezeigt
         display: block;
         position: fixed;
         font-size: 10px !important;
-		font-weight: bold;
+	font-weight: bold;
         margin-top: -5px;
         left: 3px;
     }
