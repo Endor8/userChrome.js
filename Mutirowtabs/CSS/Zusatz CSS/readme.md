@@ -16,8 +16,12 @@
   Lesezeichenleiste Astand ändern   
   
 - [Mehrzeilige-Lesezeichenleiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Mehrzeilige-Lesezeichenleiste.css)    
-- [Tab-Zähler.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Tab-Z%C3%A4hler.css)    
-- [Tab-Nummerierung.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Tab-Nummerierung.css)    
+- [Tab-Zähler.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Tab-Z%C3%A4hler.css)  
+  ![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Zusatz%20CSS/Bilder/18-Tabs.png)
+  
+- [Tab-Nummerierung.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Tab-Nummerierung.css) 
+  ![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Zusatz%20CSS/Bilder/Tab-nummern.png)
+      
 - [Tabs und Titelleistenschaltflächen.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Tabs%20und%20Titelleistenschaltfl%C3%A4chen.css)    
   Transparenz von Tabs und Titelleistenschaltflächen entfernen.
      
