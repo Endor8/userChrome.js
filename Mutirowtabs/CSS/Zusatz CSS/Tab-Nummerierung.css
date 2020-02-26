@@ -3,19 +3,25 @@ Tabnummerierung für Mehrzeilige Tableiste, bei 5 Tabzeilen.
 Angeheftete Tabs werden nicht mitgezählt. Nummer wird auf 
 der Linken Seite des Tabs angezeigt.
 */
-
+   
 /* Tab Nummer in Tab */
 @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
     #main-window { counter-reset: tabs;}
     .tabbrowser-tab:not(:-moz-any([pinned],[concealed])) {
         counter-increment: tabs;
     }
+	/* Tabnummer: Schriftgröße und Abstand, nach Links und nach oben */
     .tabbrowser-tab:not(:-moz-any([pinned],[concealed])) .tab-loading-burst:after {
         content: ""counter(tabs);
         display: -moz-box;
-        font-size: 10px !important;
-        margin-top: 0px;
-        margin-left: 1px;
+        font-size: 12px !important;  /* Schriftgröße */
+        margin-top: 9px !important;  /* Abstand nach oben */
+        margin-left: 4px !important; /* Abstand zum linken Rand */
+    }
+	
+	/* Favicon nach rechts schieben */
+	.tab-throbber:not([pinned]), .tab-sharing-icon-overlay:not([pinned]), .tab-icon-pending:not([pinned]), .tab-icon-image:not([pinned]) {
+	margin-left: 10px!important;
     }
 }
 
