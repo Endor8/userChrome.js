@@ -14,7 +14,9 @@
 
 - [Anpassung für Lesezeichenleiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Anpassung%20f%C3%BCr%20Lesezeichenleiste.css)    
   Lesezeichenleiste Astand ändern   
-  
+
+- [Mehrzeilige-Lesezeichenleiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Mehrzeilige-Lesezeichenleiste.css)
+
 - [Tab-Zähler.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/Zusatz%20CSS/Tab-Z%C3%A4hler.css)  
   ![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Mutirowtabs/CSS/Zusatz%20CSS/Bilder/18-Tabs.png)
   
