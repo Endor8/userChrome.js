@@ -3,18 +3,17 @@
     /* Titelleiste verschieben */
     #titlebar { -moz-box-ordinal-group: 2; }
 
-    /* Menüleiste nach oben verschieben */
-    #toolbar-menubar { position: fixed; display: inline-flex; }
-    [sizemode="maximized"]:not([tabsintitlebar="true"]) #toolbar-menubar,
-    [sizemode="normal"] #toolbar-menubar { top: 1px; }
-    [sizemode="maximized"] #toolbar-menubar { top: 8px; }
+    /* Symbolleistenanpassung */
+    [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* Platz für die Menüleiste über der Symbolleiste schaffen */
-    #main-window[tabsintitlebar="true"] #navigator-toolbox:not([inFullscreen="true"]) { border-top: solid 29px transparent !important; }
-    #main-window:not([tabsintitlebar="true"]) #navigator-toolbox:not([inFullscreen="true"]) { border-top: solid 21px transparent !important; }
-
-    /* Anderen leeren Bereich, als Menü und Titelleistenschaltflächen zu einem Ziehbereich machen */
-    [tabsintitlebar="true"] #navigator-toolbox { -moz-window-dragging: drag; }
+    /* Wenn die Windows 10-Titelleiste und der Fensterrahmen weiß sind und das Firefox-Design die Standardeinstellung ist
+       Umgang mit dem Zustand, in dem die Titelleistenschaltfläche aufgrund der Hintergrundfarbe unsichtbar ist */
+    #main-window:not([lwtheme="true"]) #window-controls toolbarbutton,
+    #main-window:not([lwtheme="true"]) .titlebar-buttonbox .titlebar-button { color: rgb(24, 25, 26) !important; }
+    #main-window:not([lwtheme="true"]) #window-controls toolbarbutton:not([id="close-button"]):hover,
+    #main-window:not([lwtheme="true"]) .titlebar-buttonbox .titlebar-button:not(.titlebar-close):hover {
+    background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }}
 
     /* Titelleistenschaltfläche nach rechts oben verschieben */
     #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
@@ -24,9 +23,11 @@
     #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
 
     /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
+    [tabsintitlebar="true"]:not([inFullscreen="true"]) #nav-bar { padding-right: 139px !important; }    
     #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
+    box[class="scrollbox-clip"][orient="horizontal"],
     tabs > arrowscrollbox { display: block; }
     scrollbox[part][orient="horizontal"] {
         display: flex;
@@ -43,7 +44,5 @@
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]),
-    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
-    [class="scrollbutton-down"] { display: none; }
+    #alltabs-button,tabs tab:not([fadein]){ display: none; }
 
