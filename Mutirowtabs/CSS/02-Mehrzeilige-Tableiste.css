@@ -9,11 +9,12 @@
     #main-window[inFullscreen="true"] #window-controls { display: block; }
 
     /* Mehrzeilige Tableiste */
+    box[class="scrollbox-clip"][orient="horizontal"],
     tabs > arrowscrollbox { display: block; }
     scrollbox[part][orient="horizontal"] {
         display: flex;
         flex-wrap: wrap;
-        max-height: calc(var(--tab-min-height) * 5); /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
+        max-height: calc(var(--tab-min-height) * 5); /* 段数(デフォルト5段) */
         overflow-x: hidden;
         overflow-y: auto; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
@@ -24,7 +25,7 @@
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
        über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    scrollbox[part][orient="horizontal"] { -moz-window-dragging: no-drag; }
+    box[class="scrollbox-clip"][orient="horizontal"] { -moz-window-dragging: no-drag; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste auslenden - verstecken
@@ -34,7 +35,5 @@
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]),
-    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
-    [class="scrollbutton-down"] { display: none; }
+    #alltabs-button,tabs tab:not([fadein]) { display: none; }
 
