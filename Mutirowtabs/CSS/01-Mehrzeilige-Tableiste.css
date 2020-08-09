@@ -9,6 +9,7 @@
     #main-window[inFullscreen="true"] #window-controls { display: block; }
 
     /* Mehrzeilige Tableiste */
+    box[class="scrollbox-clip"][orient="horizontal"],
     tabs > arrowscrollbox { display: block; }
     scrollbox[part][orient="horizontal"] {
         display: flex;
@@ -25,7 +26,5 @@
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]),
-    [class="scrollbutton-up"],[class="scrollbutton-up"] ~ spacer,
-    [class="scrollbutton-down"] { display: none; }
+    #alltabs-button,tabs tab:not([fadein]) { display: none; }
 
