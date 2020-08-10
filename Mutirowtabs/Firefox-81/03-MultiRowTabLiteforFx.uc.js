@@ -47,7 +47,7 @@ function MultiRowTabLiteforFx() {
     #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
 
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
-	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
+       Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
     #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
