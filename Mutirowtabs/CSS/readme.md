@@ -1,7 +1,7 @@
 
 ### CSS Codes für Mehrzeilige Tableiste und Änderung der Reihenfolge der Leisten     
 
-Es stehen **4** verschiedenen CSS Codes zur Verfügung. Alle **4** Codes, ermöglichen eine Mehrzeilige Tableiste.     
+Es stehen **6** verschiedenen CSS Codes zur Verfügung. Alle **6** Codes, ermöglichen eine Mehrzeilige Tableiste.     
 **2** Css Codes verschieben die Tableiste zusätzlich unter die Adressleiste - bzw. Lesezeichenleiste.    
 Verwendung mit und ohne Titelleiste möglich. In CSS Code **2** und **4** ist die Anzahl der Tabzeilen auf **5** begrenzt.    
 Bei mehr Zeilen wird eine Scrollbar eingeblendet. Die Anzahl der Zeilen kann im CSS Code angepasst werden.    
@@ -16,7 +16,7 @@ Bei mehr Zeilen wird eine Scrollbar eingeblendet. Die Anzahl der Zeilen kann im 
 - **[04-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/04-Mehrzeilige-Tableiste.css) Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste +**     
      **Anpassungen + Tabzeilen Anzahlbegrenzung. Standard ist 5 Zeilen, kann in Zeile 34 geändert werden.**    
 
-Css Code **[05-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/05-Mehrzeilige-Tableiste.css)** ist eine modifizierte Version von CSS Code **04-Mehrzeilige-Tableiste.css**    
+Css Code **[07-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs/CSS/07-Mehrzeilige-Tableiste.css)** ist eine modifizierte Version von CSS Code **06-Mehrzeilige-Tableiste.css**    
 mit fixierter Tabbreite, Anpassung verschiedener Abstände der Leisten und Tabzeilenbegrenzug auf **2**    
 Bei mehr als **2** Tabreihen, wird dann eine Scrollbar angezeigt.   
    
