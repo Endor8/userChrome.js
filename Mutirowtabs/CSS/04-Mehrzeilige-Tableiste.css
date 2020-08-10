@@ -41,7 +41,7 @@
     tab > .tab-stack { width: 100%; }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     box[class="scrollbox-clip"][orient="horizontal"] { -moz-window-dragging: no-drag; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
