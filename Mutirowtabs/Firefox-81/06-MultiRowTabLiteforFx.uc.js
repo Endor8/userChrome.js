@@ -48,7 +48,7 @@ function MultiRowTabLiteforFx() {
         display: block; position: fixed; z-index: 1 !important; right:0; }
 
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
-	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
+       Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
 
     /* Mehrzeilige Tableiste */
@@ -67,7 +67,7 @@ function MultiRowTabLiteforFx() {
     tab > .tab-stack { width: 100%; }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     box[class="scrollbox-clip"][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
