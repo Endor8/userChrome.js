@@ -7,7 +7,7 @@
     /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
     [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container,
     #main-window[inFullscreen="true"] #window-controls { display: block; }
-
+ 
     /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],
     tabs > arrowscrollbox { display: block; }
