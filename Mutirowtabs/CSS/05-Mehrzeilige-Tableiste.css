@@ -23,7 +23,8 @@
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
     #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
 
-    /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
+    /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste     
+       und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
     #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
