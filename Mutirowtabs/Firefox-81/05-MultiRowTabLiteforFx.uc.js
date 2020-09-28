@@ -29,7 +29,6 @@ function MultiRowTabLiteforFx() {
     
     /* Anpassung der Symbolleisten */
     [tabsintitlebar="true"] #toolbar-menubar { height: 29px; }
-    #main-window[inFullscreen="true"] #window-controls { display: block; }
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
@@ -69,7 +68,6 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,
     tabs tab:not([fadein]),
     [tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox-container { display: none; }
 

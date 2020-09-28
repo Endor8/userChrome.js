@@ -22,8 +22,7 @@ function MultiRowTabLiteforFx() {
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
     /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
-    [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container,
-    #main-window[inFullscreen="true"] #window-controls { display: block; }
+    [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; }
 
     /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],
@@ -43,7 +42,6 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,
     tabs tab:not([fadein]) { display: none; }
 
     } `;

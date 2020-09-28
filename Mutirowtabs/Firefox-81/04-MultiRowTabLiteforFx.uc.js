@@ -40,16 +40,13 @@ function MultiRowTabLiteforFx() {
         background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
     [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right:0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
 
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
 	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
-    #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],
@@ -68,7 +65,7 @@ function MultiRowTabLiteforFx() {
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    box[class="scrollbox-clip"][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
+    scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
@@ -78,7 +75,6 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,
     tabs tab:not([fadein]),
     #toolbar-menubar[autohide="false"] + #titlebar #TabsToolbar .titlebar-buttonbox-container { display: none; }
 

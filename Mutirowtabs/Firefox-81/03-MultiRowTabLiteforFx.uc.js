@@ -40,18 +40,15 @@ function MultiRowTabLiteforFx() {
         background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
     [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right:0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
 
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
-       Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
+	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
-    #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
-    /* Mehrzeilige Tableiste  */
+    /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],
     tabs > arrowscrollbox { display: block; }
     scrollbox[part][orient="horizontal"] {
@@ -60,16 +57,15 @@ function MultiRowTabLiteforFx() {
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab,.tab-background { height: var(--tab-min-height); }
     tab > .tab-stack { width: 100%; }
-
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
        Links und rechts → hbox.titlebar-spacer 
        links → hbox.titlebar-spacer[type="pre-tabs"] 
        rechts → hbox.titlebar-spacer[type="post-tabs"] */
+
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,
     tabs tab:not([fadein]),
     #toolbar-menubar[autohide="false"] + #titlebar #TabsToolbar .titlebar-buttonbox-container { display: none; }
 

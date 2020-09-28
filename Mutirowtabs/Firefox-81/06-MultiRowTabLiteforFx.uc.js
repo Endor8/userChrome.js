@@ -29,7 +29,6 @@ function MultiRowTabLiteforFx() {
 
     /* Anpassung der Symbolleisten */
     [tabsintitlebar="true"] #toolbar-menubar { height: 29px; }
-    #main-window[inFullscreen="true"] #window-controls { display: block; }
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
@@ -48,7 +47,7 @@ function MultiRowTabLiteforFx() {
         display: block; position: fixed; z-index: 1 !important; right:0; }
 
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
-       Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
+	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
 
     /* Mehrzeilige Tableiste */
@@ -67,8 +66,8 @@ function MultiRowTabLiteforFx() {
     tab > .tab-stack { width: 100%; }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    box[class="scrollbox-clip"][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
+	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
@@ -78,7 +77,6 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,
     tabs tab:not([fadein]),
     [tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox-container { display: none; }
 
