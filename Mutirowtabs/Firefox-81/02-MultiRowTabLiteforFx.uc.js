@@ -21,7 +21,7 @@ function MultiRowTabLiteforFx() {
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* タブバーのタイトルバーボタンが縦長にならないようにする */
+    /* Verhindern, dass die Titelleistenschaltflächen auf der Tableiste im Hochformat angezeigt werden */
     [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; }
 
     /* Mehrzeilige Tableiste */
@@ -40,7 +40,7 @@ function MultiRowTabLiteforFx() {
     tab > .tab-stack { width: 100%; }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
