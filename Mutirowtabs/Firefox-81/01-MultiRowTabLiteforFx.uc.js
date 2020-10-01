@@ -21,7 +21,7 @@ function MultiRowTabLiteforFx() {
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
+    /* Verhindern, dass die Titelleistenschaltflächen auf der Tableiste im Hochformat angezeigt werden */
     [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; }
     #main-window[inFullscreen="true"] #window-controls { display: flex; }
     #main-window[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
