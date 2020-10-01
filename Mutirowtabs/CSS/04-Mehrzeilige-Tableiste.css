@@ -7,7 +7,8 @@
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* Platz für die Menüleiste über der Symbolleiste schaffen */
+    /* Windows 10 und Firefox Standardtheme, Fensterausenlinie in weiß. 
+       Anpassung für Titelleistenschaltflächen wenn sie in den Hintergrund verschoben sind */
     #main-window:not([lwtheme="true"]) #window-controls toolbarbutton,
     #main-window:not([lwtheme="true"]) .titlebar-buttonbox .titlebar-button { color: rgb(24, 25, 26) !important; }
     #main-window:not([lwtheme="true"]) #window-controls toolbarbutton:not([id="close-button"]):hover,
@@ -15,11 +16,11 @@
     background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }
 
     /* Titelleistenschaltfläche nach rechts oben verschieben */
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
-    [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right: 0; }
+    [tabsintitlebar="true"] .titlebar-buttonbox-container { display: flex; position: fixed; right: 0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { display: flex; position: fixed; top: 0; right:0; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste     
        und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
@@ -43,14 +44,14 @@
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
        über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    box[class="scrollbox-clip"][orient="horizontal"] { -moz-window-dragging: no-drag; }
-
+    scrollbox[part][orient="horizontal"] { -moz-window-dragging: no-drag; }
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
        Links und rechts → hbox.titlebar-spacer 
        links → hbox.titlebar-spacer[type="pre-tabs"] 
        rechts → hbox.titlebar-spacer[type="post-tabs"] */
+
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]) { display: none; }
+    tabs tab:not([fadein]) { display: none; }

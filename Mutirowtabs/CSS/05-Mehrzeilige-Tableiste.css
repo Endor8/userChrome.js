@@ -1,4 +1,4 @@
-    @charset "UTF-8"; 
+    @charset "UTF-8";
 
     /* Titelleiste verschieben */
     #titlebar { -moz-box-ordinal-group: 2; }
@@ -17,11 +17,11 @@
     [tabsintitlebar="true"] #navigator-toolbox { -moz-window-dragging: drag; }
 
     /* Titelleistenschaltfläche nach rechts oben verschieben */
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
-    [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right: 0; }
+    [tabsintitlebar="true"] .titlebar-buttonbox-container { display: flex; position: fixed; right: 0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { display: flex; position: fixed; top: 0; right:0; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste     
        und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
@@ -36,14 +36,14 @@
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab,.tab-background { height: var(--tab-min-height); }
     tab > .tab-stack { width: 100%; }
-
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
        Links und rechts → hbox.titlebar-spacer 
        links → hbox.titlebar-spacer[type="pre-tabs"] 
        rechts → hbox.titlebar-spacer[type="post-tabs"] */
+
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]) { display: none; }
-   
+    tabs tab:not([fadein]) { display: none; }
+

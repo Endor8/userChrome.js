@@ -4,11 +4,12 @@
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
-    [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container,
-    #main-window[inFullscreen="true"] #window-controls { display: block; }
- 
-    /* Mehrzeilige Tableiste */
+    /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wirdる */
+    [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; }
+    #main-window[inFullscreen="true"] #window-controls { display: flex; }
+    #main-window[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+
+    /* Mehrzeilige Tableiste  */
     box[class="scrollbox-clip"][orient="horizontal"],
     tabs > arrowscrollbox { display: block; }
     scrollbox[part][orient="horizontal"] {
@@ -26,5 +27,5 @@
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]) { display: none; }
+    tabs tab:not([fadein]) { display: none; }
 
