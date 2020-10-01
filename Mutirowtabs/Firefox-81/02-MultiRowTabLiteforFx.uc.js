@@ -21,8 +21,10 @@ function MultiRowTabLiteforFx() {
     [tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* Verhindern, dass die Titelleistenschaltflächen auf der Tableiste im Hochformat angezeigt werden */
+    /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
     [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; }
+    #main-window[inFullscreen="true"] #window-controls { display: flex; }
+    #main-window[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],
@@ -40,14 +42,14 @@ function MultiRowTabLiteforFx() {
     tab > .tab-stack { width: 100%; }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
+
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
        Links und rechts → hbox.titlebar-spacer 
        links → hbox.titlebar-spacer[type="pre-tabs"] 
        rechts → hbox.titlebar-spacer[type="post-tabs"] */
-
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */

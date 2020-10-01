@@ -45,6 +45,8 @@ function MultiRowTabLiteforFx() {
     /* Position der Titelleistenschaltflächen anpassen */
     [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] .titlebar-buttonbox-container {
         display: block; position: fixed; z-index: 1 !important; right:0; }
+    #main-window[inFullscreen="true"] #window-controls { display: flex; }
+    #main-window[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height);}
 
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
 	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */

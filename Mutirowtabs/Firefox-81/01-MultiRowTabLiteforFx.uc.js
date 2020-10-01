@@ -23,6 +23,8 @@ function MultiRowTabLiteforFx() {
 
     /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
     [tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; }
+    #main-window[inFullscreen="true"] #window-controls { display: flex; }
+    #main-window[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],

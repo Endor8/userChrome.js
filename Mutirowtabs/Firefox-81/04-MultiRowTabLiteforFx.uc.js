@@ -43,10 +43,13 @@ function MultiRowTabLiteforFx() {
     [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right:0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { display: flex; position: fixed; top: 0; right:0; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* auf der rechten Seite Platz für die Schaltflächen der Titelleiste einfügen, damit die    
 	   Schaltflächen der Titelleiste und der Navigationsleiste nicht verdeckt werden */
     [tabsintitlebar="true"] #toolbar-menubar[autohide="true"][inactive="true"] ~ #nav-bar:not([inFullscreen="true"]) { padding-right: 139px !important; }
+    #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],
