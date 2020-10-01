@@ -1,5 +1,5 @@
     @charset "UTF-8"; 
-    /* Tabbreite anpassen - fixieren */    
+    /* Tabbreite anpassen - fixieren */
     .tabbrowser-tab:not([pinned]) {
     min-width: 150px !important; 
     max-width: 150px !important; 
@@ -22,11 +22,11 @@
     [tabsintitlebar="true"] #navigator-toolbox { -moz-window-dragging: drag; }
 
     /* Titelleistenschaltfläche nach rechts oben verschieben */
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls,
     [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right: 0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { top: 0; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { display: flex; position: fixed; top: 0; right:0; }
+    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste    
        und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
@@ -49,7 +49,7 @@
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
        über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    box[class="scrollbox-clip"][orient="horizontal"] { -moz-window-dragging: no-drag; }
+    scrollbox[part][orient="horizontal"] { -moz-window-dragging: no-drag; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
@@ -59,4 +59,4 @@
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    #alltabs-button,tabs tab:not([fadein]) { display: none; }
+    tabs tab:not([fadein]) { display: none; }
