@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name           wetterfuchsbutton.uc.js
-// @compatibility  Firefox 33. - 59
+// @compatibility  Firefox 33. - 85+
 // @include        main
-// @version        1.0.20180325
+// @version        1.0.20210221
 // ==/UserScript==
 
 var wetterfuchs = {
 
   urlobj: {
-    MO_Doppelklick: {url:"https://www.msn.com/de-de/wetter/heute/de/Berlin,BE,Deutschland/we-city-52.520,13.380",width:700,height:640},
+    MO_Doppelklick: {url:"https://www.msn.com/de-de/wetter/heute/de/Berlin,BE,Deutschland/we-city-52.520,13.380",width:800,height:800},
     MO_Rechtsklick: {url:"http://www.wetter.net/47/Berlin",width:850,height:630},
     MO_Mittelklick: {url:"https://www.daswetter.com/wetter_Berlin-Europa-Deutschland-Berlin--1-26301.html",width:800,height:638},
     DED_WetterAktuell: {url:"https://www.wetterkontor.de/de/deutschland_aktuell.asp?id=0&page=0&sort=0",width:625,height:865},
@@ -28,7 +28,7 @@ var wetterfuchs = {
     RE_AktuellVorhersage: {url:"https://www.wetterkontor.de/de/wetter/deutschland/brandenburg-berlin.asp",width:675,height:640},
     RE_Unwetterwarnung: {url:"https://www.wetterkontor.de/warnungen/wetterwarnungen-brandenburg-berlin.asp",width:850,height:480},
     RE_RegenradarAktuell: {url:"https://www.niederschlagsradar.de/image.ashx?type=regioloop&regio=bln&j=&m=&d=&mi=&uhr=&bliksem=0&voor=&srt=loop1stunde&tijdid=201194154",width:568,height:530},
-    RE_RegenradarPrognose: {url:"https://www.wetter.de/deutschland/regenradar-karte-brandenburg-c49p12.html",width:640,height:690},
+    RE_RegenradarPrognose: {url:"https://www.wetteronline.de/regenradar/berlin-bundesland?mode=interactive&wrx=52.51,13.41&wrm=8",width:850,height:850},
   },
 
   wfthrobber: "https://raw.github.com/ardiman/userChrome.js/master/wetterfuchsbutton/loading51.gif",
@@ -63,18 +63,18 @@ var wetterfuchs = {
     } catch(e) { };
 
     function appendMenupopup(toolbaritem) {
-      let mymenu = document.createElement('menupopup');
+      let mymenu = document.createXULElement('menupopup');
       mymenu.id = 'wetterfuchsmenu';
       toolbaritem.appendChild(mymenu);
       function appendMenu(label, id, Items) {
-        let menu = document.createElement('menu');
+        let menu = document.createXULElement('menu');
         menu.setAttribute('label', label);
         mymenu.appendChild(menu);
-        let menupopup = document.createElement('menupopup');
+        let menupopup = document.createXULElement('menupopup');
         menupopup.id = id;
         menu.appendChild(menupopup);
         for (let item of Items) {
-          let menuitem = document.createElement('menuitem');
+          let menuitem = document.createXULElement('menuitem');
           menuitem.setAttribute('label', item[0]);
           menuitem.setAttribute('oncommand', item[1]);
           menupopup.appendChild(menuitem);
@@ -121,12 +121,13 @@ var wetterfuchs = {
                         domain(wetter.faz.net), \
                         domain(wetter.de), \
                         domain(wetter.net), \
-                        domain(wetterkontor.de) { \
+                        domain(wetterkontor.de), \
+						domain(wetteronline.de) { \
           scrollbar {display: none !important} \
         }';
       if (Services.appinfo.version.split('.')[0] <= 56) {
         css +=
-          '@-moz-document url(chrome://browser/content/browser.xul) { \
+          '@-moz-document url(chrome://browser/content/browser.xhtml) { \
             #wetterfuchs-toolbarbutton .toolbarbutton-icon {max-width: none !important} \
           }';
       };
@@ -138,19 +139,20 @@ var wetterfuchs = {
 
   init: function() {
     this.createBtn();
-    let panel = document.createElement('panel');
+    let panel = document.createXULElement('panel');
     panel.id = "wetterfuchs-panel";
     panel.setAttribute('noautohide', "false");
     panel.setAttribute('type', "arrow");
     panel.setAttribute('onpopuphiding', "wetterfuchs.clearPanel()");
     panel.setAttribute('onmousedown', "if (event.button == 1) wetterfuchs.openUrlFromPanel()");
     document.getElementById('mainPopupSet').appendChild(panel);
-    let vbox = document.createElement('vbox');
+    let vbox = document.createXULElement('vbox');
     panel.appendChild(vbox);
-    let browser = document.createElement('browser');
+    let browser = document.createXULElement('browser');
     browser.id = "wetterfuchs-iframe";
     browser.setAttribute('type', 'content');
     browser.setAttribute('flex', '1');
+	browser.setAttribute('remote', 'true');
     browser.setAttribute('src', this.wfthrobber);
     vbox.appendChild(browser);
   },
@@ -178,7 +180,7 @@ var wetterfuchs = {
   },
 
   openUrlFromPanel: function() {
-    getBrowser().selectedTab = getBrowser().addTab(document.getElementById("wetterfuchs-iframe").getAttribute("src"));
+    openWebLinkIn(document.getElementById("wetterfuchs-iframe").getAttribute("src"),"tab");
     document.getElementById("wetterfuchs-panel").hidePopup();
   },
 
@@ -197,6 +199,6 @@ var wetterfuchs = {
 
 };
 
-if (location == 'chrome://browser/content/browser.xul')
+if (location == 'chrome://browser/content/browser.xhtml')
   wetterfuchs.init();
 
