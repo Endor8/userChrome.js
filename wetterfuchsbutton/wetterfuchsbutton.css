@@ -43,7 +43,9 @@
                    {
     #header, H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
     .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider,
-    #wkFooter2, .cc_banner.cc_container.cc_container--open, #shr-admin-badge  {display: none !important;}
+    #wkFooter2, .cc_banner.cc_container.cc_container--open, #sp_message_container_421683, #shr-admin-badge, .cc-window,
+    div.uk-grid-small > div:nth-child(1) > div:nth-child(1), div.uk-grid-small > div:nth-child(2), div.uk-grid:nth-child(3),
+    div.uk-panel:nth-child(14), div.uk-panel:nth-child(13){display: none !important;}
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
     #page_margins > DIV > DIV > DIV:last-child,
@@ -55,7 +57,7 @@
     #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
     #content > DIV > DIV:first-child > UL:nth-child(8) > LI > A,
     #content > DIV > DIV:first-child > DIV:nth-child(8) > A,
-    .uk-panel,
+    .uk-panel, #sp_message_container_421683,,
     .uk-width-small-1-2.uk-width-medium-1-2, 
     .uk-panel.uk-panel-box{display: none !important;}
 
@@ -69,11 +71,97 @@
 
     H1{margin-left: 210px !important;}
     }
-
 	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/klima/")	{
+    #header, H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider,
+    #wkFooter2, .cc_banner.cc_container.cc_container--open, #sp_message_container_421683, #shr-admin-badge, .cc-window,
+    div.uk-grid-small > div:nth-child(1) > div:nth-child(1), div.uk-grid-small > div:nth-child(2), div.uk-grid:nth-child(3),
+    div.uk-panel:nth-child(14){display: none !important;}
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #content > DIV > DIV:first-child > UL:nth-child(3),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
+    #content > DIV > DIV:first-child > UL:nth-child(8) > LI > A,
+    #content > DIV > DIV:first-child > DIV:nth-child(8) > A,
+    .uk-panel, #sp_message_container_421683,,
+    .uk-width-small-1-2.uk-width-medium-1-2, 
+    .uk-panel.uk-panel-box{display: none !important;}
+
+    #page{box-shadow: none!important; border: none !important;}
+ 
+    #content {height: 670px !important;}
+
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > UL:last-child {margin-top: 100px !important; margin-bottom: -45px !important;}
+
+    H1{margin-left: 210px !important;}
+    }
+	
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/wetter/deutschland/rueckblick.asp"){
+    #header, H2, HR, P,  
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, 
+    .uk-panel.uk-panel-box.uk-margin,
+    .uk-grid.uk-grid-small.uk-grid-divider,
+    #wkFooter2, 
+    .cc_banner.cc_container.cc_container--open, 
+    #sp_message_container_421683, #shr-admin-badge, 
+    div.uk-grid-small > div:nth-child(1) > div:nth-child(1), 
+    div.uk-grid-small > div:nth-child(2), div.uk-grid:nth-child(3),
+    div.uk-panel:nth-child(14),div.uk-margin:nth-child(17), 
+    ins.adsbygoogle:nth-child(4),
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
+    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    #content > DIV > DIV:first-child > UL:nth-child(3),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
+    #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
+    #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
+    #content > DIV > DIV:first-child > UL:nth-child(8) > LI > A,
+    #content > DIV > DIV:first-child > DIV:nth-child(8) > A,
+    .uk-panel, #sp_message_container_421683,
+    .uk-width-small-1-2.uk-width-medium-1-2, 
+    .uk-panel.uk-panel-box,
+    #content > DIV > DIV:first-child > DIV:first-child > UL > LI:last-child,
+    .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
+    .uk-width-large-2-5.uk-width-medium-1-2, 
+    #content > DIV > DIV:first-child > DIV:nth-child(21),
+    #content > DIV > DIV:first-child > DIV:nth-child(10),
+    .banner728x90, 
+    #content > DIV > DIV:first-child > DIV:nth-child(8),
+    div.uk-panel:nth-child(6),
+    #tage5bis8, 
+    .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
+    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium, 
+    #tabelle > p:nth-child(5){display: none !important;}
+
+    #page{box-shadow: none!important; border: none !important;}
+ 
+    #content {height: 670px !important;}
+
+    HTML, #start, .uk-grid {background: #FFFFFF !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > UL:last-child {margin-top: 100px !important; margin-bottom: -45px !important;}
+
+    H1{margin-left: 210px !important;}
+
+    body {margin-top: 25px !important;}
+	
+    #content > article:nth-child(1) > h1:nth-child(2){margin-left: 15px !important;}
+    }
+		
     @-moz-document url("https://www.wetterkontor.de/de/wetter/deutschland/") {
     #header, H1,H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
-    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, 
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, #sp_message_container_421683,
     .uk-grid.uk-grid-small.uk-grid-divider,	#wkFooter2, .uk-list, .cc_banner.cc_container.cc_container--open {display: none !important;}
 
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
@@ -81,12 +169,11 @@
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
     #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
-
+    #sp_message_container_421683,
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
     #page_margins > DIV > DIV > DIV:last-child,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
-
     .uk-width-small-1-2.uk-width-medium-1-2,
     .uk-text-right.uk-text-small.uk-text-muted, .uk-form-row,
     .uk-panel.uk-panel-box{display: none !important;}
@@ -107,10 +194,10 @@
     @-moz-document url-prefix("https://www.wetterkontor.de/wetter-vorhersage/deutschland/muenchen"){
     #header, H1,H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
     .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider, 
-    #wkFooter2, .uk-list, .cc_banner.cc_container.cc_container--open  {display: none !important;}
+    #wkFooter2, .uk-list, .cc_banner.cc_container.cc_container--open, #sp_message_container_421683  {display: none !important;}
 	
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A, 
-    #content > DIV > DIV:first-child > H1, #shr-admin-badge,
+    #content > DIV > DIV:first-child > H1, #shr-admin-badge, #sp_message_container_421683,
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8), 
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
     #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
@@ -126,7 +213,7 @@
     #content > DIV > DIV:last-child > DIV:nth-child(14), #shr-admin-badge,
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child
     {display: none !important;}
     }
@@ -148,13 +235,13 @@
     #header, H1,H2, HR, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, .uk-panel.uk-panel-box.uk-margin, .uk-grid.uk-grid-small.uk-grid-divider,
     #wkFooter2, .cc_banner.cc_container.cc_container--open, #bnr, #maine0d59d447b, .mir_info.mir_info-outside  {display: none !important;}
 
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
-    #content > DIV > DIV:first-child > H1, 
+    #content > DIV > DIV:first-child > H1, #sp_message_container_421683,
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(8),
     #content > DIV > DIV:first-child > ARTICLE > H2:nth-child(10),
     #content > DIV > DIV:first-child > ARTICLE > DIV:last-child,
@@ -172,11 +259,10 @@
     #content > DIV > DIV:first-child > DIV:nth-child(3) > UL:last-child > LI:last-child  {margin-top: 100px !important; margin-bottom: -50px !important;}
     }
 
-
     @-moz-document url-prefix("https://www.wetterkontor.de/de/wetter/deutschland/wetter-vorhersage-ort.asp"){
     #header, H1, H2, HR, P, #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child,
-    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  
-    .uk-panel.uk-panel-box.uk-margin, 
+    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  #sp_message_container_421683,,
+    .uk-panel.uk-panel-box.uk-margin, #sp_message_container_421683,
     .uk-grid.uk-grid-small.uk-grid-divider, #wkFooter2, .cc_banner.cc_container.cc_container--open  {display: none !important;}
 
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
@@ -203,7 +289,6 @@
     #content > DIV > DIV:first-child > UL:nth-child(17) > LI:last-child
     {max-width: 150px !important; margin-left: 15px !important; margin-right: -15px !important;}
 
-
     #warnungen > H2{margin-left: 10px !important;}
     #content > DIV > DIV:first-child > DIV:nth-child(23) > DIV > DIV:last-child{min-width: 200px !important;}
     #content > DIV > DIV:first-child > H2:nth-child(5){ margin-left: 70px !important; margin-top: -25px !important;}
@@ -219,31 +304,61 @@
     #content > DIV > DIV:first-child > DIV:nth-child(23) > DIV > DIV:last-child  {max-width: 110px !important; }
     }
 
-    @-moz-document url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-wind.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-wetter.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-niederschlag.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-temperatur.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-sonnenscheindauer.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-druck.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-feuchte.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-gefuehlte-temperatur.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-sichtweite.asp"){
-    #header, H1, H2, P, .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3, #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5),
-    .uk-text-right.uk-text-small.uk-text-muted, #content > DIV > DIV:first-child > ARTICLE > UL > LI:last-child, #content > DIV > DIV:first-child >
-    ARTICLE > UL > LI:first-child > A, 
-    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
-    #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
-    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
-    .uk-panel.uk-panel-box.uk-margin, #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child
-    > UL > LI:first-child > A, .cc_banner.cc_container.cc_container--open, #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > HR,
-    #start > IMG {display: none !important;}
+    @-moz-document url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-gefuehlte-temperatur.asp"),
+	           url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-feuchte.asp"),
+		   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-sichtweite.asp"),
+		   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-druck.asp"),
+		   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-wind.asp"),
+		   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-wetter.asp"),
+		   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-niederschlag.asp"),
+		   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-temperatur.asp"),
+		   url-prefix("https://www.wetterkontor.de/de/aktuelle-werte-deutschland-sonnenscheindauer.asp"){
 
-    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:last-child > LI:first-child {margin-top: -30px !important; }
-    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:last-child > LI:last-child{margin-top: -30px !important; }
-    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:first-child > LI:nth-child(7){margin-left: 215px !important;}
-	
-    #shr-admin-badge,	
+    /*Text unten unsichtbar*/
+    .uk-article {
+    font-size: 0px;}
+
+    /*Textbox über dem Datum wieder lesbar*/
+    .uk-panel.uk-panel-box {
+    color: black;
+    font-size: 13px;}
+
+    DIV[data-uk-tooltip=""]{
+    font-size: 12px!important;
+    color: black!important;}
+
+    .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
+    #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
+    .uk-align-medium-right, div.uk-h3,
+    .uk-width-large-3-5 > article:nth-child(1) > hr:nth-child(8),
+    .uk-width-large-3-5 > article:nth-child(1) > hr:nth-child(9),
+    .uk-width-large-3-5 > article:nth-child(1) > h3:nth-child(9),
+    .uk-width-large-3-5 > article:nth-child(1) > h3:nth-child(10),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(13),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(15),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(16),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(17),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(18),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(19),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(20),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(21),
+    .uk-width-large-3-5 > article:nth-child(1) > h4:nth-child(23),
+    .uk-width-large-3-5 > article:nth-child(1) > a:nth-child(n+1),
+    #header, H1, H2, P, .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,
+    #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5),
+    .uk-text-right.uk-text-small.uk-text-muted, #sp_message_container_421683,
+    #content > DIV > DIV:first-child > ARTICLE > UL > LI:last-child,
+    #content > DIV > DIV:first-child > ARTICLE > UL > LI:first-child > A,
+    .uk-panel.uk-panel-box.uk-margin, .message-container, .message-overlay, .message,
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:first-child > A,
+    #shr-admin-badge, .cc_banner.cc_container.cc_container--open,
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > HR {display: none !important;}
+
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:last-child > LI:first-child {margin-top: -30px !important;}
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:last-child > LI:last-child {margin-top: -30px !important;}
+    #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(4) > UL:first-child > LI:nth-child(7) {margin-left: 215px !important;}
+
+    #shr-admin-badge,
     #content > DIV > DIV:first-child > ARTICLE > UL > LI:first-child,
     #content > DIV > DIV:first-child > ARTICLE > UL > LI:last-child {display: none !important;}
 
@@ -253,21 +368,9 @@
 
     LI{margin-top: 3px !important;}
 
-    #page{box-shadow: none!important; border: none !important;}	
-	
-    HTML, #start, .uk-grid {background: #FFFFFF !important;}
-    }
+    #page{box-shadow: none!important; border: none !important;}
 
-    @-moz-document url-prefix("https://www.wetterkontor.de/de/radar/radar-vorhersage.asp"){
-    #header, H1, H2, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, 
-    .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,.uk-width-medium-1-1, .uk-width-large-2-5.uk-width-medium-1-2,  
-    #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), .uk-text-right.uk-text-small.uk-text-muted, 
-    .cc_banner.cc_container.cc_container--open, .uk-panel.uk-panel-box.uk-margin, #shr-admin-badge {display: none !important;}	
-		
-    #page{box-shadow: none!important; border: none !important;}	
-	
     HTML, #start, .uk-grid {background: #FFFFFF !important;}
-		
     }
 	
     @-moz-document url-prefix("https://www.wetterkontor.de/de/radar/radar-ost.asp"),
@@ -275,15 +378,14 @@
                    url-prefix("https://www.wetterkontor.de/de/radar/radar-nordost.asp"),
                    url-prefix("https://www.wetterkontor.de/de/radar/radar-suedwest.asp"),
                    url-prefix("https://www.wetterkontor.de/de/radar/radar-west.asp"),
-                   url-prefix("https://www.wetterkontor.de/de/radar/radar-nordwest.asp"){
-		
+                   url-prefix("https://www.wetterkontor.de/de/radar/radar-nordwest.asp"){		
     #header, H1, H2, P,   .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  
     #wkFooter2, .uk-text-right.uk-text-small.uk-text-muted, .uk-width-small-1-2.uk-width-medium-1-3.uk-row-first,
     #content > DIV > DIV:first-child > DIV:nth-child(3) > DIV > DIV:first-child > UL > LI > A ,
     #content > DIV > DIV:first-child > DIV:nth-child(3) > DIV > DIV:first-child > UL, 
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     #shr-admin-badge, .cc_banner.cc_container.cc_container--open {display: none !important;}	
 	
@@ -293,7 +395,6 @@
     #content > DIV > DIV:first-child > DIV:nth-child(3) > DIV {width: 490px !important; margin-left: 5px !important; 
     background: transparent !important; }
     .uk-subnav.uk-subnav-pill.uk-align-medium-right {min-width: 380px !important;}    
-
 	
     #page{box-shadow: none!important; border: none !important;}	
 	
@@ -304,7 +405,7 @@
 		
     #header, H1, H2, P,  #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, 
     .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), 
-    .uk-text-right.uk-text-small.uk-text-muted, #shr-admin-badge, .uk-panel.uk-panel-box.uk-margin,
+    .uk-text-right.uk-text-small.uk-text-muted, #shr-admin-badge, .uk-panel.uk-panel-box.uk-margin, #sp_message_container_421683,
     #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium, div.uk-grid:nth-child(3),
     #page_margins > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1),
     div.uk-panel:nth-child(14), .cc_banner.cc_container.cc_container--open {display: none !important;}
@@ -320,13 +421,12 @@
     .uk-breadcrumb, .uk-width-large-2-5.uk-width-medium-1-3,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), 
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     .uk-text-right.uk-text-small.uk-text-muted,#shr-admin-badge, .uk-panel.uk-panel-box.uk-margin, 
     .uk-width-large-2-5.uk-width-medium-1-2, H5, .cc_banner.cc_container.cc_container--open, #start > IMG
     {display: none !important;}
-    }
-	
+    }	
 	
     @-moz-document url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-hasel.asp"),
                    url-prefix("https://www.wetterkontor.de/de/bio/pollenflug-erle.asp"),
@@ -342,7 +442,7 @@
     .uk-panel.uk-panel-box.uk-margin, .uk-width-large-2-5.uk-width-medium-1-2, H5, TABLE, .uk-panel.uk-panel-box.uk-panel-box-primary, #start > IMG,
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     .cc_banner.cc_container.cc_container--open {display: none !important;}
 	
@@ -368,7 +468,7 @@
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(3) > DIV:first-child > UL > LI:last-child, .uk-breadcrumb,
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), .uk-panel.uk-panel-box.uk-margin, .banner728x90,
     .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium, .uk-width-1-1.uk-hidden-small.uk-text-center,
@@ -389,7 +489,7 @@
 
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,		
     #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
     .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(7),
@@ -411,14 +511,13 @@
     #karte {margin-left: -110px !important; margin-top: 80px !important;}
     }
 
-
     @-moz-document url("https://www.wetterkontor.de/warnungen/"){
 	
     #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,
     #content > DIV > DIV:first-child > DIV:first-child > UL > LI:nth-child(3),	
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
     .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
@@ -437,12 +536,11 @@
     HTML, #start, .uk-grid {background: #FFFFFF !important; }
     }
 
-
     @-moz-document url-prefix("https://www.wetterkontor.de/wetter-warnungen/"){
 
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
     .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
@@ -464,11 +562,11 @@
 	
     #content > DIV > DIV:first-child > DIV:nth-child(6) > UL {margin-left: 0px !important;}
     }
-
 	
-    @-moz-document url-prefix("https://www.wetterkontor.de/wetter-vorhersage/deutschland/"){
+    @-moz-document url-prefix("https://www.wetterkontor.de/wetter-vorhersage/deutschland/"),
+	               url-prefix("https://www.wetterkontor.de/de/radar/radar-vorhersage.asp"){
     #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
-    .uk-width-large-2-5.uk-width-medium-1-3, 
+    .uk-width-large-2-5.uk-width-medium-1-3, #sp_message_container_421683,
     #content > DIV > DIV:first-child > DIV:first-child,
     #content > DIV > DIV:first-child > DIV:nth-child(2) > UL > LI:nth-child(5),
     #content > DIV > DIV:first-child > DIV:nth-child(21), 
@@ -495,9 +593,8 @@
     HTML, #start, .uk-grid {background: #FFFFFF !important;}
 	
     #page{box-shadow: none!important; border: none !important;}	
-	
     }
-	
+		
     @-moz-document url-prefix("https://www.wetterkontor.de/biowetter/"){
     #content > DIV > DIV:first-child > DIV:first-child > UL > LI:last-child,
     #header, .uk-width-large-2-5.uk-width-medium-1-3.uk-hidden-small, .uk-text-right,  
@@ -506,10 +603,10 @@
     .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
     .cc_banner.cc_container.cc_container--open, div.uk-panel:nth-child(6),
     #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
-    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium,
+    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium, #sp_message_container_421683,
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child,div.uk-margin:nth-child(6),
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     .uk-panel.uk-panel-box.uk-margin {display: none !important;}
 	
@@ -532,23 +629,30 @@
     #content > DIV > DIV:first-child > ARTICLE > P:nth-child(13),
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     .uk-breadcrumb,  #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(10),
     div.uk-panel:nth-child(15), div.uk-panel:nth-child(5),
     #tage5bis8, .uk-width-large-1-6.uk-hidden-small.uk-hidden-medium,
-    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium,
+    .uk-grid.uk-margin.uk-hidden-small.uk-hidden-medium, 
+	.uk-width-large-3-5 > article:nth-child(1) > hr:nth-child(6),
     .banner728x90, #shr-admin-badge, #content > DIV > DIV:first-child > DIV:nth-child(8),
     #content > DIV > DIV:first-child > ARTICLE > DIV:nth-child(6),
-    .cc_banner.cc_container.cc_container--open {display: none !important;}
+    .cc_banner.cc_container.cc_container--open, #wetterkontor_incontent_1,
+    .uk-h3, .uk-width-large-3-5 > article:nth-child(1) > p:nth-child(8),
+     div.uk-h4:nth-child(9), div.uk-margin:nth-child(11), div.uk-h4:nth-child(14),
+    .uk-width-large-3-5 > article:nth-child(1) > p:nth-child(15),
+    .uk-width-large-3-5 > article:nth-child(1) > p:nth-child(16),
+    .uk-width-large-3-5 > article:nth-child(1) > p:nth-child(17),
+    .uk-width-large-3-5 > article:nth-child(1) > p:nth-child(19),
+    div.uk-h4:nth-child(18){display: none !important;}
 
     HTML, #start, .uk-grid {background: #FFFFFF !important;}	
 	
     H1{margin-left: 160px !important;}
 	
     #page{box-shadow: none!important; border: none !important;}	
-    }	
-	
+    }		
 	
     @-moz-document url-prefix("https://www.wetterkontor.de/de/wetter/europa/"){
     #header,H1, H2, .uk-width-large-2-5.uk-width-medium-1-3, .uk-text-right, .uk-text-muted, #content > DIV > DIV:first-child > ARTICLE >
@@ -556,7 +660,7 @@
     .uk-panel, .div_part,#content > DIV > DIV:first-child > P:nth-child(2), .uk-grid.uk-grid-small.uk-grid-match,
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     .cc_banner.cc_container.cc_container--open, #start > IMG {display: none !important;}
 	
@@ -568,7 +672,7 @@
     @-moz-document url-prefix("https://www.wetterkontor.de/de/pegel/"){
     .cc-window.cc-banner.cc-type-info.cc-theme-block.cc-top.cc-color-override-530831885,
     #page_margins > DIV > DIV > DIV:first-child > DIV:first-child > DIV,
-    #page_margins > DIV > DIV > DIV:last-child,
+    #page_margins > DIV > DIV > DIV:last-child, #sp_message_container_421683,
     #page_margins > DIV > DIV > DIV:first-child > DIV:last-child,
     #header, H1, H2, P, #wkFooter2, #content > DIV > DIV:first-child > DIV:nth-child(5), #shr-admin-badge,
     #content > DIV > DIV:first-child > DIV, #content > DIV > DIV:first-child > ARTICLE > DIV:last-child > HR,
@@ -578,141 +682,172 @@
     }
 
     @-moz-document domain(www.msn.com) {
+    #header,  div.sectionContainer-DS-EntryPoint1-1:nth-child(4), .root-DS-EntryPoint1-1 > div:nth-child(6), 
+    .oneFooter-DS-EntryPoint1-1 ,.button_contentRegion-DS-EntryPoint1-1, .locateButton-DS-EntryPoint1-1,
+    .feedback_link_default-DS-EntryPoint1-1.button-DS-EntryPoint1-3,.weather_alerts_link-DS-EntryPoint1-1,
+    .profile_signInLink-DS-EntryPoint1-1,  #onetrust-consent-sdk, .homeButton-DS-EntryPoint1-1,
+    .weatherOverview_root-DS-EntryPoint1-1 > div:nth-child(6), 
+    .adsContent-DS-EntryPoint1-1, div.sectionContainer-DS-EntryPoint1-1:nth-child(2),
+    .datafrom_text-DS-EntryPoint1-1{display: none! important;}
 
-    HTML > BODY > Main{margin-top: -40px !important;}
+    .weather_alerts_title-DS-EntryPoint1-1{
+    margin-top: 38px !important;
+    margin-left: -160px !important;
+    max-width: 200px !important;
+    word-wrap: break-word !important;}
 
-    .head,#conditionalbanner,.maps,.pagingsection,#foot,.historical,NOSCRIPT,.addfavorite,.gps,.actions,#precontent, .newlist,
-    #main > DIV > DIV:first-child > DIV:first-child > DIV:last-child, .-axuqt, div.normalsection:nth-child(5),
-    #prefooter {display: none! important;}
-    div.outer:nth-child(2) {margin-left: 50px !important;}
+    .weather_alerts_level-DS-EntryPoint1-1{
+    margin-top: -25px !important; 
+    min-height: 24px !important;
+    pointer-events: none !important;}
 
-    body {overflow: hidden !important;}
+    body{margin-top: -125px !important;}
+
+   .weather-section{margin-top: 40px !important;}
+
+   .weatherAdscontainer-DS-EntryPoint1-1{margin-top: 35px !important;}
+
+    a.chevron-DS-EntryPoint1-1:nth-child(3) {
+    margin-right: -35px !important;}
+
+    a.chevron-DS-EntryPoint1-1:nth-child(1){
+    margin-left: -35px !important;}
     }
 
-    @-moz-document domain(www.daswetter.com) {
-    #contSup, #pubIzq, #pubAside, #pubAside2, .pubDesk, .modulo.bSocial, .modulo.fotoLoc, #divGota, .liCompartir.comp-svg, .icons-de.liCompartir,
-    #wrap > HEADER > ASIDE > DIV > _moz_generated_content_before, #bottom_newsletter, DIV[class="tCook"][style="display: block;"], #pubSup > DIV,
-    #top30, .modulo.pubMapa, .modulo.fase-lunar.sl-1, .modulo.locC, FOOTER, #foots, .leySocial, #modulos > ASIDE, #pIzq, #top-prediccion, .galery-svg,
-    DIV[class="addthis-smartlayers addthis-smartlayers-desktop"][aria-labelledby="at4-share-label"],.locC.half-module, #pubInferior, .leaflet-bottom.leaflet-right,
-    DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"],
-    #gpdr {display: none !important;}
-	
-    #wrap {margin-top: -10px !important;}
-    #mapid{margin-bottom: -500px !important; min-height: 500px !important;}
-   
-    #wrap > HEADER > ASIDE {min-height: 100px !important;}
-    #cookies {margin-top: 40px !important;  }
-    #cookies > LI:first-child {margin-left: -380px !important;}
-    #cookies > LI:nth-child(2){margin-left: -190px !important;}
-    #buscador {margin-left: 10px !important; margin-top: 5px !important; 
-    max-height: 31px !important; font-size: 13px !important;}
-   
-    .icons-de.liFavoritoAct, .icons-de.liFavorito {margin-right: -130px !important; margin-top: -15px !important;}
-	
-    .T1Loc.color-texto-t100-0, #divPestanas > LI:first-child {margin-left: 10px !important;}
-    
-    /*  Hintergrundfarbe ändern    */
-    #colAzul{background: #2952E1 !important;}
-    
-    #colGris, #modulos > TABLE > THEAD > TR, #modulos > DIV:nth-child(17) > TABLE > THEAD > TR, 
-    #title_actualizacion, #rmes > THEAD > TR {background: #386AFF !important; }
-    
-    .dia.d-1.H.clearfix.dia-activo.color-activo-1, .dia.d-1.H.clearfix.dia-activo.color-activo-2, .dia.d-1.H.clearfix.dia-activo.color-activo-3, 
-    .dia.d-1.H.clearfix.dia-activo.color-activo-5, .dia.d-1.H.clearfix.dia-activo.color-activo-6,.dia.d-1.H.clearfix.dia-activo.color-activo-7, 
-    .dia.d-1.H.clearfix.dia-activo.color-activo-8, .dia.d-1.H.clearfix.dia-activo.color-activo-9, .dia.d-1.H.clearfix.dia-activo.color-activo-10,
-    .dia.d-1.H.clearfix.dia-activo.color-activo-11, .dia.d-1.H.clearfix.dia-activo.color-activo-12, 
-    .dia.clearfix.dia-activo.color-activo-0, .dia.clearfix.dia-activo.color-activo-1, .dia.clearfix.dia-activo.color-activo-2,
-    .dia.clearfix.dia-activo.color-activo-3, .dia.clearfix.dia-activo.color-activo-4, .dia.clearfix.dia-activo.color-activo-5, 
-    .dia.clearfix.dia-activo.color-activo-6, .dia.clearfix.dia-activo.color-activo-7, .dia.clearfix.dia-activo.color-activo-8,
-    .dia.clearfix.dia-activo.color-activo-9, .dia.clearfix.dia-activo.color-activo-10, .dia.clearfix.dia-activo.color-activo-11,
-    .dia.clearfix.dia-activo.color-activo-12,
-    #contDl > DL:first-child > DD {background: #1C47C6 !important;}   
-	
-    /*   Pfeilspitze blau färben   */
-    DD {border-top-color: #1C47C6 !important;}
+    @-moz-document domain(www.daswetter.com) {.estado-actual > span:nth-child(1) > span:nth-child(2), 
+    .publicidad, ul.enlaces:nth-child(2), span.secundaria:nth-child(4), .mas-noticias, .publicidad-pie,
+    span.columnas:nth-child(2) > span:nth-child(1) > span:nth-child(2), #bannerSupPC, 
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(2), div.megabanner,
+    aside.caja, span.columnas:nth-child(6), span.franja:nth-child(7), #gpdr, #colBlanca,
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1) > span:nth-child(1) > a:nth-child(2),
+    .lluvia-nieve > span:nth-child(1) > a:nth-child(2), #izquierda, #news1, .fuente,
+    #sat > div:nth-child(2), li.mLi:nth-child(6), .menu > ul:nth-child(1) > li:nth-child(6),
+    span.franja:nth-child(4), span.principal:nth-child(3), span.secundaria:nth-child(4), 
+    .navegacion > a:nth-child(1) > img:nth-child(1), #pubIzq, #pubAside, #pubAside2, .pubDesk, 
+    .modulo.bSocial, .modulo.fotoLoc, #divGota, .liCompartir.comp-svg, .icons-de.liCompartir,
+    #wrap > HEADER > ASIDE > DIV > _moz_generated_content_before, #bottom_newsletter, 
+    DIV[class="tCook"][style="display: block;"], #pubSup > DIV,#top30, .modulo.pubMapa, 
+    .modulo.fase-lunar.sl-1, .modulo.locC, FOOTER, #foots, .leySocial, #modulos > ASIDE, 
+    #pIzq, #top-prediccion, .galery-svg, #mod_izquierda, #mod_derechos_uso, span.boton:nth-child(2),
+    DIV[class="addthis-smartlayers addthis-smartlayers-desktop"][aria-labelledby="at4-share-label"], 
+    .locC.half-module, #pubInferior, .leaflet-bottom.leaflet-right, #contPag, #meteored_share,
+    .selectMapaLugar, #full_screen, .botonera, #selectRadarLugar, #selector_estilo, #selector_tipos,
+    span.secundaria:nth-child(2),.navegacion > a:nth-child(1), .logo-svg, #contSup, .menu,
+    DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"],#mmt_vermas,#mapa-loc-shared {display: none !important;}
 
+    header #contSup .logo-svg img {display: none !important;}
+	 
+    span.columnas:nth-child(3),.titulo-horas, .franja	{  
+    box-shadow: none!important; border: none !important;} 
+
+    span.columnas:nth-child(1) > span:nth-child(1) > span:nth-child(1),
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1),
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1) > span:nth-child(1){  
+    box-shadow: none!important; border: none !important;} 
+
+    [class="secundaria"]{ 
+    margin-left:35px !important; margin-right: -80px !important;}
+
+    [class="prevision-hoy-horas"]{
+    margin-left:280px !important; margin-right: -280px !important; margin-top:30px !important;
+    margin-bottom: -50px !important; box-shadow: none!important;}
+
+    [class="tabla-horas"]{
+    margin-right: -30px !important; margin-top:50px !important;
+    width: 730px !important;}
+
+    [class="por-horas"]{ margin-top:-15px !important; }
+
+    #divPestanas, #buscador,
+    .loc-dia {margin-left: 30px !important;}
+
+    #cookies {margin-right: -30px !important;}
+
+    .grafica{margin-left: 15px !important; width: 740px !important;}
+
+    .sin_prob{margin-left: 285px !important; margin-right: -255px !important;
+    margin-bottom: -70px !important; }
+
+    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(2)
+    {margin-left: 50px !important; margin-right: -30px !important; margin-top: 50px !important;}
+
+    .titulo-horas{margin-left: 50px !important; margin-right: -30px !important;
+    margin-bottom: 30px !important; margin-top: -20px !important;}
+
+    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(1) > section:nth-child(1)
+    {margin-left: 15px !important; margin-right: 20px !important;}
+    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(2) > section:nth-child(1) > table:nth-child(1) > tbody:nth-child(2)
+    {margin-left: 50px !important; margin-right: -30px !important;}
+
+    .map-loc-titulo{margin-left: -70px !important;}
+
+    .dos-semanas .dia.activo::after {
+    border-right: 51px solid transparent !important;
+    border-left: 51px solid transparent !important;}
+
+    header #contSup{margin-left: -40px !important; 
+    box-shadow: none!important; border: none !important;}
+    .navegacion{margin-left: -100px !important; 
+    box-shadow: none!important; border: none !important;}
+
+    span.columnas:nth-child(2){margin-left: -270px !important; 
+    box-shadow: none!important; border: none !important;}
 	
-    /*  Textfarbe ändern   */
-    .fondoNB.color-fondo-flecha-0, .T1Loc.color-texto-t100-0, .ddHora.color-texto-t85-0, .ddDesc.T1Loc.color-texto-t100-0, .ddTemp.T1Loc.color-texto-t100-0,
-    .T1Loc.color-texto-t100-0, .T3Loc.color-texto-t70-0, .dayS.T3Loc.color-texto-t70-0, .T2Loc.icons.tMax.color-texto-t90-0,
-    .T2Loc.icons.tMin.color-texto-t90-0, .rain.T4Loc.color-texto-t50-0 , .xh-dir.color-texto-t85-0, .xh-temp.color-texto-t90-0,
-    .fondoNB.color-fondo-flecha-1, .T1Loc.color-texto-t100-1, .ddHora.color-texto-t85-1, .ddDesc.T1Loc.color-texto-t100-1, .ddTemp.T1Loc.color-texto-t100-1,
-    .T1Loc.color-texto-t100-1, .T3Loc.color-texto-t70-1, .dayS.T3Loc.color-texto-t70-1, .T2Loc.icons.tMax.color-texto-t90-1,
-    .T2Loc.icons.tMin.color-texto-t90-1, .rain.T4Loc.color-texto-t50-1, .xh-dir.color-texto-t85-1, .xh-temp.color-texto-t90-1,
-    .fondoNB.color-fondo-flecha-2, .T1Loc.color-texto-t100-2, .ddHora.color-texto-t85-2, .ddDesc.T1Loc.color-texto-t100-2, .ddTemp.T1Loc.color-texto-t100-2,
-    .T1Loc.color-texto-t100-2, .T3Loc.color-texto-t70-2, .dayS.T3Loc.color-texto-t70-2, .T2Loc.icons.tMax.color-texto-t90-2,
-    .T2Loc.icons.tMin.color-texto-t90-2, .rain.T4Loc.color-texto-t50-2, .xh-dir.color-texto-t85-2, .xh-temp.color-texto-t90-2,
-    .fondoNB.color-fondo-flecha-3, .T1Loc.color-texto-t100-3, .ddHora.color-texto-t85-3, .ddDesc.T1Loc.color-texto-t100-3, .ddTemp.T1Loc.color-texto-t100-3,
-    .T1Loc.color-texto-t100-3, .T3Loc.color-texto-t70-3, .dayS.T3Loc.color-texto-t70-3, .T2Loc.icons.tMax.color-texto-t90-3,
-    .T2Loc.icons.tMin.color-texto-t90-3, .rain.T4Loc.color-texto-t50-3,.xh-dir.color-texto-t85-3, .xh-temp.color-texto-t90-3,
-    .fondoNB.color-fondo-flecha-4, .T1Loc.color-texto-t100-4, .ddHora.color-texto-t85-4, .ddDesc.T1Loc.color-texto-t100-4, .ddTemp.T1Loc.color-texto-t100-4,
-    .T1Loc.color-texto-t100-4, .T3Loc.color-texto-t70-4, .dayS.T3Loc.color-texto-t70-4, .T2Loc.icons.tMax.color-texto-t90-4,
-    .T2Loc.icons.tMin.color-texto-t90-4, .rain.T4Loc.color-texto-t50-4, .xh-dir.color-texto-t85-4, .xh-temp.color-texto-t90-4,
-    .fondoNB.color-fondo-flecha-5, .T1Loc.color-texto-t100-5, .ddHora.color-texto-t85-5, .ddDesc.T1Loc.color-texto-t100-5, .ddTemp.T1Loc.color-texto-t100-5,
-    .T1Loc.color-texto-t100-5, .T3Loc.color-texto-t70-5, .dayS.T3Loc.color-texto-t70-5, .T2Loc.icons.tMax.color-texto-t90-5,
-    .T2Loc.icons.tMin.color-texto-t90-5, .rain.T4Loc.color-texto-t50-5, .xh-dir.color-texto-t85-5, .xh-temp.color-texto-t90-5,
-    .fondoNB.color-fondo-flecha-6, .T1Loc.color-texto-t100-6, .ddHora.color-texto-t85-6, .ddDesc.T1Loc.color-texto-t100-6, .ddTemp.T1Loc.color-texto-t100-6,
-    .T1Loc.color-texto-t100-6, .T3Loc.color-texto-t70-6, .dayS.T3Loc.color-texto-t70-6, .T2Loc.icons.tMax.color-texto-t90-6,
-    .T2Loc.icons.tMin.color-texto-t90-6, .rain.T4Loc.color-texto-t50-6, .xh-dir.color-texto-t85-6, .xh-temp.color-texto-t90-6,
-    .fondoNB.color-fondo-flecha-7, .T1Loc.color-texto-t100-7, .ddHora.color-texto-t85-7, .ddDesc.T1Loc.color-texto-t100-7, .ddTemp.T1Loc.color-texto-t100-7,
-    .T1Loc.color-texto-t100-7, .T3Loc.color-texto-t70-7, .dayS.T3Loc.color-texto-t70-7, .T2Loc.icons.tMax.color-texto-t90-7,
-    .T2Loc.icons.tMin.color-texto-t90-7, .rain.T4Loc.color-texto-t50-7, .xh-dir.color-texto-t85-7, .xh-temp.color-texto-t90-7,
-    .fondoNB.color-fondo-flecha-8, .T1Loc.color-texto-t100-8, .ddHora.color-texto-t85-8, .ddDesc.T1Loc.color-texto-t100-8, .ddTemp.T1Loc.color-texto-t100-8,
-    .T1Loc.color-texto-t100-8, .T3Loc.color-texto-t70-8, .dayS.T3Loc.color-texto-t70-8, .T2Loc.icons.tMax.color-texto-t90-8,
-    .T2Loc.icons.tMin.color-texto-t90-8, .rain.T4Loc.color-texto-t50-8, .xh-dir.color-texto-t85-8, .xh-temp.color-texto-t90-8,
-    .fondoNB.color-fondo-flecha-9, .T1Loc.color-texto-t100-9, .ddHora.color-texto-t85-9, .ddDesc.T1Loc.color-texto-t100-9, .ddTemp.T1Loc.color-texto-t100-9,
-    .T1Loc.color-texto-t100-9, .T3Loc.color-texto-t70-9, .dayS.T3Loc.color-texto-t70-9, .T2Loc.icons.tMax.color-texto-t90-9,
-    .T2Loc.icons.tMin.color-texto-t90-9, .rain.T4Loc.color-texto-t50-9, .xh-dir.color-texto-t85-9, .xh-temp.color-texto-t90-9,
-    .fondoNB.color-fondo-flecha-10, .T1Loc.color-texto-t100-10, .ddHora.color-texto-t85-10, .ddDesc.T1Loc.color-texto-t100-10, .ddTemp.T1Loc.color-texto-t100-10,
-    .T1Loc.color-texto-t100-10, .T3Loc.color-texto-t70-10, .dayS.T3Loc.color-texto-t70-10, .T2Loc.icons.tMax.color-texto-t90-10,
-    .T2Loc.icons.tMin.color-texto-t90-10, .rain.T4Loc.color-texto-t50-10, .xh-dir.color-texto-t85-10, .xh-temp.color-texto-t90-10,
-    .fondoNB.color-fondo-flecha-11, .T1Loc.color-texto-t100-11, .ddHora.color-texto-t85-11, .ddDesc.T1Loc.color-texto-t100-11, .ddTemp.T1Loc.color-texto-t100-11,
-    .T1Loc.color-texto-t100-11, .T3Loc.color-texto-t70-11, .dayS.T3Loc.color-texto-t70-11, .T2Loc.icons.tMax.color-texto-t90-11,
-    .T2Loc.icons.tMin.color-texto-t90-11, .rain.T4Loc.color-texto-t50-11, .xh-dir.color-texto-t85-11, .xh-temp.color-texto-t90-11,
-     .fondoNB.color-fondo-flecha-12, .T1Loc.color-texto-t100-12, .ddHora.color-texto-t85-12, .ddDesc.T1Loc.color-texto-t100-12, .ddTemp.T1Loc.color-texto-t100-12,
-    .T1Loc.color-texto-t100-12, .T3Loc.color-texto-t70-12, .dayS.T3Loc.color-texto-t70-12, .T2Loc.icons.tMax.color-texto-t90-12,
-    .T2Loc.icons.tMin.color-texto-t90-12, .rain.T4Loc.color-texto-t50-12, .xh-dir.color-texto-t85-12, .xh-temp.color-texto-t90-12,
-    #title_actualizacion, #fecha_act, #rmes > THEAD > TR > TH, ABBR, #pDer > SPAN {color: #FFFFFF !important;}
+    #contenedorHora{margin-left: 70px !important;}
+
+    #mod_derecha{margin-left: -145px !important;}
 	
-    .despPaises {background: #FFFFFF !important; max-height: 34px !important;}
+    #mods_cont
+    {width: 85% !important; margin-left: 60px !important;
+    box-shadow: none!important; border: none !important;}
+
+    #pCentro {margin-left: 120px !important;}	
 	
-    /*   Hintergrundfarbe Pfeil Links bzw. Rechts und anderes Symbol  */
+    #mapid{min-width: 740px !important; min-height: 500px !important; 
+    margin-left: -295px !important; margin-top: -80px !important; 
+    box-shadow: none!important; border: none !important;}
 
-    #contDl > DL:last-child > DD > A{
-    width:0px!important;
-    height:0px!important;}
+    #controles_mm {margin-left: -70px !important;}
+	
+    #container{margin-left: -20px !important;}
 
-    #contDl > DL:last-child > DD > A{
-    background:#386AFF
-    url("data:image/gif;base64,R0lGODlhEAAQAJECAAAAAP///////wAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAxODAxMTc0MDcyMDY4MTFBMUZEOUEwMzAzMzgzQzcxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFFN0MwNkU2QUZGRjExRTBBNzRBOTlEOEE2Njg2RUVEIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFFN0MwNkU1QUZGRjExRTBBNzRBOTlEOEE2Njg2RUVEIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDc4MDExNzQwNzIwNjgxMUExRkQ5QTAzMDMzODNDNzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDE4MDExNzQwNzIwNjgxMUExRkQ5QTAzMDMzODNDNzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAACACwAAAAAEAAQAAACIJSPqcsC3w4IFEQz63U02Jt5W/g1ZHSaXbmkjGtC20wXADs=") no-repeat !important;
-    margin-top:25px!important;
-    height:15px!important;
-    width:28px!important;
-    background-position:7px 0px!important;}
+    #h1Ul > h1:nth-child(1){margin-left: 120px !important;}
+    #mapaAlertas{margin-left: 90px !important;}
 
-    #contDl > DL:first-child > DD > A{
-    width:0px!important;
-    height:0px!important;}
+    #tipAlert{margin-left: 50px !important;}	
 
-    #contDl > DL:first-child > DD > A{
-    background:#386AFF
-    url("data:image/gif;base64,R0lGODlhEAAQAJECAAAAAP///////wAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAxODAxMTc0MDcyMDY4MTFBMUZEOUEwMzAzMzgzQzcxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFFN0MwNkU2QUZGRjExRTBBNzRBOTlEOEE2Njg2RUVEIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFFN0MwNkU1QUZGRjExRTBBNzRBOTlEOEE2Njg2RUVEIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDc4MDExNzQwNzIwNjgxMUExRkQ5QTAzMDMzODNDNzEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDE4MDExNzQwNzIwNjgxMUExRkQ5QTAzMDMzODNDNzEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQBAAACACwAAAAAEAAQAAACIJSPqcsC3w4IFEQz63U02Jt5W/g1ZHSaXbmkjGtC20wXADs=") no-repeat !important;
-    margin-top:25px!important;
-    height:15px!important;
-    width:28px!important;
-    background-position:7px 0px!important;}
+    span.columnas:nth-child(5){margin-top: -50px !important;}
+    span.columnas:nth-child(2){margin-top: -60px !important;}
+
+    .subcabecera {padding-left: 20px !important; 
+    box-shadow: none!important; border: none !important;}
+
+    .dos-semanas{padding-left: 40px !important; 
+    box-shadow: none!important; border: none !important;}
+	
+    span.columnas:nth-child(1){margin-left: 20px !important;}
+	
+    .ulMove{margin-left: 130px !important;}
+
+    .estado-actual, span.columnas:nth-child(1),
+    span.franja:nth-child(4),span.columnas:nth-child(5),
+    span.columnas:nth-child(6), span.columnas:nth-child(7){padding-left: 50px !important; 
+    box-shadow: none!important; border: none !important;}
+
+    .franjas{background: #FFFFFF !important; box-shadow: none!important; border: none !important; margin-left:-45px !important;}
+    .lluvia-nieve > span:nth-child(1){box-shadow: none!important; border: none !important;}
+
+    navegacion label{border: none !important;}	
     }
 
     @-moz-document domain(www.meteocentrale.ch) {
-    #header,#top,#left,#c8548,#right,#footer,#wetterapp_border > NOSCRIPT,#content > H1,#page > NOSCRIPT,
+    #header,#top,#left,#c8548,#right,#footer,#wetterapp_border > NOSCRIPT,#content > H1,#page > NOSCRIPT,.qc-cmp-cleanslate,
     body > div:nth-child(10),body > div:nth-child(9), body > div:nth-child(16),body > div:nth-child(13), 
-    #lower-content > center:nth-child(6){display: none !important;
-    }
+    #lower-content > center:nth-child(6){display: none !important;}
 
     #wetterapp_border{
     margin-left: -30px !important;
-    margin-top: -10px !important;
-    }
+    margin-top: -10px !important;}
     }
 
     @-moz-document domain(www.wetter.net) {
@@ -727,17 +862,18 @@
 
     #city_search_input {background: white !important; color: black !important; font-weight: bold !important;}
 	
-    .toggle-favs-icon-down:after ,
+    #search-wrapper{margin-bottom: 20px !important; margin-left: 8px !important; margin-top: -2px !important;}
+	
+    .toggle-favs-icon-down:after,
     .toggle-favs-icon-up:after {
-    color: white !important;
-    }
+    color: white !important;}
 
-    #bodyContainer_switch > DIV:nth-child(5) > DIV > UL,
+    #bodyContainer_switch > DIV:nth-child(5) > DIV > UL, .advertising_billboard,
     HTML > BODY > DIV:first-child, NAV, FOOTER, HTML > BODY > DIV:nth-child(12),
     .upArrow, .row.social_share_city , .advertising_pubperform.row,
-    .col-sm-4.teaser_block, .advertising_city.col-xs-12,
+    .col-sm-4.teaser_block, .advertising_city.col-xs-12, .advertising_left,
     .col-sm-8.teaser_block.teaser_block_2, .teaser_container > div:nth-child(1),
-    div.container-fluid,
+    div.container-fluid, .weather_container > div:nth-child(10), .share_buttons_float_right,
     #banner, #sky, HTML > BODY > DIV:nth-child(9) > DIV > DIV > DIV, .col-md-3 > a:nth-child(1)
     {display: none !important;}
 
@@ -746,54 +882,38 @@
     p{font-size: 18px !important;}
     }
 
-    @-moz-document url-prefix(https://www.wetter.de/deutschland/regenradar-karte-baden-wuerttemberg-c49p8.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-bayern-c49p9.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-brandenburg-c49p12.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-hessen-c49p6.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-mecklenburg-vorpommern-c49p13.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-niedersachsen-c49p3.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-nordrhein-westfalen-c49p5.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-rheinland-pfalz-c49p7.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-saarland-c49p10.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-sachsen-c49p14.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-sachsen-anhalt-c49p15.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-schleswig-holstein-c49p1.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-thueringen-c49p16.html),
-                   url-prefix(https://www.wetter.de/deutschland/regenradar-karte-deutschland-c49.html){
-
-    #wrapper-site > DIV:first-child, #wrapper-site > DIV:nth-child(2), .billboard-background, #wrapper-site > DIV:nth-child(4), #technical-service,
-    #wrapper-site > DIV:nth-child(3), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > H1, #site-footer,
-    #wrapper-site > DIV:nth-child(6) > DIV:last-child > DIV:nth-child(2), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > H2,
-    #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(2) > UL, #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:last-child,
-    .cc_banner.cc_container.cc_container--open, .ligatus-footer-ad-container, .ligatus-content-forecast-reco-container, 
-    #wrapper-site > DIV:nth-child(6) >       DIV:first-child > DIV:nth-child(3), #wrapper-site > DIV:nth-child(6) > DIV:first-child > DIV:nth-child(4),
-    DIV[style="margin: 0 auto; width:300px; display: block; height:250px; position: relative;"],
-    .related-column, #adcontrol-site-top, #adcontrol-site-column-right, #wrapper-site > DIV:nth-child(6) > DIV:last-child > DIV:last-child, 
-    .info-textbox{display: none! important;}
-
-    #js-page-reload-overlay, #js-page-reload-overlay-modal,  #js-page-reload-idle, .modal-backdrop.fade.in {display: none !important;}
-
-    /*   Verschiebt Steuerung, von ober dem Bild nach unten   */
-
-    .osm-map-legend.map-engine.body{margin-top: 670px !important; margin-left: -20px !important; }
-
-    .MGMapControls.cL_90_x_30, .webmapengine-controls-before,  .webmapengine-controls-after {margin-top: 691px !important;}
-    .MGMapHeader{margin-top: 690px !important; background: #E2DBCB !important;}
-    .MGMapTimeDisplay {margin-left: 20px !important; margin-top: 4px !important; font-weight: bold !important;color: black! important;}
-    .MGMapSpeedSliderLabel.hide-for-small{margin-left: 20px !important; margin-top: 4px !important; font-weight: bold !important;
-    color: black! important;}
-
-    /*   Bild nach links und oben schieben   */
-    .mapengine {margin-top: -52px !important; }
-    }
-
     @-moz-document domain(www.unwetterzentrale.de),
                    domain(www.niederschlagsradar.de),
                    url-prefix(http://db.eurad.uni-koeln.de/prognose/data/aktuell/trh_eur_1h_movd1.gif),
                    url-prefix(https://www.dwd.de/DWD/wetter/wv_allg/deutschland/film/vhs_deutschland.jpg),
                    url-prefix(https://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/wx_deutschland.jpg),
                    domain(www.meteox.de){
-    HTML {background: #FFFFFF !important;}
-		 
+    HTML {background: #FFFFFF !important;} 
     }
 
+    @-moz-document url-prefix("https://www.wetteronline.de/regenradar/berlin-bundesland"),
+                   url-prefix("https://www.wetteronline.de/regenradar/hamburg-bundesland"),
+                   url-prefix("https://www.wetteronline.de/regenradar/bremen-bundesland"),				   
+                   url-prefix("https://www.wetteronline.de/regenradar/mecklenburg-vorpommern"),
+                   url-prefix("https://www.wetteronline.de/regenradar/niedersachsen"),
+                   url-prefix("https://www.wetteronline.de/regenradar/nordrhein-westfalen"),
+                   url-prefix("https://www.wetteronline.de/regenradar/sachsen"),
+	           url-prefix("https://www.wetteronline.de/regenradar/bayern"),
+	           url-prefix("https://www.wetteronline.de/regenradar/braunschweig"),				   
+                   url-prefix("https://www.wetteronline.de/regenradar/baden-wuerttemberg"),
+                   url-prefix("https://www.wetteronline.de/regenradar/thueringen"),
+                   url-prefix("https://www.wetteronline.de/regenradar/sachsen-anhalt"),
+                   url-prefix("https://www.wetteronline.de/regenradar/saarland"),				   
+	           url-prefix("https://www.wetteronline.de/regenradar/hessen"),
+                   url-prefix("https://www.wetteronline.de/regenradar/schleswig-holstein"),
+                   url-prefix("https://www.wetteronline.de/regenradar/brandenburg-bundesland"),
+                   url-prefix("https://www.wetteronline.de/regenradar/rheinland-pfalz"){
+
+    #top, #searchbox, #favorites, #memberarea_wrapper, #woBillboard, div._3Sb_2c:nth-child(12), #sp_message_container_389665,
+    #map-searchform, div.leaflet-top:nth-child(2), ._1KFpPt, div.leaflet-bottom:nth-child(4), .top-right > wo-zoom:nth-child(2),
+    #content-navigation, #header, #topcontainer, cc_banner, .cc_banner-wrapper, #ultraleftcontainer, .top-right,
+    .cleverpush-bell, #rightcontainer {display: none !important;}
+
+    ._1OzLNe {margin-bottom: 0px !important; margin-left: -120px !important;}
+    #content{margin-top: -100px !important;}	
+    }
