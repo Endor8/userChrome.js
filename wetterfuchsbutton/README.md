@@ -8,21 +8,21 @@ Sobald ein Panel angezeigt wird, öffnet ein Mittelklick darauf die Adresse in e
 
 Das **Ergebnis des Skripts** (mit Bildern für Berlin- bzw. Brandenburg-Vorschau) mit ausgeblendetem Dropmarker (s. unten):
 
-![Screenshot Wetterfuchsbutton Menue](https://github.com/ardiman/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_menu.png)
+![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_menu.png)
 
 Mit einem **Links-Doppelklick** auf den Button öffnet ein Panel, in dem **lokale Wetterinfos** erscheinen. 
 
-![Screenshot Wetterfuchsbutton Doppel-Linksklick](https://github.com/ardiman/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_panel_linksdoppelklick.png)
+![Screenshot Wetterfuchsbutton Doppel-Linksklick](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_panel_linksdoppelklick.png)
 
 Über den **Rechtsklick** gibt es einige Wetterinfos mit der zusätzlichen Möglichkeit über die Suchleiste, temporär auch andere 
 Städte jeweils anzuzeigen.
 
-![Screenshot Wetterfuchsbutton Rechtsklick](https://github.com/ardiman/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_panel_rechtsklick.png)
+![Screenshot Wetterfuchsbutton Rechtsklick](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_panel_rechtsklick.png)
 
 Mit dem **Mittelklick** auf dem Button erscheint ein Panel mit den Wetterdaten seines **Wunschortes** mit einer Vorschau bis zu 14 Tage, außerdem 
 können hier weitere Orte zur Verfügung gestellt werden (am besten Cookies für diese Seite zulassen!):
 
-![Screenshot Wetterfuchsbutton Mittelklick](https://github.com/ardiman/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_panel_mittelklick.png)
+![Screenshot Wetterfuchsbutton Mittelklick](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_panel_mittelklick.png)
 
 In allen geöffneten Wetterfenstern kann mit den Pfeiltasten der Tastatur gescrollt werden. Bei installierten Erweiterungen wie z.B. 
 "Smooth Wheel" oder "Yet Another Smooth Scrolling" klappt das Scrollen auch mit dem Mausrad.
