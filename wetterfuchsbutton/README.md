@@ -54,13 +54,7 @@ Hier lauten die Bezeichner `RE_AktuellVorhersage`, `RE_Unwetterwarnung`, `RE_Reg
 ## Das Aussehen der Wetterfenster
 Zum Skript gehört die Datei `wetterfuchsbutton.css`, die am einfachsten entweder über das "UserCSSLoader" Skript oder die userChrome.css in den 
 Firefox eingebunden werden kann. Falls die Erweiterung "Stylish" eingesetzt wird, muss die `namespace`-Zeile entfernt werden.
-
-## Symbole für Kontextmenü des Wetterfuchs
-![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu2.png)      
-Wer wie auf obigem Bild ersichtlich, die Kontextmenüeintrage mit Symbolen versehen möchte,     
-der kann diesen CSS Code zusätzlich in Firefox einbinden: **Wetterfux-Menu-Symbole.css**      
-https://github.com/Endor8/userChrome.js/blob/master/wetterfuchsbutton/Wetterfux-Menu-Symbole.css
-    
+  
 ## Ausblenden des Dropmarkers
 Wer den Menüdropmarker am Button nicht haben möchte, muss ihn mit einem separaten CSS Code ausblenden:
 
@@ -70,3 +64,10 @@ Wer den Menüdropmarker am Button nicht haben möchte, muss ihn mit einem separa
         display: none;
       }
     }
+
+## Weitere Anpassungen des Menüs
+![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu2.png)      
+
+**Symbole für Kontextmenü des Wetterfuchs**
+Um die Menüeinträge mit Symbolen zu verschönern, kann man die **Wetterfuchs-Kontextmenu-Symbole.css** verwenden.           
+https://github.com/Endor8/userChrome.js/blob/master/wetterfuchsbutton/Wetterfux-Kontextmenu-Symbole.css
