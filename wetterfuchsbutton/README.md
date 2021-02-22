@@ -8,7 +8,7 @@ Sobald ein Panel angezeigt wird, öffnet ein Mittelklick darauf die Adresse in e
 
 Das **Ergebnis des Skripts** (mit Bildern für Berlin- bzw. Brandenburg-Vorschau) mit ausgeblendetem Dropmarker (s. unten):
 
-![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_menu.png)
+![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu.png)
 
 Mit einem **Links-Doppelklick** auf den Button öffnet ein Panel, in dem **lokale Wetterinfos** erscheinen. 
 
