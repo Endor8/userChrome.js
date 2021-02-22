@@ -68,6 +68,6 @@ Wer den Menüdropmarker am Button nicht haben möchte, muss ihn mit einem separa
 ## Weitere Anpassungen des Menüs
 ![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu2.png)      
 
-**Symbole für Kontextmenü des Wetterfuchs**
+**Symbole für Kontextmenü des Wetterfuchs**     
 Um die Menüeinträge mit Symbolen zu verschönern, kann man die **Wetterfuchs-Kontextmenu-Symbole.css** verwenden.           
 https://github.com/Endor8/userChrome.js/blob/master/wetterfuchsbutton/Wetterfux-Kontextmenu-Symbole.css
