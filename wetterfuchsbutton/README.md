@@ -36,15 +36,15 @@ Höhe (width) eingetragen. Anhand des Bezeichners ist zu erkennen, welche Aktion
 Bezeichner, die angepasst werden sollten.
 
 ### Für den Rechtsklick (Wetter.net Lokalwetter)
-Als Erstes geht man auf http://www.wetter.net , sucht über die Wettersuche-Searchbar dort nach einem "Wunschort". Nach deren Auswahl die URL 
+Als Erstes geht man auf https://www.wetter.net , sucht über die Wettersuche-Searchbar dort nach einem "Wunschort". Nach deren Auswahl die URL 
 kopieren und im Objekt `urlobj` den Bezeichner `MO_Rechtsklick` suchen, anschliessend die Adresse zwischen den `""` hinter `url:` einfügen.
 
 ### Für den Doppel-Linksklick (MSN Lokalwetter)
-Die gleiche Vorgehensweise für die zweite Wetterstation bei http://wetter.msn.com/sitemap.aspx . Nach der Wunschortauswahl wird die kopierte URL für 
+Die gleiche Vorgehensweise für die zweite Wetterstation bei https://wetter.msn.com/sitemap.aspx . Nach der Wunschortauswahl wird die kopierte URL für 
 den Bezeichner `MO_Doppelklick` eingetragen.
 
 ### Für den Mittelklick (DasWetter.com Städtewetter)
-Für den eigenen Wohnort sucht man auf http://www.daswetter.com/ und kopiert die Adresse genau auf die gleiche Art und Weise, wie die beiden 
+Für den eigenen Wohnort sucht man auf https://www.daswetter.com/ und kopiert die Adresse genau auf die gleiche Art und Weise, wie die beiden 
 ersten, dieses Mal verändert man den Eintrag des Bezeichners `MO_Mittelklick`. Lässt man für diese Seite Cookies zu, können 2 weitere Orte 
 im Panel zur Verfügung gestellt werden.
 
@@ -55,21 +55,18 @@ Hier lauten die Bezeichner `RE_AktuellVorhersage`, `RE_Unwetterwarnung`, `RE_Reg
 Zum Skript gehört die Datei `wetterfuchsbutton.css`, die am einfachsten entweder über das "UserCSSLoader" Skript oder die userChrome.css in den 
 Firefox eingebunden werden kann. Falls die Erweiterung "Stylish" eingesetzt wird, muss die `namespace`-Zeile entfernt werden.
 
+## Symbole für Kontextmenü des Wetterfuchs
+![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu2.png
+wer wie auf obigem Bild ersichtlich die Kontextmenüeintrage mit Symbolen versehen möchte,
+der kann diesen CSS Code zusätzlich in Firefox einbinden:
+
+
 ## Ausblenden des Dropmarkers
 Wer den Menüdropmarker am Button nicht haben möchte, muss ihn mit einem separaten CSS Code ausblenden:
 
     @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
     @-moz-document url(chrome://browser/content/browser.xul) {
       #wetterfuchs-toolbarbutton > dropmarker {
-        display: none;
-      }
-    }
-
-Benutzer anderer Themes wie z.B. "Silvermel" probieren es hiermit:
-
-    @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-    @-moz-document url(chrome://browser/content/browser.xul) {
-      #wetterfuchs-toolbarbutton .toolbarbutton-menu-dropmarker {
         display: none;
       }
     }
