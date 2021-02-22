@@ -874,7 +874,8 @@
     .col-sm-4.teaser_block, .advertising_city.col-xs-12, .advertising_left,
     .col-sm-8.teaser_block.teaser_block_2, .teaser_container > div:nth-child(1),
     div.container-fluid, .weather_container > div:nth-child(10), .share_buttons_float_right,
-    #banner, #sky, HTML > BODY > DIV:nth-child(9) > DIV > DIV > DIV, .col-md-3 > a:nth-child(1)
+    #banner, #sky, HTML > BODY > DIV:nth-child(9) > DIV > DIV > DIV, .col-md-3 > a:nth-child(1),    
+    .weather_container > div:nth-child(9), .advertising_right     
     {display: none !important;}
 
     .white.todayTextHeader{font-size: 24px !important;}
