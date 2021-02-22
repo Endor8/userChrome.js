@@ -56,8 +56,8 @@ Zum Skript gehört die Datei `wetterfuchsbutton.css`, die am einfachsten entwede
 Firefox eingebunden werden kann. Falls die Erweiterung "Stylish" eingesetzt wird, muss die `namespace`-Zeile entfernt werden.
 
 ## Symbole für Kontextmenü des Wetterfuchs
-![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu2.png)
-wer wie auf obigem Bild ersichtlich die Kontextmenüeintrage mit Symbolen versehen möchte,
+![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu2.png)      
+Wer wie auf obigem Bild ersichtlich, die Kontextmenüeintrage mit Symbolen versehen möchte,
 der kann diesen CSS Code zusätzlich in Firefox einbinden: **Wetterfux-Menu-Symbole.css**      
 https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/Wetterfux-Menu-Symbole.css
 
