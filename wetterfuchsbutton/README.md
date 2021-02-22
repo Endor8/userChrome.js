@@ -58,8 +58,8 @@ Firefox eingebunden werden kann. Falls die Erweiterung "Stylish" eingesetzt wird
 ## Symbole für Kontextmenü des Wetterfuchs
 ![Screenshot Wetterfuchsbutton Menue](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_Menu2.png)
 wer wie auf obigem Bild ersichtlich die Kontextmenüeintrage mit Symbolen versehen möchte,
-der kann diesen CSS Code zusätzlich in Firefox einbinden: Wetterfux-Menu-Symbole.css
-
+der kann diesen CSS Code zusätzlich in Firefox einbinden: 
+https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/Wetterfux-Menu-Symbole.css
 
 ## Ausblenden des Dropmarkers
 Wer den Menüdropmarker am Button nicht haben möchte, muss ihn mit einem separaten CSS Code ausblenden:
