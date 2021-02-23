@@ -59,7 +59,7 @@ Firefox eingebunden werden kann. Falls die Erweiterung "Stylish" eingesetzt wird
 Wer den Menüdropmarker am Button nicht haben möchte, muss ihn mit einem separaten CSS Code ausblenden:
 
     @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-    @-moz-document url(chrome://browser/content/browser.xul) {
+    @-moz-document url(chrome://browser/content/browser.xhtml) {
       #wetterfuchs-toolbarbutton > dropmarker {
         display: none;
       }
