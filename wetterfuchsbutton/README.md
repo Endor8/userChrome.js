@@ -24,8 +24,8 @@ können hier weitere Orte zur Verfügung gestellt werden (am besten Cookies für
 
 ![Screenshot Wetterfuchsbutton Mittelklick](https://github.com/Endor8/userChrome.js/raw/master/wetterfuchsbutton/scr_wfb_panel_mittelklick.png)
 
-In allen geöffneten Wetterfenstern kann mit den Pfeiltasten der Tastatur gescrollt werden. Bei installierten Erweiterungen wie z.B. 
-"Smooth Wheel" oder "Yet Another Smooth Scrolling" klappt das Scrollen auch mit dem Mausrad.
+In allen geöffneten Wetterfenstern kann mit den Pfeiltasten der Tastatur gescrollt werden. Bei installierter Erweiterung     
+"Yet Another Smooth Scrolling" klappt das Scrollen auch mit dem Mausrad.
 
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils und füge den Button zur gewünschten Symbolleiste hinzu, indem du ihn per 
@@ -52,8 +52,8 @@ im Panel zur Verfügung gestellt werden.
 Hier lauten die Bezeichner `RE_AktuellVorhersage`, `RE_Unwetterwarnung`, `RE_RegenradarAktuell` und `RE_RegenradarPrognose`.
 
 ## Das Aussehen der Wetterfenster
-Zum Skript gehört die Datei `wetterfuchsbutton.css`, die am einfachsten entweder über das "UserCSSLoader" Skript oder die userChrome.css in den 
-Firefox eingebunden werden kann. Falls die Erweiterung "Stylish" eingesetzt wird, muss die `namespace`-Zeile entfernt werden.
+Zum Skript gehört die Datei `wetterfuchsbutton.css`, die am einfachsten entweder über das "UserCSSLoader"     
+Skript oder die userChrome.css in den Firefox eingebunden werden kann. 
   
 ## Ausblenden des Dropmarkers
 Wer den Menüdropmarker am Button nicht haben möchte, muss ihn mit einem separaten CSS Code ausblenden:
