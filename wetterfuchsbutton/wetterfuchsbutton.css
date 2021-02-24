@@ -686,7 +686,7 @@
     .oneFooter-DS-EntryPoint1-1 ,.button_contentRegion-DS-EntryPoint1-1, .locateButton-DS-EntryPoint1-1,
     .feedback_link_default-DS-EntryPoint1-1.button-DS-EntryPoint1-3,.weather_alerts_link-DS-EntryPoint1-1,
     .profile_signInLink-DS-EntryPoint1-1,  #onetrust-consent-sdk, .homeButton-DS-EntryPoint1-1,
-    .weatherOverview_root-DS-EntryPoint1-1 > div:nth-child(6), 
+    .weatherOverview_root-DS-EntryPoint1-1 > div:nth-child(6), .profile_actionLink-DS-EntryPoint1-1,
     .adsContent-DS-EntryPoint1-1, div.sectionContainer-DS-EntryPoint1-1:nth-child(2),
     .datafrom_text-DS-EntryPoint1-1{display: none! important;}
 
@@ -733,7 +733,8 @@
     .locC.half-module, #pubInferior, .leaflet-bottom.leaflet-right, #contPag, #meteored_share,
     .selectMapaLugar, #full_screen, .botonera, #selectRadarLugar, #selector_estilo, #selector_tipos,
     span.secundaria:nth-child(2),.navegacion > a:nth-child(1), .logo-svg, #contSup, .menu,
-    DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"],#mmt_vermas,#mapa-loc-shared {display: none !important;}
+    DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"],    
+    #mmt_vermas,#mapa-loc-shared, li.lis-mini-carrusel:nth-child(6) {display: none !important;}
 
     header #contSup .logo-svg img {display: none !important;}
 	 
