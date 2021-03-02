@@ -714,88 +714,116 @@
     margin-left: -35px !important;}
     }
 
-    @-moz-document domain(www.daswetter.com) {.estado-actual > span:nth-child(1) > span:nth-child(2), 
-    .publicidad, ul.enlaces:nth-child(2), span.secundaria:nth-child(4), .mas-noticias, .publicidad-pie,
-    span.columnas:nth-child(2) > span:nth-child(1) > span:nth-child(2), #bannerSupPC, 
-    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(2), div.megabanner,
-    aside.caja, span.columnas:nth-child(6), span.franja:nth-child(7), #gpdr, #colBlanca,
-    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1) > span:nth-child(1) > a:nth-child(2),
-    .lluvia-nieve > span:nth-child(1) > a:nth-child(2), #izquierda, #news1, .fuente,
-    #sat > div:nth-child(2), li.mLi:nth-child(6), .menu > ul:nth-child(1) > li:nth-child(6),
-    span.franja:nth-child(4), span.principal:nth-child(3), span.secundaria:nth-child(4), 
-    .navegacion > a:nth-child(1) > img:nth-child(1), #pubIzq, #pubAside, #pubAside2, .pubDesk, 
-    .modulo.bSocial, .modulo.fotoLoc, #divGota, .liCompartir.comp-svg, .icons-de.liCompartir,
-    #wrap > HEADER > ASIDE > DIV > _moz_generated_content_before, #bottom_newsletter, 
-    DIV[class="tCook"][style="display: block;"], #pubSup > DIV,#top30, .modulo.pubMapa, 
-    .modulo.fase-lunar.sl-1, .modulo.locC, FOOTER, #foots, .leySocial, #modulos > ASIDE, 
-    #pIzq, #top-prediccion, .galery-svg, #mod_izquierda, #mod_derechos_uso, span.boton:nth-child(2),
-    DIV[class="addthis-smartlayers addthis-smartlayers-desktop"][aria-labelledby="at4-share-label"], 
-    .locC.half-module, #pubInferior, .leaflet-bottom.leaflet-right, #contPag, #meteored_share,
-    .selectMapaLugar, #full_screen, .botonera, #selectRadarLugar, #selector_estilo, #selector_tipos,
-    span.secundaria:nth-child(2),.navegacion > a:nth-child(1), .logo-svg, #contSup, .menu,
-    DIV[class="at-share-dock-outer addthis-smartlayers addthis-smartlayers-mobile"][aria-labelledby="at-share-dock-label"][role="region"][role="region"],    
-    #mmt_vermas,#mapa-loc-shared, li.lis-mini-carrusel:nth-child(6) {display: none !important;}
+    @-moz-document domain(www.daswetter.com) {
 
-    header #contSup .logo-svg img {display: none !important;}
-	 
+    #cfav, .shared, .avisos, .container_sticky, .navegacion,
+    #bannerDerPC, #meteored_share, span.principal:nth-child(3),
+    span.secundaria:nth-child(4), .megabanner, span.franja:nth-child(4),
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(2),
+    span.columnas:nth-child(6), span.franja:nth-child(7), #bannerSupPC,
+    .publicidad-pie, .pie-pagina, .map-loc-titulo, span.creatividad:nth-child(2),
+    #pubIzq, #contSup, #foots, #pubSup, .mas-noticias, #zona-contenido,
+    #shared, div.leaflet-bottom:nth-child(4), #full_screen, .leaflet-control-zoom,
+    #izquierda, #selector_tipos, .der, #contPag	{display: none !important;}
+	
+    .estado{margin-top: -50px !important; margin-left: 450px !important;}
+	
+    #pCentro{margin-top: 90px !important;}
+	
+    .mapa {margin-left: -120px !important;}
+	
+    .resumen-dia{margin-left: 48px !important; margin-top: -20px !important;}
+	
+    #contDias{margin-left: -10px !important;}
+	
+    #divGota{min-height: 64px !important;}
+	
+    span.principal:nth-child(2){margin-left: 345px !important; margin-bottom: 20px !important;}
+	
+    h1.titulo{margin-bottom: 15px !important;}
+	
+    #highcharts-p78qazo-0{min-height: 600px !important;}
+	
+    .franja > span:nth-child(1){max-width: 650px !important; margin-left: 5px !important;}
+	
     span.columnas:nth-child(3),.titulo-horas, .franja	{  
     box-shadow: none!important; border: none !important;} 
-
+	
     span.columnas:nth-child(1) > span:nth-child(1) > span:nth-child(1),
     span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1),
     span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1) > span:nth-child(1){  
     box-shadow: none!important; border: none !important;} 
-
+	
+    #iw-container{margin-left: 250px !important;}
+	
+    .mapa #pCentro #controles_mm {
+    position: relative !important;
+    margin-left: 5px !important;}
+	
+    div.leaflet-bottom:nth-child(3){margin-left: 35px !important;}
+	
     [class="secundaria"]{ 
     margin-left:35px !important; margin-right: -80px !important;}
-
+	
     [class="prevision-hoy-horas"]{
     margin-left:280px !important; margin-right: -280px !important; margin-top:30px !important;
     margin-bottom: -50px !important; box-shadow: none!important;}
-
+	
     [class="tabla-horas"]{
     margin-right: -30px !important; margin-top:50px !important;
     width: 730px !important;}
-
+	
     [class="por-horas"]{ margin-top:-15px !important; }
-
-    #divPestanas, #buscador,
+	
+    #search_pc{margin-left: -2px !important; max-width: 300px !important;}
+	
+    #divPestanas, 
     .loc-dia {margin-left: 30px !important;}
-
+	
     #cookies {margin-right: -30px !important;}
 
     .grafica{margin-left: 15px !important; width: 740px !important;}
-
+	
     .sin_prob{margin-left: 285px !important; margin-right: -255px !important;
     margin-bottom: -70px !important; }
-
-    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(2)
-    {margin-left: 50px !important; margin-right: -30px !important; margin-top: 50px !important;}
-
+	
     .titulo-horas{margin-left: 50px !important; margin-right: -30px !important;
     margin-bottom: 30px !important; margin-top: -20px !important;}
-
-    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(1) > section:nth-child(1)
-    {margin-left: 15px !important; margin-right: 20px !important;}
-    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(2) > section:nth-child(1) > table:nth-child(1) > tbody:nth-child(2)
-    {margin-left: 50px !important; margin-right: -30px !important;}
-
-    .map-loc-titulo{margin-left: -70px !important;}
-
+	
+    span.columnas:nth-child(2) > span:nth-child(1) > span:nth-child(2) > section:nth-child(1){
+    margin-top: -20px !important;}
+	
+    span.columnas:nth-child(2) > span:nth-child(1) > span:nth-child(1) > section:nth-child(1){
+    margin-left: 305px !important; min-width: 740px !important;}
+	
+    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(1) > section:nth-child(1){
+    margin-left: 35px !important; max-width: 735px !important;}
+	
+    span.columnas:nth-child(3) > span:nth-child(1) > span:nth-child(2){
+    margin-left: 70px !important; margin-top: -30px !important; }
+	
+    .grafica-horas,
+    .highcharts-root {margin-left: 15px!important;  min-width: 740px !important;}
+		
     .dos-semanas .dia.activo::after {
     border-right: 51px solid transparent !important;
     border-left: 51px solid transparent !important;}
 
-    header #contSup{margin-left: -40px !important; 
-    box-shadow: none!important; border: none !important;}
-    .navegacion{margin-left: -100px !important; 
-    box-shadow: none!important; border: none !important;}
+    header #contSup{
+    margin-left: -40px !important; 
+    box-shadow: none!important; 
+    border: none !important;}
+	
+    .navegacion{
+    margin-left: -100px !important; 
+    box-shadow: none!important;
+    border: none !important;}
 
     span.columnas:nth-child(2){margin-left: -270px !important; 
     box-shadow: none!important; border: none !important;}
 	
     #contenedorHora{margin-left: 70px !important;}
-
+	
     #mod_derecha{margin-left: -145px !important;}
 	
     #mods_cont
@@ -804,8 +832,13 @@
 
     #pCentro {margin-left: 120px !important;}	
 	
-    #mapid{min-width: 740px !important; min-height: 500px !important; 
-    margin-left: -295px !important; margin-top: -80px !important; 
+    .lluvia-nieve{margin-left: 55px !important; min-width: 760px !important;}
+	
+    span.columnas:nth-child(5) > span:nth-child(1) > span:nth-child(1){
+    max-width: 760px !important; margin-left: 25px !important;}
+	
+    #mapid{min-height: 500px !important;  
+    margin-left: 5px !important; margin-top: -80px !important; 
     box-shadow: none!important; border: none !important;}
 
     #controles_mm {margin-left: -70px !important;}
@@ -835,10 +868,79 @@
     span.columnas:nth-child(6), span.columnas:nth-child(7){padding-left: 50px !important; 
     box-shadow: none!important; border: none !important;}
 
-    .franjas{background: #FFFFFF !important; box-shadow: none!important; border: none !important; margin-left:-45px !important;}
-    .lluvia-nieve > span:nth-child(1){box-shadow: none!important; border: none !important;}
+    .franjas{
+    background: #FFFFFF !important; 
+    box-shadow: none!important; 
+    border: none !important; 
+    margin-left:-45px !important;}
+	
+    .lluvia-nieve > span:nth-child(1){
+    box-shadow: none!important; 
+    border: none !important;}
 
     navegacion label{border: none !important;}	
+    
+    .estado-actual{margin-left: -36px !important;}
+	
+    .map-loc-titulo{margin-left: -50px !important;}
+	
+    .dos-semanas{margin-left: -28px !important;}
+	
+    .carrusel{margin-left: 13px !important;}
+	
+    span.columnas:nth-child(1) > span:nth-child(1) > span:nth-child(2){margin-left: -6px !important;}
+	
+    .por-horas{margin-top: 24px !important; margin-left: -4px !important;}	
+    }
+	
+    @-moz-document url-prefix(https://www.daswetter.com/nachrichten/aktuelles/),
+                   url-prefix(https://www.daswetter.com/nachrichten/){
+		
+    .franjas	{display: none !important;}
+
+    .portada-noticias{margin-left: -55px !important; max-width: 770px !important;}
+	
+    .navegacion-portada-noticias {margin-left: 40px !important;}
+    }
+	
+    @-moz-document url(https://www.daswetter.com/satelliten/) {
+	
+    .selectSateliteLugar {display: none !important;}
+	
+    .h1-contenido{margin-left: -255px !important;}
+		
+    div.leaflet-bottom:nth-child(4) {display: none !important;}
+    #mapid{margin-left: 10px !important; min-width: 770px !important;}
+	
+    .mapa #pCentro #controles_mm {
+    position: relative !important;
+    margin-left: 45px !important;}
+    }
+	
+    @-moz-document url-prefix(https://www.daswetter.com/radar-deutsc-regen.html) {
+    .selectRadarLugar {display: none !important;}
+	
+    .h1-contenido{margin-left: 200px !important;}
+	
+    #mapid{min-width: 780px !important; margin-left: 50px !important;}
+	
+    .mapa #pCentro #controles_mm {
+    position: relative !important;
+    margin-left: 100px !important;}
+    }
+	
+    @-moz-document url-prefix(https://www.daswetter.com/wetterwarnungen/) {
+    .selectDias, .selectMapaLugar {display: none !important;}
+	
+    .franja{max-width: 750px !important; margin-left: 84px !important;}
+	
+    .h1-contenido{margin-left: -75px !important;}
+    }	
+	
+    @-moz-document url-prefix(https://www.daswetter.com/wetterkarten/prcnub-aleman.html) {
+    .selectMapaLugar {display: none !important;}
+	
+    .h1-contenido{margin-left: 150px !important;}
     }
 
     @-moz-document domain(www.meteocentrale.ch) {
