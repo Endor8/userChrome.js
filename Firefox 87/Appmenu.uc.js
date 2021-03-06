@@ -3,10 +3,10 @@
 // @namespace      Appmenu@gmail.com
 // @description    Basiert auf dem Script externalFuncButtonM.uc.js, Wiederherstellung der Orangefarbenen FF-Menü Schaltfläche
 // @include        main
-// @version        update for Firefox 68+ by aborix
+// @version        update for Firefox 86+ by aborix
 // @author         defpt
 // @charset        UTF-8
-// @version        2019.08.04
+// @version        2021.03.06
 //                 ### Z.181 geändert von Toolbar in Menüleiste
 //                 zurück in Toolbar (Z.191)
 // ==/UserScript==
@@ -18,8 +18,8 @@ var Appmenu = {
     // in 'view_source.editor.path' eingetragenen Editor verwenden
     // editor: Services.prefs.getCharPref('view_source.editor.path'),
 
-    // Dateimanager mit angegebenem Pfad verwenden
-    // fileManager: 'F:\\Adaten\\Downloads\\FreeComander\\FreeCommanderPortable\\FreeCommanderPortable.exe',
+    // Dateimanager mit angegebenem Pfad verwenden zb.s.
+    // fileManager: 'F:\\FreeComander\\FreeCommanderPortable\\FreeCommanderPortable.exe',
 	   fileManager: '',
 
     autohideEmptySubDirs: true,
