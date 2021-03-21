@@ -1,15 +1,16 @@
 /* LoadingBar.uc.js */
 // Location Bar Enhancer5.1; Loading Bar0.3.0
+// Firefox 87+
 
 (function(){
     var cssStr = `
-            #urlbar {
+            #urlbar-background {
                 background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0), rgba(255,255,255,0) 6px, rgba(255,255,255,1) 6px, rgba(255,255,255,1) 12px), linear-gradient(to right, rgba(255,255,255) 0%, rgba(17,238,238,.7) 100%);
                 background-size:0 0;
                 background-repeat:repeat-x, no-repeat;
-                transition: background-size 350ms ease 0s !important;
+                transition: background-size 350ms ease 0s;
             }
-            #urlbar:not([style="background-size: 0% 100%;"]) {
+            #urlbar-background:not([style="background-size: 0% 100%;"]) {
                 animation: progress-bar-stripes 2s linear infinite;
             }
             @keyframes progress-bar-stripes {
@@ -29,7 +30,7 @@
     function main(window) {
       var {document, gBrowser} = window;
       function $(id) { return document.getElementById(id) };
-      var urlbar = $("urlbar");
+      var urlbar = $("urlbar-background");
       let pageProgress = 0;
       let async = makeWindowHelpers(window).async;
       var LoadingBar = {
