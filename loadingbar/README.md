@@ -7,16 +7,26 @@ Das **Ergebnis des Skripts** je nach Werten im CSS Code:
 Mit anderen Farbwerten:
 ```css
 #urlbar-background {
-background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0), rgba(255,255,255,0) 6px, 
-rgba(255,255,255,1) 6px, rgba(255,255,255,1) 12px), linear-gradient(to right, rgba(255,255,255) 0%, 
+background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0), rgba(255,255,255,0) 6px,
+rgba(255,255,255,1) 6px, rgba(255,255,255,1) 12px), linear-gradient(to right, rgba(255,255,255) 0%,
 rgba(237,2,11,.7) 100%);
 ```
-                                
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar6.png)
-     
+Flächigen Farbverlauf:
+```css
+#urlbar-background {
+background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0), rgba(255,255,255,0) 6px,
+rgba(255,255,255,1) 6px, rgba(255,255,255,1) 6px), linear-gradient(to right, rgba(255,255,255) 0%,
+rgba(237,2,11,.7) 100%);
+```
 
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar4.png)
-    
+```css
+#urlbar-background {
+background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0), rgba(255,255,255,0) 6px,
+rgba(255,255,255,1) 6px, rgba(255,255,255,1) 12px), linear-gradient(to right, rgba(255,255,255) 0%,
+rgba(237,2,11,.7) 100%);
+```         
 
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar5.png)
      
