@@ -43,10 +43,6 @@ background-repeat:repeat-x, no-repeat;
 transition: background-size 350ms ease 0s !important;
 border-radius: 18px !important;
 }
-#urlbar {
-border-radius: 18px !important;
-border: solid 1px #3399ff;
-}
 ```
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar3.png)
 
