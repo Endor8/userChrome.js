@@ -30,10 +30,15 @@ background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0), rgba(25
 rgba(255,255,255,1) 6px, rgba(255,255,255,1) 6px), linear-gradient(to right, rgba(255,255,255) 0%,
 rgba(237,2,11,.7) 100%);
 ```         
-
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar5.png)
-     
-
+   
+Mit abgerundeten Ecken:
+```css
+#urlbar-background {
+background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0), rgba(255,255,255,0) 6px,
+rgba(255,255,255,1) 6px, rgba(255,255,255,1) 6px), linear-gradient(to right, rgba(255,255,255) 0%,
+rgba(237,2,11,.7) 100%);
+```
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar3.png)
 
 
