@@ -84,5 +84,8 @@ Mögliche Lösungen:
 - die Umlaute werden mit dem Notepad++-Plugin "HTML Tag" konvertiert
 
 # Quellen
-- http://www.camp-firefox.de/forum/viewtopic.php?f=16&t=100898
+- https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=100898
 - https://github.com/ardiman/userChrome.js
+- https://github.com/alice0775/userChrome.js
+- https://github.com/sdavidg/firefoxChromeScripts
+- https://u6.getuploader.com/script/
