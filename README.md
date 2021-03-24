@@ -1,5 +1,5 @@
 # Einleitung
-Hier entsteht eine Sammlung Firefox userChromeJS Scripten.
+Hier entsteht eine Sammlung von Firefox userChromeJS Scripten.
 
 Fast alle Scripte wurden im deutschen Firefox-Forum vorgestellt bzw. dort angepasst.
 
