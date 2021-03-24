@@ -1,7 +1,7 @@
 # Einleitung
-Hier entsteht eine Sammlung für die Firefox-Erweiterung userChromeJS.
+Hier entsteht eine Sammlung Firefox userChromeJS Scripten.
 
-Fast alle Skripte wurden im deutschen Firefox-Forum vorgestellt bzw. dort angepasst.
+Fast alle Scripte wurden im deutschen Firefox-Forum vorgestellt bzw. dort angepasst.
 
 Für GitHub werden die Skripte in Unterordnern mit entsprechenden README-Dateien abgelegt. Es handelt sich dabei um 
 Textdateien im markdown-Format mit der Dateiendung `md`. Screenshots bis zum 30.09.2011 wurden im Firefox 6 erstellt. 
