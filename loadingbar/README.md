@@ -6,8 +6,11 @@ Das **Ergebnis des Skripts** je nach Werten im CSS Code:
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar.png)
 
 ### Alternative Darstellungsmöglichkeiten    
-    
+     
+Enstprechenden Teil im Script mit unten angeführten CSS Code ersetzen.
+  
 **Mit anderen Farbwerten:**     
+    
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar6.png)
 ```css
 #urlbar-background {
@@ -17,6 +20,7 @@ rgba(237,2,11,.7) 100%);
 ```  
    
 **Flächigen Farbverlauf:**     
+     
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar4.png)
 ```css
 #urlbar-background {
@@ -26,6 +30,7 @@ rgba(17,238,238,.7) 100%);
 ``` 
    
 **Flächigen Farbverlauf andere Farbe:**     
+    
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar5.png)
 ```css
 #urlbar-background {
@@ -35,6 +40,7 @@ rgba(237,2,11,.7) 100%);
 ```         
    
 **Mit abgerundeten Ecken:**     
+    
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar3.png)
 ```css
 #urlbar-background{
