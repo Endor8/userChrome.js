@@ -7,7 +7,7 @@ Das **Ergebnis des Skripts** je nach Werten im CSS Code:
 
 ### Alternative Darstellungsmöglichkeiten    
      
-Enstprechenden Teil im Script mit unten angeführten CSS Code ersetzen.
+Entprechenden Teil im Script mit unten angeführten CSS Code ersetzen.
   
 **Mit anderen Farbwerten:**     
     
