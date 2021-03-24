@@ -7,7 +7,7 @@ Das **Ergebnis des Skripts** je nach Werten im CSS Code:
 
 ### Alternative Darstellungsmöglichkeiten    
     
-**Mit anderen Farbwerten:**
+**Mit anderen Farbwerten:**     
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar6.png)
 ```css
 #urlbar-background {
