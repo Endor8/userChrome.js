@@ -5,8 +5,8 @@ Das **Ergebnis des Skripts** je nach Werten im CSS Code:
 
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar.png)
 
-### Alternative Darstellungsmöglichkeiten
-
+### Alternative Darstellungsmöglichkeiten    
+    
 **Mit anderen Farbwerten:**
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar6.png)
 ```css
@@ -16,7 +16,7 @@ rgba(255,255,255,1) 6px, rgba(255,255,255,1) 12px), linear-gradient(to right, rg
 rgba(237,2,11,.7) 100%);
 ```  
    
-**Flächigen Farbverlauf:**
+**Flächigen Farbverlauf:**     
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar4.png)
 ```css
 #urlbar-background {
@@ -25,7 +25,7 @@ rgba(255,255,255,1) 6px, rgba(255,255,255,1) 6px), linear-gradient(to right, rgb
 rgba(17,238,238,.7) 100%);
 ``` 
    
-**Flächigen Farbverlauf andere Farbe:**
+**Flächigen Farbverlauf andere Farbe:**     
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar5.png)
 ```css
 #urlbar-background {
@@ -34,7 +34,7 @@ rgba(255,255,255,1) 6px, rgba(255,255,255,1) 12px), linear-gradient(to right, rg
 rgba(237,2,11,.7) 100%);
 ```         
    
-**Mit abgerundeten Ecken:**
+**Mit abgerundeten Ecken:**     
 ![Screenshot Loading Bar](https://github.com/Endor8/userChrome.js/raw/master/loadingbar/scr_loadingbar3.png)
 ```css
 #urlbar-background{
