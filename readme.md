@@ -85,4 +85,5 @@ https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
 - https://github.com/alice0775/userChrome.js
 - https://github.com/sdavidg/firefoxChromeScripts
 - https://github.com/aminomancer/uc.css.js/tree/master/script
+- https://github.com/Aris-t2/CustomJSforFx/tree/master/scripts
 - https://u6.getuploader.com/script/
