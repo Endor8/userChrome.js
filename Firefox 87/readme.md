@@ -1,1 +1,1 @@
-Hier werden Scripte die für Firefox 87 angepasst sind gesammelt.
+Hier werden Scripte die für Firefox 87 und neuer angepasst sind, gesammelt.
