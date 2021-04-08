@@ -53,7 +53,7 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    tabs tab:not([fadein]) { display: none; }
+    tabs tab:not([fadein]),#scrollbutton-up,#scrollbutton-down { display: none; }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -63,7 +63,7 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.clearDropIndicator = function() {
         let tabs = this.allTabs;
         for (let i = 0, len = tabs.length; i < len; i++) {
-            tabs[i].querySelector(".tab-background").style.removeProperty("border-style");
+            tabs[i].querySelector(".tab-background").removeAttribute("style");
         }
     }
     gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);

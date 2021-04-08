@@ -27,11 +27,34 @@ function MultiRowTabLiteforFx() {
     #nav-bar { -moz-box-ordinal-group: 2 !important; }         /* Navigationsleiste */
     #PersonalToolbar { -moz-box-ordinal-group: 3 !important; } /* Lesezeichen-Symbolleiste */
 
-    /* In Firefox 88 wenn die Tableiste an den unteren Rand des Fensters verschoben wurde,
-       in der Tableiste (außer beim aktiven Tab) scheint das Helle Thema nicht zu funktionieren.
-       Der Hintergrund ist weißlich, daher ist Dark geschwärzt.
-       Das auf Dunkel basierende Thema wird ebenfalls etwas schwärzer sein.  */
-    :root:-moz-lwtheme-brighttext #titlebar { background: rgb(12, 12, 13) !important; }
+    /* In Firefox 87 (oder später Firefox 88), wenn Sie die Titelleiste an den unteren Rand des
+       Fensters verschoben haben, der dafür benötigte CSS-Code befindet sich in der 
+       # navigator-toolbox (übergeordnetes Element), funktionierte aber nicht mehr.
+       Ich habe für die an den unteren Rand des Fensters verschobe Titelleiste, den 
+       erforderlichen CSS-Code hinzugefügt, damit es wieder funktioniert  */
+    #titlebar:-moz-lwtheme {
+        background-image: var(--lwt-additional-images);
+        background-repeat: var(--lwt-background-tiling);
+        background-position: var(--lwt-background-alignment);
+    }
+    @media not (-moz-os-version: windows-win7) {
+        @media not (-moz-os-version: windows-win8) {
+            #titlebar:-moz-lwtheme {
+                background-color: var(--lwt-accent-color);
+            }
+        }
+    }
+    @media (-moz-os-version: windows-win7),
+    (-moz-os-version: windows-win8) {
+        :root:-moz-lwtheme {
+            background-color: var(--lwt-accent-color);
+        }
+    }
+    :root[lwtheme-image] #titlebar {
+        background-image: var(--lwt-header-image), var(--lwt-additional-images);
+        background-repeat: no-repeat, var(--lwt-background-tiling);
+        background-position: right top, var(--lwt-background-alignment);
+    }
 
     /* Anpassung der Symbolleisten */
     [tabsintitlebar="true"] #toolbar-menubar { height: 29px; }
@@ -85,7 +108,7 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    tabs tab:not([fadein]),
+    tabs tab:not([fadein]),#scrollbutton-up,#scrollbutton-down,
     [tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox-container { display: none; }
 
     } `;
@@ -96,7 +119,7 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.clearDropIndicator = function() {
         let tabs = this.allTabs;
         for (let i = 0, len = tabs.length; i < len; i++) {
-            tabs[i].querySelector(".tab-background").style.removeProperty("border-style");
+            tabs[i].querySelector(".tab-background").removeAttribute("style");
         }
     }
     gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);

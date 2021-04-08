@@ -68,7 +68,7 @@ function MultiRowTabLiteforFx() {
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    tabs tab:not([fadein]),
+    tabs tab:not([fadein]),#scrollbutton-up,#scrollbutton-down,
     #toolbar-menubar[autohide="false"] + #titlebar #TabsToolbar .titlebar-buttonbox-container { display: none; }
 
     } `;
@@ -79,7 +79,7 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.clearDropIndicator = function() {
         let tabs = this.allTabs;
         for (let i = 0, len = tabs.length; i < len; i++) {
-            tabs[i].querySelector(".tab-background").style.removeProperty("border-style");
+            tabs[i].querySelector(".tab-background").removeAttribute("style");
         }
     }
     gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);
