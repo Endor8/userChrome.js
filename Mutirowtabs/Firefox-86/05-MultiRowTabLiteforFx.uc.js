@@ -90,6 +90,7 @@ function MultiRowTabLiteforFx() {
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab,.tab-background { height: var(--tab-min-height); }
     tab > .tab-stack { width: 100%; }
+    .tab-background[style$="2px solid red !important;"] { border-radius: 0 !important; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
@@ -110,6 +111,7 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.clearDropIndicator = function() {
         let tabs = this.allTabs;
         for (let i = 0, len = tabs.length; i < len; i++) {
+            tabs[i].removeAttribute("style");
             tabs[i].querySelector(".tab-background").removeAttribute("style");
         }
     }
