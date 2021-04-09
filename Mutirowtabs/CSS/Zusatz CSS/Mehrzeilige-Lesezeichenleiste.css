@@ -1,33 +1,25 @@
 @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
-     #PersonalToolbar {
-        max-height: calc(20px * 3) !important;
-    }
-    
-    #personal-bookmarks,
-    #PlacesToolbar,
-    #PlacesToolbar > hbox {
-        display: block !important;
-    }
-    
-    #PersonalToolbar toolbarbutton {
-        min-height: 20px !important;
-        max-height: 20px !important;
-    }
-    
+    #PersonalToolbar,
     #PlacesToolbarItems {
-        max-height:60px!important;
-        display: flex!important;
-        flex-wrap: wrap!important;
-        overflow-x: visible!important;
-        overflow-y: auto!important;
+        max-height: calc(20px * 3) !important;
+        min-height: 20px !important;
     }
-    
-    #PlacesToolbar,
-    #PersonalToolbar > scrollbar {
-        -moz-window-dragging: no-drag !important;
+    #PlacesToolbar > hbox {
+        display: block;
     }
-    
+    #PersonalToolbar toolbarbutton {
+        max-height: 20px !important;
+        min-height: 20px !important;
+        margin: 0 1px !important;
+    }
+    #PlacesToolbarItems {
+        display: flex;
+        flex-wrap: wrap;
+        -moz-window-dragging: no-drag;
+        overflow-x: visible;
+        overflow-y: auto;
+    }
     #PlacesToolbar #PlacesChevron {
-        display: none !important;
+        display: none;
     }
 }
