@@ -27,5 +27,5 @@
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    tabs tab:not([fadein]) { display: none; }
+    tabs tab:not([fadein]),#scrollbutton-up,#scrollbutton-down { display: none; }
 

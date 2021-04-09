@@ -20,12 +20,12 @@
     [tabsintitlebar="true"] .titlebar-buttonbox-container { display: block; position: fixed; right: 0; }
     [tabsintitlebar="true"][sizemode="normal"] .titlebar-buttonbox-container { top: 1px; }
     [tabsintitlebar="true"][sizemode="maximized"] .titlebar-buttonbox-container { top: 8px; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls { display: flex; position: fixed; top: 0; right:0; }
-    #navigator-toolbox:not([style^="margin-top:"])[style=""][inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+    #main-window[inFullscreen="true"] #window-controls { display: flex; position: fixed; top: 0; right:0; }
+    #main-window[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste
 	   und der Navigationssymbolleiste nicht im Vollbildmodus angezeigt werden */
-    #navigator-toolbox[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
+    #main-window[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
     box[class="scrollbox-clip"][orient="horizontal"],
@@ -54,5 +54,6 @@
     hbox.titlebar-spacer
     ,
     /* Ausblenden - Verstecken */
-    tabs tab:not([fadein]) { display: none; }
+    #toolbar-menubar[autohide="true"] + #TabsToolbar > .titlebar-buttonbox-container,
+    tabs tab:not([fadein]),#scrollbutton-up,#scrollbutton-down { display: none; }
 
