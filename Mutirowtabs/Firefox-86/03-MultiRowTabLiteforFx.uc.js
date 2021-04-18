@@ -59,8 +59,14 @@ function MultiRowTabLiteforFx() {
         flex-wrap: wrap; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab,.tab-background { height: var(--tab-min-height); }
+    #main-window[proton] tabs tab,
+    #main-window[proton] .tab-background {
+        min-height: var(--tab-min-height);
+        margin: 0 !important;
+        padding: 0 !important; }
     tab > .tab-stack { width: 100%; }
-    .tab-background[style$="2px solid red !important;"] { border-radius: 0 !important; }
+    #main-window[proton] .tab-background[style$="2px solid red !important;"] { border-radius: 0 !important; }
+    #tabs-newtab-button { margin: 0 !important; }
 
     /* Drag-Bereich auf der linken und rechten Seite der
        Tab-Leiste ausblenden - verstecken
