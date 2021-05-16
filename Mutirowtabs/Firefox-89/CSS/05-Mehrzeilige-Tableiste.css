@@ -7,32 +7,31 @@
     :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* Firefox-Design bei Standard Theme, und wenn Weiß in den persönlichen Einstellungen von Windows 10 → Farbe → Farbauswahl 
-	   ausgewählt ist, Anpassung für die Titelleistenschaltflächen, da sonst der Hintergrund der Schaltflächen transparent ist.
-       Vollbild nur bei Proton false  */
-    :root:not([lwtheme="true"]) #window-controls toolbarbutton { color: var(--lwt-text-color) !important; }
-    :root:not([lwtheme="true"]) #window-controls toolbarbutton:not([id="close-button"]):hover {
-        background-color: var(--lwt-toolbarbutton-hover-background, hsla(0,0%,70%,.4)) !important; }
-
-    /*  Anderen leeren Bereich, als Menü und Titelleistenschaltflächen zu einem Ziehbereich machen */
+    /* Anderen leeren Bereich, als Menü und Titelleistenschaltflächen zu einem Ziehbereich machen */
     :root[tabsintitlebar="true"] #navigator-toolbox { -moz-window-dragging: drag; }
 
     /* Menüleiste nach oben verschieben */
     :root:not([inFullscreen="true"]) #toolbar-menubar #menubar-items,
     :root:not([inFullscreen="true"]) #toolbar-menubar { display: flex; position: fixed; }
-    :root[sizemode="maximized"]:not([tabsintitlebar="true"]) #toolbar-menubar,
-    :root[sizemode="normal"] #toolbar-menubar { top: 1px; }
-    :root[sizemode="maximized"] #toolbar-menubar { top: 8px; }
+    :root[sizemode="normal"]:not([inFullscreen="true"]) #toolbar-menubar { top: 1px; }
+    :root[sizemode="maximized"]:not([inFullscreen="true"]) #toolbar-menubar { top: 8px; }
 
     /* Anderen leeren Bereich, als Menü und Titelleistenschaltflächen zu einem Ziehbereich machen */
-    :root[tabsintitlebar="true"] #navigator-toolbox:not([inFullscreen="true"]) { border-top: solid 29px transparent !important; }
-    :root:not([tabsintitlebar="true"]) #navigator-toolbox:not([inFullscreen="true"]) { border-top: solid 21px transparent !important; }
+    :root[tabsintitlebar="true"]:not([inFullscreen="true"]) #navigator-toolbox { border-top: solid 29px transparent !important; }
+    :root:not([tabsintitlebar="true"]):not([inFullscreen="true"]) #navigator-toolbox { border-top: solid 21px transparent !important; }
+
+    /* Firefox-Design bei Standard Theme, und wenn Weiß in den persönlichen Einstellungen von Windows 10 → Farbe → Farbauswahl 
+	   ausgewählt ist, Anpassung für die Titelleistenschaltflächen, da sonst der Hintergrund der Schaltflächen transparent ist.
+       Vollbild nur bei Proton false */
+    :root[inFullscreen="true"] #window-controls toolbarbutton { color: var(--lwt-text-color) !important; }
+    :root[tabsintitlebar="true"] #toolbar-menubar .titlebar-button:not(.titlebar-close):hover,
+    :root[inFullscreen="true"] #window-controls toolbarbutton:not([id="close-button"]):hover { background-color: var(--toolbarbutton-hover-background) !important; }
 
     /* Titelleistenschaltfläche nach rechts oben verschieben */
-    :root[tabsintitlebar="true"]:not([inFullscreen="true"]) #toolbar-menubar .titlebar-buttonbox-container,
-    :root[inFullscreen="true"] #navigator-toolbox:not([style*="margin-top"]) #window-controls { display: flex; position: fixed; z-index: 1 !important; top:0px; right:0;  }
-    :root[tabsintitlebar="true"][sizemode="normal"] :not([inFullscreen="true"]) #toolbar-menubar .titlebar-buttonbox-container { top: 1px; }
+    :root[tabsintitlebar="true"]:not([inFullscreen="true"]) #toolbar-menubar .titlebar-buttonbox-container { display: flex; position: fixed; z-index: 1 !important; right:0; }
+    :root[tabsintitlebar="true"][sizemode="normal"]:not([inFullscreen="true"]) #toolbar-menubar .titlebar-buttonbox-container { top: 1px; }
     :root[tabsintitlebar="true"][sizemode="maximized"]:not([inFullscreen="true"]) #toolbar-menubar .titlebar-buttonbox-container { top: 8px; }
+    :root[inFullscreen="true"] #navigator-toolbox:not([style*="margin-top"]) #window-controls { display: flex; position: fixed; z-index: 1 !important; top:0px; right:0; }
     :root[inFullscreen="true"] #navigator-toolbox:not([style*="margin-top"]) #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
     /* Auf der rechten Seite Platz schaffen, damit die Schaltflächen der Titelleiste     
@@ -46,16 +45,15 @@
         flex-wrap: wrap; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tab > .tab-stack { width: 100%; }
-    @media not (-moz-proton) {
-        tabs tab { height: var(--tab-min-height); }
-        #tabs-newtab-button { height: calc(var(--tab-min-height) - 1px); } }
+    @media not (-moz-proton) { tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
     @media (-moz-proton) {
-        tabs tab,#tabs-newtab-button { height: calc(var(--tab-min-height) + 8px); }
+        tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
         tab>.tab-stack>.tab-background[style$="px solid red !important;"] { border-radius: 0 !important; } }
+    #tabs-newtab-button { margin: 0 !important; }
 
     /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste ausblenden - verstecken
-       Beidseitig → hbox.titlebar-spacer 
-       links      → hbox.titlebar-spacer[type="pre-tabs"] 
+       Beidseitig → hbox.titlebar-spacer
+       links      → hbox.titlebar-spacer[type="pre-tabs"]
        rechts     → hbox.titlebar-spacer[type="post-tabs"] */
     hbox.titlebar-spacer { display: none; }
 

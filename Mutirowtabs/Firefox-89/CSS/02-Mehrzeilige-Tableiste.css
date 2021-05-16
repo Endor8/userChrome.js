@@ -5,7 +5,7 @@
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
     /* Verhindern, dass die Titelleistenschaltfläche der Tableiste im Hochformat angezeigt wird */
-    :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; }
+    :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; margin: 0 !important; }
     :root[inFullscreen="true"] #window-controls { display: flex; }
     :root[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
@@ -20,21 +20,21 @@
     tabs tab { overflow: hidden; }
     tab > .tab-stack { width: 100%; }
     @media not (-moz-proton) {
-        scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
-        tabs tab { height: var(--tab-min-height); }
-        #tabs-newtab-button { height: calc(var(--tab-min-height) - 1px); } }
+        scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton false */
+        tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
     @media (-moz-proton) {
-        scrollbox[part][orient="horizontal"] { max-height: calc(41px + calc(var(--tab-min-height) * 5)); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
-        tabs tab,#tabs-newtab-button { height: calc(var(--tab-min-height) + 8px); }
+        scrollbox[part][orient="horizontal"] { max-height: calc(40px + calc(var(--tab-min-height) * 5)); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton true */
+        tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
         tab>.tab-stack>.tab-background[style$="px solid red !important;"] { border-radius: 0 !important; } }
+    #tabs-newtab-button { margin: 0 !important; }
 
-    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,
+    über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     scrollbox[part][orient="horizontal"] { -moz-window-dragging: no-drag; }
 
     /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste auslenden - verstecken:
-       Beidseitig → hbox.titlebar-spacer 
-       links      → hbox.titlebar-spacer[type="pre-tabs"] 
+       Beidseitig → hbox.titlebar-spacer
+       links      → hbox.titlebar-spacer[type="pre-tabs"]
        rechts     → hbox.titlebar-spacer[type="post-tabs"] */
     hbox.titlebar-spacer { display: none; }
 
