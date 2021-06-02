@@ -33,18 +33,17 @@
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tab > .tab-stack { width: 100%; }
     @media not (-moz-proton) { tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
-    @media (-moz-proton) {
-        tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
-        tab>.tab-stack>.tab-background[style$="px solid red !important;"] { border-radius: 0 !important; } }
+    @media (-moz-proton) { tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
     #tabs-newtab-button { margin: 0 !important; }
 
-    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste ausblenden - verstecken:
-       Beidseitig → hbox.titlebar-spacer
-       links      → hbox.titlebar-spacer[type="pre-tabs"]
-       rechts     → hbox.titlebar-spacer[type="post-tabs"] */
-    hbox.titlebar-spacer { display: none; }
+    /* Ausblenden */
+    :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: none; }
 
-    /* Ausblenden - Verstecken */
-    :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container,
-    tabs tab:not([fadein]) { display: none; }
+/* --- Ziehbereich der Tab-Leiste --- */
+    /* Anpassung */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
+    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+    /* ↓ Wenn Sie die linke und rechte Seite des CSS-Codes auskommentieren und den CSS-Code aktivieren, 
+       können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird.  */
+    /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
