@@ -18,15 +18,16 @@ function MultiRowTabLiteforFx() {
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Symbolleiste Sortieren */
-    #titlebar { -moz-box-ordinal-group: 2 !important; }
+    #titlebar { -moz-box-ordinal-group: 2; }
+
+    /*Anpassung der Symbolleiste */
     :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
     :root[tabsintitlebar="true"] #nav-bar .titlebar-buttonbox > .titlebar-button { width: 46px !important; }
-    :root[inFullscreen="true"] #window-controls > toolbarbutton { width: 36px !important; }
-    :root[inFullscreen="true"] #window-controls toolbarbutton:not([id="close-button"]):hover {
-        background-color: var(--urlbarView-button-background-hover) !important; }
+    #nav-bar #window-controls > toolbarbutton { width: 36px !important; }
+    #nav-bar #window-controls toolbarbutton:not([id="close-button"]):hover { background-color: var(--toolbarbutton-hover-background) !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -35,42 +36,48 @@ function MultiRowTabLiteforFx() {
         flex-wrap: wrap; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tab > .tab-stack { width: 100%; }
-    @media not (-moz-proton) {
-        tabs tab { height: var(--tab-min-height); }
-        #tabs-newtab-button { height: calc(var(--tab-min-height) - 1px); } }
-    @media (-moz-proton) {
-        tabs tab,#tabs-newtab-button { height: calc(var(--tab-min-height) + 8px); }
-        tab>.tab-stack>.tab-background[style$="px solid red !important;"] { border-radius: 0 !important; } }
-
-    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste ausblenden - verstecken
-       Beidseitig → hbox.titlebar-spacer 
-       links      → hbox.titlebar-spacer[type="pre-tabs"] 
-       rechts     → hbox.titlebar-spacer[type="post-tabs */
-    hbox.titlebar-spacer { display: none; }
+    @media not (-moz-proton) { tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
+    @media (-moz-proton) { tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
+    #tabs-newtab-button { margin: 0 !important; }
 
     /* Ausblenden - Verstecken */
     tabs tab:not([fadein]),
     #toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
+
+    /* --- Ziehbereich der Tab-Leiste --- */
+    /* Anpassung */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
+    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+    /* ↓ Wenn Sie die linke und rechte Seite des CSS-Codes auskommentieren und den CSS-Code aktivieren, 
+       können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird.  */
+    /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
 
-    /* Menüleiste von Titelleiste in Navigator-Toolbox verschieben */
+    if(location.href !== 'chrome://browser/content/browser.xhtml') return;
+
+    // Verschieben Sie die Menüleiste an den oberen Rand der Symbolleiste 
     document.getElementById("titlebar").parentNode.insertBefore(document.getElementById("toolbar-menubar"),document.getElementById("titlebar"));
 
-    /* Titelleistenschaltflächen aus der Tableiste, rechts neben de Navigationsleiste verschieben */
-    document,document.getElementById("PanelUI-button").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
-    document,document.getElementById("PanelUI-button").appendChild(document.getElementById("window-controls"));
+    // Titelleisten Schaltflächen in die Tableiste an den Rechten Rand verschieben
+    document.getElementById("PanelUI-button").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
+    document.getElementById("PanelUI-button").appendChild(document.getElementById("window-controls"));
 
-    /* DropIndicator */
+    // Scroll-Buttons und Spacer in der Tab-Leiste ausblenden shadowRoot 
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-up').style.display = "none";
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-down').style.display = "none";
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-start-indicator"]').style.display = "none";
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-end-indicator"]').style.display = "none";
+
+    // drag & drop & DropIndicator
 
     gBrowser.tabContainer.clearDropIndicator = function() {
         let tabs = this.allTabs;
         for (let i = 0, len = tabs.length; i < len; i++) {
             tabs[i].removeAttribute("style");
-            tabs[i].querySelector(".tab-background").removeAttribute("style");
         }
     }
     gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);
@@ -110,7 +117,7 @@ function MultiRowTabLiteforFx() {
             }
         }
 
-        // let draggedTab = event.dataTransfer.mozGetDataAt(TAB_DROP_TYPE, 0);
+     // let draggedTab = event.dataTransfer.mozGetDataAt(TAB_DROP_TYPE, 0);
         let draggedTab = this._getDropIndex(event, false);
         if (
             (effects == "move" || effects == "copy") &&
@@ -168,16 +175,16 @@ function MultiRowTabLiteforFx() {
             let newIndex = this._getDropIndex(event, effects == "link");
             let children = this.allTabs;
             if (newIndex == children.length) {
-                // let tabRect = children[newIndex - 1].getBoundingClientRect();
-                let tabRect = children[newIndex - 1].querySelector(".tab-background").style.setProperty("border-right","2px solid red","important");
+             // let tabRect = children[newIndex - 1].getBoundingClientRect();
+                let tabRect = children[newIndex - 1].style.setProperty("box-shadow","-1px 0 0 red inset,1px 0 0 red","important");
                 if (RTL_UI) {
                     newMargin = rect.right - tabRect.left;
                 } else {
                     newMargin = tabRect.right - rect.left;
                 }
             } else {
-                // let tabRect = children[newIndex].getBoundingClientRect();
-                let tabRect = children[newIndex].querySelector(".tab-background").style.setProperty("border-left","2px solid red","important");
+             // let tabRect = children[newIndex].getBoundingClientRect();
+                let tabRect = children[newIndex].style.setProperty("box-shadow","1px 0 0 red inset,-1px 0 0 red","important");
                 if (RTL_UI) {
                     newMargin = rect.right - tabRect.right;
                 } else {

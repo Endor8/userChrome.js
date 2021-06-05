@@ -20,18 +20,12 @@ function MultiRowTabLiteforFx() {
     /* Symbolleistenanpassung */
     :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
+    #titlebar { border-top: 1px solid var(--chrome-content-separator-color); }
 
-    /* Firefox-Design bei Standard Theme, und wenn Weiß in den persönlichen Einstellungen von Windows 10 → Farbe → Farbauswahl 
-	   ausgewählt ist, Anpassung für die Titelleistenschaltflächen, da sonst der Hintergrund der Schaltflächen transparent ist.
-       Vollbild nur bei Proton false */
-    :root:not([tabsintitlebar="true"]) .tab-background { border-top-color: transparent !important; }
-    tabs tab[beforeselected-visible]:after,tabs tab[selected]:after { border-left-color: transparent !important; }
-
-    /* Anpassen der Titelleistenschaltfläche */
+    /* Anpassen der Titelleistenschaltflächen */
     :root[tabsintitlebar="true"] #nav-bar .titlebar-buttonbox > .titlebar-button { width: 46px !important; }
-    :root[inFullscreen="true"] #window-controls > toolbarbutton { width: 36px !important; }
-    :root[inFullscreen="true"] #window-controls toolbarbutton:not([id="close-button"]):hover {
-        background-color: var(--urlbarView-button-background-hover) !important; }
+    #nav-bar #window-controls > toolbarbutton { width: 36px !important; }
+    #nav-bar #window-controls toolbarbutton:not([id="close-button"]):hover { background-color: var(--toolbarbutton-hover-background) !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -44,63 +38,68 @@ function MultiRowTabLiteforFx() {
     tabs tab { overflow: hidden; }
     tab > .tab-stack { width: 100%; }
     @media not (-moz-proton) {
-        scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
-        tabs tab { height: var(--tab-min-height); }
-        #tabs-newtab-button { height: calc(var(--tab-min-height) - 1px); } }
+        scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton false */
+        tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
     @media (-moz-proton) {
-        scrollbox[part][orient="horizontal"] { max-height: calc(41px + calc(var(--tab-min-height) * 5)); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
-        tabs tab,#tabs-newtab-button { height: calc(var(--tab-min-height) + 8px); }
-        tab>.tab-stack>.tab-background[style$="px solid red !important;"] { border-radius: 0 !important; } }
+        scrollbox[part][orient="horizontal"] { max-height: calc(calc(8px + var(--tab-min-height)) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton true */
+        tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
+    #tabs-newtab-button { margin: 0 !important; }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
-    /* Drag-Bereich auf der linken und rechten Seite der Tab-Leiste ausblenden - verstecken
-       Beidseitig → hbox.titlebar-spacer 
-       links      → hbox.titlebar-spacer[type="pre-tabs"] 
-       rechts     → hbox.titlebar-spacer[type="post-tabs"]  */
-    hbox.titlebar-spacer { display: none; }
-
-    /* Ausblenden - Verstecken */
+    /* Ausblenden */
     tabs tab:not([fadein]),
     #toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
 
-    /* Durch das Verschieben der Tableiste an den unteren Rand des Browserfenster mit diesem Script,
-       funktionierte das Theme nicht mehr. Daher wurde unten angeführter CSS Code hinzugefügt,
-       um die Funktion wieder herzustellen. */
+    /* --- Ziehbereich der Tab-Leiste --- */
+    /* Anpassung */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
+    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+    /* ↓ Wenn Sie die linke und rechte Seite des CSS-Codes auskommentieren und den CSS-Code aktivieren, 
+       können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird.  */
+    /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
+
+    /* --- Tableiste mit Script an den unteren Rand des Fensters verschieben --- */
+
+    /* Weißen Rahmen bei aktivem Tab transparent machen */
+    :root:not([tabsintitlebar="true"]) .tab-background {
+        border-top-color: transparent !important;
+    }
+    tabs tab[beforeselected-visible]:after,
+    tabs tab[selected]:after {
+        border-left-color: transparent !important;
+    }
+    /* Da das Script mit Themes nicht funktionierte, wurde benötigter CSS Code
+aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändertた */
     #titlebar:-moz-lwtheme {
         background-image: var(--lwt-additional-images);
         background-repeat: var(--lwt-background-tiling);
         background-position: var(--lwt-background-alignment);
     }
+
+    /* TODO bug 1695280: Remove these media selectors and merge the rule below
+       with the ruleset above. We must set background properties on :root and not
+       #navigator-toolbox on Windows 7/8 due to a WebRender bug that hides the
+       minimize/maximize/close buttons. */
     @media not (-moz-os-version: windows-win7) {
         @media not (-moz-os-version: windows-win8) {
             #titlebar:-moz-lwtheme {
                 background-color: var(--lwt-accent-color);
             }
+
+            /* When a theme defines both theme_frame and additional_backgrounds, show
+               the latter atop the former. */
             :root[lwtheme-image] #titlebar {
                 background-image: var(--lwt-header-image), var(--lwt-additional-images);
                 background-repeat: no-repeat, var(--lwt-background-tiling);
                 background-position: right top, var(--lwt-background-alignment);
             }
+
             #titlebar:-moz-window-inactive:-moz-lwtheme {
                 background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color));
             }
-        }
-    }
-    @media (-moz-os-version: windows-win7),
-    (-moz-os-version: windows-win8) {
-        :root:-moz-lwtheme {
-            background-color: var(--lwt-accent-color);
-        }
-        :root[lwtheme-image] {
-            background-image: var(--lwt-header-image) !important;
-            background-repeat: no-repeat;
-            background-position: right top !important;
-        }
-        :root:-moz-lwtheme:-moz-window-inactive {
-            background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color));
         }
     }
 
@@ -109,21 +108,30 @@ function MultiRowTabLiteforFx() {
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
 
-    /* Menüleiste von der Titelleiste in die Navigator-Toolbox verschieben */
+    if(location.href !== 'chrome://browser/content/browser.xhtml') return;
+
+    // Menüleiste an den oberen Rand der Symbolleiste verschieben
     document.getElementById("titlebar").parentNode.insertBefore(document.getElementById("toolbar-menubar"),document.getElementById("nav-bar"));
+
+    // Tab-Leiste an den unteren Rand des Fensters verschieben 
     document.body.appendChild(document.getElementById("titlebar"));
 
-    /* Titelleistenschaltflächen aus der Tableiste, rechts neben die Navigationsleiste verschieben */
-    document,document.getElementById("PanelUI-button").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
-    document,document.getElementById("PanelUI-button").appendChild(document.getElementById("window-controls"));
+    // Titelleistenschaltflächen aus der Tableiste, rechts neben die Navigationsleiste verschieben
+    document.getElementById("PanelUI-button").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
+    document.getElementById("PanelUI-button").appendChild(document.getElementById("window-controls"));
 
-    /* DropIndicator */
+    // Scroll-Buttons und Spacer in der Tableiste ausblenden shadowRoot shadow 
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-up').style.display = "none";
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-down').style.display = "none";
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-start-indicator"]').style.display = "none";
+    gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-end-indicator"]').style.display = "none";
+
+    // drag & drop & DropIndicator
 
     gBrowser.tabContainer.clearDropIndicator = function() {
         let tabs = this.allTabs;
         for (let i = 0, len = tabs.length; i < len; i++) {
             tabs[i].removeAttribute("style");
-            tabs[i].querySelector(".tab-background").removeAttribute("style");
         }
     }
     gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);
@@ -163,7 +171,7 @@ function MultiRowTabLiteforFx() {
             }
         }
 
-        // let draggedTab = event.dataTransfer.mozGetDataAt(TAB_DROP_TYPE, 0);
+     // let draggedTab = event.dataTransfer.mozGetDataAt(TAB_DROP_TYPE, 0);
         let draggedTab = this._getDropIndex(event, false);
         if (
             (effects == "move" || effects == "copy") &&
@@ -221,16 +229,16 @@ function MultiRowTabLiteforFx() {
             let newIndex = this._getDropIndex(event, effects == "link");
             let children = this.allTabs;
             if (newIndex == children.length) {
-                // let tabRect = children[newIndex - 1].getBoundingClientRect();
-                let tabRect = children[newIndex - 1].querySelector(".tab-background").style.setProperty("border-right","2px solid red","important");
+             // let tabRect = children[newIndex - 1].getBoundingClientRect();
+                let tabRect = children[newIndex - 1].style.setProperty("box-shadow","-1px 0 0 red inset,1px 0 0 red","important");
                 if (RTL_UI) {
                     newMargin = rect.right - tabRect.left;
                 } else {
                     newMargin = tabRect.right - rect.left;
                 }
             } else {
-                // let tabRect = children[newIndex].getBoundingClientRect();
-                let tabRect = children[newIndex].querySelector(".tab-background").style.setProperty("border-left","2px solid red","important");
+             // let tabRect = children[newIndex].getBoundingClientRect();
+                let tabRect = children[newIndex].style.setProperty("box-shadow","1px 0 0 red inset,-1px 0 0 red","important");
                 if (RTL_UI) {
                     newMargin = rect.right - tabRect.right;
                 } else {
