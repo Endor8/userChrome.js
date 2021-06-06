@@ -89,6 +89,11 @@ https://github.com/ardiman/userChrome.js
 ###### Informationen und Hilfe siehe hier:
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
 
+##### Hier ein Video zur Verwendung der Scripte
+https://mozhelp.dynvpn.de/dateien/forum/ff-vorbereitung-skripte.mp4
+
+Freundlicher Weise von Zitronella zur Verfügung gestellt.
+
 ### Scriptquellen
 - https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=100898
 - https://github.com/ardiman/userChrome.js
