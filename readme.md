@@ -91,7 +91,6 @@ https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
 
 ##### Hier ein Video zur Verwendung der Scripte
 https://mozhelp.dynvpn.de/dateien/forum/ff-vorbereitung-skripte.mp4
-
 Freundlicher Weise von Zitronella zur Verfügung gestellt.
 
 ### Scriptquellen
