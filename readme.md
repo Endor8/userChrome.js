@@ -90,7 +90,9 @@ https://github.com/ardiman/userChrome.js
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
 
 ### Hier ein Video zur Verwendung der Scripte
-https://mozhelp.dynvpn.de/dateien/forum/ff-vorbereitung-skripte.mp4     
+
+https://user-images.githubusercontent.com/1267601/120994091-75bf1680-c784-11eb-8896-8e756049dfe9.mp4
+   
 Freundlicher Weise von [Zitronella](https://www.camp-firefox.de/forum/thema/132699-videoanleitung-f%C3%BCr-userchrome-css-usercontent-css-vorbereitung-skripte/?postID=1173160#post1173160) zur Verfügung gestellt.
 
 
