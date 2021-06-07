@@ -9,12 +9,17 @@ Bei mehr Zeilen wird eine Scrollbar eingeblendet. Die Anzahl der Zeilen kann im 
 - **[01-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs//Firefox-89/CSS/01-Mehrzeilige-Tableiste.css) Tabs Oben + Mehrzeilige Tableiste**      
 
 - **[02-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs//Firefox-89/CSS/02-Mehrzeilige-Tableiste.css) Tabs Oben + Mehrzeilige Tableiste + verschiedene Anpassungen +**    
-     **Tabzeilen Anzahlbegrenzung. Standard ist 5 Zeilen, kann in Zeile 16 geändert werden.**    
+     **Tabzeilen Anzahlbegrenzung. Standard ist 5 Zeilen, kann in Zeile 23 und Zeile 26 geändert werden.**    
  
 - **[03-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs//Firefox-89/CSS/03-Mehrzeilige-Tableiste.css) Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste**   
 
 - **[04-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs//Firefox-89/CSS/04-Mehrzeilige-Tableiste.css) Tabs unter Adress -bzw. Lesezeichenleiste + Mehrzeilige Tableiste +**     
-     **Anpassungen + Tabzeilen Anzahlbegrenzung. Standard ist 5 Zeilen, kann in Zeile 34 geändert werden.**     
+     **Anpassungen + Tabzeilen Anzahlbegrenzung. Standard ist 5 Zeilen, kann in Zeile 40 und Zeile 43 geändert werden.**    
+     
+- **[05-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs//Firefox-89/CSS/05-Mehrzeilige-Tableiste.css) Tabs am unteren Fensterrand + Mehrzeilige Tableiste**   
+
+- **[06-Mehrzeilige-Tableiste.css](https://github.com/Endor8/userChrome.js/blob/master/Mutirowtabs//Firefox-89/CSS/06-Mehrzeilige-Tableiste.css) Tabs am unteren Fensterrand + Mehrzeilige Tableiste +**     
+     **Anpassungen + Tabzeilen Anzahlbegrenzung. Standard ist 5 Zeilen, kann in Zeile 52 und Zeile 55 geändert werden.**     
    
 ### Mit CSS Code 1-2 sieht es so aus:
 
