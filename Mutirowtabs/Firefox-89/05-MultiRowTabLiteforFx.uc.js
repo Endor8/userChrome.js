@@ -24,8 +24,11 @@ function MultiRowTabLiteforFx() {
 
     /* Anpassen der Titelleistenschaltflächen */
     :root[tabsintitlebar="true"] #nav-bar .titlebar-buttonbox > .titlebar-button { width: 46px !important; }
-    #nav-bar #window-controls > toolbarbutton { width: 36px !important; }
-    #nav-bar #window-controls toolbarbutton:not([id="close-button"]):hover { background-color: var(--toolbarbutton-hover-background) !important; }
+    :root[inFullscreen="true"] #fullscr-toggler[hidden=""] ~ #titlebar #window-controls { display: flex; position: fixed; z-index: 1 !important; top:0; right:0; }
+    :root[inFullscreen="true"] #fullscr-toggler[hidden=""] ~ #titlebar #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+
+    /* タイトルバーボタン[－□×]とナビゲーションツールバーのボタン類が被らないように右側にスペースを確保する(フルスクリーン) */
+    :root[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -34,13 +37,13 @@ function MultiRowTabLiteforFx() {
         flex-wrap: wrap; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tab > .tab-stack { width: 100%; }
+    #tabs-newtab-button { margin: 0 !important; }
     @media not (-moz-proton) { tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
     @media (-moz-proton) { tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
-    #tabs-newtab-button { margin: 0 !important; }
 
     /* Ausblenden - Verstecken  */
-    tabs tab:not([fadein]),
-    #toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
+    #main-window[inFullscreen="true"] #fullscr-toggler:not([hidden=""]) ~ #titlebar > #TabsToolbar > #window-controls,
+    tabs tab:not([fadein]),#toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
     /* Anpassung */
@@ -106,8 +109,7 @@ function MultiRowTabLiteforFx() {
     document.body.appendChild(document.getElementById("titlebar"));
 
     // Titelleistenschaltflächen aus der Tableiste, rechts neben die Navigationsleiste verschieben
-    document.getElementById("PanelUI-button").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
-    document.getElementById("PanelUI-button").appendChild(document.getElementById("window-controls"));
+    document.getElementById("nav-bar").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
 
     // Scroll-Buttons und Spacer in der Tableiste ausblenden shadowRoot shadow 
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-up').style.display = "none";

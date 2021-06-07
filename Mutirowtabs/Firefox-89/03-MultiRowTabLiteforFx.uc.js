@@ -26,8 +26,11 @@ function MultiRowTabLiteforFx() {
 
     /* Anpassung für Titelleistenschaltflächen */
     :root[tabsintitlebar="true"] #nav-bar .titlebar-buttonbox > .titlebar-button { width: 46px !important; }
-    #nav-bar #window-controls > toolbarbutton { width: 36px !important; }
-    #nav-bar #window-controls toolbarbutton:not([id="close-button"]):hover { background-color: var(--toolbarbutton-hover-background) !important; }
+    :root[inFullscreen="true"] #navigator-toolbox:not([style*="margin-top:"]) #window-controls { display: flex; position: fixed; z-index: 1 !important; top:0; right:0; }
+    :root[inFullscreen="true"] #navigator-toolbox:not([style*="margin-top:"]) #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+
+    /* Reservieren Sie Platz auf der rechten Seite, damit die Schaltfläche in der Titelleiste [-□ ×] und die Schaltflächen der Navigationsleiste nicht verdeckt werden (Vollbild)  */
+    :root[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -36,13 +39,12 @@ function MultiRowTabLiteforFx() {
         flex-wrap: wrap; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tab > .tab-stack { width: 100%; }
+    #tabs-newtab-button { margin: 0 !important; }
     @media not (-moz-proton) { tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
     @media (-moz-proton) { tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
-    #tabs-newtab-button { margin: 0 !important; }
 
     /* Ausblenden - Verstecken */
-    tabs tab:not([fadein]),
-    #toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
+    tabs tab:not([fadein]),#toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
     /* Anpassung */
@@ -63,8 +65,7 @@ function MultiRowTabLiteforFx() {
     document.getElementById("titlebar").parentNode.insertBefore(document.getElementById("toolbar-menubar"),document.getElementById("titlebar"));
 
     // Titelleisten Schaltflächen in die Tableiste an den Rechten Rand verschieben
-    document.getElementById("PanelUI-button").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
-    document.getElementById("PanelUI-button").appendChild(document.getElementById("window-controls"));
+    document.getElementById("nav-bar").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
 
     // Scroll-Buttons und Spacer in der Tab-Leiste ausblenden shadowRoot 
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-up').style.display = "none";

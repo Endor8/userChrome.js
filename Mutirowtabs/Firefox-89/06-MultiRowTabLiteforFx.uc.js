@@ -24,8 +24,11 @@ function MultiRowTabLiteforFx() {
 
     /* Anpassen der Titelleistenschaltflächen */
     :root[tabsintitlebar="true"] #nav-bar .titlebar-buttonbox > .titlebar-button { width: 46px !important; }
-    #nav-bar #window-controls > toolbarbutton { width: 36px !important; }
-    #nav-bar #window-controls toolbarbutton:not([id="close-button"]):hover { background-color: var(--toolbarbutton-hover-background) !important; }
+    :root[inFullscreen="true"] #fullscr-toggler[hidden=""] ~ #titlebar #window-controls { display: flex; position: fixed; z-index: 1 !important; top:0; right:0; }
+    :root[inFullscreen="true"] #fullscr-toggler[hidden=""] ~ #titlebar #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+    
+    /* Reservieren Sie Platz auf der rechten Seite, damit die Schaltfläche in der Titelleiste [-□ ×] und die Schaltflächen der Navigationsleiste nicht verdeckt werden (Vollbild) */
+    :root[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -37,21 +40,21 @@ function MultiRowTabLiteforFx() {
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab { overflow: hidden; }
     tab > .tab-stack { width: 100%; }
+    #tabs-newtab-button { margin: 0 !important; }
     @media not (-moz-proton) {
         scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton false */
         tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
     @media (-moz-proton) {
         scrollbox[part][orient="horizontal"] { max-height: calc(calc(8px + var(--tab-min-height)) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton true */
         tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
-    #tabs-newtab-button { margin: 0 !important; }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
     /* Ausblenden */
-    tabs tab:not([fadein]),
-    #toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
+    #main-window[inFullscreen="true"] #fullscr-toggler:not([hidden=""]) ~ #titlebar > #TabsToolbar > #window-controls,
+    tabs tab:not([fadein]),#toolbar-menubar[autohide="false"] ~ #nav-bar hbox.titlebar-buttonbox-container { display: none; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
     /* Anpassung */
@@ -117,8 +120,7 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert�
     document.body.appendChild(document.getElementById("titlebar"));
 
     // Titelleistenschaltflächen aus der Tableiste, rechts neben die Navigationsleiste verschieben
-    document.getElementById("PanelUI-button").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
-    document.getElementById("PanelUI-button").appendChild(document.getElementById("window-controls"));
+    document.getElementById("nav-bar").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
 
     // Scroll-Buttons und Spacer in der Tableiste ausblenden shadowRoot shadow 
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-up').style.display = "none";

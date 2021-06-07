@@ -23,8 +23,9 @@ function MultiRowTabLiteforFx() {
 
     /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
     :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; margin: 0 !important; }
+    :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button { padding: 0 17px !important; }
     :root[inFullscreen="true"] #window-controls { display: flex; }
-    :root[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+    :root[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; padding: 0 12px !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -33,10 +34,14 @@ function MultiRowTabLiteforFx() {
         flex-wrap: wrap; }
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tab > .tab-stack { width: 100%; }
-    @media not (-moz-proton) { tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
-    @media (-moz-proton) { tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
     #tabs-newtab-button { margin: 0 !important; }
-
+    @media not (-moz-proton) {
+        :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button,
+        tabs tab,#tabs-newtab-button,#window-controls > toolbarbutton { height: var(--tab-min-height); } }
+    @media (-moz-proton) {
+        :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button,
+        tabs tab,#tabs-newtab-button,#window-controls > toolbarbutton { height: calc(8px + var(--tab-min-height)); } }
+ 
     /* Ausblenden - Verstecken */
     tabs tab:not([fadein]) { display: none; }
 

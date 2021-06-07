@@ -23,8 +23,9 @@ function MultiRowTabLiteforFx() {
 
     /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
     :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; margin: 0 !important; }
+    :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button { padding: 0 17px !important; }
     :root[inFullscreen="true"] #window-controls { display: flex; }
-    :root[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+    :root[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; padding: 0 12px !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -36,13 +37,15 @@ function MultiRowTabLiteforFx() {
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab { overflow: hidden; }
     tab > .tab-stack { width: 100%; }
-    @media not (-moz-proton) {
-        scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton false */
-        tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
+    #tabs-newtab-button { margin: 0 !important; }
+     @media not (-moz-proton) {
+        scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* 段数(デフォルト5段) Proton false */
+        :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button,
+        tabs tab,#tabs-newtab-button,#window-controls > toolbarbutton { height: var(--tab-min-height); } }
     @media (-moz-proton) {
         scrollbox[part][orient="horizontal"] { max-height: calc(calc(8px + var(--tab-min-height)) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton true */
-        tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
-    #tabs-newtab-button { margin: 0 !important; }
+        :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button,
+        tabs tab,#tabs-newtab-button,#window-controls > toolbarbutton { height: calc(8px + var(--tab-min-height)); } }
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
@@ -66,7 +69,7 @@ function MultiRowTabLiteforFx() {
 
     if(location.href !== 'chrome://browser/content/browser.xhtml') return;
 
-    //Scroll-Buttons und Spacer in der Tab-Leiste ausblenden shadowRoot 
+    // Scroll-Buttons und Spacer in der Tab-Leiste ausblenden shadowRoot
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-up').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-down').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-start-indicator"]').style.display = "none";
