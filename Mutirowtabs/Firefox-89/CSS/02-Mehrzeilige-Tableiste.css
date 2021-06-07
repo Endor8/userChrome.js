@@ -6,8 +6,9 @@
 
     /* Verhindern, dass die Titelleistenschaltfläche der Tableiste im Hochformat angezeigt wird */
     :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block; margin: 0 !important; }
+    :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button { padding: 0 17px !important; }
     :root[inFullscreen="true"] #window-controls { display: flex; }
-    :root[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
+    :root[inFullscreen="true"] #window-controls > toolbarbutton { display: inline; padding: 0 12px !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
@@ -19,16 +20,17 @@
     tabs tab[fadein]:not([pinned]) { flex-grow: 1; }
     tabs tab { overflow: hidden; }
     tab > .tab-stack { width: 100%; }
+    #tabs-newtab-button { margin: 0 !important; }
     @media not (-moz-proton) {
         scrollbox[part][orient="horizontal"] { max-height: calc(var(--tab-min-height) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton false */
-        tabs tab,#tabs-newtab-button { height: var(--tab-min-height); } }
+        :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button,
+        tabs tab,#tabs-newtab-button,#window-controls > toolbarbutton { height: var(--tab-min-height); } }
     @media (-moz-proton) {
         scrollbox[part][orient="horizontal"] { max-height: calc(calc(8px + var(--tab-min-height)) * 5); } /* Anzahl der Tabzeilen(Standard = 5 Zeilen) bei Proton true */
-        tabs tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); } }
-    #tabs-newtab-button { margin: 0 !important; }
-
+        :root[tabsintitlebar="true"] #TabsToolbar .titlebar-buttonbox > .titlebar-button,
+        tabs tab,#tabs-newtab-button,#window-controls > toolbarbutton { height: calc(8px + var(--tab-min-height)); } }
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,
-    über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
     scrollbox[part][orient="horizontal"] { -moz-window-dragging: no-drag; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
