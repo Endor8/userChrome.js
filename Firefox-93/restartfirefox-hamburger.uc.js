@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          restartfirefox-hamburger.uc.js
 // @description   Fügt eine Schaltfläche zum Neustarten von Firefox im Hamburgermenü über der Beenden Schaltfläche ein.
-// @description   Mit Linksklick wird Firefox neu gestartet, Mit Mittelklick oder Rechtsklick wird zusätzlich der userChrome.js-Cache geleert
+// @description   Mit Linksklick wird Firefox neu gestartet, mit Mittelklick oder Rechtsklick wird zusätzlich der userChrome.js-Cache geleert
 // @charset       UTF-8
 // ==/UserScript==
 (function() {
