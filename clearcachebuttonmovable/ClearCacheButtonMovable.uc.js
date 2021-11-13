@@ -3,7 +3,7 @@
 
 (function() {
 
-   if (location != 'chrome://browser/content/browser.xul')
+   if (location != 'chrome://browser/content/browser.xhtml')
       return;
 
    try {
@@ -29,7 +29,7 @@
       });
    } catch(e) { };
 
-   var menuitem = document.createElement('menuitem');
+   var menuitem = document.createXULElement('menuitem');
    menuitem.id = 'clearcache-item';
    menuitem.setAttribute('label', 'Cache leeren');
    menuitem.setAttribute('oncommand', 'Services.cache2.clear();');
