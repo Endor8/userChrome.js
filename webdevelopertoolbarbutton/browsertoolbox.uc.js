@@ -1,7 +1,7 @@
 //	browsertoolbox.uc.js
 
 (function() {
-	if (location != 'chrome://browser/content/browser.xul')
+	if (location != 'chrome://browser/content/browser.xhtml')
 		return;
 
 	try {
