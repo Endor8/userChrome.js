@@ -1,7 +1,7 @@
 //   WebDeveloper-Menu.uc.js
 
 (function() {
-   if (location != 'chrome://browser/content/browser.xul')
+   if (location != 'chrome://browser/content/browser.xhtml')
       return;
    setTimeout(function() {
       if (document.getElementById('menuWebDeveloperPopup').childElementCount <= 5) {
