@@ -3,7 +3,7 @@
 
 (function() {
 
-	if (location != 'chrome://browser/content/browser.xul') return;
+	if (location != 'chrome://browser/content/browser.xhtml') return;
 
 	try {
 		CustomizableUI.createWidget({
