@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name			UndoCloseTabButtonN
-// @description		Kürzlich geschlossene Tabs, mit Mittelklick auf Schaltfläche oder freie Stelle in Tableiste, wiederherstellen.
-// @version			1.2.5
-// @include			main
-// @charset			UTF-8
+// @name            UndoCloseTabButtonN
+// @description	    Kürzlich geschlossene Tabs, mit Mittelklick auf Schaltfläche oder freie Stelle in Tableiste, wiederherstellen.
+// @version         1.2.5a
+// @include         main
+// @charset         UTF-8
 // @note            2019/01/23 Fx66 Problem, bei dem das Klicken in die Tableiste nicht funktionierte - behoben 
 // @note            2019/07/04 Fx69
 // @note            2019/09/03 Fx70
