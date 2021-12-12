@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UndoCloseTabButtonN
-// @description	    Kürzlich geschlossene Tabs, mit Klick auf Schaltfläche in der Tableiste oder Mittelklick auf freie Stelle in Tableiste, wiederherstellen.
+// @description	    Kürzlich geschlossene Tabs, mit Klick auf Schaltfläche in der Navbar oder Mittelklick auf freie Stelle in Tableiste, wiederherstellen.
 // @version	        1.2.6
 // @include	        main
 // @charset	        UTF-8
@@ -14,22 +14,22 @@
 // ==/UserScript==
 // Schaltfläche wird standardmäßig in die Navigationsleiste eingefügt.
 (function() {
-    "use strict";
+	"use strict";
 
-    const useTabbarMiddleClick = true;	
-    // Kürzlich geschlossene Tabs mit Mittelklick auf Tableiste oder neuen Tab 
+	const useTabbarMiddleClick = false;	
+	// Kürzlich geschlossene Tabs mit Mittelklick auf Tableiste oder neuen Tab 
     // Schaltfläche wiederherstellen, aktivieren? ( true = ja false = nein )
 
-    const XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+	const XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
 
-    window.ucjsUndoCloseTabButtonService = {
+	window.ucjsUndoCloseTabButtonService = {
 		prepareMenu(event) {
 			const doc = (event.view && event.view.document) || document;
 			const menu = event.originalTarget;
 			this.removeChilds(menu);
 
 			// Geschlossene Tabs
-			let data = SessionStore.getClosedTabData(window);
+            let data = SessionStore.getClosedTabData(window);
 			if (typeof(data) === "string") {
 				data = JSON.parse(data);
 			}
@@ -53,7 +53,7 @@
 			data = SessionStore.getClosedWindowData();
 			if (typeof(data) === "string") {
 				data = JSON.parse(data);
-			}			
+			}
 			const winLength = data.length;
 			if (winLength > 0) {
 				if (tabLength > 0)
@@ -70,7 +70,7 @@
 					let title = item.title;
 					const tabsCount = item.tabs.length - 1;
 					if (tabsCount > 0)
-						title += " und (" + tabsCount + " weitere Tabs)";
+						title += " und ( " + tabsCount + " weitere Tabs )";
 
 					const tab = item.tabs[item.selected - 1];
 
@@ -144,7 +144,7 @@
 			gBrowser.tabContainer.addEventListener("click", ucjsUndoCloseTabButtonService.onClick, true);
 		}
 
-		const buttonId = "ucjs-undo-close-tab-button";
+		const buttonId = "undo1-close-tab-button";
 
 		if (document.getElementById(buttonId)) {
 			return;
@@ -154,7 +154,7 @@
 			Cu.import("resource:///modules/CustomizableUI.jsm");
 			CustomizableUI.createWidget({
 				id			: buttonId,
-				defaultArea	: CustomizableUI.AREA_TABSTRIP,
+				defaultArea	: CustomizableUI.AREA_NAVBAR,
 				type		: "custom",
 				onBuild		: doc => {
 					const btn = ucjsUndoCloseTabButtonService.$C(doc, "toolbarbutton", {
@@ -164,7 +164,7 @@
 						anchor			: "dropmarker",
 					label:			"Geschlossene Tabs",
 					tooltiptext:	"Geschlossene Tabs wieder herstellen",
-						image			: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADRklEQVRYhcWV32tbZRjHc7ELL3bRP8ELL7zohTeCl70IijhEkJcWdmcdSFDBoWydlIZSsE7tLFLowLqs1YKpdCXM1bhhxM11SsuMZml2znkW94vRJOc9OusuZpKPF6fnNMlJNtvE7IXv3fu+38/7/HpDoTZXCvaI5nC79+xq5R16xOGsaPJdN7c0vZbGEg1dBxDNPtFsbpl3F0AcRkSDZVOdSHYR4EqBveKwIBpyRSoH5yE87gPcMYv0ebI0vXmHno6Z5x0et2wyouHHa7B/2jWvAWilm+JwzNL07tpcSoQtm5JoSKThxYlt8/A4fH4pqETaBfVBbMriMJKCPTsyt0q8LpqyaJj6Dp49Wm/+MKlP4MNvIFegIhpMm5+ulnjyocb5PI+JwwnRsF6geuSrnRk3qn8KljN+RDYNh6ce/PICT4hm3ct5/1R7AJ68rrmmuRxIB9AD9Hmy/2bw+h8kRcMPFveH2oxCeByeOwpzl3yIsUaAPhpWFbDvuQcsG0YTwUuHF4Ma/BSe/6B1XVzZoCKasmnzTAAgFosRjUbrNPflEkbxH0TD7MX6YmzVgtkNGGsCHB53H7IVhbkAQDQaRSkV0FtvH+aX3x1EQzILL09uA2RubXJ8Nu5r6dwKZrGCaHj/TBDghY8gVwTR/PWfAZRSvDJ4gO/XDETD6k031KJh1SwE9h56N4pZrJArbsPWKpl1z+4IQClF/8AA8a9TW2GutgRQSjG/9C2iwRvbjQNsVwCeJqZm/DC3Ajg+G0e0W5gdB1BKMTQ8ym837rYESF78FdFw4LMgQHytAwBKKV6LvMHy+cuBNM3Mn0I0/Hy9eUuetzoE4BlOTsdYNQusmgU/NdmNKpGTzWeBaBAHsyMAtfn2Xh1faz3CZy74AMc6BjA5HUM0vHf6weN4aAHWC5SvFklLiae7CrB/Gs7lwLKpmDavNv0L2k1Bs5bz8p5Iu6G/8SfLtcYjWzrxfwEML0LmjluYt+9CucIXnm+o8QfsBMBLH7vhHktsj1yzVGFxOUW1wS8EEIlEdmXaqgsatZK9xZsH36nbH4lEOgtQOwcupPOcXclwcuE0Q8Oj9A8MBPbXARiGQSaT6aoMw/ABUo9SoUe9/gWm1ZHCwkU2TQAAAABJRU5ErkJggg==",
+						image			: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAADgUlEQVR42mL8//8/AyUAIIBYYIzVq1dLC4mIrvr08ZPV379/vjEzMwOZnycmxMV04DMAIIAYQC4A4dXr1oU+fvLk/5/fv/9//fzl/9ev3/6vWLnqK0weFwYIIBZ0A79//crw5+9fhh+//jBYWlhz1dc3fgIqZeDh4WHk4uaqysnKmoysHiCAwAbceHRD6uLdQ0kGunoMv9hYGX79/sPw7cdvhn///jNYWJjzgtRw8/AwvHz5smzutlbN4yeP/k8Pqeo11bW5BxBAjCBnFPbHd7EIMJRoiZgx8nBwMvz+85fhJ9CQf3//Mzx9+pQBFM483FwMQG8xMDL/ZXj46cZ/9v/sk6ZWriwACCCwC25eviprEKbGeOP/AYavb34wsHCwMPz9AzTg9z+GP7x/Gf7++ws07B/Djz+/GZiYGBhYBdgYrx68JwXUyggQQGADePgFfjD+ZGHgF+Bl+P7yHZDPycDGws2gKW7GIMAhwnDs4XaGJ1/uMPz+8Z2BnYOZ4fOnzwwsrMxfgVr/AwQQ2ABpGYkv/GLcDELSfEDn/2HgFeZh8JdLYfjw6SODvqw5g4KiPMOsMw0MDEDbOYWABrz5zsAtI/wJpBcggJhABD+P8MefX38x/AU6k+EvIwPHHx4GNgYuhuuPLzCcuL2f4QswZozEHBjYGDmAdjIw/Pn+l0FCVOoNSC9AAIENEBEQe/Pjy0+GP8CA42LgZ/BXTWb48OUdw6m7+xmm7W5hePTqLoOLaigD+28+hnfv3jN8ePMJaIDMc5BegAACGyApLPX82+fvDB/ev2f4/eU/Ax+bEMOLd08ZpITkGbTl9IHp4jfDsev7GL59/8Lw+9dvhp/ffjPISio+BekFCCCwAQpiyrdfPn3F8OrVa4bHr+8zXHxwioGbjY+hwq+PwVkzmCHYMpFBS84A6Pp/DP/+/2P4+/Mvg5Ks+gOQXoAAggSimNqTb59+/v7x7SfL289vGRccmMDAxyrEsO3sKmCC+sKw9+xmhicf7gLxfQZ2QSaG/38YfkvyyoPCgBEggMAGfPnyhV2eV6vzxs7LWr9//Gf+yPKS6f/fl8zAhMgISkX//11h+M/I+A/ohL/f2P7/1VA2uvb161cOkAMAAogRmp1Znz17xsrCwsL07ds3lu/fvzOD2D9+/GCCpXk2Nra/XFxc/4Bif7i5uf9ISUn9Bgr/BggwAMhljD12v/akAAAAAElFTkSuQmCC",
 						onclick			: "ucjsUndoCloseTabButtonService.onClick(event);",
 						oncontextmenu	: "event.preventDefault();",
 					});
