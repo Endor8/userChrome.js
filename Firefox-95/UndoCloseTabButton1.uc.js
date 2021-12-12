@@ -16,7 +16,7 @@
 (function() {
 	"use strict";
 
-	const useTabbarMiddleClick = false;	
+	const useTabbarMiddleClick = true;	
 	// Kürzlich geschlossene Tabs mit Mittelklick auf Tableiste oder neuen Tab 
     // Schaltfläche wiederherstellen, aktivieren? ( true = ja false = nein )
 
