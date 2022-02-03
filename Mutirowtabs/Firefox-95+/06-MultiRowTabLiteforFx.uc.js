@@ -64,8 +64,7 @@ function MultiRowTabLiteforFx() {
        können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird. */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
-    /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren,    
-         können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
+    /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
     /* :root[inFullscreen] .titlebar-spacer { display: block !important; } */
 
     /* --- Tableiste mit Script an den unteren Rand des Fensters verschieben --- */
@@ -101,26 +100,6 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
             }
         }
     }
-    /* TODO bug 1695280: Remove this block. */
-    @media (-moz-os-version: windows-win7),
-    (-moz-os-version: windows-win8) {
-        :root:-moz-lwtheme {
-            background-color: var(--lwt-accent-color);
-            background-image: var(--lwt-additional-images);
-            background-repeat: var(--lwt-background-tiling);
-            background-position: var(--lwt-background-alignment);
-        }
-
-        :root[lwtheme-image] {
-            background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)),  var(--lwt-additional-images) !important;
-            background-repeat: no-repeat, var(--lwt-background-tiling);
-            background-position: right top, var(--lwt-background-alignment) !important;
-        }
-
-        :root:-moz-lwtheme:-moz-window-inactive {
-            background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color));
-        }
-    }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -143,6 +122,11 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-down').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-start-indicator"]').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-end-indicator"]').style.display = "none";
+
+    // Tabbar scrollIntoView
+    gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
 
