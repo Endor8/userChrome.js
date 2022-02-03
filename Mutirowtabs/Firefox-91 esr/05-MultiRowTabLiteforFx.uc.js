@@ -33,8 +33,9 @@ function MultiRowTabLiteforFx() {
 	   und die Schaltflächen der Navigationsleiste nicht verdeckt werden (Vollbild) */
     :root[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
-    /* Ich habe versucht, die Tableiste im Vollbildmodus auszublenden und anzuzeigen, indem ich die Maus über den oberen und unteren Bildschirmrand bewegte.
-       Wenn Sie mit der Maus über den oberen Bildschirmrand fahren, wird die Tableiste zusammen mit der Symbolleiste angezeigt.
+    /* Ich habe versucht, die Tableiste im Vollbildmodus auszublenden und anzuzeigen, indem ich die 
+	   Maus über den oberen und unteren Bildschirmrand bewegte. Wenn Sie mit der Maus über den oberen 
+	   Bildschirmrand fahren, wird die Tableiste zusammen mit der Symbolleiste angezeigt.
        Wenn Sie mit der Maus über den unteren Bildschirmrand fahren, wird nur die Tableiste angezeigt.  */
     #titlebar #TabsToolbar[inFullscreen="true"] { max-height: 0 !important; }
     #titlebar:hover #TabsToolbar[inFullscreen="true"],
@@ -99,26 +100,6 @@ function MultiRowTabLiteforFx() {
             }
         }
     }
-    /* TODO bug 1695280: Remove this block. */
-    @media (-moz-os-version: windows-win7),
-    (-moz-os-version: windows-win8) {
-        :root:-moz-lwtheme {
-            background-color: var(--lwt-accent-color);
-            background-image: var(--lwt-additional-images);
-            background-repeat: var(--lwt-background-tiling);
-            background-position: var(--lwt-background-alignment);
-        }
-
-        :root[lwtheme-image] {
-            background-image: var(--lwt-header-image, linear-gradient(transparent, transparent)),  var(--lwt-additional-images) !important;
-            background-repeat: no-repeat, var(--lwt-background-tiling);
-            background-position: right top, var(--lwt-background-alignment) !important;
-        }
-
-        :root:-moz-lwtheme:-moz-window-inactive {
-            background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color));
-        }
-    }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -141,6 +122,11 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-down').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-start-indicator"]').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-end-indicator"]').style.display = "none";
+
+    // Tabbar scrollIntoView
+    gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
 

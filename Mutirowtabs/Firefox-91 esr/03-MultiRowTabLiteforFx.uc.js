@@ -30,7 +30,8 @@ function MultiRowTabLiteforFx() {
     :root[inFullscreen="true"] #navigator-toolbox:not([style*="margin-top:"]) #window-controls { display: flex; position: fixed; z-index: 1 !important; top:0; right:0; }
     :root[inFullscreen="true"] #navigator-toolbox:not([style*="margin-top:"]) #window-controls > toolbarbutton { display: inline; max-height: var(--tab-min-height); }
 
-    /* Reservieren Sie Platz auf der rechten Seite, damit die Schaltfläche in der Titelleiste [-□ ×] und die Schaltflächen der Navigationsleiste nicht verdeckt werden (Vollbild)  */
+    /* Reservieren Sie Platz auf der rechten Seite, damit die Schaltfläche in der Titelleiste [-□ ×]  
+	   und die Schaltflächen der Navigationsleiste nicht verdeckt werden (Vollbild)  */
     :root[inFullscreen="true"] #nav-bar { padding-right: 109px !important; }
 
     /* Mehrzeilige Tableiste */
@@ -54,7 +55,8 @@ function MultiRowTabLiteforFx() {
        können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird. */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
-    /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird.  */
+    /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code 
+	     aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
     /* :root[inFullscreen] .titlebar-spacer { display: block !important; } */
 
     } `;
@@ -75,6 +77,11 @@ function MultiRowTabLiteforFx() {
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-down').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-start-indicator"]').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-end-indicator"]').style.display = "none";
+
+    // Tabbar scrollIntoView
+    gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
 
