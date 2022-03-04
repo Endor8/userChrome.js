@@ -98,7 +98,7 @@
                 name: 'Browser-Konsole',
                 subdir: 'Firefox Funktionen',
                 image:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACwElEQVQ4jU2TS28SURiG5yf5G1xo1KqJd43aJkYTEzfGuNSdMV5jotVYG6vponipF3BKL7SAlrZWipbeLdABBsoMMMOAU+48LuaYuHhzvrP5zvs933mlOJAGNoVUIAPEbNBFvS2UAmLAOpAQdylQh8G4xf05hdvftrgzneLRnEbvQpnHP0rcnda4F9K5N5Pj4XeN++Ect2dTPFnM8j7bQLoShsPDCsfdCc5Naez/orJ3LM8+v8ku12/2+i12j+bYM5LlyGSe0+MZTni26JmyuL4C0sGxBodkk0v+PBeDObq8GQ74S5yKdDgabtIV+sMeX4F9vjzHfRrn5E3OuxMckwvsd5tI5ydtetPgM2BC3eGzDu90eJsFjwkjFnwRp1eHYMYiZEBfCi6M6UgnvTqfGg4wo9VC+w9ktgWaAKgBuQ7YjQplYNSGHjmB1OU3GKyBSoOF9VnkSJQVCyzABqpABSgBfwDYxqaC3IIT4zGkQ8Earg4Ugbga5albZnQ9gwEUOlAGtBYU/jVoK1Qp8cGGUxMq0pERGCo5LzRp415WuDu2wEINFBylhIoAdQ27WSXYhG6PiXR2uMWc6B5dWmPAF0HeqqIA3qRFX/AXDz3feOL9QSRVhB0LOjBThsvvS0hXXAbzFTBMUFYTLCXKaG2HQaIIkU2DUDTD9JKOVmjDTg2aECnCjY860vURg4AFZgeaODMXO46jShvMqgOzDNhtaLccsLMmXBuOI3VPKLytw6r434rIRk4oI1asiqykRBYGS3BGXka6GorzYKPEi5hB/3KGobUi8lYVn1JjKlEloNTxrJl44jZvYhYuxeJVssKtJY2by3mkmWIH12Kagfk4r8NxXoZWeT4V4dnkPP1ff9IfXKR3fJ6BmTWeBaI8DqzwNLTBQDjJnA2SBShVx3YaSAq7qqhTYiz1vwingWTLWetfmUuJaUgo1TsAAAAASUVORK5CYII=',
-                command: "var { require } = ChromeUtils.import('resource://devtools/shared/Loader.jsm', {});\
+                command: "var { require } = ChromeUtils.import('resource://devtools/shared/loader/Loader.jsm', {});\
                           var { BrowserConsoleManager } = require('resource://devtools/client/webconsole/browser-console-manager');\
                           BrowserConsoleManager.openBrowserConsoleOrFocus();"
             },
