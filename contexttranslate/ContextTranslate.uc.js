@@ -29,3 +29,4 @@
 	let refItem = document.getElementById('context-inspect');
 	refItem.parentNode.insertBefore(menuitem, refItem);
 })();
+
