@@ -4,7 +4,7 @@
 // modifiziert by universum 123///
 
 (function () {
-	if (location != 'chrome://browser/content/browser.xul')
+	if (location != AppConstants.BROWSER_CHROME_URL)
 		return;
 	let translate = function () {
 		let browserMM = gBrowser.selectedBrowser.messageManager;
@@ -20,7 +20,7 @@
 		});
 		browserMM.loadFrameScript('data:,sendAsyncMessage("getSelection", content.document.getSelection().toString())', true);
 	}
-	let menuitem = document.createElement('menuitem');
+	let menuitem = document.createXULElement('menuitem');
 	menuitem.id = 'context-googletranslate';
 	menuitem.setAttribute('label', 'Übersetzen');
 	menuitem.setAttribute('tooltiptext', 'Mit DeeplTranslate übersetzen');
