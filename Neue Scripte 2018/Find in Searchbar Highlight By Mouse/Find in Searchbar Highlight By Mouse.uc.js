@@ -181,7 +181,7 @@ Verschiedene Funktionen können individuell eingestellt werden, indem der Wert v
     }
     
     // ✓Schaltfläche Einstellungen
-    var newButton = document.createElement("toolbarbutton");
+    var newButton = document.createXULElement("toolbarbutton");
     newButton.setAttribute("label", "Alle Markierungen");
     newButton.setAttribute("tooltiptext", "Alle Markierungen hervorheben");
     newButton.setAttribute("id", "toggle-all-highlight");
