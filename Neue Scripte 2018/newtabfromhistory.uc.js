@@ -3,21 +3,30 @@
 // @namespace      https://www.camp-firefox.de/forum/viewtopic.php?p=1090093#p1090093
 // @description    Links aus Chronik in neuem Tab öffnen
 // @author         aborix
-// @compatibility  62+
-// @version        0.0.2
+// @compatibility  95+
+// @version        0.0.3a
 // ==/UserScript==
 
 (function() {
 
-  if (location != 'chrome://browser/content/browser.xul')
+  if (location != 'chrome://browser/content/browser.xhtml')
     return;
 
-  eval('PlacesUIUtils.openNodeWithEvent = '  + PlacesUIUtils.openNodeWithEvent.toString()
-    .replace(' && PlacesUtils.nodeIsBookmark(aNode)', '')
-    .replace('getBrowserWindow(window)', 
-      '(window && window.document.documentElement.getAttribute("windowtype") == "navigator:browser") ? window : BrowserWindowTracker.getTopWindow()')
-  );
-
+  PlacesUIUtils.openNodeWithEvent = function PUIU_openNodeWithEvent(aNode, aEvent) {
+    let window = aEvent.target.ownerGlobal;
+    let browserWindow = (window && window.document.documentElement.getAttribute('windowtype') == 'navigator:browser') ? window : BrowserWindowTracker.getTopWindow();
+    let where = window.whereToOpenLink(aEvent, false, true);
+    if (this.loadBookmarksInTabs) {
+      if (where == 'current' && !aNode.uri.startsWith('javascript:')) {
+        where = 'tab';
+      }
+      if (where == 'tab' && browserWindow.gBrowser.selectedTab.isEmpty) {
+        where = 'current';
+      }
+    }
+    this._openNodeIn(aNode, where, window);
+  }
+  
   let onPopupshowing = function() {
     let historyMenu = document.getElementById('history-menu');
     if (!historyMenu._placesView) {
@@ -31,7 +40,7 @@
     };
   };
 
-  let historyPopup = document.getElementById('goPopup');
+  let historyPopup = document.getElementById('historyMenuPopup');
   historyPopup.setAttribute('onpopupshowing', '(' + onPopupshowing.toString() + ')()');
 
 })();
