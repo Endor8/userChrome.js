@@ -1,7 +1,7 @@
 //ScrollTopAndBottom.uc.js
 (function() {
  
-let menuitem = document.createElement('menuitem');
+let menuitem = document.createXULElement('menuitem');
 menuitem.id = 'context-to-top';
 menuitem.classList.add('menuitem-iconic');
 menuitem.setAttribute('tooltiptext' , 'Zum Seitenanfang springen');
@@ -14,7 +14,7 @@ refItem.parentNode.insertBefore(menuitem, refItem);
 
 (function() {
  
-let menuitem = document.createElement('menuitem');
+let menuitem = document.createXULElement('menuitem');
 menuitem.id = 'context-to-bottom';
 menuitem.classList.add('menuitem-iconic');
 menuitem.setAttribute('tooltiptext' , 'Zum Seitenende springen');
