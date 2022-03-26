@@ -1,6 +1,6 @@
 (function() {
 
-if (location != 'chrome://browser/content/browser.xul')
+if (location != 'chrome://browser/content/browser.xhtml')
    return;
 
 let tb = document.createElement('toolbar');
