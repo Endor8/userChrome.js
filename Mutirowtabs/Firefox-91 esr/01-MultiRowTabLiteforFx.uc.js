@@ -30,7 +30,7 @@ function MultiRowTabLiteforFx() {
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
-    scrollbox[part][orient="horizontal"] {
+    box.scrollbox-clip > scrollbox[orient="horizontal"] {
         display: flex;
         flex-wrap: wrap; }
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1; }
@@ -70,6 +70,7 @@ function MultiRowTabLiteforFx() {
     // Tabbar scrollIntoView
     gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabOpen", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
