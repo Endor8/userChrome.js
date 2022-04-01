@@ -18,20 +18,19 @@ function MultiRowTabLiteforFx() {
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Anpassung der Symbolleiste */
-    :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    :root[tabsintitlebar][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
     /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
     :root:not([tabsintitlebar="true"]) #TabsToolbar[inFullscreen="true"] > .titlebar-buttonbox-container,
     :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block !important; margin: 0 !important; }
     #toolbar-menubar:not([inactive]) ~ #TabsToolbar:not([inFullscreen="true"]) > .titlebar-buttonbox-container { display: none !important; }
-    #TabsToolbar:not([inFullscreen="true"]) .titlebar-button { padding: 0 !important; width: 46px; }
-    #TabsToolbar[inFullscreen="true"] .titlebar-button { padding: 0 !important; width: 36px; }
+    #TabsToolbar > .titlebar-buttonbox-container .titlebar-button { padding: 0 !important; width: 46px; }
     :root:not([tabsintitlebar]) #TabsToolbar[inFullscreen="true"] .titlebar-button { height: calc(8px + var(--tab-min-height)); }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
-    scrollbox[part][orient="horizontal"] {
+    box.scrollbox-clip > scrollbox[orient="horizontal"] {
         display: flex;
         flex-wrap: wrap; }
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1; }
@@ -44,12 +43,14 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab:not([fadein]) { display: none !important; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
+
     /* Anpassung */
-    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
-    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px */
+    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px */
+
     /* ↓ Wenn Sie die Auskommentierung auf der linken und rechten Seite des unten stehenden CSS-Codes entfernen,  
 	     und den CSS-Code aktivieren, können Sie den Ziehbereich links einblenden, der beim Maximieren des 
-		 Fensters ausgeblendet wird.  */
+		 Fensters ausgeblendet wird. */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
     /* ↓ Wenn Sie die Auskommentierung links und rechts vom unten stehenden CSS-Code entfernen und den CSS-Code aktivieren,    
@@ -59,7 +60,7 @@ function MultiRowTabLiteforFx() {
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
-    sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
+    sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
 
     if(location.href !== 'chrome://browser/content/browser.xhtml') return;
 
@@ -72,6 +73,7 @@ function MultiRowTabLiteforFx() {
     // Tabbar scrollIntoView
     gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabOpen", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
@@ -301,17 +303,28 @@ function MultiRowTabLiteforFx() {
           }
         }
       } else if (draggedTab) {
-        let newIndex = this._getDropIndex(event, false);
-        let newTabs = [];
-        for (let tab of movingTabs) {
-          let newTab = gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
-          newTabs.push(newTab);
+        // Move the tabs. To avoid multiple tab-switches in the original window,
+        // the selected tab should be adopted last.
+        let dropIndex = this._getDropIndex(event, false);
+        let newIndex = dropIndex;
+        let selectedIndex = -1;
+        for (let i = 0; i < movingTabs.length; ++i) {
+          let tab = movingTabs[i];
+          if (tab.selected) {
+            selectedIndex = i;
+          } else {
+            gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
+          }
+        }
+        if (selectedIndex >= 0) {
+          let tab = movingTabs[selectedIndex];
+          gBrowser.adoptTab(tab, dropIndex + selectedIndex, tab == draggedTab);
         }
 
         // Restore tab selection
         gBrowser.addRangeToMultiSelectedTabs(
-          newTabs[0],
-          newTabs[newTabs.length - 1]
+          gBrowser.tabs[dropIndex],
+          gBrowser.tabs[dropIndex + movingTabs.length - 1]
         );
       } else {
         // Pass true to disallow dropping javascript: or data: urls

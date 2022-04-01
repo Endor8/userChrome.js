@@ -18,14 +18,13 @@ function MultiRowTabLiteforFx() {
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Anpassung der Symbolleiste */
-    :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    :root[tabsintitlebar][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
     #titlebar { border-top: 1px solid var(--chrome-content-separator-color); }
 
     /* Anpassung für Titelleistenschaltflächen */
-    #nav-bar:not([inFullscreen="true"]) .titlebar-button { width: 46px !important; }
-    #nav-bar[inFullscreen="true"] .titlebar-button { width: 36px !important; }
-    #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen="true"]) .titlebar-buttonbox-container { display: none !important; }
+    #nav-bar > .titlebar-buttonbox-container .titlebar-button { width: 46px !important; }
+    #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen="true"]) > .titlebar-buttonbox-container { display: none !important; }
 
     /* Ich habe versucht, die Tableiste im Vollbildmodus auszublenden und anzuzeigen, indem ich die Maus über den oberen und unteren Bildschirmrand bewegte.
         Wenn Sie mit der Maus über den oberen Bildschirmrand fahren, wird die Tableiste zusammen mit der Symbolleiste angezeigt.
@@ -36,7 +35,7 @@ function MultiRowTabLiteforFx() {
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
-    scrollbox[part][orient="horizontal"] {
+    box.scrollbox-clip > scrollbox[orient="horizontal"] {
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 1px; }
@@ -58,7 +57,7 @@ function MultiRowTabLiteforFx() {
 
     /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
     /* :root[inFullscreen] .titlebar-spacer { display: block !important; } */
-
+    
     /* --- Tableiste mit Script an den unterern Rand des Browserfensters verschieben --- */
 
     /* Da das Theme nicht funktionierte, habe ich den CSS-Code, der benötigt wird, um es zum Laufen zu bringen,
@@ -96,7 +95,7 @@ function MultiRowTabLiteforFx() {
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
-    sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
+    sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
 
     if(location.href !== 'chrome://browser/content/browser.xhtml') return;
 
@@ -118,6 +117,7 @@ function MultiRowTabLiteforFx() {
     // Tabbar scrollIntoView
     gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabOpen", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
@@ -347,17 +347,28 @@ function MultiRowTabLiteforFx() {
           }
         }
       } else if (draggedTab) {
-        let newIndex = this._getDropIndex(event, false);
-        let newTabs = [];
-        for (let tab of movingTabs) {
-          let newTab = gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
-          newTabs.push(newTab);
+        // Move the tabs. To avoid multiple tab-switches in the original window,
+        // the selected tab should be adopted last.
+        let dropIndex = this._getDropIndex(event, false);
+        let newIndex = dropIndex;
+        let selectedIndex = -1;
+        for (let i = 0; i < movingTabs.length; ++i) {
+          let tab = movingTabs[i];
+          if (tab.selected) {
+            selectedIndex = i;
+          } else {
+            gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
+          }
+        }
+        if (selectedIndex >= 0) {
+          let tab = movingTabs[selectedIndex];
+          gBrowser.adoptTab(tab, dropIndex + selectedIndex, tab == draggedTab);
         }
 
         // Restore tab selection
         gBrowser.addRangeToMultiSelectedTabs(
-          newTabs[0],
-          newTabs[newTabs.length - 1]
+          gBrowser.tabs[dropIndex],
+          gBrowser.tabs[dropIndex + movingTabs.length - 1]
         );
       } else {
         // Pass true to disallow dropping javascript: or data: urls

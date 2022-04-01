@@ -21,17 +21,16 @@ function MultiRowTabLiteforFx() {
     #titlebar { -moz-box-ordinal-group: 2; }
 
     /* Anpassung der Symbolleiste */
-    :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    :root[tabsintitlebar][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
-    #nav-bar:not([inFullscreen="true"]) .titlebar-button { width: 46px !important; }
-    #nav-bar[inFullscreen="true"] .titlebar-button { width: 36px !important; }
-    #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen="true"]) .titlebar-buttonbox-container { display: none !important; }
+    #nav-bar > .titlebar-buttonbox-container .titlebar-button { width: 46px !important; }
+    #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen="true"]) > .titlebar-buttonbox-container { display: none !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
-    scrollbox[part][orient="horizontal"] {
+    box.scrollbox-clip > scrollbox[orient="horizontal"] {
         display: flex;
         flex-wrap: wrap;
         max-height: calc(calc(8px + var(--tab-min-height)) * 5); /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
@@ -42,10 +41,6 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
     .tabbrowser-tab > .tab-stack { width: 100%; }
     #tabs-newtab-button { margin: 0 !important; }
-
-    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
     /* Ausblenden */
     .tabbrowser-tab:not([fadein]) { display: none !important; }
@@ -60,6 +55,17 @@ function MultiRowTabLiteforFx() {
 
     /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
     /* :root[inFullscreen] .titlebar-spacer { display: block !important; } */
+
+    } `;
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
+    var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
+    sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+
+    var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
+
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
+	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -83,6 +89,7 @@ function MultiRowTabLiteforFx() {
     // Tabbar scrollIntoView
     gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabOpen", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
@@ -312,17 +319,28 @@ function MultiRowTabLiteforFx() {
           }
         }
       } else if (draggedTab) {
-        let newIndex = this._getDropIndex(event, false);
-        let newTabs = [];
-        for (let tab of movingTabs) {
-          let newTab = gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
-          newTabs.push(newTab);
+        // Move the tabs. To avoid multiple tab-switches in the original window,
+        // the selected tab should be adopted last.
+        let dropIndex = this._getDropIndex(event, false);
+        let newIndex = dropIndex;
+        let selectedIndex = -1;
+        for (let i = 0; i < movingTabs.length; ++i) {
+          let tab = movingTabs[i];
+          if (tab.selected) {
+            selectedIndex = i;
+          } else {
+            gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
+          }
+        }
+        if (selectedIndex >= 0) {
+          let tab = movingTabs[selectedIndex];
+          gBrowser.adoptTab(tab, dropIndex + selectedIndex, tab == draggedTab);
         }
 
         // Restore tab selection
         gBrowser.addRangeToMultiSelectedTabs(
-          newTabs[0],
-          newTabs[newTabs.length - 1]
+          gBrowser.tabs[dropIndex],
+          gBrowser.tabs[dropIndex + movingTabs.length - 1]
         );
       } else {
         // Pass true to disallow dropping javascript: or data: urls

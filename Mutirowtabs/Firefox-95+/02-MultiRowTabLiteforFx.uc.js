@@ -18,20 +18,19 @@ function MultiRowTabLiteforFx() {
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Anpassung der Symbolleisten */
-    :root[tabsintitlebar="true"][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
+    :root[tabsintitlebar][sizemode="maximized"] #navigator-toolbox { padding-top: 8px !important; }
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
     /* Verhindern, dass die Titelleistenschaltfläche der Registerkarte im Hochformat angezeigt wird */
     :root:not([tabsintitlebar="true"]) #TabsToolbar[inFullscreen="true"] > .titlebar-buttonbox-container,
     :root[tabsintitlebar="true"] #TabsToolbar > .titlebar-buttonbox-container { display: block !important; margin: 0 !important; }
     #toolbar-menubar:not([inactive]) ~ #TabsToolbar:not([inFullscreen="true"]) > .titlebar-buttonbox-container { display: none !important; }
-    #TabsToolbar:not([inFullscreen="true"]) .titlebar-button { padding: 0 !important; width: 46px; }
-    #TabsToolbar[inFullscreen="true"] .titlebar-button { padding: 0 !important; width: 36px; }
+    #TabsToolbar > .titlebar-buttonbox-container .titlebar-button { padding: 0 !important; width: 46px; }
     :root:not([tabsintitlebar]) #TabsToolbar[inFullscreen="true"] .titlebar-button { height: calc(8px + var(--tab-min-height)); }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block; }
-    scrollbox[part][orient="horizontal"] {
+    box.scrollbox-clip > scrollbox[orient="horizontal"] {
         display: flex;
         flex-wrap: wrap;
         max-height: calc(calc(8px + var(--tab-min-height)) * 5); /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
@@ -44,10 +43,6 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab > .tab-stack { width: 100%; }
     #tabs-newtab-button { margin: 0 !important; }
 
-    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
-
     /* Ausblenden */
     .tabbrowser-tab:not([fadein]) { display: none !important; }
 
@@ -55,13 +50,25 @@ function MultiRowTabLiteforFx() {
     /* Anpassung */
     hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
     hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+
     /* ↓ Wenn Sie die linke und rechte Seite des CSS-Codes auskommentieren und den CSS-Code aktivieren, 
        können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird.  */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
-    /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code 
+    /* ↓Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code 
 	     aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird.  */
     /* :root[inFullscreen] .titlebar-spacer { display: block !important; } */
+
+    } `;
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
+    var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
+    sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
+
+    var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
+
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
+	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    scrollbox[part][orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag; }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -79,6 +86,7 @@ function MultiRowTabLiteforFx() {
     // Tabbar scrollIntoView
     gBrowser.tabContainer.addEventListener("dragend", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabOpen", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
     gBrowser.tabContainer.addEventListener("TabSelect", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
@@ -308,17 +316,28 @@ function MultiRowTabLiteforFx() {
           }
         }
       } else if (draggedTab) {
-        let newIndex = this._getDropIndex(event, false);
-        let newTabs = [];
-        for (let tab of movingTabs) {
-          let newTab = gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
-          newTabs.push(newTab);
+        // Move the tabs. To avoid multiple tab-switches in the original window,
+        // the selected tab should be adopted last.
+        let dropIndex = this._getDropIndex(event, false);
+        let newIndex = dropIndex;
+        let selectedIndex = -1;
+        for (let i = 0; i < movingTabs.length; ++i) {
+          let tab = movingTabs[i];
+          if (tab.selected) {
+            selectedIndex = i;
+          } else {
+            gBrowser.adoptTab(tab, newIndex++, tab == draggedTab);
+          }
+        }
+        if (selectedIndex >= 0) {
+          let tab = movingTabs[selectedIndex];
+          gBrowser.adoptTab(tab, dropIndex + selectedIndex, tab == draggedTab);
         }
 
         // Restore tab selection
         gBrowser.addRangeToMultiSelectedTabs(
-          newTabs[0],
-          newTabs[newTabs.length - 1]
+          gBrowser.tabs[dropIndex],
+          gBrowser.tabs[dropIndex + movingTabs.length - 1]
         );
       } else {
         // Pass true to disallow dropping javascript: or data: urls
