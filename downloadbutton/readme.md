@@ -21,8 +21,8 @@ um das Fenster noch optisch anzupassen. Sieht dann so aus:
    
 ![Screenshot Downloadbutton](https://github.com/Endor8/userChrome.js/raw/master/downloadbutton/scr_downloadbutton1.png)
 
-Die im CSS Code verwendeten Symbole, siehe auch [Ordner Icons](https://github.com/Endor8/userChrome.js/tree/master/downloadbutton/icons),     
-müssen im Chrome Ordner in einem Unterordner icons gespeichert werden,    
+Die im CSS Code verwendeten Symbole, siehe auch Ordner [Icons](https://github.com/Endor8/userChrome.js/tree/master/downloadbutton/icons),     
+müssen im Chrome Ordner in einem Unterordner **Icons** gespeichert werden,    
 damit es funktioniert.    
      
 ## Installation
