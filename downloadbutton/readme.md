@@ -14,12 +14,16 @@ Das **Ergebnis des Skripts**:
 Position und Größe kann in Zeile 23 angepasst werden    
 chrome,resizable=yes,width=600,height=750,left=1220,top=100');"
 
-## Anpassung mit CSS
-Wer will kann den CSS Code **download-window.css** verwenden,  
+## Anpassung mit CSS    
+Wer will kann den CSS Code **download-window.css** verwenden,   
 er muss über die userChrome.css geladen werden,     
-um das Fenster noch optisch anzupassen. Sieht dann so aus:
+um das Fenster noch optisch anzupassen. Sieht dann so aus:     
    
 ![Screenshot Downloadbutton](https://github.com/Endor8/userChrome.js/raw/master/downloadbutton/scr_downloadbutton1.png)
+
+Die im CSS Code verwendeten Icons siehe Ordner Icons,     
+müssen im Chrome Ordner in einem Unterordner icons gespeichert werden,    
+damit es funktioniert.    
      
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils.
