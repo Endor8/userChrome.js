@@ -1,0 +1,338 @@
+    @-moz-document url("chrome://downloadmgr/content/downloadmgrOverlay.xhtml"),
+				   url("chrome://browser/content/downloads/contentAreaDownloadsView.xhtml"),
+				   url("chrome://downloads_window/content/downloadsWindow.xhtml"),
+				   url("chrome://browser/content/places/places.xhtml"),
+				   url("about:downloads"),
+				   url("chrome://browser/content/browser.xhtml"){
+		
+    #downloadsListBox {
+	appearance: none !important;  
+	scrollbar-width: none !important;
+	box-shadow: none !important; 
+	border: none !important;}
+	
+    #downloadsListBox > richlistitem{
+    padding-top:1px!important;}
+
+	#contentAreaDownloadsView,
+    #downloadsListBox {
+    background: #fffff0 !important; box-shadow: none !important;}
+	
+	#dmtDownloadInfoBar, #dmtTopToolBar, #dmtSearchInfoBar{
+	-moz-appearance: none !important;
+    background:#F6F6F6!important;}	
+	
+	#contentAreaDownloadsView,
+	#dmtTopToolBar{border-bottom: none !important;}
+	
+	#dmtCleanUpSep {display:none!important;}	
+
+    #downloadsListBox > richlistitem.download {
+    max-height: 25px !important;}
+
+    #downloadsListBox > richlistitem.download{
+    border: none !important;
+    border-bottom: 1px  #000 !important;
+    color: #000 !important;
+	font-size: 16px !important;}
+	
+/* 	#downloadsRichListBox > richlistitem.download:hover{
+    color: #ffffff !important; font-weight: bold !important;} */
+       
+	#downloadsListBox > richlistitem.download[selected="true"]:hover,
+    #downloadsListBox > richlistitem.download[selected]:hover{
+    background: rgba(255, 255, 0, 0.4) !important;
+    color: #800000 !important;
+    font-weight: bold !important; font-size: 16px !important;}
+       
+
+    #downloadsListBox [selected="true"]:hover{
+    background: rgba(255, 255, 0, 0.4) !important;
+    color: #800000 !important;}
+
+
+    #downloadsListBox > richlistitem.download[selected="true"]:not(:hover),
+    #downloadsListBox > richlistitem.download[selected]:not(:hover){
+    background: rgba(255, 255, 0, 0.4) !important;
+    color: #800000 !important;
+    font-weight: bold !important; font-size: 16px !important;}
+
+
+    #downloadsListBox > richlistitem.download:not([selected]):hover{
+    background: rgba(192, 0, 0, 0.4) !important; border-radius: 6px !important;}
+
+	.downloadButton > .button-box > .button-icon, 
+	#download-folder-button { 
+	width: 24px!important;
+	height: 18px!important;
+    list-style-image: url("..//icons/Bild80.png") !important; background-repeat:no-repeat !important; }
+	
+
+	#download-folder-button .button-text{
+    padding-left:10px !important;}
+	
+	.downloadButtonArea > .downloadButton.downloadShow.downloadIconShow{ 
+    list-style-image: url("..//icons/Bild80.png") !important; background-repeat:no-repeat !important; }
+
+	#searchFilter {
+    -moz-appearance: none !important;
+	margin-top: 7px !important;
+	margin-bottom: 6px !important;
+    border-radius: 14px !important;
+    padding-right: 8px !important;
+    padding-left:  8px !important;
+    margin-right:  4px !important;
+	max-height:   25px !important;}
+	
+	#dmtClearDownloadsButton {margin-top: 6px !important; margin-bottom: 5px !important;}
+	
+ 	#clearListButton{
+	-moz-appearance: none !important;
+	background: gainsboro url("..//icons/Bild8.gif") no-repeat !important;
+    color:black!important;
+    font-size:12px!important;
+	margin-top: 1px !important;
+    padding-left:35px!important;
+    padding-right:30px!important;
+    border-width:2px!important;
+    border-color: #dc143c!important;              
+    background-position:10px 1px!important;
+    border-radius:14px!important;}
+         
+	#clearListButton:hover{
+	-moz-appearance: none !important;
+	background: #B2EDFA url("..//icons/Bild8.gif") no-repeat !important;
+    color:black!important;
+    font-size:12px!important;
+    border-color: dodgerblue!important;
+    padding-right:30px!important;
+    padding-left:35px!important;
+    background-position:10px 1px!important;
+    border-radius:14px!important;}
+	
+    spacer.progress-bar{
+    background:#32cd32!important;}	
+
+/*  Downloads  */
+	
+	menuitem[label="Aus Chronik entfernen"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/Bild81.png") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Aus Chronik entfernen"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Bild81.png") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}	
+	
+	menuitem[label="Ziel-Ordner öffnen"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/Bild47.gif") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Ziel-Ordner öffnen"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Bild47.gif") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}	
+	
+	menuitem[label="Zur Download-Seite gehen"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/Bild82.png") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Zur Download-Seite gehen"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Bild82.png") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}	
+
+	menuitem[label="Download-Link kopieren"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/Bild1.gif") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Download-Link kopieren"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Bild1.gif") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}	
+
+	menuitem[label="Liste leeren"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/Bild2.gif") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Liste leeren"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Bild2.gif") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}
+
+    #downloadsContextMenu > menuitem:nth-child(12){
+    -moz-appearance:none!important;
+    background: url("..//icons/Bild2.gif") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+
+    #downloadsContextMenu > menuitem:nth-child(12):hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Bild2.gif") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}	
+
+	menuitem[label="Pause"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/Bild8.png") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Fortsetzen"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/Redo.png") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Fortsetzen"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Redo.png") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}
+	
+	menuitem[label="Pause"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/Bild8.png") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}		
+	
+	menuitem[label="Immer im Standardprogramm öffnen"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/default2.png") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Immer im Standardprogramm öffnen"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/default2.png") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}	
+	
+	menuitem[label="Im Standardprogramm öffnen"]{
+    -moz-appearance:none!important;
+    background: url("..//icons/default1.png") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	menuitem[label="Im Standardprogramm öffnen"]:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/default1.png") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px!important;}	
+	
+	.downloadShowMenuItem{
+    -moz-appearance:none!important;
+    background: url("..//icons/default1.png") no-repeat !important;
+    min-height: 24px!important;
+	padding-left:4px!important;
+	background-position:6px 5px!important;}
+	
+	.downloadShowMenuItem:hover{
+    -moz-appearance:none!important;
+	margin-right: -1px !important;
+    background: #ecf0f6 url("..//icons/default1.png") no-repeat !important;	
+	border-width: thin !important;
+	border-radius: 4px !important;
+	border-color: #aecff7 !important;
+	border-style: solid !important;
+    min-height: 24px!important;
+	padding-left:3px!important;
+	background-position:5px 4px !important;}	
+	}
+
+    @-moz-document url("about:downloads"){
+	#downloadsContextMenu > menuitem,
+	#downloadsContextMenu > menuitem:nth-child(12){
+	padding-left: 14px !important;
+	}
+	
+	#downloadsContextMenu > menuitem:hover,
+	#downloadsContextMenu > menuitem:nth-child(12):hover{
+	padding-left: 13px !important;
+	}
+	}
