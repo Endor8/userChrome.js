@@ -29,8 +29,8 @@
 		});
 	CustomizableUI.registerToolbarNode(tb);
 	} catch(e) { };
-     Downloads.getList(Downloads.ALL)
-    .then(list => list.addView({
-      onDownloadAdded: () => document.getElementById('Download-button').click()
-    })); 
+        Downloads.getList(Downloads.ALL)
+        .then(list => list.addView({
+        onDownloadAdded: () => document.getElementById('Download-button').click()
+        })); 
 })();
