@@ -1,4 +1,4 @@
-# Donwload Button
+# Download Button    
 Dieses Script fügt in die Navigationsleiste eine Schaltfläche ein,    
     
 ![Screenshot Downloadbutton](https://github.com/Endor8/userChrome.js/raw/master/downloadbutton/scr_arrow.png)
@@ -11,13 +11,15 @@ Das **Ergebnis des Skripts**:
 ![Screenshot Downloadbutton](https://github.com/Endor8/userChrome.js/raw/master/downloadbutton/scr_downloadbutton.png)
 
 ## Hinweis:    
-Position und Größe kann in Zeile 23 angepasst werden    
+Position und Größe können in Zeile 23 angepasst werden     
 chrome,resizable=yes,width=600,height=750,left=1220,top=100');"
 
 ## Anpassung mit CSS    
-Wer will kann den CSS Code **⇒** [**download-window.css**](https://github.com/Endor8/userChrome.js/blob/master/downloadbutton/Downloads-window.css) verwenden,   
-dieser CSS Code muss über die userChrome.css geladen werden,     
-um das Fenster noch optisch anzupassen. Sieht dann so aus:     
+Um das Downloadfenster optisch anzupassen, kann, wer will,      
+den CSS Code ⇒ download-window.css verwenden.    
+Dieser Code muss über die userChrome.css geladen werden.   
+
+Das Ergebnis stellt sich dann so dar:
    
 ![Screenshot Downloadbutton](https://github.com/Endor8/userChrome.js/raw/master/downloadbutton/scr_downloadbutton1.png)
 
