@@ -15,9 +15,9 @@ Position und Größe können in Zeile 23 angepasst werden
 chrome,resizable=yes,width=600,height=750,left=1220,top=100');"
 
 ## Anpassung mit CSS    
-Um das Downloadfenster optisch anzupassen, kann, wer will,      
-den CSS Code ⇒ download-window.css verwenden.    
-Dieser Code muss über die userChrome.css geladen werden.   
+Wer das Downloadfenster optisch anpassen möchte,   
+kann den CSS Code ⇒ [download-window.css](https://github.com/Endor8/userChrome.js/blob/master/downloadbutton/Downloads-window.css) verwenden.    
+Dieser Code muss über die userChrome.css geladen werden.    
 
 Das Ergebnis stellt sich dann so dar:
    
