@@ -19,7 +19,7 @@ Tabs ziehen und ablegen möglich, Tableiste unter Adressleiste verschieben,
 sowie Anpassungen für Symbolleisten.         
 
 * Skript 4: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf 5 begrenzt,    
-kann aber im Script in **Zeile 43** und **Zeile 46** geändert werden.      
+kann aber im Script in **Zeile 36** geändert werden.      
 Tabs ziehen und ablegen möglich, sowie Anpassungen für Symbolleisten.           
 
 * Skript 5: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Tabzeilen,     
