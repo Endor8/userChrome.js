@@ -56,6 +56,7 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab:not([fadein]) { display: none !important; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
+    
     /* Anpassung */
     hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
     hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
