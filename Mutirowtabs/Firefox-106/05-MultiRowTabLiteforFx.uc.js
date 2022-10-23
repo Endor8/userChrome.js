@@ -44,7 +44,7 @@ function MultiRowTabLiteforFx() {
         flex-wrap: wrap !important;
         margin-bottom: 1px !important; }
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
-    .tabbrowser-tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
+    .tabbrowser-tab { height: calc(8px + var(--tab-min-height)); }
     .tabbrowser-tab > .tab-stack { width: 100% !important; }
     #TabsToolbar .toolbarbutton-1 { margin: 0 !important; }
 
