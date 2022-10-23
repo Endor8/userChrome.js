@@ -39,7 +39,7 @@ function MultiRowTabLiteforFx() {
         overflow-x: hidden !important;
         overflow-y: auto !important; }
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
-    .tabbrowser-tab,#tabs-newtab-button {
+    .tabbrowser-tab {
          height: calc(8px + var(--tab-min-height));
          overflow: hidden; }
     .tabbrowser-tab > .tab-stack { width: 100% !important; }
