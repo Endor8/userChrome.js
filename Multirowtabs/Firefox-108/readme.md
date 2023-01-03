@@ -32,15 +32,3 @@ kann aber im Script in **Zeile 45** geändert werden.
 Tabs ziehen und ablegen möglich, Tableiste ganz nach unten, unter den Fensterinhalt,    
 verschieben, Erstellen eines Menüleistenbereiches über der Symbolleiste um das Menü     
 nach oben zu verschieben, sowie Anpassungen für Symbolleisten.   
-
-#### Kleiner CSS Code für userChrome.css: #### 
-
-```css
-@charset "UTF-8";
-@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-toolbarbutton#alltabs-button{-moz-binding: url("userChrome.xml#js");}
-```
-
-Wenn die Anzahl der Tab-Zeilen höher als im Script angegeben, ist,    
-wird mit folgendem CSS Code, die Scrollleiste in der Tableiste angezeigt.  
-↓ Wenn nicht benötigt, diesen CSS Code entfernen, bzw. nicht verwenden.    
