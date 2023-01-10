@@ -13,7 +13,7 @@
 // @note            2019/09/03 Fx70
 // @note            2019/12/09 Fx72
 // ==/UserScript==
-// Schaltfläche wird standardmäßig in die Navigationsleiste eingefügt.
+// Schaltfläche wird standardmäßig in die Tableiste eingefügt.
 (function () {
     "use strict";
 
