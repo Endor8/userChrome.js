@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            UndoCloseTabButtonN
-// @description		Kürzlich geschlossene Tabs, mit Klick auf Schaltfläche in der Tableiste 
-// @description		oder Mittelklick auf freie Stelle in Tableiste, wiederherstellen.
+// @description	    Kürzlich geschlossene Tabs, mit Klick auf Schaltfläche in der Tableiste 
+// @description	    oder Mittelklick auf freie Stelle in Tableiste, wiederherstellen.
 // @version         1.2.6
 // @include         main
 // @charset         UTF-8
