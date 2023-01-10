@@ -18,7 +18,7 @@
     "use strict";
 
     const useTabbarMiddleClick = true; 
-	// Kürzlich geschlossene Tabs mit Mittelklick auf Tableiste oder neuen Tab 
+    // Kürzlich geschlossene Tabs mit Mittelklick auf Tableiste oder neuen Tab 
     // Schaltfläche wiederherstellen, aktivieren? ( true = ja false = nein )
 
     const XULNS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
