@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 108+
+// @compatibility  Firefox 108
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -17,12 +17,12 @@ function MultiRowTabLiteforFx() {
 
     var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
-    /* Symbolleiste Sortieren */
+     /* Symbolleiste Sortieren */
     #toolbar-menubar { -moz-box-ordinal-group: 1; } /* Menüleiste */
     #nav-bar         { -moz-box-ordinal-group: 2; } /* Navigationsleiste */
     #PersonalToolbar { -moz-box-ordinal-group: 3; } /* Lesezeichenleiste */
 
-    /* Anpassung der Symbolleiste */
+    /* Symbolleistenanpassung */
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
     #titlebar { border-top: 1px solid var(--chrome-content-separator-color) !important; }
 
@@ -31,18 +31,20 @@ function MultiRowTabLiteforFx() {
     #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
     /* Ich habe versucht, die Tableiste im Vollbildmodus auszublenden und anzuzeigen, indem ich die Maus über den oberen und unteren Bildschirmrand bewegte.
-       Wenn Sie mit der Maus über den oberen Bildschirmrand fahren, wird die Tableiste zusammen mit der Symbolleiste angezeigt.
-       Wenn Sie mit der Maus über den unteren Bildschirmrand fahren, wird nur die Tableiste angezeigt. */
-    #titlebar > #TabsToolbar[inFullscreen] { max-height: 0 !important; }
+        Wenn Sie mit der Maus über den oberen Bildschirmrand fahren, wird die Tableiste zusammen mit der Symbolleiste angezeigt.
+        Wenn Sie mit der Maus über den unteren Bildschirmrand fahren, wird nur die Tableiste angezeigt.  */
+    #titlebar > #TabsToolbar[inFullscreen] { display: none !important; }
     #navigator-toolbox-background:hover ~ #titlebar > #TabsToolbar[inFullscreen],
-    #titlebar:hover > #TabsToolbar[inFullscreen] { max-height: 100% !important; }
+    #titlebar:hover > #TabsToolbar[inFullscreen] { display: block !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block !important; }
     box.scrollbox-clip[orient="horizontal"] > scrollbox {
         display: flex !important;
         flex-wrap: wrap !important;
-        margin-bottom: 1px !important; }
+        max-height: calc(calc(8px + var(--tab-min-height)) * 5); /* Anzahl der Tabzeilen(Standard = 5 Zeilen) */
+        overflow-x: hidden !important;
+        overflow-y: auto !important; }
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
     .tabbrowser-tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
     .tabbrowser-tab > .tab-stack { width: 100% !important; }
@@ -52,23 +54,21 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab:not([fadein]),#alltabs-button { display: none !important; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
-    
     /* Anpassung */
     hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
     hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
-    
     /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, 
-       können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird.  */
+       können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird. */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
     /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, 
 	     können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
     /* :root[inFullscreen] .titlebar-spacer { display: block !important; } */
 
-    /* --- Tableiste mit Script an den unterern Rand des Browserfensters verschieben --- */
+    /* --- Tableiste mit Script an den unteren Rand des Fensters verschieben --- */
 
-    /* Da das Theme nicht funktionierte, habe ich den CSS-Code, der benötigt wird, um es zum Laufen zu bringen,
-       von browser.css übernommen und # navigator-toolbox in #titlebar geändert und hinzugefügt. */
+    /* Da das Script mit Themes nicht funktionierte, wurde benötigter CSS Code
+aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert */
     #titlebar:-moz-lwtheme {
         background-image: var(--lwt-additional-images);
         background-repeat: var(--lwt-background-tiling);
@@ -104,22 +104,38 @@ function MultiRowTabLiteforFx() {
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.USER_SHEET);
 
+    var css =` @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
+
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
+	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    box.scrollbox-clip > scrollbox[orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag !important; }
+
+    } `;
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
+    var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
+    sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
+
     if(location.href !== 'chrome://browser/content/browser.xhtml') return;
 
     // Menüleiste an den oberen Rand der Symbolleiste verschieben
     document.getElementById("titlebar").parentNode.insertBefore(document.getElementById("toolbar-menubar"),document.getElementById("nav-bar"));
 
-    // Titelleisten Schaltflächen in die Tableiste an den Rechten Rand verschieben
+    // Tab-Leiste an den unteren Rand des Fensters verschieben
     document.body.appendChild(document.getElementById("titlebar"));
 
     // Titelleistenschaltflächen aus der Tableiste, rechts neben die Navigationsleiste verschieben
     document.getElementById("nav-bar").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
 
-    // Scroll-Buttons und Spacer in der Tab-Leiste ausblenden shadowRoot 
+    // Scroll-Buttons und Spacer in der Tableiste ausblenden shadowRoot
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-up').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.getElementById('scrollbutton-down').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-start-indicator"]').style.display = "none";
     gBrowser.tabContainer.arrowScrollbox.shadowRoot.querySelector('[part="overflow-end-indicator"]').style.display = "none";
+
+    // Tabbar scrollIntoView
+    gBrowser.tabContainer.addEventListener("SSTabRestoring", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabAttrModified", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
+    gBrowser.tabContainer.addEventListener("TabMove", function(event) {event.target.scrollIntoView({behavior: "instant", block: "nearest", inline: "nearest"})}, true);
 
     // drag & drop & DropIndicator
 
