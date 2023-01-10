@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
+// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
 // @include        main
 // @compatibility  Firefox 108+
 // @author         Alice0775

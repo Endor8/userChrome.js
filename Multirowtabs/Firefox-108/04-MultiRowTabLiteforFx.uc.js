@@ -41,7 +41,7 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
     .tabbrowser-tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
     .tabbrowser-tab > .tab-stack { width: 100% !important; }
-    #TabsToolbar .toolbarbutton-1 { margin: 0 !important; }
+    #TabsToolbar .toolbarbutton-1 { margin: 0 !important; padding: 0 !important; }
 
     /* Ausblenden */
     .tabbrowser-tab:not([fadein]),#alltabs-button { display: none !important; }
