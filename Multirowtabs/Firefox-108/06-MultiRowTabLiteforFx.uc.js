@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 108+
+// @compatibility  Firefox 108
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -33,9 +33,9 @@ function MultiRowTabLiteforFx() {
     /* Ich habe versucht, die Tableiste im Vollbildmodus auszublenden und anzuzeigen, indem ich die Maus über den oberen und unteren Bildschirmrand bewegte.
         Wenn Sie mit der Maus über den oberen Bildschirmrand fahren, wird die Tableiste zusammen mit der Symbolleiste angezeigt.
         Wenn Sie mit der Maus über den unteren Bildschirmrand fahren, wird nur die Tableiste angezeigt.  */
-    #titlebar > #TabsToolbar[inFullscreen] { max-height: 0 !important; }
+    #titlebar > #TabsToolbar[inFullscreen] { display: none !important; }
     #navigator-toolbox-background:hover ~ #titlebar > #TabsToolbar[inFullscreen],
-    #titlebar:hover > #TabsToolbar[inFullscreen] { max-height: 100% !important; }
+    #titlebar:hover > #TabsToolbar[inFullscreen] { display: block !important; }
 
     /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block !important; }
@@ -48,7 +48,7 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
     .tabbrowser-tab,#tabs-newtab-button { height: calc(8px + var(--tab-min-height)); }
     .tabbrowser-tab > .tab-stack { width: 100% !important; }
-    #TabsToolbar .toolbarbutton-1 { margin: 0 !important; }
+    #TabsToolbar .toolbarbutton-1 { margin: 0 !important; padding: 0 !important; }
 
     /* Ausblenden - Verstecken */
     .tabbrowser-tab:not([fadein]),#alltabs-button { display: none !important; }
