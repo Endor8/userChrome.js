@@ -1,66 +1,72 @@
 // ==UserScript==
-// @description     OpenNewTab.uc.js
-// @description     Lesezeichen, Chronik, Searchbar, Urlbar in neuen Tabs
-// @include		    chrome://browser/content/browser.xul
-// @include 		chrome://browser/content/bookmarks/bookmarksPanel.xul
-// @include 		chrome://browser/content/history/history-panel.xul
-// @include 		chrome://browser/content/places/places.xul
-// @compatibility	Firefox 13
+// @name            openNewTab.uc.js
+// @namespace       opennewtab@haoutil.com
+// @include         main
+// @include         chrome://browser/content/browser.xhtml
+// @description     Aus Lesezeichen, Chronik, Adressleiste und Suchleiste in neuem Tab öffnen
+// @downloadURL     https://raw.githubusercontent.com/Harv/userChromeJS/master/openNewTab.uc.js
+// @version         1.5.1
 // ==/UserScript==
+location == "chrome://browser/content/browser.xhtml" && (function () {
+    Components.utils.import("resource://gre/modules/Services.jsm");
 
-    if (location == "chrome://browser/content/browser.xul") {
+    Services.obs.addObserver(function observer(subject, topic, data) {
+        if (data != "init-complete") return;
+        Services.obs.removeObserver(observer, topic);
+        doReplace();
+    }, "browser-search-service");
 
-    /*======= Clear the searchbar after submit & open in new fg tab or current tab if empty (browser.search.openintab = false) =======*/
-
-    // search.xml
-    var ucSearchbar = {
-       init: function() {
-          this.searchbar = document.getElementById("searchbar");
-          if (!this.searchbar) return;
-          var str = this.searchbar.handleSearchCommand.toString().replace('this.d','if (where == "current" && !isTabEmpty(gBrowser.selectedTab)) where = "tab"; setTimeout("ucSearchbar.searchbar.value=\'\';",0); $&');
-          eval("ucSearchbar.searchbar.handleSearchCommand = " + str);
-       }
-    };
-    ucSearchbar.init();
-    eval("BrowserToolboxCustomizeDone = " + BrowserToolboxCustomizeDone.toString().replace('focus();','$& ucSearchbar.init();'));
-
-
-    /*======= Open urlbar queries in new fg tab or in current tab if empty =======*/
-
-    // urlbarBindings.xml
-    (function() {
-    var urlbar = document.getElementById("urlbar");
-    var str = gURLBar.handleCommand.toString();
-    str = str.replace(/^\s*(load.+);/gm,"/^javascript:/.test(url)||content.location=='about:blank'?$1:gBrowser.loadOneTab(url, {postData: postData, inBackground: false, allowThirdPartyFixup: true});");
-    eval("gURLBar.handleCommand= " + str);
-
-
-    /*======= Open bookmark-menu, Library & bookmarks/history sidebar URIs in new fg tab or in current tab if empty =======*/
-
-    // modules\PlacesUIUtils.jsm
-    if (typeof PlacesUIUtils.aa == 'undefined') {
-       PlacesUIUtils.aa = true;
-       PlacesUIUtils.pu = PlacesUtils;
-       str = PlacesUIUtils._openNodeIn.toString().replace('PlacesUtils','this.pu','g');
-       str = str.replace('aWindow.','var browserWin = this._getTopBrowserWin(); if (browserWin) { if (!browserWin.isTabEmpty(browserWin.gBrowser.selectedTab) && !/^j/.test(aNode.uri) && aWhere == "current") aWhere = "tab"; } $&');   //http://forums.mozillazine.org/viewtopic.php?p=3201065#3201065
-       eval("PlacesUIUtils._openNodeIn = " + str);
-       str = PlacesUIUtils._openTabset.toString().replace('ue;','$& if (!browserWindow.isTabEmpty(browserWindow.gBrowser.selectedTab)) replaceCurrentTab = false;');
-       eval("PlacesUIUtils._openTabset = " + str);
+    function generateReplacement(func, regexp, replacementFunc, appendMatch) {
+        var replacementStr = replacementFunc.toString().replace(/^.*{|}$/g, '');
+        if (appendMatch) {
+            replacementStr = replacementStr + '$&';
+        }
+        var funcStr = func.toString().replace(regexp, replacementStr);
+        if (!funcStr.startsWith("function")) {
+            funcStr = "function " + funcStr;
+        }
+        return funcStr;
     }
-    })();
 
+    function doReplace() {
+        eval('BrowserUtils.whereToOpenLink = ' + generateReplacement(BrowserUtils.whereToOpenLink, /(return "current";)(?![\s\S]*\1)/g, function() {
+            if (!e) return 'current';
+            if (gBrowser.selectedTab.isEmpty) return 'current';
+            var node = e.originalTarget;
+            while (node) {
+                if(node.className && node.className.indexOf('bookmark-item') != -1
+                    && node.outerHTML && node.outerHTML.indexOf('scheme="javascript"') != -1) { // javascript bookmarks
+                    return 'current';
+                }
+                if (node.className && node.className.indexOf('sync-state') != -1) { // sidebar syncedtabs
+                    return 'tab';
+                }
+                switch (node.id) {
+                    case 'bookmarksMenuPopup':  // menubar bookmarks
+                    case 'BMB_bookmarksPopup':  // navibar bookmarks
+                    case 'PanelUI-bookmarks':   // navibar bookmarks
+                    case 'bookmarksPanel':      // sidebar bookmarks
+                    case 'historyMenuPopup':    // menubar history
+                    case 'PanelUI-history':     // navibar history
+                    case 'history-panel':       // sidebar history
+                    case 'placeContent':        // library bookmarks&history
+                    case 'PanelUI-remotetabs':  // navibar syncedtabs
+                        return 'tab';
+                }
+                node = node.parentNode;
+            }
+            return 'current';
+        }));
 
-    /*======= Open history-menu URIs in new fg tab or in current tab if empty =======*/
+        // // urlbar
+        // eval('gURLBar._whereToOpen = ' + generateReplacement(gURLBar._whereToOpen, /(return where;)(?![\s\S]*\1)/g, function() {
+        //     where = gBrowser.selectedTab.isEmpty ? 'current' : 'tab';
+        // }, true));
 
-    // browser.js
-    eval("HistoryMenu.prototype._onCommand = " + HistoryMenu.prototype._onCommand.toString().replace("uri);","$& if (!isTabEmpty(gBrowser.selectedTab) && (aEvent == null || (!aEvent.ctrlKey && !aEvent.shiftKey && !aEvent.altKey))) { gBrowser.selectedTab = gBrowser.addTab(); }"));
-
-
-    /*======= Open external app links in new tab or in current tab if empty =======*/
-
-    // browser.js
-    // only applies if browser.link.open_newwindow = 3
-    eval('nsBrowserAccess.prototype.openURI = ' + nsBrowserAccess.prototype.openURI.toString().replace("switch","if (isExternal && aWhere == Ci.nsIBrowserDOMWindow.OPEN_NEWTAB && isTabEmpty(gBrowser.selectedTab)) aWhere = Ci.nsIBrowserDOMWindow.OPEN_CURRENTWINDOW; $&"));
-
-    } //chrome://browser/content/browser.xul
-
+        // searchbar
+        var searchbar = document.getElementById('searchbar');
+        searchbar && eval('searchbar.handleSearchCommandWhere=' + generateReplacement(searchbar.handleSearchCommandWhere, /this\.doSearch\(textValue, aWhere, aEngine, aParams, isOneOff\);/, function() {
+            aWhere = gBrowser.selectedTab.isEmpty ? 'current' : 'tab';
+        }, true));
+    }
+})();
