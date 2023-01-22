@@ -1,45 +1,54 @@
 // ==UserScript==
-// @name           openbookModokiFor4.0.uc.js
+// @name           openbookModoki.uc.js
 // @namespace      https://addons.mozilla.org/firefox/addon/3885
-// @description    Edit Bookmark Panelにリサイザ追加すると共に, フォルダツリーとタグセレクタのエキスパンダ開閉状態を記憶する。および 設定によりdescription, location, loadInSidebar, keywordを表示/非表示
+// @description    Lesezeichen Bearbeiten Panel: Veränderbare Panelgröße hinzugefügt. Schlüsselwort und Ordner-Struktur
+// @description    Felder sind geschlossen. Weitere Einstellungen: Beschreibung, Ordner, Dieses Lesezeichen in der Sidebar laden,
+// @description    und Schlüsselwort können ein-/ausgeblendet werden.
 // @include        main
 // @author         Alice0775
+// @version        2020/05/11 10:30 Fx76 by aborix
+// @version        2018/03/15 10:30 Fx59 by aborix
+// @version        2017/11/17 02:30 Fx57
+// @version        2016/03/20 02:30 remove tst hack
+// @version        2015/08/31 02:30 Fx40
 // @version        2013/07/07 02:30 fix onFolderMenuListCommand
-// @version        2012/12/08 22:30 Bug 788290 Bug 788293 Remove E4X 
-// ==/UserScript==
+// @version        2012/12/08 22:30 Bug 788290 Bug 788293 Remove E4X
 // @version        2012/07/24 14:30 Bug 761723 implement toString of function objects by saving source
 // @version        2010/12/06 10:30 Bug Bug 597557 - Bookmarks & Identity panels should use an Arrowpanel
 // @version        2010/04/01 00:00 Bug 556342  - Invalid Treeview in bookmark menu via star pane
-// @version        2009/12/22 00:00 namePickerにフォ－カスあるように
+// @version        2009/12/22 00:00 namePicker in front
 // @version        2009/12/21 14:00 BETTER WORKAROUND FIX  Bug 536024 -  When i expand folder-tree on Edit This Bookmark, the bookmarked folder is changed.
 // @version        2009/12/20 16:00 WORKAROUND FIX  Bug 536024 -  When i expand folder-tree on Edit This Bookmark, the bookmarked folder is changed.
-// @version        2009/08/11 18:00 Tree Style Tab0.8.2009081101のオブジェクト名変更に対応
-// @version        2009/08/07 00:00 Tree Style Tab0.8.2009073102があるとき treestyletab-parent-row'を非表示
-// @version        2009/08/06 19:00 Tree Style Tab0.8.2009073102があると一瞬Parent Tabが表示されるのを修正,およびuc.jsに変更した
-// @version        2009/08/06 18:00 Tree Style Tab 0.8.2009073102に対応
-// @version        2009/06/24 00:00 Firefox3.5 フォルダツリーとタグセレクタのエキスパンダ開閉状態を記憶しなくなっていたのを修正
-// @version        2009/01/02 02:00 設定によりdescription, location, loadInSidebar, keywordを表示/非表示
+// @version        2009/08/11 18:00 Tree Style Tab0.8.2009081101 Unterstützung für das Umbenennen von Objekten
+// @version        2009/08/07 00:00 Tree Style Tab0.8.2009073102 Treestyletab-Tabzeile ausblenden, wenn vorhanden
+// @version        2009/08/06 19:00 Tree Style Tab0.8.2009073102 Problem, dass der übergeordnete Tab für einen Moment angezeigt wird, behoben 
+// @version        2009/08/06 18:00 Tree Style Tab0.8.2009073102 entsprechend
+// @version        2009/06/24 00:00 Firefox3.5 Es wurde ein Fehler behoben, durch den der Offen / Geschlossen Status des Expanders in der 
+// @version        2009/06/24 00:00 Ordnerstruktur und der Tag-Auswahl nicht gespeichert wurde
+// @version        2009/01/02 02:00 Beschreibung, Position, loadInSidebar, Schlüsselwort und Einstellung anzeigen / ausblenden
 // @version        2009/01/01 22:28
+// ==/UserScript==
+
 var openbookResizer = {
 
-  drag  :false,
+  drag  : false,
   height: null,
   width : null,
   eventOffset: null,
   timer: null,
-  PREHIDEROW   : "userChrome.openbook.hideRow",   //description, location, loadInSidebar, keyword
+  PREHIDEROW    : "userChrome.openbook.hideRow",  // description, location, loadInSidebar, keyword
   PREFTREEHEIGHT: "userChrome.openbook.treeHeight",
   PREFTREEWIDTH : "userChrome.openbook.treeWidth",
-  PREFOPENTREE: "userChrome.openbook.openTree",
-  PREFOPENTAG : "userChrome.openbook.openTag",
+  PREFOPENTREE  : "userChrome.openbook.openTree",
+  PREFOPENTAG   : "userChrome.openbook.openTag",
 
   get tree(){
-    return gEditItemOverlay._element('folderTree');
+    return gEditItemOverlay._folderTree;
   },
 
   get getHideRow(){
     try {
-      return gPrefService.getCharPref(this.PREHIDEROW).replace(/\s/g,'').slice(',');
+      return Services.prefs.getCharPref(this.PREHIDEROW).replace(/\s/g,'').slice(',');
     } catch(e) {
       return [];
     }
@@ -47,27 +56,26 @@ var openbookResizer = {
 
   get getPrefTreeHeight(){
     try {
-      return gPrefService.getIntPref(this.PREFTREEHEIGHT);
+      return Services.prefs.getIntPref(this.PREFTREEHEIGHT);
     } catch(e) {
       return 150;
     }
   },
   get getPrefTreeWidth(){
     try {
-      return gPrefService.getIntPref(this.PREFTREEWIDTH);
+      return Services.prefs.getIntPref(this.PREFTREEWIDTH);
     } catch(e) {
       return 250;
     }
   },
 
   get editBookmarkPanel(){
-    return document.getElementById('editBookmarkPanel');
+    return StarUI.panel;
   },
 
   get treeExpander(){
     return gEditItemOverlay._element('foldersExpander');
   },
-
 
   get tagExpander(){
     return gEditItemOverlay._element('tagsSelectorExpander');
@@ -75,7 +83,7 @@ var openbookResizer = {
 
   get getPrefOpenTree(){
     try {
-      return gPrefService.getBoolPref(this.PREFOPENTREE);
+      return Services.prefs.getBoolPref(this.PREFOPENTREE);
     } catch(e) {
       return false;
     }
@@ -83,22 +91,10 @@ var openbookResizer = {
 
   get getPrefOpenTag(){
     try {
-      return gPrefService.getBoolPref(this.PREFOPENTAG);
+      return Services.prefs.getBoolPref(this.PREFOPENTAG);
     } catch(e) {
       return false;
     }
-  },
-
-  get isFx35(){
-    return parseInt(Components.classes["@mozilla.org/xre/app-info;1"]
-                     .getService(Components.interfaces.nsIXULAppInfo)
-                     .version.substr(0,3) * 10, 10) / 10 > 3.0;
-  },
-
-  get isFx37(){
-    parseInt(Components.classes["@mozilla.org/xre/app-info;1"]
-                     .getService(Components.interfaces.nsIXULAppInfo)
-                     .version.substr(0,3) * 10, 10) / 10 > 3.6;
   },
 
   init: function(){
@@ -119,31 +115,14 @@ var openbookResizer = {
     return document.documentElement.getAttribute(name);
     };
 
-    this.folderTreeRow   = this.isFx35 ? "folderTreeRow"   : "folderTree";
-    this.tagsSelectorRow = this.isFx35 ? "tagsSelectorRow" : "tagsSelector";
+    this.folderTreeRow   = "folderTreeRow";
+    this.tagsSelectorRow = "tagsSelectorRow";
 
-    // Fix bug
-    var func = StarUI.showEditBookmarkPopup.toString();
-    func = func.replace(
-     'this._self._doShowEditBookmarkPanel(this._itemId, this._anchorElement, this._position);',
-     'if (document.getElementById("editBookmarkPanelGrid")) { \
-        $& \
-      } else { \
-        setTimeout(function(self, aItemId, aAnchorElement, aPosition){ \
-          self.showEditBookmarkPopup(aItemId, aAnchorElement, aPosition); \
-        }, 250, this._self, this._itemId, this._anchorElement, this._position); \
-        return; \
-      }'
-    );
-    eval("StarUI.showEditBookmarkPopup = " + func);
-
-    // default all show
-    func = StarUI._doShowEditBookmarkPanel.toString();
-    func = func.replace(
-     /\["description", "location",[\r]*[\s]*"loadInSidebar", "keyword"\]/,
-     'openbookResizer.getHideRow'
-    );
-    eval("StarUI._doShowEditBookmarkPanel = " + func);
+    gEditItemOverlay.initPanel_org = gEditItemOverlay.initPanel;
+    gEditItemOverlay.initPanel = function(aInfo) {
+      aInfo.hiddenRows = openbookResizer.getHideRow;
+      gEditItemOverlay.initPanel_org(aInfo);
+    }
 
     // selected tree visible
     func = gEditItemOverlay.toggleFolderTreeVisibility.toString();
@@ -173,8 +152,13 @@ var openbookResizer = {
         tree.setAttribute("onselect", onselect); \
       }, 0, this._folderTree);'
     );
-    eval("gEditItemOverlay.toggleFolderTreeVisibility = " + func);
-    
+    try{
+      gEditItemOverlay.toggleFolderTreeVisibility = new Function(
+         func.match(/\((.*)\)\s*\{/)[1],
+         func.replace(/^function\s*.*\s*\(.*\)\s*\{/, '').replace(/}$/, '')
+      );
+    } catch(ex){}
+
     // selected tree visible
     func = gEditItemOverlay.onFolderMenuListCommand.toString();
     func = func.replace(
@@ -194,9 +178,12 @@ var openbookResizer = {
         tree.setAttribute("onselect", onselect); \
       }, 0, this._folderTree);}'
     );
-
-    eval("gEditItemOverlay.onFolderMenuListCommand = " + func);
-
+    try{
+      gEditItemOverlay.onFolderMenuListCommand = new Function(
+         func.match(/\((.*)\)\s*\{/)[1],
+         func.replace(/^function\s*.*\s*\(.*\)\s*\{/, '').replace(/}$/, '')
+      );
+    } catch(ex){}
 
     this.editBookmarkPanel.addEventListener('popupshowing', this, false);
     this.editBookmarkPanel.addEventListener('popupshown', this, false);
@@ -230,24 +217,12 @@ var openbookResizer = {
     if (this.editBookmarkPanel != event.originalTarget)
       return;
     var state = !gEditItemOverlay._element(this.folderTreeRow).collapsed;
-    gPrefService.setBoolPref(this.PREFOPENTREE, state);
+    Services.prefs.setBoolPref(this.PREFOPENTREE, state);
     var state = !gEditItemOverlay._element(this.tagsSelectorRow).collapsed;
-    gPrefService.setBoolPref(this.PREFOPENTAG, state);
+    Services.prefs.setBoolPref(this.PREFOPENTAG, state);
 
     gEditItemOverlay._element(this.folderTreeRow).collapsed = true;
     gEditItemOverlay._element(this.tagsSelectorRow).collapsed = true;
-/*
-    // xxx Bug 556342  - Invalid Treeview in bookmark menu via star pane
-    var tree = document.getElementById("editBMPanel_folderTree");
-    if (!this.isFx37)
-      var result = tree.getResult();
-      if (result) {
-        result.root.containerOpen = false;
-      }
-      tree.view = null;
-      // xxx
-    }
-*/
   },
 
   popupshowing: function(event){
@@ -259,17 +234,17 @@ var openbookResizer = {
     //this.editBookmarkPanel.width = this.getPrefTreeWidth;
 
     if (!document.getElementById("openbookResizerbottomBox")) {
-      var panel = document.getElementById("editBookmarkPanel");
-      
-      var innerarrow = document.getAnonymousElementByAttribute(panel, "class", "panel-inner-arrowcontent");
+      var panel = StarUI.panel;
+
+      var innerarrow = panel.openOrClosedShadowRoot.querySelector('.panel-arrowcontent');
       if (innerarrow)
         innerarrow.setAttribute('flex', 1);
 
-      var box = document.createElement("hbox");
+      var box = document.createXULElement("hbox");
       box.setAttribute('id', 'openbookResizerbottomBox');
       box.setAttribute('align',"start");
 
-      var resizer = document.createElement("image");
+      var resizer = document.createXULElement("image");
       resizer.setAttribute("class", "openbookResizerGripper");
       resizer.setAttribute('onmousedown', 'openbookResizer.mousedown(event)');
 
@@ -278,30 +253,13 @@ var openbookResizer = {
 
       panel.setAttribute('onmousemove', 'openbookResizer.mousemove(event)');
       panel.setAttribute('onmouseup', 'openbookResizer.mouseup(event)');
-
-      if ("TreeStyleTabBookmarksServiceEditable" in window) {
-        with (window)
-        eval('gEditItemOverlay._showHideRows = '+window.gEditItemOverlay._showHideRows.toSource().replace(
-          'TreeStyleTabBookmarksServiceEditable.parentRow.collapsed = this._element("keywordRow").collapsed && this._element("folderRow").collapsed;',
-          ''
-        ).replace(
-          "TreeStyleTabBookmarksServiceEditable.parentRow.collapsed = this._element('keywordRow').collapsed && this._element('folderRow').collapsed;",
-          ''
-        ));
-
-        TreeStyleTabBookmarksServiceEditable.parentRow.collapsed = true;
-      }
     }
-    if ("TreeStyleTabBookmarksServiceEditable" in window)
-      TreeStyleTabBookmarksServiceEditable.parentRow.collapsed = true;
   },
 
   popupshown: function(event){
     if (this.editBookmarkPanel != event.originalTarget)
       return;
-    setTimeout(function(self){
-      if ("TreeStyleTabBookmarksServiceEditable" in window)
-        TreeStyleTabBookmarksServiceEditable.parentRow.collapsed = true;
+    setTimeout(function(self) {
       if (self.getPrefOpenTree &&
           gEditItemOverlay._element(self.folderTreeRow).collapsed ) {
         gEditItemOverlay.toggleFolderTreeVisibility();
@@ -311,10 +269,10 @@ var openbookResizer = {
         gEditItemOverlay.toggleTagsSelector();
       }
       try {
-        gEditItemOverlay._element(gPrefService
+        gEditItemOverlay._element(Services.prefs
           .getCharPref("browser.bookmarks.editDialog.firstEditField")).focus();
       } catch(e) {}
-  }, 100, this);
+    }, 100, this);
   },
 
   mousedown: function(event){
@@ -335,20 +293,18 @@ var openbookResizer = {
         if (newValue <= screen.height - 300 && newValue >= 150) {
           self.tree.height = newValue;
         }
-
         newValue = self.width - event.pageX + self.eventOffset.pageX;
         if (newValue <= screen.width - 50 && newValue >= 300) {
           //self.tree.width = newValue;
           self.editBookmarkPanel.width = newValue;
         }
-
       }
     }, 10, event, this);
   },
   mouseup: function(event) {
     if (this.drag) {
-      gPrefService.setIntPref(this.PREFTREEHEIGHT, this.tree.height);
-      gPrefService.setIntPref(this.PREFTREEWIDTH, this.editBookmarkPanel.boxObject.width);
+      Services.prefs.setIntPref(this.PREFTREEHEIGHT, this.tree.height);
+      Services.prefs.setIntPref(this.PREFTREEWIDTH, this.editBookmarkPanel.boxObject.width);
     }
     this.drag = false;
   }
