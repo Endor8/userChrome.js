@@ -38,9 +38,6 @@ function MultiRowTabLiteforFx() {
     .tabbrowser-tab > .tab-stack { width: 100% !important; }
     #TabsToolbar .toolbarbutton-1 { margin: 0 !important; padding: 0 !important;}
 
-    /* Ausblenden */
-    .tabbrowser-tab:not([fadein]),#alltabs-button { display: none !important; }
-
     /* --- Ziehbereich der Tab-Leiste --- */
     /* Anpassung */
     hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
