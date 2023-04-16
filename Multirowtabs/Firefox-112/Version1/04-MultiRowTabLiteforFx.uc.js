@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
 // @compatibility  Firefox 112
 // @author         Alice0775
@@ -18,43 +18,44 @@ function MultiRowTabLiteforFx() {
     var css =` /* USER_SHEET */
     @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
-    /* ツールバーの並び順 */
-    #toolbar-menubar { -moz-box-ordinal-group: 1; } /* メニューバー */
-    #nav-bar         { -moz-box-ordinal-group: 2; } /* ナビゲーションツールバー */
-    #PersonalToolbar { -moz-box-ordinal-group: 3; } /* ブックマークツールバー */
-    #titlebar        { -moz-box-ordinal-group: 4; } /* タブバー */
+    /* Symbolleiste Sortieren */
+    #toolbar-menubar { -moz-box-ordinal-group: 1; } /* Menüleiste */
+    #nav-bar         { -moz-box-ordinal-group: 2; } /* Navigationsleiste */
+    #PersonalToolbar { -moz-box-ordinal-group: 3; } /* Lesezeichenleiste */
+    #titlebar        { -moz-box-ordinal-group: 4; } /* Tableiste */
 
-    /* ツールバーの調整 */
+    /* Anpassung der Symbolleiste */
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* タイトルバーボタン[－□×]の調整 */
+    /* Anpassung für Titelleistenschaltflächen */
     #nav-bar > .titlebar-buttonbox-container .titlebar-button { width: 46px !important; }
     #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
-    /* 多段タブ */
+    /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block !important; }
     box.scrollbox-clip[orient="horizontal"] > scrollbox {
         display: flex !important;
         flex-wrap: wrap !important;
-        max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* 段数(デフォルト3段) */
+        max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* Anzahl der Tabzeilen(Standard = 3 Zeilen) */
         overflow-x: hidden !important;
         overflow-y: auto !important; }
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
     #TabsToolbar .toolbarbutton-1 { margin: 0 !important; padding: 0 !important; }
 
-    /* 非表示 */
+    /* Ausblenden */
     .tabbrowser-tab:not([fadein]),#alltabs-button { display: none !important; }
 
-    /* --- タブバー ドラッグ領域 --- */
+    /* --- Ziehbereich der Tab-Leiste --- */
 
-    /* 横幅 調整 */
-    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* 左のドラッグ領域：デフォルト 40px */
-    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* 右のドラッグ領域：デフォルト 40px */
-
-    /* ↓CSSコードの左右にあるコメントアウトを外してCSSコードを有効にするとウィンドウを最大化した時非表示になる左のドラッグ領域が表示出来ます。 */
+    /* Anpassung */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
+    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+    /* ↓ Wenn Sie die linke und rechte Seite des CSS-Codes auskommentieren und den CSS-Code aktivieren, 
+       können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird.  */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
-    /* ↓CSSコードの左右にあるコメントアウトを外してCSSコードを有効にするとフルスクリーンにした時非表示になる左右のドラッグ領域が表示出来ます。 */
+    /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, 
+	     können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
     /* :root[inFullscreen] hbox.titlebar-spacer { display: block !important; } */
 
     } `;
@@ -65,7 +66,8 @@ function MultiRowTabLiteforFx() {
     var css =` /* AGENT_SHEET */
     @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
-    /* 指定段数を超えるとタブバーに表示されるスクローバーのドラッグ領域を無効化してマウスクリックで上下出来るようにする */
+    /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
+	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln  */
     box.scrollbox-clip > scrollbox[orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag !important; }
 
     } `;
@@ -85,7 +87,7 @@ function MultiRowTabLiteforFx() {
         overflow-y: auto !important; }
     */
 
-    /* タブバーshadowRoot内のscrollbuttonとspacerを非表示 */
+    /* Bildlaufschaltfläche und Abstandshalter in der Schattenwurzel der Tab-Leiste ausblenden */
     #tabbrowser-arrowscrollbox[scrolledtostart]::part(overflow-start-indicator),
     #tabbrowser-arrowscrollbox[scrolledtoend]::part(overflow-end-indicator),
     #tabbrowser-arrowscrollbox::part(scrollbutton-up),
@@ -98,10 +100,10 @@ function MultiRowTabLiteforFx() {
 
     if(location.href !== 'chrome://browser/content/browser.xhtml') return;
 
-    // メニューバーをツールバーの上部に移動
+    // Verschieben Sie die Menüleiste an den oberen Rand der Symbolleiste 
     document.getElementById("titlebar").parentNode.insertBefore(document.getElementById("toolbar-menubar"),document.getElementById("titlebar"));
 
-    // タブバーのタイトルバーボタン[－□×]をナビゲーションツールバーの右端に移動
+    // Titelleisten Schaltflächen in die Tableiste an den Rechten Rand verschieben
     document.getElementById("nav-bar").appendChild(document.querySelector("#TabsToolbar .titlebar-buttonbox-container"));
 
     // Tabbar scrollIntoView

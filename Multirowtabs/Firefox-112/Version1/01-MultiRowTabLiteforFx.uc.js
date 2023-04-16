@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           zzzz-MultiRowTab_LiteforFx48.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    多段タブもどき実験版 CSS入れ替えまくりLiteバージョン
+// @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
 // @compatibility  Firefox 112
 // @author         Alice0775
@@ -18,33 +18,36 @@ function MultiRowTabLiteforFx() {
     var css =` /* USER_SHEET */
     @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
-    /* ツールバーの調整 */
+    /* Anpassung der Symbolleiste */
     #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
 
-    /* タブバーのタイトルバーボタン[－□×]の調整 */
+    /* Anpassen der Titelleistenschaltfläche [- x] der Tableiste */
     #TabsToolbar > .titlebar-buttonbox-container { display: block !important; margin: 0 !important; }
     #TabsToolbar > .titlebar-buttonbox-container .titlebar-button { height: calc(8px + var(--tab-min-height)); padding: 0 !important; width: 46px; }
     #toolbar-menubar:not([inactive]) ~ #TabsToolbar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
-    /* 多段タブ */
+    /* mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] { display: block !important; }
     box.scrollbox-clip[orient="horizontal"] > scrollbox { display: flex !important; flex-wrap: wrap !important; }
     .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
     #TabsToolbar .toolbarbutton-1 { margin: 0 !important; padding: 0 !important; }
 
-    /* 非表示 */
+    /* Ausblenden - Verstecken */
     .tabbrowser-tab:not([fadein]),#alltabs-button { display: none !important; }
 
-    /* --- タブバー ドラッグ領域 --- */
+    /* --- Ziehbereich der Tab-Leiste --- */
 
-    /* 横幅 調整 */
-    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* 左のドラッグ領域：デフォルト 40px */
-    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* 右のドラッグ領域：デフォルト 40px */
+    /* Anpassung */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px */
+    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px */
 
-    /* ↓CSSコードの左右にあるコメントアウトを外してCSSコードを有効にするとウィンドウを最大化した時非表示になる左のドラッグ領域が表示出来ます。 */
+    /* ↓ Wenn Sie die Auskommentierung auf der linken und rechten Seite des unten stehenden CSS-Codes entfernen,  
+	     und den CSS-Code aktivieren, können Sie den Ziehbereich links einblenden, der beim Maximieren des 
+		 Fensters ausgeblendet wird. */  
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
 
-    /* ↓CSSコードの左右にあるコメントアウトを外してCSSコードを有効にするとフルスクリーンにした時非表示になる左右のドラッグ領域が表示出来ます。 */
+    /* ↓ Wenn Sie die Auskommentierung links und rechts vom unten stehenden CSS-Code entfernen und den CSS-Code aktivieren,    
+         können Sie den linken und rechten Ziehbereiche einblenden, der im Vollbildmodus ausgeblendet wird. */ 
     /* :root[inFullscreen] hbox.titlebar-spacer { display: block !important; } */
 
     } `;
@@ -59,7 +62,7 @@ function MultiRowTabLiteforFx() {
     #tabbrowser-arrowscrollbox::part(scrollbox) { display: flex !important; flex-wrap: wrap !important; }
     */
 
-    /* タブバーshadowRoot内のscrollbuttonとspacerを非表示 */
+    /* Bildlaufschaltfläche und Abstandshalter in der Schattenwurzel der Tab-Leiste ausblenden */
     #tabbrowser-arrowscrollbox[scrolledtostart]::part(overflow-start-indicator),
     #tabbrowser-arrowscrollbox[scrolledtoend]::part(overflow-end-indicator),
     #tabbrowser-arrowscrollbox::part(scrollbutton-up),
