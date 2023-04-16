@@ -1,10 +1,10 @@
 ### Mehrzeilige Tableiste für Firefox 112 ###
 
-Unterschied zwischen den beiden Versionen:
+Unterschied zwischen den beiden Versionen:    
 Version 1 zeigt beim Verschieben eines Tabs von einem Fenster in ein anderes    
-einen roten Strich als Dropdown Indikator an Version 2 eine Grafik.
+einen roten Strich als Dropdown Indikator an Version 2 eine Grafik.     
 
-Es stehen jeweils 6 verschiedene Scripte dazu zur Verfügung.
+Es stehen jeweils 6 verschiedene Scripte dazu zur Verfügung.    
 
 ### Hinweis:
 Skript **1 + 2** Mehrzeilige Tableiste Tabs ganz oben    
