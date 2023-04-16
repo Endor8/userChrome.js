@@ -1,4 +1,4 @@
-o### Mehrzeilige Tableiste für Firefox 112 ###
+### Mehrzeilige Tableiste für Firefox 112 ###
 
 Unterschied zwischen den beiden Versionen:    
 Version 1 zeigt beim Verschieben eines Tabs von einem Fenster in ein anderes    
