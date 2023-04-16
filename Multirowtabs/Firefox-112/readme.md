@@ -1,8 +1,9 @@
 ### Mehrzeilige Tableiste für Firefox 112 ###
 
-Unterschied zwischen den beiden Versionen:    
-Version 1 zeigt beim Verschieben eines Tabs von einem Fenster in ein anderes    
-eine Grafik als Dropdown Indikator an Version 2 einen roten Strich.
+Unterschied zwischen den beiden Versionen:   
+    
+Version 1 zeigt beim Verschieben eines Tabs eine andere Grafik als     
+Dropdown Indikator an als Version 2, die einen einfachen roten Strich anzeigt.
 
 ![Screenshot App Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Multirowtabs/Firefox-112/Grafik1.png)  ![Screenshot App Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Multirowtabs/Firefox-112/Strich2.png)
 
