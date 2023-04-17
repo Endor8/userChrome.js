@@ -18,7 +18,7 @@ Skript **5 + 6** Mehrzeilige Tableiste Tabs ganz unten am unteren Rand des Fenst
 Tabs ziehen und ablegen möglich, sowie Anpassungen für Symbolleisten.         
 
 * Skript 2: Mehrzeilige Tableiste als (CSS Code) Anzahl der Tabzeilen auf **3** begrenzt,    
-kann aber im Script in **Zeile 34**  geändert werden.     
+kann aber im Script in **Zeile 41**  geändert werden.     
 Tabs ziehen und ablegen möglich, sowie Anpassungen für Symbolleisten.
      
 * Skript 3: Mehrzeilige Tableiste als (CSS Code) Unbegrenzte Anzahl von Tabzeilen,     
