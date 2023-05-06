@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name           openbookModoki.uc.js
-// @namespace      https://addons.mozilla.org/firefox/addon/3885
+// @namespace      https://github.com/Endor8/userChrome.js/blob/master/openbookmodoki/OpenBookModoki.uc.js
 // @description    Lesezeichen Bearbeiten Panel: Veränderbare Panelgröße hinzugefügt. Schlüsselwort und Ordner-Struktur
 // @description    Felder sind geschlossen. Weitere Einstellungen: Beschreibung, Ordner, Dieses Lesezeichen in der Sidebar laden,
 // @description    und Schlüsselwort können ein-/ausgeblendet werden.
 // @include        main
+// @source         https://www.camp-firefox.de/forum/thema/135858-skript-openbookmodoki-funktioniert-nicht-mehr/?postID=1218464#post1218464
 // @author         Alice0775
+// @version        2023/01/27 14:30 Fx109 by Sören Hentzschel
 // @version        2020/05/11 10:30 Fx76 by aborix
 // @version        2018/03/15 10:30 Fx59 by aborix
 // @version        2017/11/17 02:30 Fx57
@@ -216,13 +218,13 @@ var openbookResizer = {
   popuphiding: function(event){
     if (this.editBookmarkPanel != event.originalTarget)
       return;
-    var state = !gEditItemOverlay._element(this.folderTreeRow).collapsed;
+    var state = !gEditItemOverlay._element(this.folderTreeRow).hidden;
     Services.prefs.setBoolPref(this.PREFOPENTREE, state);
-    var state = !gEditItemOverlay._element(this.tagsSelectorRow).collapsed;
+    var state = !gEditItemOverlay._element(this.tagsSelectorRow).hidden;
     Services.prefs.setBoolPref(this.PREFOPENTAG, state);
 
-    gEditItemOverlay._element(this.folderTreeRow).collapsed = true;
-    gEditItemOverlay._element(this.tagsSelectorRow).collapsed = true;
+    gEditItemOverlay._element(this.folderTreeRow).hidden = true;
+    gEditItemOverlay._element(this.tagsSelectorRow).hidden = true;
   },
 
   popupshowing: function(event){
@@ -261,11 +263,11 @@ var openbookResizer = {
       return;
     setTimeout(function(self) {
       if (self.getPrefOpenTree &&
-          gEditItemOverlay._element(self.folderTreeRow).collapsed ) {
+          gEditItemOverlay._element(self.folderTreeRow).hidden ) {
         gEditItemOverlay.toggleFolderTreeVisibility();
       }
       if (self.getPrefOpenTag &&
-          gEditItemOverlay._element(self.tagsSelectorRow).collapsed ) {
+          gEditItemOverlay._element(self.tagsSelectorRow).hidden ) {
         gEditItemOverlay.toggleTagsSelector();
       }
       try {
