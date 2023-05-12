@@ -4,8 +4,11 @@
 // @description    tabLock
 // @include        *
 // @exclude        about:*
-// @exclude        chrome://mozapps/content/downloads/unknownContentType.xhtml
-// @compatibility  95+
+// @exclude        chrome://mozapps/content/downloads/unknownContentType.xul
+// @compatibility  112
+// @version        2023/05/11 00:00 fix #76
+// @version        2023/04/18 00:00 Bug 1817443 - Move open*Link* and friends into a module instead of utilityOverlay.js
+// @version        2022/08/19 00:00 remove "Services" from frame scripts
 // @version        2021/10/15 00:00 @compatibility 95, Addressed "Services" not being loaded in frame scripts (Bug 1708243).
 // @version        2021/09/14 00:00 remove unused method
 // @version        2021/09/07 12:00 fix an error
@@ -40,10 +43,10 @@
 // @version        2018/05/04 12:00 cleanup for 60
 // @version        2018/05/04 00:00 for 60
 // ==/UserScript==
-// @Note           about:config Einstellung
+// @Note           about:config Einstellungen
 //  browser.tabs.loadInBackground           Tab im Hintergrund öffnen [true]/false
 //  browser.tabs.loadBookmarksInBackground  Lesezeichen in Hintergrundtab öffnen true/[false]
-//  browser.tabs.loadUrlInBackground        Aus Adressleiste in Hintergrundtab öffnen 
+//  browser.tabs.loadUrlInBackground        Aus Adressleiste in Hintergrundtab öffnen
 
 patch: {
   if ("openLinkIn" in window) {
@@ -57,7 +60,7 @@ patch: {
             targetBrowser = params.targetBrowser;
             targetTab = w.gBrowser.getTabForBrowser(targetBrowser);
           } else {
-            w = getTopWin();
+            w = URILoadingHelper.getTargetWindow(window);
             targetBrowser = w.gBrowser.selectedBrowser;
             targetTab = w.gBrowser.selectedTab;
           }
@@ -72,6 +75,34 @@ patch: {
       }
     }
   }
+
+  if ("openTrustedLinkIn" in window) {
+    if (!window.hasOwnProperty("openTrustedLinkIn_lockorg")) {
+      window.openTrustedLinkIn_lockorg = window.openTrustedLinkIn;
+      window.openTrustedLinkIn = function(url, where, params) {
+        let w, targetBrowser, targetTab;
+        if (where == "current") {
+          if (params?.targetBrowser) {
+            w = params.targetBrowser.ownerGlobal;
+            targetBrowser = params.targetBrowser;
+            targetTab = w.gBrowser.getTabForBrowser(targetBrowser);
+          } else {
+            w = URILoadingHelper.getTargetWindow(window);
+            targetBrowser = w.gBrowser.selectedBrowser;
+            targetTab = w.gBrowser.selectedTab;
+          }
+          if (url && "isLockTab" in w.gBrowser &&
+              w.gBrowser.isLockTab(targetTab) &&
+              !/^\s*(javascript:|data:|moz-extension:)/.test(url) &&
+              !w.gBrowser.isHashLink(url, targetBrowser.currentURI.spec)) {
+            where  = "tab";
+          }
+        }
+        window.openTrustedLinkIn_lockorg(url, where, params);
+      }
+    }
+  }
+
 
   if (location.href != "chrome://browser/content/browser.xhtml")
     break patch;
@@ -197,7 +228,7 @@ patch: {
 
       this.tabContextMenu();
 
-      // CSS übernehmen
+      // CSS anwenden
         var style = `
         tab[tabLock] .tab-icon-lock{
           margin-top: 0px; /*Abstand oben Anpassen*/
@@ -430,9 +461,6 @@ patch: {
 
   let frameScript = function() {
     addEventListener("click", onClick, false);  /*Klick eventListener Priorität des Vorhergehenden Elements, mit true ignorieren*/
-    const { Services } = ChromeUtils.import(
-      "resource://gre/modules/Services.jsm"
-    );
 
     function onClick(event) {
       if (event.button !== 0) return;
@@ -511,7 +539,9 @@ patch: {
         node = node.parentNode;
       }
 
-      return [href ? Services.io.newURI(href, null, baseURI).spec : null, null,
+      let ios = Components.classes["@mozilla.org/network/io-service;1"].
+              getService(Components.interfaces.nsIIOService);
+      return [href ? ios.newURI(href, null, baseURI).spec : null, null,
               node && node.ownerDocument.nodePrincipal];
     }
   };
