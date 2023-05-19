@@ -3,8 +3,29 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Downloads Status Modoki
 // @include        main
-// @compatibility  Firefox 26+
+// @compatibility  Firefox 113+
 // @author         Alice0775
+// @note           ucjsDownloadsStatusModoki.uc.js.css Datei, muss in bzw. über userChrome.css geladen  werden!
+// @version        2023/05/18 21:00 
+// @version        2022/11/24 21:00 Bug 1802142 - Remove no longer used browser-bottombox
+// @version        2022/11/22 Bug 877389 - [meta] Replace calls to Cu.reportError, etc. from browser code, replace with console.error, etc.
+// @version        2022/11/20 19:00 107+ wip
+// @version        2022/04/01 23:00 Convert Components.utils.import to ChromeUtils.import
+// @version        2022/02/16 Bug 1747422 - Remove preprocessor variable use from downloads CSS
+// @version        2019/12/11 fix for 73 Bug 1601094 - Rename remaining .xul files to .xhtml in browser
+// @version        2019/10/20 12:30 workaround Bug 1497200: Apply Meta CSP to about:downloads, Bug 1513325 - Remove textbox binding
+// @version        2019/09/08 19:30 fix scrollbox
+// @version        2019/05/21 08:30 fix 69.0a1 Bug 1551320 - Replace all createElement calls in XUL documents with createXULElement
+// @version        2018/10/27 12:00 fix for 64+
+// @version        2018/06/12 21:00 fix for private window mode
+// @version        2018/06/07 12:00 fix file name for history
+// @version        2018/02/10 12:00 try catch error when DO_NOT_DELETE_HISTORY = true
+// @version        2017/12/10 12:00 fix error when DO_NOT_DELETE_HISTORY = true
+// @version        2017/12/10 12:00 remove workaround Bug 1279329. Disable btn while clear list is doing, close button styling for 57.
+// @version        2016/06/10 12:00 modify style independent of font-family
+// @version        2016/06/10 07:00 modify style of close button, fix typo
+// @version        2016/06/10 00:00 Workaround Bug 1279329. adjust some padding
+// @version        2015/05/08 00:00 remove padding due to Bug 1160734
 // @version        2014/03/31 00:00 fix for browser.download.manager.showWhenStarting
 // @version        2013/12/22 13:00 chromehidden
 // @version        2013/12/19 17:10 rename REMEMBERHISTOTY to DO_NOT_DELETE_HISTORY
@@ -39,14 +60,14 @@ var ucjsDownloadsStatusModoki = {
     XPCOMUtils.defineLazyModuleGetter(window, "Downloads",
               "resource://gre/modules/Downloads.jsm");
 
-    var style = ' \
-      @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); \
-      #ucjsDownloadsStatusModoki { \
-        width: 100%; \
-        max-height: 100px; \
-        height: 34px; \
-      } \
-     '.replace(/\s+/g, " ");
+    var style = ` 
+      @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); 
+      #ucjsDownloadsStatusModoki { 
+        width: 100%; 
+        max-height: 100px; 
+        height: 3.5em; 
+      } 
+     `.replace(/\s+/g, " ");
     var sspi = document.createProcessingInstruction(
       'xml-stylesheet',
       'type="text/css" href="data:text/css,' + encodeURIComponent(style) + '"'
@@ -57,27 +78,26 @@ var ucjsDownloadsStatusModoki = {
     };
 
 
-    var toolbar = document.createElement("vbox");
+    var toolbar = document.createXULElement("vbox");
     toolbar.setAttribute("id", "downloadsStatusModokiBar");
-    toolbar.setAttribute("collapsed", true);
-
-    var bottombox = document.getElementById("browser-bottombox");
-    bottombox.appendChild(toolbar);
-    var browser = toolbar.appendChild(document.createElement("browser"));
+    toolbar.collapsed = true;
+    var ref = document.getElementById("fullscreen-and-pointerlock-wrapper");
+    ref.parentNode.insertBefore(toolbar, ref.nextSibling)
+    var browser = toolbar.appendChild(document.createXULElement("browser"));
     browser.setAttribute("disablehistory", true);
+    browser.setAttribute("remote", false);
     browser.setAttribute("id", "ucjsDownloadsStatusModoki");
     browser.addEventListener("load", function(event){ucjsDownloadsStatusModoki.onload(event)}, true);
-    browser.setAttribute("src", "chrome://browser/content/downloads/contentAreaDownloadsView.xul");
-
-    var menuitem = document.createElement("menuitem");
+    browser.setAttribute("src", "chrome://browser/content/downloads/contentAreaDownloadsView.xhtml?StatusModoki");
+    var menuitem = document.createXULElement("menuitem");
     menuitem.setAttribute("id", "toggle_downloadsStatusModokiBar");
     menuitem.setAttribute("type", "checkbox");
     menuitem.setAttribute("autocheck", false);
-    menuitem.setAttribute("label", "Downloads Statusbar");
+    menuitem.setAttribute("label", "Download Leiste");
     menuitem.setAttribute("checked", false);
     menuitem.setAttribute("accesskey", "D");
     menuitem.setAttribute("oncommand", "ucjsDownloadsStatusModoki.toggleDownloadsStatusModokiBar()");
-    var ref = document.getElementById("menu_customizeToolbars");
+    ref = document.getElementById("menu_customizeToolbars");
     ref.parentNode.insertBefore(menuitem, ref.previousSibling);
 
     // Ensure that the DownloadSummary object will be created asynchronously.
@@ -85,13 +105,13 @@ var ucjsDownloadsStatusModoki = {
       Downloads.getSummary(Downloads.ALL).then(summary => {
         this._summary = summary;
         return this._summary.addView(this);
-      }).then(null, Cu.reportError);
+      }).then(null, console.error);
     }
     if (!this._list) {
       Downloads.getList(Downloads.ALL).then(list => {
         this._list = list;
         return this._list.addView(this);
-      }).then(null, Cu.reportError);
+      }).then(null, console.error);
     }
 
     window.addEventListener("unload", this, false);
@@ -132,7 +152,7 @@ var ucjsDownloadsStatusModoki = {
   },
 
   onDownloadAdded: function (aDownload) {
-    Cu.import("resource://gre/modules/Services.jsm");
+    ChromeUtils.import("resource://gre/modules/Services.jsm");
     var showWhenStarting = true;
     try {
       showWhenStarting = Services.prefs.getBoolPref("userChrome.downloadsStatusModoki.showWhenStarting");
@@ -147,13 +167,13 @@ var ucjsDownloadsStatusModoki = {
           }
           if (this.numDls > 0)
             this.openDownloadsStatusModoki(false);
-        }).then(null, Cu.reportError);
+        }).then(null, console.error);
       }
     }
   },
 
   onSummaryChanged: function () {
-    Cu.import("resource://gre/modules/Services.jsm");
+    ChromeUtils.import("resource://gre/modules/Services.jsm");
     if (!this._summary)
       return;
     if (this._summary.allHaveStopped || this._summary.progressTotalBytes == 0) {
@@ -169,177 +189,107 @@ var ucjsDownloadsStatusModoki = {
 
 
 
-  // chrome://browser/content/downloads/contentAreaDownloadsView.xul
+  // chrome://browser/content/downloads/contentAreaDownloadsView.xhtml
   onload: function(event) {
     var doc = event.originalTarget;
     var win = doc.defaultView;
- 
-    var style = ' \
-      @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul); \
-      #contentAreaDownloadsView { \
-        -moz-box-orient: horizontal; \
-      } \
- \
-       *|*:root { \
-        padding: 0; \
-      } \
- \
-      #downloadsRichListBox { \
-        max-height:34px; \
-        background-color: -moz-dialog; \
-      } \
- \
-      #downloadsRichListBox .scrollbox-innerbox { \
-        display:inline !important; \
-      } \
- \
-      richlistitem { \
-        min-width:200px; \
-        max-width:200px; \
-        max-height:33px; \
-        font-size: 13px; \
-      } \
- \
-      richlistitem vbox { \
-      } \
- \
-      .downloadTypeIcon { \
-        height:24px; \
-        width: 24px; \
-        -moz-margin-end: 0px; \
-        -moz-margin-start: 1px; \
-      } \
- \
-      .downloadTarget { \
-        margin-top:2px; \
-        padding-bottom:16px; \
-      } \
- \
-      .downloadTarget:-moz-system-metric(windows-default-theme) { \
-        margin-top:2px; \
-        padding-bottom:10px; \
-      } \
- \
-      .downloadProgress { \
-        margin-top:-16px; \
-      } \
- \
-      .progress-bar { \
-        -moz-appearance:none !important; \
-        background-color: lime !important; \
-      } \
- \
-      .progress-remainder { \
-      } \
- \
-      .downloadDetails { \
-        margin-top:-17px; \
-      } \
- \
-      richlistitem[selected] .downloadDetails { \
-      opacity: 1; \
-      } \
- \
-      .downloadButton { \
-        padding: 0; \
-        margin: 0; \
-      } \
- \
-     .button-box { \
-        -moz-padding-start: 0px; \
-        -moz-padding-end: 1px; \
-      } \
- \
-     #downloadFilter { \
-       width: 150px; \
-     } \
- \
-     #ucjsDownloadsStatusModoki-closebutton { \
-        border: none; \
-        padding: 0 5px; \
-        list-style-image: url("chrome://global/skin/icons/close.png"); \
-        -moz-appearance: none; \
-        -moz-image-region: rect(0, 16px, 16px, 0); \
-      } \
- \
-      #ucjsDownloadsStatusModoki-closebutton:hover { \
-        -moz-image-region: rect(0px, 32px, 16px, 16px); \
-      } \
-     '.replace(/\s+/g, " ");
-    var sspi = doc.createProcessingInstruction(
-      'xml-stylesheet',
-      'type="text/css" href="data:text/css,' + encodeURIComponent(style) + '"'
-    );
-    doc.insertBefore(sspi, doc.documentElement);
-    sspi.getAttribute = function(name) {
-      return doc.documentElement.getAttribute(name);
-    };
+    doc.documentElement.setAttribute("ucjsDownloadsStatusModoki", "true");
 
-    var button = doc.createElement("button");
+    var button = doc.createXULElement("button");
     button.setAttribute("label", "Löschen");
+    button.setAttribute("id", "ucjs_clearListButton");
     button.setAttribute("accesskey", "L");
-    button.setAttribute("oncommand", "ucjsDownloadsStatusModoki_clearDownloads();");
     var ref = doc.getElementById("downloadCommands");
-    var vbox = doc.createElement("vbox");
-    var box = vbox.appendChild(doc.createElement("hbox"));
+    var vbox = doc.createXULElement("vbox");
+    var box = vbox.appendChild(doc.createXULElement("hbox"));
     box.appendChild(button);
-    box.appendChild(doc.createElement("spacer")).setAttribute("flex", 1);
-    var textbox = doc.createElement("textbox");
+    box.appendChild(doc.createXULElement("spacer")).setAttribute("flex", 1);
+    var textbox = doc.createElementNS("http://www.w3.org/1999/xhtml", "input");
     textbox.setAttribute("id", "downloadFilter");
     textbox.setAttribute("clickSelectsAll", true);
     textbox.setAttribute("type", "search");
     textbox.setAttribute("placeholder", "Suchen...");
-    textbox.setAttribute("oncommand", "ucjsDownloadsStatusModoki_doSearch(this.value);");
     box.appendChild(textbox);
-    var closebtn = doc.createElement("toolbarbutton");
+    var closebtn = doc.createXULElement("toolbarbutton");
     closebtn.setAttribute("id", "ucjsDownloadsStatusModoki-closebutton");
+    closebtn.setAttribute("class", "close-icon");
     closebtn.setAttribute("tooltiptext", "Download-Leiste schließen");
-    closebtn.setAttribute("oncommand", "ucjsDownloadsStatusModoki_doClose();");
     box.appendChild(closebtn);
     ref.parentNode.insertBefore(vbox, ref);
+    doc.getElementById("ucjs_clearListButton").addEventListener("command", function(event) {
+        win.ucjsDownloadsStatusModoki_clearDownloads();
+      });
+    doc.getElementById("downloadFilter")
+            .addEventListener("input", function(event) {
+        win.ucjsDownloadsStatusModoki_doSearch(event.target.value);
+      });
+    doc.getElementById("ucjsDownloadsStatusModoki-closebutton")
+            .addEventListener("command", function(event) {
+        win.ucjsDownloadsStatusModoki_doClose();
+      });
 
+/*
+    // xxx Bug 1279329 "Copy Download Link" of context menu in Library is grayed out
+    var listBox = doc.getElementById("downloadsListBox");
+    var placesView = listBox._placesView;
+    if (placesView) {
+      var place = placesView.place;
+      placesView.place= null;
+      placesView.place = place;
+    }
+*/
     win.ucjsDownloadsStatusModoki_clearDownloads = function ucjs_clearDownloads() {
       var DO_NOT_DELETE_HISTORY = true; /* custmizable true or false */
+      var richListBox = doc.getElementById("downloadsListBox");
 
-      Cu.import("resource://gre/modules/Services.jsm");
+      ChromeUtils.import("resource://gre/modules/Services.jsm");
       var places = [];
       function addPlace(aURI, aTitle, aVisitDate) {
         places.push({
           uri: aURI,
           title: aTitle,
           visits: [{
-            visitDate: aVisitDate,
+            visitDate: (aVisitDate || Date.now()) * 1000,
             transitionType: Ci.nsINavHistoryService.TRANSITION_LINK
           }]
         });
       }
       function moveDownloads2History() {
-        var richListBox = doc.getElementById("downloadsRichListBox");
+        if (DO_NOT_DELETE_HISTORY &&
+            !PrivateBrowsingUtils.isWindowPrivate(window)) {
+          try {
+            for (let element of richListBox.childNodes) {
+              let download = element._shell.download;
+              let aURI = makeURI(download.source.url);
+              // let aTitle = document.getAnonymousElementByAttribute(element, "class", "downloadTarget").value
+              let aTitle = download.target.path;
+              aTitle = aTitle.match( /[^\\]+$/i )[0];
+              aTitle = aTitle.match( /[^/]+$/i )[0];
 
-        if (DO_NOT_DELETE_HISTORY) {
-          var cont = richListBox._placesView.result.root;
-          cont.containerOpen = true;
-          for (let i = cont.childCount - 1; i > -1; i--) {
-              let node = cont.getChild(i);
-              let aURI = makeURI(node.uri);
-              let aTitle = node.title;
-              let aVisitDate = node.time;
+              let aVisitDate = download.endTime || download.startTime;
               addPlace(aURI, aTitle, aVisitDate)
-          }
+            }
+          } catch(ex) {}
         }
 
         // Clear List
         richListBox._placesView.doCommand('downloadsCmd_clearDownloads');
 
-        if (DO_NOT_DELETE_HISTORY) {
-          if (places.length > 0) {
-            var asyncHistory = Components.classes["@mozilla.org/browser/history;1"]
-                     .getService(Components.interfaces.mozIAsyncHistory);
-              asyncHistory.updatePlaces(places);
-          }
+        if (DO_NOT_DELETE_HISTORY &&
+            !PrivateBrowsingUtils.isWindowPrivate(window)) {
+          try {
+            if (places.length > 0) {
+              var asyncHistory = Components.classes["@mozilla.org/browser/history;1"]
+                       .getService(Components.interfaces.mozIAsyncHistory);
+                asyncHistory.updatePlaces(places);
+            }
+          } catch(ex) {}
         }
       }
+      var btn = doc.getElementById("ucjs_clearListButton");
+      btn.setAttribute("disabled", true);
       moveDownloads2History();
+      btn.removeAttribute("disabled");
 
       // close toolbar
       var closeWhenDone = false;
@@ -352,7 +302,7 @@ var ucjsDownloadsStatusModoki = {
     };
 
     win.ucjsDownloadsStatusModoki_doSearch = function ucjs_doSearch(filterString) {
-      var richListBox = doc.getElementById("downloadsRichListBox");
+      var richListBox = doc.getElementById("downloadsListBox");
       richListBox._placesView.searchTerm = filterString;
     };
 
