@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name           AddOnLister.uc.js
-// @compatibility  Firefox 36.*, 37.*, 60.* ,63.*
+// @compatibility  Firefox 36.*, 37.*, 60.* ,63.*, 115.*
 // @include        main
-// @version        1.0.20181102
+// @version        1.0.20230519
+// @Note           Aktualisiert von milupo - camp-firefox.de
 // ==/UserScript==
 
 var ADONLI = {
@@ -154,12 +155,12 @@ var ADONLI = {
 // ----- Ende Expertenkonfiguration
 
 	MYSTOR: {},
-	FILEUTILS: Cu.import("resource://gre/modules/FileUtils.jsm").FileUtils,
+	FILEUTILS: ChromeUtils.importESModule('resource://gre/modules/FileUtils.sys.mjs').FileUtils,
 
 	init: function() {
 		// legt verschiebbaren Button und Menü unter Extras an
 		// Button
-		if (location != "chrome://browser/content/browser.xul") return;
+		if (location != "chrome://browser/content/browser.xhtml") return;
 		try {
 			CustomizableUI.createWidget({
 				id: 'adonli-button',
@@ -184,7 +185,7 @@ var ADONLI = {
 		} catch(e) { };
 		// Menü
 		function addNode(parentId, type, attributes) {
-			let node = document.createElement(type);
+			let node = document.createXULElement(type);
 			for (let a in attributes) {
 				node.setAttribute(a, attributes[a]);
 			};
@@ -460,7 +461,7 @@ var ADONLI = {
 		for (var i = 0; i < regs.length; i++) {
 			sName = sName.replace(regs[i],"");
 		}
-		return "https://github.com/ardiman/userChrome.js/tree/master/" + sName;
+		return "https://github.com/endor8/userChrome.js/tree/master/" + sName;
 	},
 
 	writeAddons: function(file,format){
@@ -468,7 +469,7 @@ var ADONLI = {
 		var output = "";
 		var addontpl = "";
 		var addontplwithouturl = "";
-		Cu.import("resource://gre/modules/osfile.jsm");
+		//Cu.import("resource://gre/modules/osfile.jsm");
 
 		addontpl = this.MYTPLS[format].tpladdon;
 		addontplwithouturl = this.MYTPLS[format].tpladdon_without_url;
@@ -534,7 +535,7 @@ var ADONLI = {
 		output += this.MYTPLS[format].outro+"\n";
 		let encoder = new TextEncoder();
 		let myarray = encoder.encode(output);
-		let promise = OS.File.writeAtomic(file, myarray);
+		let promise = IOUtils.write(file, myarray);
 		return output;
 	},
 
@@ -558,12 +559,14 @@ var ADONLI = {
 			case 1:
 				if (this.MYTPLS[format].opendatauri) {
 					var datastring = myoutput.replace(/\n/g,"%0A").replace(/#/g,"%23");
-					getBrowser().selectedTab = getBrowser().addTrustdTab('data:text/plain;charset=utf-8,' + datastring);
+					// getBrowser().selectedTab = getBrowser().addTrustedTab('data:text/plain;charset=utf-8,' + datastring);
+					openTrustedLinkIn('data:text/plain;charset=utf-8,' + datastring, "tab");
 					XULBrowserWindow.statusTextField.label = "Export nach  »"+ OpenPath + "« ist erfolgt.";
 				} else {
 					// alert sorgt ein wenig dafür, dem OS Zeit fürs Speichern der Datei zu geben ...
 					alert("Export nach »"+ OpenPath + "« ("+ format + "-format) ist erfolgt.");
-					getBrowser().selectedTab = getBrowser().addTrustedTab(OpenPath);
+					openTrustedLinkIn(OpenPath, "tab");
+					//getBrowser().selectedTab = getBrowser().addTrustedTab(OpenPath);
 				}
 				break;
 			default:
