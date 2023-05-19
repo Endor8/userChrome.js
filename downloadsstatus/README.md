@@ -7,3 +7,5 @@ Das **Ergebnis des Skripts**:
 
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils.
+Die Datei ucjsDownloadsStatusModoki.uc.js.css muss über -bzw.     
+mit der userChrome.css Datei importiert - geladen werden.
