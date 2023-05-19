@@ -1,0 +1,62 @@
+@charset "utf-8";
+/*@version       2023/05/18 fix forfirefox113, flex-direction, frex-wrap*/
+/*@version       2023/04/25 fix forfirefox113, inline-blockfirefox113*/
+/*@version       2023/03/09 Bug 1820534 - Move front-end to modern flexbox.*/
+/*@version       2022/11/24 21:00 Bug 1802142 - Remove no longer used browser-bottombox*/
+/*@version       2022/11/20 19:00 107+ wip*/
+/*@version       2022/02/16 Bug 1747422 - Remove preprocessor variable use from downloads CSS*/
+/*@version       2020/03/13 fix for 74, broken listitem orient due to Bug 1606130
+/*@version       2019/12/11 fix for 73 Bug 1601094 - Rename remaining .xul files to .xhtml in browser */
+/*@version        2019/10/20 12:30*/
+
+/*FullScreen*/
+/*DOMFullScreen*/
+:root[inFullscreen] #downloadsStatusModokiBar,
+:root[inDOMFullscreen] #downloadsStatusModokiBar {
+  display: none !important;
+}
+
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] { 
+  /*-moz-box-orient: horizontal;*/ 
+  flex-direction: row;
+  background-color: var(--in-content-box-background) !important; 
+  padding: 0 !important; 
+} 
+
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] > stack:first-child {
+}
+
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] #downloadsListBox { 
+  overflow-y: auto !important; 
+  scrollbar-width: thin;
+  border: none !important;
+  flex-direction: row;
+  flex-wrap: wrap;
+} 
+
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] richlistitem:not([hidden]) { 
+	width: 276px;
+  border-width: 0 !important;
+  height: 3.0em !important;
+  min-height: 3.0em !important;
+} 
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] .downloadMainArea {
+}
+
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] .downloadContainer {
+	max-width: 200px !important;
+}
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] .downloadTypeIcon {
+	margin-inline-end: 4px !important;
+	margin-inline-start: 4px !important;
+}
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] .downloadButton
+{
+	width: 36px !important;
+	padding-inline-end: 4px !important;
+	padding-inline-start: 4px !important;
+}
+#contentAreaDownloadsView[ucjsDownloadsStatusModoki] #downloadsListEmptyDescription
+{
+	flex: 1 !important;
+}
