@@ -73,7 +73,7 @@ oder
 **Portable_Firefox\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
    
 ###### Datei ist hier auch zum Herunterladen verfügbar:
-https://github.com/Endor8/userChrome.js/tree/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/Dateien
+[Dateien](https://github.com/Endor8/userChrome.js/tree/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/Dateien)
 
 ###### Eine aktuelle Sammlung von Scripten gibt es hier:
 https://github.com/ardiman/userChrome.js
