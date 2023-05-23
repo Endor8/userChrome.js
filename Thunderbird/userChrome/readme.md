@@ -40,7 +40,7 @@ Die Datei **config.js** und der Ordner **userChromeJS** müssen in den **Thunder
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot4-400px.png?raw=true)  
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot4-600px.png?raw=true)
 
-Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults\pref**
+Die Datei **config-prefs.js** muss in den **Thunderbird Installationsordner\defaults\pref**
 
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot5-400px.png?raw=true)     
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot5-600px.png?raw=true)
