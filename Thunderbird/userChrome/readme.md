@@ -66,7 +66,7 @@ In den **Profilordner\chrome** gehört die Datei:
 
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
-**%appdata%\Mozilla\Thunderbird\Profiles\xxx.default**                                     
+**%appdata%\Mozilla\Thunderbird\Profiles\xxx.default-release**                                     
 (xxx steht für eine zufällige Zeichenfolge und ist bei jedem anders)
 
 oder
@@ -74,9 +74,6 @@ oder
    
 ###### Datei ist hier auch zum Herunterladen verfügbar:
 [Dateien](https://github.com/Endor8/userChrome.js/tree/master/Thunderbird/userChrome/Dateien)
-
-###### Eine aktuelle Sammlung von Scripten gibt es hier:
-https://github.com/ardiman/userChrome.js
 
 ###### Informationen und Hilfe siehe hier:
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
