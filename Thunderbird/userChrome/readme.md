@@ -16,14 +16,7 @@
 
   #### 4. Datei config-prefs.js  
 
-  #### Hinweis:
-  Damit diese Methode ab Thunderbird 62 funktioniert, muss das mit Thunderbird 62 eingeführte    
-  Sandboxing der AutoConfig deaktiviert werden. Dazu musste in der Datei config-prefs.js    
-  folgende Zeile eingefügt werden:  
-  ```CSS
-  pref("general.config.sandbox_enabled", false);
-  ``` 
-## $\textcolor{red}{\textbf{Achtung!}}$    
+ ## $\textcolor{red}{\textbf{Achtung!}}$    
   **Jedem sollte aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
   **Es wird keinerlei Haftung übernommen!**    
