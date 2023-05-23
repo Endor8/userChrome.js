@@ -53,7 +53,7 @@ oder
 **C:\Program Files (x86)\Mozilla Thunderbird (bei 32bit)**
 
 oder 
-**Portable_Thunderbird\Thunderbird** beim portablen Thunderbird von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
+**Portable_Thunderbird\Thunderbird** beim portablen Thunderbird
 
 In den **Profilordner\chrome** gehört die Datei:
 **userChrome.js**
@@ -70,7 +70,7 @@ In den **Profilordner\chrome** gehört die Datei:
 (xxx steht für eine zufällige Zeichenfolge und ist bei jedem anders)
 
 oder
-**Portable_Thunderbird\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
+**Portable_Thunderbird\Profilordner** beim portablen Thunderbird
    
 ###### Datei ist hier auch zum Herunterladen verfügbar:
 [Dateien](https://github.com/Endor8/userChrome.js/tree/master/Thunderbird/userChrome/Dateien)
