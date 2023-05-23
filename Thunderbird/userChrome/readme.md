@@ -24,24 +24,26 @@
   pref("general.config.sandbox_enabled", false);
   ``` 
     
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Warnung.png?raw=true)     
+![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Warnung.png?raw=true)     
   **Jedem sollte aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
   **Es wird keinerlei Haftung übernommen!**    
   
-#### Direkter Download: **⇒** [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/firefox-anpassungen.zip)
+#### Direkter Download: **⇒** [Thunderbird-Anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/Dateien/Thunderbird-Anpassungen.zip)
+
+#### Ab Thunderbird 113 **⇒** [Thunderbird-Anpassungen-neu.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/Dateien/Thunderbird-Anpassungen-neu.zip)
 
 ##### Wo müssen die Dateien hin
 
 Die Datei **config.js** und der Ordner **userChromeJS** müssen in den **Firefox Installationsordner**
-
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-400px.png?raw=true)  
-[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot4-600px.png?raw=true)
+      
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot4-400px.png?raw=true)  
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot4-600px.png?raw=true)
 
 Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults\pref**
 
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot5-400px.png?raw=true)     
-[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot5-600px.png?raw=true)
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot5-400px.png?raw=true)     
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot5-600px.png?raw=true)
 
 ##### Wo finde ich den Firefox Installationsordner
 
@@ -56,11 +58,11 @@ oder
 In den **Profilordner\chrome** gehört die Datei:
 **userChrome.js**
 
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot2-400px.png?raw=true)   
-[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot2-600px.png?raw=true)
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot2-400px.png?raw=true)   
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot2-600px.png?raw=true)
 
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot1-400px.png?raw=true)      
-[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Screenshot1-600px.png?raw=true)
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot1-400px.png?raw=true)      
+[vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/images/Screenshot1-600px.png?raw=true)
 
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
@@ -71,7 +73,7 @@ oder
 **Portable_Firefox\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
    
 ###### Datei ist hier auch zum Herunterladen verfügbar:
-https://github.com/Endor8/userChrome.js/tree/master/userChrome/Dateien
+[Dateien](https://github.com/Endor8/userChrome.js/tree/master/Thunderbird/Thunderbird%20-%20Beta%20%2B%20Daily/userChrome/Dateien)
 
 ###### Eine aktuelle Sammlung von Scripten gibt es hier:
 https://github.com/ardiman/userChrome.js
