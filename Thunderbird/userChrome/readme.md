@@ -23,8 +23,7 @@
   ```CSS
   pref("general.config.sandbox_enabled", false);
   ``` 
-    
-![Screenshot](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/userChrome/images/Warnung.png?raw=true)     
+## $\textcolor{red}{\textsf{Achtung!}}$     
   **Jedem sollte aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
   **Es wird keinerlei Haftung übernommen!**    
