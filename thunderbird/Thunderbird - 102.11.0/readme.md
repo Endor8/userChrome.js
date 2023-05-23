@@ -67,9 +67,9 @@ in
 
 Das **Ergebnis des Skripts**:
 
-![Screenshot AddonLister](https://github.com/ardiman/userChrome.js/raw/master/addonlister/scr_addonlister.png)
+![Screenshot AddonLister](https://github.com/Endor8/userChrome.js/raw/master/thunderbird/Screenshots/scr_addonlister.png)
 
-![Screenshot Menü AddonLister](https://github.com/ardiman/userChrome.js/raw/master/addonlister/scr_addonlister_menu.png)
+![Screenshot Menü AddonLister](https://github.com/Endor8/userChrome.js/raw/master/thunderbird/Screenshots/scr_addonlister_menu.png)
 
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils und ziehe den Button an die gewünschte Stelle. 
