@@ -1,6 +1,6 @@
 ### userChrome Scripte -  Verwendung in Thunderbird   
 
-##### Herunterladen und Entpacken der ZIP-Datei: firefox-anpassungen.zip
+##### Herunterladen und Entpacken der ZIP-Datei: Thunderbird-Anpassungen.zip
 
 #### Das Archiv enthält folgendes:   
 
@@ -17,7 +17,7 @@
   #### 4. Datei config-prefs.js  
 
   #### Hinweis:
-  Damit diese Methode ab Firefox 62 funktioniert, muss das mit Firefox 62 eingeführte    
+  Damit diese Methode ab Thunderbird 62 funktioniert, muss das mit Thunderbird 62 eingeführte    
   Sandboxing der AutoConfig deaktiviert werden. Dazu musste in der Datei config-prefs.js    
   folgende Zeile eingefügt werden:  
   ```CSS
@@ -35,7 +35,7 @@
 
 ##### Wo müssen die Dateien hin
 
-Die Datei **config.js** und der Ordner **userChromeJS** müssen in den **Firefox Installationsordner**
+Die Datei **config.js** und der Ordner **userChromeJS** müssen in den **Thunderbird Installationsordner**
       
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot4-400px.png?raw=true)  
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot4-600px.png?raw=true)
@@ -45,15 +45,15 @@ Die Datei **config-prefs.js** muss in den **Firefox Installationsordner\defaults
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot5-400px.png?raw=true)     
 [vergrößern](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/userChrome/images/Screenshot5-600px.png?raw=true)
 
-##### Wo finde ich den Firefox Installationsordner
+##### Wo finde ich den Thunderbird Installationsordner
 
-Unter **C:\Program Files\Mozilla Firefox (bei 64bit)**
-
-oder 
-**C:\Program Files (x86)\Mozilla Firefox (bei 32bit)**
+Unter **C:\Program Files\Mozilla Thunderbird (bei 64bit)**
 
 oder 
-**Portable_Firefox\Firefox** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
+**C:\Program Files (x86)\Mozilla Thunderbird (bei 32bit)**
+
+oder 
+**Portable_Thunderbird\Thunderbird** beim portablen Thunderbird von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
 
 In den **Profilordner\chrome** gehört die Datei:
 **userChrome.js**
@@ -66,11 +66,11 @@ In den **Profilordner\chrome** gehört die Datei:
 
 **Der Profilordner ist gewöhnlich zu finden unter:**
 
-**%appdata%\Mozilla\Firefox\Profiles\xxx.default**                                     
+**%appdata%\Mozilla\Thunderbird\Profiles\xxx.default**                                     
 (xxx steht für eine zufällige Zeichenfolge und ist bei jedem anders)
 
 oder
-**Portable_Firefox\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
+**Portable_Thunderbird\Profilordner** beim portablen Firefox von [hier](https://mozhelp.dynvpn.de/dateien/index.php?path=Programme/)
    
 ###### Datei ist hier auch zum Herunterladen verfügbar:
 [Dateien](https://github.com/Endor8/userChrome.js/tree/master/Thunderbird/userChrome/Dateien)
