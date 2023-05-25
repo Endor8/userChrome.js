@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name    	    extras_config_menu-begeTB.uc.js
-// @compatibility	Thunderbird 91
-// @include       	main
+// @name            extras_config_menu-begeTB.uc.js
+// @compatibility    Thunderbird 91
+// @include           main
 // @version         (1.0.20190504 ursprünglich für Firefox) überarbeitet von bege für Thunderbird mit Tipps aus
 //                  dem thunderbird-mail.de Forum
-//					Aktuallisiert am 08.11.2021
+//                    Aktuallisiert am 08.11.2021
 // ==/UserScript==
 
 var uProfMenu = {
@@ -21,7 +21,7 @@ var uProfMenu = {
   // In der  Zeile (22) 'menu' eintragen, damit es unter "Extras" als Menue erscheint, sonst die id des gewuenschten
   // Elements *nach* dem der Button erscheinen soll (z.B. 'urlbar', 'searchbar', 'undoclosetab-button','abp-toolbarbutton')
   // Bitte nicht so etwas wie die Menue- oder Navigationsleiste (sondern einen Menuepunkt oder einen Button mit id auf diesen Leisten) eintragen:
-  warpmenuto: 'task-tab-button',
+  warpmenuto: 'browser-toolbox-button',
  // Unter Linux sollte/kann versucht werden, die userChromeJS-Skripte zu sortieren, unter Windows ist das evtl. nicht noetig (die Sortierung wird Gross- und Kleinschreibung *nicht* beruecksichtigen - dazu wird die sort()-Funktion entsprechend mit einer Vergleichsfunktion aufgerufen)
   sortScripts: 0,   // 1 zum Erzwingen der Sortierung
   // Einbindung GM-Skripte-Ordner (0: nein, 1: Greasemonkey [Profil-Verzeichnis], 2: UserScriptLoader [Chrome-Verzeichnis], 3: Scriptish [Profil-Verzeichnis]):
@@ -32,7 +32,7 @@ var uProfMenu = {
   // - Zum Ausblenden: abouts: [],
   // - Damit die about:-Seiten nicht als Untermenue, sondern direkt als Menuepunkte aufgefuehrt werden, muss das erste Element '0' sein:
   // abouts: ['0','about:config','about:about','about:cache','about:certificate','about:checkerboard','about:crashes','about:debugging','about:devtools','about:memory','about:networking','about:performance','about:policies','about:profiles','about:serviceworkers','about:support','about:telemetry','about:url-classifier','about:webrtc'],
-   abouts: ['about:about','about:cache','about:config','about:crashes','about:debugging','about:memory','about:performance','about:profiles','about:support'],
+   abouts: ['about:about','about:cache','about:config','about:crashes','about:debugging','about:import','about:memory','about:performance','about:profiles','about:preferences','about:support'],
    // abouts: [],
   // Einbindung config-Dateien wie user.js etc. (0: nein, 1: ja)
    configFiles: 0,
@@ -58,7 +58,7 @@ var uProfMenu = {
                        "von 'zielmenu' kontrollieren.");
         return;
       }
-      var menu = zielmenu.appendChild(this.createME("menu","Config-Menü",0,0,"ExtraConfigMenu"));
+      var menu = zielmenu.appendChild(this.createME("menu","Config Men\u00FC",0,0,"ExtraConfigMenu"));
       menu.setAttribute("class","menu-iconic");
       menu.setAttribute("ondblclick","tabmail.openTab('contentTab', { url:'about:config'});");
       menu.setAttribute("tooltiptext","Doppelklick öffnet about:config");
@@ -71,13 +71,15 @@ var uProfMenu = {
                        "von 'warpmenuto' kontrollieren.");
         return;
       }
-      var menu = zielmenu.parentNode.insertBefore(document.createXULElement('toolbarbutton'), zielmenu.nextSibling);
+    var menu = zielmenu.parentNode.insertBefore(document.createXULElement('toolbarbutton'), zielmenu.nextSibling);
       menu.setAttribute("id", "ExtraConfigMenu-button");
       menu.setAttribute("class", "toolbarbutton-1");
       menu.setAttribute("type", "menu");
-      menu.setAttribute("tooltiptext", "Extra Config Menü\nMittelklick \öffnet about:config");
+      menu.setAttribute("tooltiptext", "Extra Config Menü\nMittelklick öffnet about:config");
       menu.setAttribute("onclick", "if (event.button === 1 && !this.open) {tabmail.openTab('contentTab', { url:'about:config'});};");
     }
+                    
+            
     //ab hier ist alles gleich, egal ob Button oder Menue
     var css = " \
       #ExtraConfigMenu, #ExtraConfigMenu-button { \
@@ -104,9 +106,9 @@ var uProfMenu = {
        
     // Einbindung von Konfigdateien
     menupopup.appendChild(this.createME("menuitem","userChrome.js","uProfMenu.edit(0,'userChrome.js');","uProfMenu_edit",0));
-	menupopup.appendChild(this.createME("menuitem","userChrome.css","uProfMenu.edit(0,'userChrome.css');","uProfMenu_edit",0));
+    menupopup.appendChild(this.createME("menuitem","userChrome.css","uProfMenu.edit(0,'userChrome.css');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userContent.css","uProfMenu.edit(0,'userContent.css');","uProfMenu_edit",0));
-	menupopup.appendChild(this.createME("menuitem","userChromeShadow.css","uProfMenu.edit(0,'userChromeShadow.css');","uProfMenu_edit",0));	
+    menupopup.appendChild(this.createME("menuitem","userChromeShadow.css","uProfMenu.edit(0,'userChromeShadow.css');","uProfMenu_edit",0));    
     menupopup.appendChild(this.createME("menuitem","prefs.js","uProfMenu.edit(1,'prefs.js');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","user.js","uProfMenu.edit(1,'user.js');","uProfMenu_edit"),0);
     // Ende Einbindung von Konfigdateien
@@ -127,8 +129,8 @@ var uProfMenu = {
     }
     if (this.cssOrdner) {
     menupopup.appendChild(this.createME("menuitem","CSS-Ordner","uProfMenu.dirOpen('C:\\\\Dropbox\\\\Chrome\\\\Thunderbird\\\\CSS-Ordner\\\\css-dateien');","uProfMenu_folder"),0);
-	menupopup.appendChild(this.createME("menuitem","CSSWeb-Ordner","uProfMenu.dirOpen('C:\\\\Dropbox\\\\Chrome\\\\Thunderbird\\\\CSS-Ordner\\\\css-Webdateien');","uProfMenu_folder"),0);
-	}
+    menupopup.appendChild(this.createME("menuitem","CSSWeb-Ordner","uProfMenu.dirOpen('C:\\\\Dropbox\\\\Chrome\\\\Thunderbird\\\\CSS-Ordner\\\\css-Webdateien');","uProfMenu_folder"),0);
+    }
     menupopup.appendChild(this.createME("menuitem","Chromeordner","uProfMenu.prefDirOpen('UChrm');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Profilordner","uProfMenu.prefDirOpen('ProfD');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Addonordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('ProfD')+uProfMenu.getDirSep()+'extensions');","uProfMenu_folder"),0);
