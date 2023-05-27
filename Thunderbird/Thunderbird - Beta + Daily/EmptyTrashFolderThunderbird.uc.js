@@ -1,6 +1,7 @@
 // EmptyTrashFolderThunderbird.uc.js   Erstellt von Thoams s.
 // https://www.thunderbird-mail.de/forum/thread/82717-funktion-f%C3%BCr-script-gesucht-userbutton-f%C3%BCr-ordner-leeren-erstellen/
 // geändert von EDV-Oldie für TB ab Version 91 am 24.11.2021
+// aktualisiert von milupo für Thunderbird 115 am 27.05.2023
 
 "use strict";
 (function() {
@@ -20,7 +21,7 @@
         class: 'toolbarbutton-1',
         onclick:
         'if (event.button == 0 || event.button == 1) { \
-            gFolderTreeController.emptyTrash(); \
+            goDoCommand("cmd_emptyTrash"); \
         };'
     };
 
