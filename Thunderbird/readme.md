@@ -7,7 +7,7 @@ https://www.thunderbird-mail.de/forum/thread/88420-liste-der-userscripts-ab-vers
 
 und wurden vom **edvoldi** und **milupo** zur Verfügung gestellt.
 
-Es wurden auch ein paar scripte aus der Sammlung von Aris übernommen.    
+Es wurden auch ein paar Scripte aus der Sammlung von **Aris** übernommen.    
 https://github.com/Aris-t2/CustomJSforFx/tree/master/scripts_thunderbird     
 
 Ein paar wenige sind von mir. 
