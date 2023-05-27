@@ -10,6 +10,7 @@
 //  und/oder:    goDoCommand("cmd_deleteJunk"); \
 //    
 // geändert von EDV-Oldie für TB ab Version 91 am 24.11.2021
+// aktualisiertt von milupo für TB ab Version 115 am 27.05.2023
 
 
 "use strict";
@@ -30,7 +31,7 @@
         class: 'toolbarbutton-1',
         onclick:
         'if (event.button == 0 || event.button == 1) { \
-            gFolderTreeController.emptyTrash(); \
+            goDoCommand("cmd_deleteJunk"); \
         };'
     };
 
