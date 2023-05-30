@@ -16,7 +16,7 @@
 
   #### 4. Datei config-prefs.js  
 
- ## $\textcolor{red}{\textbf{Achtung!}}$    
+  **$\textcolor{red}{\textbf{Achtung!}}$**    
   **Jedem sollte aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
   **Es wird keinerlei Haftung übernommen!**    
@@ -69,4 +69,8 @@ oder
 
 ###### Informationen und Hilfe siehe hier:
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
+
+**$\textcolor{red}{\textbf{Hinweis:}}$**    
+Die **Script Codierung** muss immer in **Unicode (UTF-8)** sein!     
+Sonst funktionieren die Scripte nicht!    
 
