@@ -17,14 +17,7 @@
   #### 4. Datei config-prefs.js  
 
   #### Hinweis:
-  Damit diese Methode ab Firefox 62 funktioniert, muss das mit Firefox 62 eingeführte    
-  Sandboxing der AutoConfig deaktiviert werden. Dazu musste in der Datei config-prefs.js    
-  folgende Zeile eingefügt werden:  
-  ```CSS
-  pref("general.config.sandbox_enabled", false);
-  ``` 
-    
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/userChrome/images/Warnung.png?raw=true)     
+  ## $\textcolor{red}{\textbf{Achtung!}}$
   **Jedem sollte aber klar sein, dass die Verwendung der Scripte tendenziell unsicher(er) ist!**    
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
   **Es wird keinerlei Haftung übernommen!**    
@@ -78,4 +71,8 @@ https://github.com/ardiman/userChrome.js
 
 ###### Informationen und Hilfe siehe hier:
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
+
+#### Hinweis:
+Die **Script Codierung** muss immer in **Unicode (UTF-8)** sein!
+Sonst funktionieren die Scripte nicht!
 
