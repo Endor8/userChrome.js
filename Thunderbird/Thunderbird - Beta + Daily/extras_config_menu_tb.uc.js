@@ -1,4 +1,4 @@
-​// ==UserScript==
+// ==UserScript==
 // @name            extras_config_menu-begeTB.uc.js
 // @compatibility   Thunderbird 102+
 // @include         main
