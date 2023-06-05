@@ -1,7 +1,7 @@
 ​// ==UserScript==
 // @name            extras_config_menu-begeTB.uc.js
-// @compatibility    Thunderbird 102+
-// @include           main
+// @compatibility   Thunderbird 102+
+// @include         main
 // @version         (1.0.20190504 ursprünglich für Firefox) überarbeitet von bege für Thunderbird mit Tipps aus
 //                  dem thunderbird-mail.de Forum
 //                  Aktuallisiert am 05.06.2023 von Endor
