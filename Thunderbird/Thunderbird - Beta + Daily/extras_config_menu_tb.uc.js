@@ -1,10 +1,10 @@
-// ==UserScript==
+​// ==UserScript==
 // @name            extras_config_menu-begeTB.uc.js
-// @compatibility    Thunderbird 91
+// @compatibility    Thunderbird 102+
 // @include           main
 // @version         (1.0.20190504 ursprünglich für Firefox) überarbeitet von bege für Thunderbird mit Tipps aus
 //                  dem thunderbird-mail.de Forum
-//                    Aktuallisiert am 08.11.2021
+//                  Aktuallisiert am 05.06.2023 von Endor
 // ==/UserScript==
 
 var uProfMenu = {
@@ -28,6 +28,7 @@ var uProfMenu = {
   gmOrdner: 0,
   // Einbindung CSS-Ordner (0: nein, 1: UserCSSLoader-Ordner im Chrome-Verzeichnis):
   cssOrdner: 1,
+  CSSWebOrdner: 1,
   // In einer der folgenden Zeilen gueltige about:Adressen eintragen, die ebenfalls aufgerufen werden sollen.
   // - Zum Ausblenden: abouts: [],
   // - Damit die about:-Seiten nicht als Untermenue, sondern direkt als Menuepunkte aufgefuehrt werden, muss das erste Element '0' sein:
@@ -60,7 +61,7 @@ var uProfMenu = {
       }
       var menu = zielmenu.appendChild(this.createME("menu","Config Men\u00FC",0,0,"ExtraConfigMenu"));
       menu.setAttribute("class","menu-iconic");
-      menu.setAttribute("ondblclick","tabmail.openTab('contentTab', { url:'about:config'});");
+      menu.setAttribute("ondblclick","openTrustedLinkIn('about:config', 'tab');");
       menu.setAttribute("tooltiptext","Doppelklick öffnet about:config");
      } else {
       // als Button nach dem per warpmenuto gewaehlten Element anlegen (s. Kommentar ueber warpmenuto im Konfigurationsabschnitt)
@@ -76,10 +77,9 @@ var uProfMenu = {
       menu.setAttribute("class", "toolbarbutton-1");
       menu.setAttribute("type", "menu");
       menu.setAttribute("tooltiptext", "Extra Config Menü\nMittelklick öffnet about:config");
-      menu.setAttribute("onclick", "if (event.button === 1 && !this.open) {tabmail.openTab('contentTab', { url:'about:config'});};");
+      menu.setAttribute("onclick", "if (event.button == 1) openTrustedLinkIn('about:config', 'tab');");
     }
-                    
-            
+              
     //ab hier ist alles gleich, egal ob Button oder Menue
     var css = " \
       #ExtraConfigMenu, #ExtraConfigMenu-button { \
@@ -91,24 +91,27 @@ var uProfMenu = {
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri,sss.AGENT_SHEET);
-    menu.setAttribute("onpopupshowing","uProfMenu.getScripts(0)");
+    menu.setAttribute("onpopupshowing","uProfMenu.getScripts(0);uProfMenu.getCss(3);uProfMenu.getCss(4);uProfMenu.getCss(5)");
     var menupopup = menu.appendChild(this.createME("menupopup",0,0,0,"ExtraConfigMenu-popup"));
-
     // Anlegen von Untermenues fuer die userChromeJS-Skripte (befuellt werden sie spaeter)
     var submenu=menupopup.appendChild(this.createME("menu","uc.js",0,0,"submenu-ucjs"));
     var submenupopup = submenu.appendChild(this.createME("menupopup",0,0,0,"submenu-ucjs-items"));
-    // var submenu=menupopup.appendChild(this.createME("menu","uc.xul",0,0,"submenu-ucxul"));
-    // var submenupopup = submenu.appendChild(this.createME("menupopup",0,0,0,"submenu-ucxul-items"));
+    var submenu = menupopup.appendChild(this.createME("menu","css",0,0,"submenu-css"));
+    var submenupopup = submenu.appendChild(this.createME("menupopup",0,0,0,"submenu-css-items"));
+    var submenu = menupopup.appendChild(this.createME("menu","CSSShadow",0,0,"submenu-CSSShadow"));
+    var submenupopup = submenu.appendChild(this.createME("menupopup",0,0,0,"submenu-CSSShadow-items"));
+    var submenu = menupopup.appendChild(this.createME("menu","cssweb",0,0,"submenu-cssweb"));
+    var submenupopup = submenu.appendChild(this.createME("menupopup",0,0,0,"submenu-cssweb-items"));
     if (this.enableScriptsToClip) menupopup.appendChild(this.createME("menuitem","Skriptliste in Zwischenablage","uProfMenu.getScripts(1)","uProfMenu_clipboard",0));
      // Ende Anlegen von Untermenues fuer die userChromeJS-Skripte
      
     menupopup.appendChild(document.createXULElement('menuseparator'));
        
     // Einbindung von Konfigdateien
-    menupopup.appendChild(this.createME("menuitem","userChrome.js","uProfMenu.edit(0,'userChrome.js');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userChrome.css","uProfMenu.edit(0,'userChrome.css');","uProfMenu_edit",0));
+    menupopup.appendChild(this.createME("menuitem","userChromeShadow.css","uProfMenu.edit(0,'userChromeShadow.css');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userContent.css","uProfMenu.edit(0,'userContent.css');","uProfMenu_edit",0));
-    menupopup.appendChild(this.createME("menuitem","userChromeShadow.css","uProfMenu.edit(0,'userChromeShadow.css');","uProfMenu_edit",0));    
+    menupopup.appendChild(this.createME("menuitem","userChrome.js","uProfMenu.edit(0,'userChrome.js');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","prefs.js","uProfMenu.edit(1,'prefs.js');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","user.js","uProfMenu.edit(1,'user.js');","uProfMenu_edit"),0);
     // Ende Einbindung von Konfigdateien
@@ -127,14 +130,14 @@ var uProfMenu = {
         menupopup.appendChild(this.createME("menuitem","Scriptish Skripte","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('ProfD')+uProfMenu.getDirSep()+'scriptish_scripts');","uProfMenu_folder"),0);
         break;
     }
-    if (this.cssOrdner) {
-    menupopup.appendChild(this.createME("menuitem","CSS-Ordner","uProfMenu.dirOpen('C:\\\\Dropbox\\\\Chrome\\\\Thunderbird\\\\CSS-Ordner\\\\css-dateien');","uProfMenu_folder"),0);
-    menupopup.appendChild(this.createME("menuitem","CSSWeb-Ordner","uProfMenu.dirOpen('C:\\\\Dropbox\\\\Chrome\\\\Thunderbird\\\\CSS-Ordner\\\\css-Webdateien');","uProfMenu_folder"),0);
-    }
+    
+    menupopup.appendChild(this.createME("menuitem","CSSShadow-Ordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'CSSShadow');","uProfMenu_folder"),0);
+    menupopup.appendChild(this.createME("menuitem","CSSWeb-Ordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'CSSWeb');","uProfMenu_folder"),0);
+    menupopup.appendChild(this.createME("menuitem","CSS-Ordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'css');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Chromeordner","uProfMenu.prefDirOpen('UChrm');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Profilordner","uProfMenu.prefDirOpen('ProfD');","uProfMenu_folder"),0);
-    menupopup.appendChild(this.createME("menuitem","Addonordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('ProfD')+uProfMenu.getDirSep()+'extensions');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Installationsordner","uProfMenu.prefDirOpen('CurProcD');","uProfMenu_folder"),0);
+    menupopup.appendChild(this.createME("menuitem","Addonordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('ProfD')+uProfMenu.getDirSep()+'extensions');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Startup-Cacheordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('ProfLD')+uProfMenu.getDirSep()+'startupCache');","uProfMenu_folder"),0);
     // Ende Einbindung von Ordnern
     
@@ -188,7 +191,7 @@ var uProfMenu = {
   },
 
 
-move:function(OpenMode,Filename){
+/* move:function(OpenMode,Filename){
     var Path = "";
     var dSep = this.getDirSep();  // die Trennzeichen zwischen Ordnern abhaengig vom Betriebssystem machen
     switch (OpenMode){
@@ -208,9 +211,21 @@ move:function(OpenMode,Filename){
       case 2:
         var Path = Filename;
         break;
+      //Current is CSS folder
+      case 3:
+        var Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSS" + dSep + Filename;
+        break;
+      //Current is CSSWeb folder
+      case 4:
+        var Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSWeb" + dSep + Filename;
+        break;
+        //Current is CSSShadow folder
+      case 5:
+        var Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSShadow" + dSep + Filename;
+        break;
     }
     fs.rename(Path, "F:\\Users\\bege\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\487kit50.Quantum\\chrome\\JS.aus\\" + Filename);
-  },
+  }, */
 
 
   edit:function(OpenMode,Filename){
@@ -233,9 +248,17 @@ move:function(OpenMode,Filename){
       case 2:
         var Path = Filename;
         break;
-      //Current is Chrome Directory
+      //Current is CSS folder
       case 3:
-        var Path = this.getPrefDirectoryPath("UChrm") + dSep + Filename;
+        var Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSS" + dSep + Filename;
+        break;
+      //Current is CSSWeb folder
+      case 4:
+        var Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSWeb" + dSep + Filename;
+        break;
+        //Current is CSSShadow folder
+      case 5:
+        var Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSShadow" + dSep + Filename;
         break;
     }
     this.launch(this.TextOpenExe,Path);
@@ -309,7 +332,6 @@ move:function(OpenMode,Filename){
     return(a==b)?0:(a>b)?1:-1;
   },
 
-
   getScripts:function(iType) {
     // Arrays (jeweils ein Array fuer uc.js und uc.xul) nehmen Namen der gefundenen Skripte auf
     let ucJsScripts = [];
@@ -318,18 +340,14 @@ move:function(OpenMode,Filename){
     let extjs = /\.uc\.js$/i;
     // let extxul= /\.uc\.xul$/i;
     let aFolder = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
-    if (this.jsSubfolder.length != 0) {
-       aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path+uProfMenu.getDirSep()+this.jsSubfolder);
-    } else {
-        aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path);
-    };
+    aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path);
     // files mit Eintraegen im Chrome-Ordner befuellen
     let files = aFolder.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
     // Ordner bzw. files durchlaufen und kontrollieren, ob gesuchte Dateien dabei sind
     while (files.hasMoreElements()) {
       let file = files.getNext().QueryInterface(Ci.nsIFile);
       // keine gewuenschte Datei, deshalb continue
-      if (!extjs.test(file.leafName) /* && !extxul.test(file.leafName) */) continue;
+      //if (!extjs.test(file.leafName) && !extxul.test(file.leafName)) continue;
       // uc.js gefunden -> im Array ablegen
       if (extjs.test(file.leafName)) ucJsScripts.push(file.leafName);
       // uc.xul gefunden -> im Array ablegen
@@ -348,7 +366,40 @@ move:function(OpenMode,Filename){
       Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper).copyString(result);
     }
   },
-
+  
+  getCss:function(iType) {
+    // Array nimmt Namen der gefundenen css-Dateien auf
+    let cssFiles = [];
+    // Suchmuster, also die Dateierweiterung css
+    let extcss = /\.css$/i;
+    let aFolder = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
+    if (iType==3) {
+      aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path+this.getDirSep()+"CSS");
+     } else if (iType==4) {
+      aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path+this.getDirSep()+"CSSWeb");
+    }  else if (iType==5) {
+      aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path+this.getDirSep()+"CSSShadow");
+    }
+    // files mit Eintraegen im CSS- bzw. CSSWeb-Ordner befuellen
+    let files = aFolder.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
+    // Ordner bzw. files durchlaufen und kontrollieren, ob gesuchte Dateien dabei sind
+    while (files.hasMoreElements()) {
+      let file = files.getNext().QueryInterface(Ci.nsIFile);
+      // css gefunden -> im Array ablegen
+      if (extcss.test(file.leafName)) cssFiles.push(file.leafName);
+    }
+    if (this.sortScripts) {
+      cssFiles.sort(this.stringComparison);
+    }
+    // Untermenue befuellen
+    if (iType==3) {
+      this.fillMenu("submenu-css","submenu-css-items","Meine CSS-Dateien",cssFiles,"uProfMenu_css",3);
+     } else if (iType==4) {
+      this.fillMenu("submenu-cssweb","submenu-cssweb-items","Meine CSSWeb-Dateien",cssFiles,"uProfMenu_css",4);
+    }  else if (iType==5) {
+      this.fillMenu("submenu-CSSShadow","submenu-CSSShadow-items","Meine CSSShadow-Dateien",cssFiles,"uProfMenu_css",5);
+    }
+  },
 
   fillMenu:function(whichsubmenu, whichsubmenuitems, strlabel, scriptArray,sClass,sTyp) {
     // Beschriftung des Untermenues mit Anzahl der gefundenen Dateien ergaenzen
@@ -361,18 +412,24 @@ move:function(OpenMode,Filename){
     }
     // Untermenue endlich befuellen
     for (var i = scriptArray.length-1; i > -1; i--) {
-      // bisher nur eine Typunterscheidung (userChromeJS-Skript oder about:)
+      // bisher nur eine Typunterscheidung (userChromeJS-Skript oder about: oder css)
       if (sTyp==0){
         var mitem = this.createME("menuitem",scriptArray[i],"uProfMenu.edit(0,'"+scriptArray[i]+"')",sClass,0);
         mitem.setAttribute("onclick","uProfMenu.openAtGithub(event,'"+scriptArray[i]+"')");
         mitem.setAttribute("tooltiptext"," Linksklick: Bearbeiten,\n Mittelklick: https://github.com/.../"+this.cleanFileName(scriptArray[i])+" oeffnen,\n Rechtsklick: Suche auf GitHub");
-       } else {
-        var mitem = this.createME("menuitem",scriptArray[i],"tabmail.openTab('contentTab', { url:'"+scriptArray[i]+"'})",sClass,0);
+      } else if (sTyp==1){
+        var mitem = this.createME("menuitem",scriptArray[i],"openTrustedLinkIn('"+scriptArray[i]+"','tab')",sClass,0);
+       } else if (sTyp==3){
+        var mitem = this.createME("menuitem",scriptArray[i],"uProfMenu.edit(3,'"+scriptArray[i]+"')",sClass,0);
+       } else if (sTyp==4){
+        var mitem = this.createME("menuitem",scriptArray[i],"uProfMenu.edit(4,'"+scriptArray[i]+"')",sClass,0);
+      }
+      else if (sTyp==5){
+        var mitem = this.createME("menuitem",scriptArray[i],"uProfMenu.edit(5,'"+scriptArray[i]+"')",sClass,0);
       }
       popup.insertBefore(mitem, popup.firstChild);
     }
   },
-
 
   fillClipboardValue:function(sArray/* ,xArray */) {
     var retValue;
@@ -401,7 +458,6 @@ move:function(OpenMode,Filename){
     }
     return retValue;
   },
-
 
   createME:function(sTyp,sLabel,sCommand,sClass,sId) {
     // Anlegen von menuitem, menu oder menupop - fuer bestimmte Typen nicht eingesetzte Parameter werden als 0 uebergeben
@@ -456,8 +512,7 @@ move:function(OpenMode,Filename){
     }
     return sName;
   }
-
-
-
+  
 };
+
 uProfMenu.init();
