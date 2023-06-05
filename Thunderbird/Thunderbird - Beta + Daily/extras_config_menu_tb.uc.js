@@ -171,7 +171,6 @@ var uProfMenu = {
 
   },
 
-
   getDirSep:function() {
     // Betriebssystem nach https://developer.mozilla.org/en/Code_snippets/Miscellaneous ermitteln
     var osString = Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULRuntime).OS;
@@ -189,7 +188,6 @@ var uProfMenu = {
     }
     return dirsep;
   },
-
 
 /* move:function(OpenMode,Filename){
     var Path = "";
@@ -227,7 +225,6 @@ var uProfMenu = {
     fs.rename(Path, "F:\\Users\\bege\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\487kit50.Quantum\\chrome\\JS.aus\\" + Filename);
   }, */
 
-
   edit:function(OpenMode,Filename){
     var Path = "";
     var dSep = this.getDirSep();  // die Trennzeichen zwischen Ordnern abhaengig vom Betriebssystem machen
@@ -264,7 +261,6 @@ var uProfMenu = {
     this.launch(this.TextOpenExe,Path);
   },
 
-
   dirOpen:function(Path){
     if (this.vFileManager.length != 0) {
       var file = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
@@ -288,7 +284,6 @@ var uProfMenu = {
     this.dirOpen(Path);
   },
 
-
   getPrefDirectoryPath:function(str){
     // get profile directory
     var file = Components.classes["@mozilla.org/file/directory_service;1"]
@@ -300,7 +295,6 @@ var uProfMenu = {
     // };
     return file.path;
   },
-
 
   launch:function(RanPath,OpenPath){
     var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
@@ -316,7 +310,6 @@ var uProfMenu = {
     proc.init(file);
     proc.run(false, args, args.length);
   },
-
 
   stringComparison:function(a, b){
     a = a.toLowerCase();
@@ -483,7 +476,6 @@ var uProfMenu = {
     return m;
   },
 
-
   openAtGithub:function(e,sScript) {
     if (e.button==1){
       // Mittelklick - Seite auf GitHub oeffnen (funktioniert nur, wenn Ordner- und bereinigter Dateiname [ohne Erweiterung] uebereinstimmen):
@@ -498,7 +490,6 @@ var uProfMenu = {
       openWebLinkIn(sUrl, 'tab');
     }
   },
-
 
   cleanFileName:function(sName) {
     sName=sName.toLowerCase();
