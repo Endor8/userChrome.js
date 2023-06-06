@@ -4,7 +4,7 @@ Das Skript ist in der Lage, die userChrome.css, die userContent.css und das Add-
 
 Das **Ergebnis des Skripts**:
 
-![Screenshot User CSS Loader](https://github.com/ardiman/userChrome.js/raw/master/usercssloader/scr_usercssloader.png)
+![Screenshot User CSS Loader](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/Thunderbird%20-%20Release/usercssloader/usercssloader.png)
 
 ## Installation
 Kopiere die uc.js-Datei in den Chromeordner des Profils.  
