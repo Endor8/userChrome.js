@@ -1,6 +1,7 @@
 # User CSS Loader
-Das Skript ist in der Lage, die userChrome.css, die userContent.css und das Add-on "Stylish" zusammen zu ersetzen. 
-Über eine neue Schaltfäche mit Menü in der Tableiste werden CSS Styles neu erstellt, geladen, sofort getestet, aus-/eingeschaltet etc.
+Das Skript ist in der Lage, die userChrome.css, die userContent.css und das Add-on "Stylish" zusammen zu ersetzen.     
+Über eine neue Schaltfäche mit Menü in der Tableiste werden CSS Styles neu erstellt, geladen, sofort getestet,       
+aus-/eingeschaltet etc.
 
 Das **Ergebnis des Skripts**:
 
