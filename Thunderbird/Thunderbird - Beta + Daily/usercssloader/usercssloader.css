@@ -232,6 +232,6 @@ margin-left:6px !important;}
 appearance: none!important;
 padding-left:9px !important;}
 	
-menupopup > :is(menu, menuitem)[checked="true"] {
+#usercssloader-menupopup> :is(menu, menuitem)[checked="true"] {
 list-style-image: none!important;}	
 }
