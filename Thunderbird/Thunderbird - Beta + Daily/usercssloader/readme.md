@@ -14,11 +14,11 @@ Bei Bedarf kann in Zeile 45 ein anderer Dateimanager zum Öffnen des CSS-Ordners
 ein Beispiel für den Eintrag von `vFileManager` ist in der Zeile darüber zu sehen.     
     
 Das Symbol der Symbolleistenschaltfläche muss dann per CSS Code eingefügt werden.    
-CSS Code siehe → [Symbol usercssloader.uc.js](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Release/usercssloader/CSS-Symbol.css)     
-Beispiel. s. (https://www.camp-firefox.de/forum/viewtopic.php?p=856804#p856804).
+CSS Code siehe **→** [Symbol usercssloader.uc.js](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Release/usercssloader/CSS-Symbol.css)     
+Beispiel. s. **→** (https://www.camp-firefox.de/forum/viewtopic.php?p=856804#p856804).
 
 ## Icons für Kontextmenü
-Wer möchte kann mit dem CSS Code: [usercssloader.css](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Release/usercssloader/usercssloader.css)    
+Wer möchte kann mit dem CSS Code: **→** [usercssloader.css](https://github.com/Endor8/userChrome.js/blob/master/Thunderbird/Thunderbird%20-%20Release/usercssloader/usercssloader.css)    
 Symbole für das Kontextmenü einfügen.    
 Sieht dann so aus:     
 ![Screenshot User CSS Loader](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/Thunderbird%20-%20Release/usercssloader/usercssloader2.png)
