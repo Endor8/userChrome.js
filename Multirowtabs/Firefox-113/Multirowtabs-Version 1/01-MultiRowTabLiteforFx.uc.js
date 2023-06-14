@@ -19,7 +19,7 @@ function MultiRowTabLiteforFx() {
     @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Anpassung der Symbolleiste */
-    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
+    #titlebar,#tabbrowser-tabs { appearance: none !important; }
 
     /* Anpassen der Titelleistenschaltfläche [- x] der Tableiste */
     #TabsToolbar > .titlebar-buttonbox-container {
@@ -33,20 +33,13 @@ function MultiRowTabLiteforFx() {
     }
     #toolbar-menubar:not([inactive]) ~ #TabsToolbar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
-    /* mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] { display: block !important; }
+    /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] > scrollbox {
       display: flex !important;
       flex-wrap: wrap !important;
     }
-    .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
-    #TabsToolbar .toolbarbutton-1 {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
 
     /* Ausblenden - Verstecken */
-    .tabbrowser-tab:not([fadein]),
     #alltabs-button { display: none !important; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
@@ -122,9 +115,7 @@ function MultiRowTabLiteforFx() {
       let newIndex = this._getDropIndex(event);
       let children = this.allTabs;
       if (newIndex == children.length) {
-        let tabRect = this._getVisibleTabs()
-          .at(-1)
-          .getBoundingClientRect();
+        let tabRect = this._getVisibleTabs().at(-1).getBoundingClientRect();
         if (RTL_UI) {
           newMarginX = rect.right - tabRect.left;
         } else {
@@ -310,9 +301,8 @@ function MultiRowTabLiteforFx() {
         let newIndex = this._getDropIndex(event);
         let urls = links.map(link => link.url);
         let csp = browserDragAndDrop.getCsp(event);
-        let triggeringPrincipal = browserDragAndDrop.getTriggeringPrincipal(
-          event
-        );
+        let triggeringPrincipal =
+          browserDragAndDrop.getTriggeringPrincipal(event);
 
         (async () => {
           if (

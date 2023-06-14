@@ -24,7 +24,7 @@ function MultiRowTabLiteforFx() {
     #PersonalToolbar { order: 3; } /* Lesezeichenleiste */
 
     /* Anpassung der Symbolleiste */
-    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
+    #titlebar,#tabbrowser-tabs { appearance: none !important; }
     #titlebar { border-top: 1px solid var(--chrome-content-separator-color) !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
@@ -38,20 +38,13 @@ function MultiRowTabLiteforFx() {
     #navigator-toolbox-background:hover ~ #titlebar > #TabsToolbar[inFullscreen],
     #titlebar:hover > #TabsToolbar[inFullscreen] { display: block !important; }
 
-    /*  Mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] { display: block !important; }
+    /* Mehrzeilige Tableiste */
     box.scrollbox-clip[orient="horizontal"] > scrollbox {
       display: flex !important;
       flex-wrap: wrap !important;
     }
-    .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
-    #TabsToolbar .toolbarbutton-1 {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
 
     /* Ausblenden - Verstecken */
-    .tabbrowser-tab:not([fadein]),
     #alltabs-button { display: none !important; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
@@ -109,7 +102,6 @@ function MultiRowTabLiteforFx() {
     var css =` /* AUTHOR_SHEET */
 
     /*
-    #tabbrowser-arrowscrollbox::part(scrollbox-clip) { display: block !important; }
     #tabbrowser-arrowscrollbox::part(scrollbox) {
       display: flex !important;
       flex-wrap: wrap !important;
@@ -172,9 +164,7 @@ function MultiRowTabLiteforFx() {
       let newIndex = this._getDropIndex(event);
       let children = this.allTabs;
       if (newIndex == children.length) {
-        let tabRect = this._getVisibleTabs()
-          .at(-1)
-          .getBoundingClientRect();
+        let tabRect = this._getVisibleTabs().at(-1).getBoundingClientRect();
         if (RTL_UI) {
           newMarginX = rect.right - tabRect.left;
         } else {
@@ -360,9 +350,8 @@ function MultiRowTabLiteforFx() {
         let newIndex = this._getDropIndex(event);
         let urls = links.map(link => link.url);
         let csp = browserDragAndDrop.getCsp(event);
-        let triggeringPrincipal = browserDragAndDrop.getTriggeringPrincipal(
-          event
-        );
+        let triggeringPrincipal =
+          browserDragAndDrop.getTriggeringPrincipal(event);
 
         (async () => {
           if (
