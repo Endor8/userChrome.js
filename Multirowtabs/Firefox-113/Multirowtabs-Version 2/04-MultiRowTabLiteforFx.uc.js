@@ -25,14 +25,13 @@ function MultiRowTabLiteforFx() {
     #titlebar        { order: 4; } /* Tableiste */
 
     /* Anpassung der Symbolleiste */
-    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
+    #titlebar,#tabbrowser-tabs { appearance: none !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
     #nav-bar > .titlebar-buttonbox-container .titlebar-button { width: 46px !important; }
     #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
     /* Mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] { display: block !important; }
     box.scrollbox-clip[orient="horizontal"] > scrollbox {
       display: flex !important;
       flex-wrap: wrap !important;
@@ -40,20 +39,13 @@ function MultiRowTabLiteforFx() {
       overflow-x: hidden !important;
       overflow-y: auto !important;
     }
-    .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
-    #TabsToolbar .toolbarbutton-1 {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
 
-    /*  Ausblenden */
-    .tabbrowser-tab:not([fadein]),
+    /* Ausblenden */
     #alltabs-button { display: none !important; }
-    /* --- Ziehbereich der Tab-Leiste --- */
 
     /* Anpassung */
-    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
-    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px */
+    hox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px */
     /* ↓ Wenn Sie die linke und rechte Seite des CSS-Codes auskommentieren und den CSS-Code aktivieren, 
        können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird.  */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
@@ -82,7 +74,6 @@ function MultiRowTabLiteforFx() {
     var css =` /* AUTHOR_SHEET */
 
     /*
-    #tabbrowser-arrowscrollbox::part(scrollbox-clip) { display: block !important; }
     #tabbrowser-arrowscrollbox::part(scrollbox) {
       display: flex !important;
       flex-wrap: wrap !important;
@@ -149,9 +140,7 @@ function MultiRowTabLiteforFx() {
       let newIndex = this._getDropIndex(event);
       let children = this.allTabs;
       if (newIndex == children.length) {
-        this._getVisibleTabs()
-        .at(-1)
-        .style.setProperty("box-shadow","-1px 0 0 red inset,1px 0 0 red","important");
+        this._getVisibleTabs().at(-1).style.setProperty("box-shadow","-1px 0 0 red inset,1px 0 0 red","important");
       } else {
         children[newIndex].style.setProperty("box-shadow","1px 0 0 red inset,-1px 0 0 red","important");
       }
@@ -319,9 +308,8 @@ function MultiRowTabLiteforFx() {
         let newIndex = this._getDropIndex(event);
         let urls = links.map(link => link.url);
         let csp = browserDragAndDrop.getCsp(event);
-        let triggeringPrincipal = browserDragAndDrop.getTriggeringPrincipal(
-          event
-        );
+        let triggeringPrincipal =
+          browserDragAndDrop.getTriggeringPrincipal(event);
 
         (async () => {
           if (

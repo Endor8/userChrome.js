@@ -24,7 +24,7 @@ function MultiRowTabLiteforFx() {
     #PersonalToolbar { order: 3; } /* Lesezeichenleiste */
 
     /* Symbolleistenanpassung */
-    #titlebar,#tabbrowser-tabs { -moz-appearance: none !important; }
+    #titlebar,#tabbrowser-tabs { appearance: none !important; }
     #titlebar { border-top: 1px solid var(--chrome-content-separator-color) !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
@@ -39,29 +39,22 @@ function MultiRowTabLiteforFx() {
     #titlebar:hover > #TabsToolbar[inFullscreen] { display: block !important; }
 
     /* Mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] { display: block !important; }
     box.scrollbox-clip[orient="horizontal"] > scrollbox {
       display: flex !important;
       flex-wrap: wrap !important;
-      max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* Anzahl der Tabzeilen(Standard = 3 Zeilen)  */
+      max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* Anzahl der Tabzeilen(Standard = 3 Zeilen) */
       overflow-x: hidden !important;
       overflow-y: auto !important;
     }
-    .tabbrowser-tab[fadein]:not([pinned]) { flex-grow: 1 !important; }
-    #TabsToolbar .toolbarbutton-1 {
-      margin: 0 !important;
-      padding: 0 !important;
-    }
 
     /* Ausblenden - Verstecken */
-    .tabbrowser-tab:not([fadein]),
     #alltabs-button { display: none !important; }
 
     /* --- Ziehbereich der Tab-Leiste --- */
     
     /* Anpassung */
-    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px  */
-    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px  */
+    hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px */
+    hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px */
     /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, 
        können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird. */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
@@ -70,11 +63,8 @@ function MultiRowTabLiteforFx() {
 	     können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird. */
     /* :root[inFullscreen] hbox.titlebar-spacer { display: block !important; } */
 
-
-
     /* Da das Script mit Themes nicht funktionierte, wurde benötigter CSS Code
 aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert */
-
     #titlebar:-moz-lwtheme {
       background-image: var(--lwt-additional-images);
       background-repeat: var(--lwt-background-tiling);
@@ -125,7 +115,6 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
     var css =` /* AUTHOR_SHEET */
 
     /*
-    #tabbrowser-arrowscrollbox::part(scrollbox-clip) { display: block !important; }
     #tabbrowser-arrowscrollbox::part(scrollbox) {
       display: flex !important;
       flex-wrap: wrap !important;
@@ -195,9 +184,7 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
       let newIndex = this._getDropIndex(event);
       let children = this.allTabs;
       if (newIndex == children.length) {
-        this._getVisibleTabs()
-        .at(-1)
-        .style.setProperty("box-shadow","-1px 0 0 red inset,1px 0 0 red","important");
+        this._getVisibleTabs().at(-1).style.setProperty("box-shadow","-1px 0 0 red inset,1px 0 0 red","important");
       } else {
         children[newIndex].style.setProperty("box-shadow","1px 0 0 red inset,-1px 0 0 red","important");
       }
@@ -365,9 +352,8 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
         let newIndex = this._getDropIndex(event);
         let urls = links.map(link => link.url);
         let csp = browserDragAndDrop.getCsp(event);
-        let triggeringPrincipal = browserDragAndDrop.getTriggeringPrincipal(
-          event
-        );
+        let triggeringPrincipal =
+          browserDragAndDrop.getTriggeringPrincipal(event);
 
         (async () => {
           if (
