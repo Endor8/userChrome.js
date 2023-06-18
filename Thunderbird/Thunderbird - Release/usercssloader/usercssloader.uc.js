@@ -153,7 +153,7 @@ window.UCL = {
             tooltiptext: "UserCSSLoader\n\nLinksklick: Stylesheets anzeigen\nMittelklick: Styles importieren",
             onclick: "if (event.button == 1) UCL.rebuild()"
         });
-        $('tabbar-toolbar').appendChild(cssmenu);
+        $('mail-menubar').appendChild(cssmenu);
         } else {
         var cssmenu = $C("toolbarbutton", {
             id: "usercssloader-button",
