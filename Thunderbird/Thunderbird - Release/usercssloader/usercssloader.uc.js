@@ -200,7 +200,7 @@ window.UCL = {
 		}));
         if (showChrome == 1) {
 			mp.appendChild($C("menuitem", {
-			label: "Chrome Ordner öffnen",
+			label: "Chrome-Ordner öffnen",
 			accesskey: "O",
 			oncommand: "UCL.openCHRMFolder();"
 		}));
