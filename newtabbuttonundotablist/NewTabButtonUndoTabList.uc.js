@@ -1,70 +1,81 @@
 // ==UserScript==
 // @name           newTabButtonUndoTabList.uc.js
-// @description    新しいタブボタンを右クリックで"最近閉じたタブ"メニューを表示
+// @description    Beim Rechtsklick auf die "Neuer Tab"-Schaltfläche in der Tabbar,
+// @description    erscheint mit diesem Skript eine Liste der kürzlich geschlossenen Tabs 
+// @description    für deren Wiederherstellung. Dazu gibt es einen zusätzlichen Eintrag, 
+// @description    um die Chronik in der Seitenleiste - Sidebar zu öffnen.
+// @Note           Firefox 114 Kompatibel
 // @include        main
 // ==/UserScript==
 (function () {
 
-	gBrowser.mTabContainer.addEventListener('click', function (e) {
-		if (e.originalTarget.className != 'tabs-newtab-button') return;
-		switch (e.button) {
-			case 1:
-				undoCloseTab(0);
-				break;
-			case 2:
-				UCT.makePopup(e);
-				e.preventDefault();
-				break;
-		}
-	}, false);
+    if (!window.gBrowser){
+        return;
+    }
+    
+    gBrowser.tabContainer.addEventListener('click', function (e) {
+        if (e.originalTarget.id != 'tabs-newtab-button') return;
+        switch (e.button) {
+            case 1:
+                undoCloseTab(0);
+                break;
+            case 2:
+                UCT.makePopup(e);
+                event.preventDefault();
+                break;
+        }
+    }, false);
 
 })();
 
 var UCT = {
+    init: function () {
+        var mp = document.createXULElement("menupopup");
+        mp.id = "undo-close-tab-list";
+        mp.setAttribute("onpopupshowing", "UCT.onpopupshowing(event);");
+        mp.setAttribute("placespopup", true);
+        mp.setAttribute("tooltip", "bhTooltip");
+        mp.setAttribute("popupsinherittooltip", true);
+        document?.getElementById("mainPopupSet")?.appendChild(mp);
+    },
 
-	_ss: Cc['@mozilla.org/browser/sessionstore;1'].getService(Ci.nsISessionStore),
+    makePopup: function (e) {
+        if (SessionStore.getClosedTabCount(window) != 0) {
+            document.getElementById("undo-close-tab-list").openPopupAtScreen(e.screenX +2, e.screenY +2, false);
+        }
+        else
+        {
+            console.log("--- Es gibt keinen Tab, der wiederhergestellt werden kann ---");
+        }
+    },
 
-	init: function () {
-		var mp = document.createElement("menupopup");
-		mp.id = "undo-close-tab-list";
-		mp.setAttribute("onpopupshowing", "UCT.onpopupshowing(event);");
-		mp.setAttribute("placespopup", true);
-		mp.setAttribute("tooltip", "bhTooltip");
-		mp.setAttribute("popupsinherittooltip", true);
-		document.getElementById("mainPopupSet").appendChild(mp);
-	},
+    onpopupshowing: function (e) {
+        var popup = e.target;
 
-	makePopup: function (e) {
-		if (this._ss.getClosedTabCount(window) != 0)
-			document.getElementById("undo-close-tab-list").openPopupAtScreen(e.screenX +2, e.screenY +2, false);
-		else
-			throw "\u5143\u306b\u623b\u305b\u308b\u30bf\u30d6\u304c\u3042\u308a\u307e\u305b\u3093";
-	},
+        while (popup.hasChildNodes())
+            popup.removeChild(popup.firstChild);
 
-	onpopupshowing: function (e) {
-		var popup = e.target;
+        let undoItems = SessionStore.getClosedTabData(window);
+        undoItems.map(function (item, id) {
+            var m = document.createXULElement('menuitem');
+            m.setAttribute('label', item.title);
+            m.setAttribute('image', item.image );
+            m.setAttribute('class', 'menuitem-iconic bookmark-item');
+            m.setAttribute('oncommand', 'undoCloseTab(' + id + ')');
+            popup.appendChild(m);
+        });
 
-		while (popup.hasChildNodes())
-			popup.removeChild(popup.firstChild);
-
-		var undoItems = JSON.parse(this._ss.getClosedTabData(window));
-		undoItems.map(function (item, id) {
-			var m = document.createElement('menuitem');
-			m.setAttribute('label', item.title);
-			m.setAttribute('image', item.image ? 'moz-anno:favicon:' + item.image : '');
-			m.setAttribute('class', 'menuitem-iconic bookmark-item');
-			m.setAttribute('oncommand', 'undoCloseTab(' + id + ')');
-			popup.appendChild(m);
-		});
-
-		popup.appendChild(document.createElement("menuseparator"));
-		m = document.createElement("menuitem");
-		m.setAttribute("label", "Chronik in der Sidebar öffnen");
-		m.setAttribute("image", "chrome://browser/skin/places/history.png");
-		m.setAttribute("class", "menuitem-iconic");
-		m.setAttribute("oncommand", "toggleSidebar('viewHistorySidebar');");
-		popup.appendChild(m);
-	},
+        popup.appendChild(document.createXULElement("menuseparator"));
+        m = document.createXULElement("menuitem");
+        m.setAttribute("label", "Chronik in der Sidebar öffnen");
+        m.setAttribute("image", "chrome://browser/skin/history.svg");
+        m.setAttribute("class", "menuitem-iconic");
+        m.setAttribute("oncommand", "SidebarUI.toggle('viewHistorySidebar');");
+        popup.appendChild(m);
+    },
 
 };
-UCT.init();
+
+setTimeout(function() {
+      UCT.init();
+  },250);
