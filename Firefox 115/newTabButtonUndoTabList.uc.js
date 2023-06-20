@@ -3,7 +3,8 @@
 // @description    Bei Rechtsklick auf die Neuen Tab Schaltfläche, wird im Kontextmenü,
 // @description    der Eintrag zum Wiederherstellen des zuletzt geschlossenen Tabs angezeigt.
 // @Versionsinfo   Aktualisierung für Firefox 115+. Nicht kompatibel mit Firefox 114 und älter!
-// @Info           Ab Firefox 115 wegen Bug 1819675 ⇒ https://bugzilla.mozilla.org/show_bug.cgi?id=1819675 Änderung notweng.
+// @Info           Ab Firefox 115 wegen Bug 1819675 ⇒ https://bugzilla.mozilla.org/show_bug.cgi?id=1819675
+// @Info           Änderung notweng.
 // @include        main
 // ==/UserScript==
 (function () {
