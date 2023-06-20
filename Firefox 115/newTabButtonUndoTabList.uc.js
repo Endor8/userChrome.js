@@ -1,7 +1,9 @@
 // ==UserScript==
 // @name           newTabButtonUndoTabList.uc.js
-// @description    Bei Rechtsklick auf die Neuen Tab Schaltfläche, wird im Kontextmenü,
-// @description    der Eintrag zum Wiederherstellen des zuletzt geschlossenen Tabs angezeigt.
+// @description    Beim Rechtsklick auf die "Neuer Tab" - Schaltfläche in der Tableiste,
+// @description    erscheint mit diesem Skript eine Liste der kürzlich geschlossenen Tabs 
+// @description    für deren Wiederherstellung. Dazu gibt es einen zusätzlichen Eintrag, 
+// @description    um die Chronik in der Seitenleiste - Sidebar zu öffnen.
 // @Versionsinfo   Aktualisierung für Firefox 115+. Nicht kompatibel mit Firefox 114 und älter!
 // @Info           Anpassung Firefox 115-Bug 1819675 ⇒ https://bugzilla.mozilla.org/show_bug.cgi?id=1819675
 // @include        main
