@@ -5,7 +5,7 @@ Unterschied zwischen den beiden Versionen:
 Version 1 zeigt beim Verschieben eines Tabs eine andere Grafik als     
 Dropdown Indikator an als Version 2, die einen einfachen roten Strich anzeigt.
 
-![Screenshot App Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Multirowtabs/Firefox-113/screenshots/Grafik1.png)  ![Screenshot App Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Multirowtabs/Firefox-113/screenshots/Strich2.png)
+![Screenshot App Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Multirowtabs/Firefox-114/screenshots/Grafik1.png)  ![Screenshot App Button](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Multirowtabs/Firefox-114/screenshots/Strich2.png)
 
 Es stehen jeweils 6 verschiedene Scripte dazu zur Verfügung.    
 
