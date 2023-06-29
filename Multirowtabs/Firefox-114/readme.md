@@ -1,4 +1,4 @@
-### Mehrzeilige Tableiste für Firefox 113 ###
+### Mehrzeilige Tableiste für Firefox 114 ###
 
 Unterschied zwischen den beiden Versionen:   
     
