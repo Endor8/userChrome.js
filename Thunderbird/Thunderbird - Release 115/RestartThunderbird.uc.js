@@ -23,7 +23,7 @@
     };
     for (var p in props) toolbarbutton.setAttribute(p, props[p]);
 
-    var position = document.getElementById('unifiedToolbar');    
+    var position = document.getElementById('unifiedToolbarContent');    
     position.parentNode.insertBefore(toolbarbutton, position.nextSibling);
     
     // popup
