@@ -1,4 +1,4 @@
-Verschiedene Scripte Für Thunderbird 102.11.0
+Verschiedene Scripte Für Thunderbird 102
 
 # AddonLister
 Dieses Skript füllt ein wenig die Lücke, die die Erweiterung "InfoLister" hinterlassen hat und schreibt die Konfiguration von Thunderbird (möglich sind: 
