@@ -153,7 +153,7 @@ window.UCL = {
             tooltiptext: "UserCSSLoader\n\nLinksklick: Stylesheets anzeigen\nMittelklick: Styles importieren",
             onclick: "if (event.button == 1) UCL.rebuild()"
         });
-        $('mail-menubar').appendChild(cssmenu);
+        $('unifiedToolbar').appendChild(cssmenu);
         } else {
         var cssmenu = $C("toolbarbutton", {
             id: "usercssloader-button",
@@ -204,7 +204,7 @@ window.UCL = {
 			accesskey: "O",
 			oncommand: "UCL.openCHRMFolder();"
 		}));
-        }
+                }
 		mp.appendChild($C("menuitem", {
 			label: "userChrome.css bearbeiten",
 			hidden: false,
