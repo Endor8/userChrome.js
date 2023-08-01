@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 113
+// @compatibility  Firefox 117
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -24,8 +24,10 @@ function MultiRowTabLiteforFx() {
     #PersonalToolbar { order: 3; } /* Lesezeichenleiste */
 
     /* Symbolleistenanpassung */
-    #titlebar,#tabbrowser-tabs { appearance: none !important; }
-    #titlebar { border-top: 1px solid var(--chrome-content-separator-color) !important; }
+    #titlebar {
+      appearance: none !important;
+      border-top: 1px solid var(--chrome-content-separator-color) !important;
+    }
 
     /* Anpassung für Titelleistenschaltflächen */
     #nav-bar > .titlebar-buttonbox-container .titlebar-button { width: 46px !important; }
@@ -39,7 +41,7 @@ function MultiRowTabLiteforFx() {
     #titlebar:hover > #TabsToolbar[inFullscreen] { display: block !important; }
 
     /* Mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] > scrollbox {
+    .scrollbox-clip[orient="horizontal"] > scrollbox {
       flex-wrap: wrap !important;
       max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* Anzahl der Tabzeilen(Standard = 3 Zeilen) */
       overflow-x: hidden !important;
@@ -49,9 +51,7 @@ function MultiRowTabLiteforFx() {
     /* Ausblenden - Verstecken */
     #alltabs-button { display: none !important; }
 
-    /* --- Ziehbereich der Tab-Leiste --- */
-    
-    /* Anpassung */
+    /* Anpassung des Ziehbereichs der Tab-Leiste */
     hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px */
     hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px */
     /* ↓ Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code aktivieren, 
@@ -68,30 +68,17 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
       background-image: var(--lwt-additional-images);
       background-repeat: var(--lwt-background-tiling);
       background-position: var(--lwt-background-alignment);
+      background-color: var(--lwt-accent-color);
     }
-
-    /* TODO bug 1695280: Remove these media selectors and merge the rule below
-       with the ruleset above. We must set background properties on :root and not
-       #navigator-toolbox on Windows 7/8 due to a WebRender bug that hides the
-       minimize/maximize/close buttons. */
-    @media not (-moz-platform: windows-win7) {
-      @media not (-moz-platform: windows-win8) {
-        #titlebar:-moz-lwtheme {
-          background-color: var(--lwt-accent-color);
-        }
-
-        /* When a theme defines both theme_frame and additional_backgrounds, show
-           the latter atop the former. */
-       :root[lwtheme-image] #titlebar {
-         background-image: var(--lwt-header-image), var(--lwt-additional-images);
-         background-repeat: no-repeat, var(--lwt-background-tiling);
-         background-position: right top, var(--lwt-background-alignment);
-       }
-
-       #titlebar:-moz-window-inactive:-moz-lwtheme {
-         background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color));
-       }
-      }
+    /* When a theme defines both theme_frame and additional_backgrounds, show
+       the latter atop the former. */
+    :root[lwtheme-image] #titlebar {
+      background-image: var(--lwt-header-image), var(--lwt-additional-images);
+      background-repeat: no-repeat, var(--lwt-background-tiling);
+      background-position: right top, var(--lwt-background-alignment);
+    }
+    #titlebar:-moz-window-inactive:-moz-lwtheme {
+      background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color));
     }
 
     } `;
@@ -104,7 +91,7 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
-    box.scrollbox-clip > scrollbox[orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag !important; }
+    .scrollbox-clip[orient="horizontal"] > scrollbox > scrollbar { -moz-window-dragging: no-drag !important; }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -129,7 +116,7 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
     #tabbrowser-arrowscrollbox::part(scrollbutton-down) { display: none !important; }
 
     `;
-    var sss = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
 
@@ -157,7 +144,7 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
         tabs[i].removeAttribute("style");
       }
     }
-    gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true);
+    gBrowser.tabContainer.addEventListener("dragleave", function(event) { this.clearDropIndicator(event); }, true)
 
     gBrowser.tabContainer.on_dragover = function(event) {
       this.clearDropIndicator();
@@ -187,6 +174,7 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
         children[newIndex].style.setProperty("box-shadow","1px 0 0 red inset,-1px 0 0 red","important");
       }
     }
+    gBrowser.tabContainer.addEventListener("dragover", function(event) { this.on_dragover(event); }, true)
 
     gBrowser.tabContainer.on_drop = function(event) {
       this.clearDropIndicator();
@@ -385,5 +373,6 @@ aus browser.css Datei entnommen und # navigator-toolbox in #titlebar geändert *
         delete draggedTab._dragData;
       }
     }
+    gBrowser.tabContainer.addEventListener("drop", function(event) { this.on_drop(event); }, true)
 
 }
