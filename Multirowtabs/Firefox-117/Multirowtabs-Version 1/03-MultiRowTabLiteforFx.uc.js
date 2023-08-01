@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 113
+// @compatibility  Firefox 117
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -25,14 +25,14 @@ function MultiRowTabLiteforFx() {
     #titlebar        { order: 4; } /* Tableiste */
 
     /* Anpassung der Symbolleiste */
-    #titlebar,#tabbrowser-tabs { appearance: none !important; }
+    #titlebar { appearance: none !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
     #nav-bar > .titlebar-buttonbox-container .titlebar-button { width: 46px !important; }
     #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
     /* Mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] > scrollbox { flex-wrap: wrap !important; }
+    .scrollbox-clip[orient="horizontal"] > scrollbox { flex-wrap: wrap !important; }
 
     /* Ausblenden - Verstecken */
     #alltabs-button { display: none !important; }
@@ -67,7 +67,7 @@ function MultiRowTabLiteforFx() {
     #tabbrowser-arrowscrollbox::part(scrollbutton-down) { display: none !important; }
 
     `;
-    var sss = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
 
@@ -137,6 +137,7 @@ function MultiRowTabLiteforFx() {
       }
       ind.style.transform = "translate(" + Math.round(newMarginX) + "px," + Math.round(newMarginY) + "px)";
     }
+    gBrowser.tabContainer.addEventListener("dragover", function(event) { this.on_dragover(event); }, true)
 
     gBrowser.tabContainer.on_drop = function(event) {
       var dt = event.dataTransfer;
@@ -334,5 +335,6 @@ function MultiRowTabLiteforFx() {
         delete draggedTab._dragData;
       }
     }
+    gBrowser.tabContainer.addEventListener("drop", function(event) { this.on_drop(event); }, true)
 
 }

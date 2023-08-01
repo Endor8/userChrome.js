@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 113
+// @compatibility  Firefox 117
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -25,16 +25,16 @@ function MultiRowTabLiteforFx() {
     #titlebar        { order: 4; } /* Tableiste */
 
     /* Anpassung der Symbolleiste */
-    #titlebar,#tabbrowser-tabs { appearance: none !important; }
+    #titlebar { appearance: none !important; }
 
     /* Anpassung für Titelleistenschaltflächen */
     #nav-bar > .titlebar-buttonbox-container .titlebar-button { width: 46px !important; }
     #toolbar-menubar:not([inactive]) ~ #nav-bar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
     /* Mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] > scrollbox {
+    .scrollbox-clip[orient="horizontal"] > scrollbox {
       flex-wrap: wrap !important;
-      max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* Anzahl der Tabzeilen(Standard = 3 Zeilen) */
+      max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* Anzahl der Tabzeilen(Standard = 3 Zeilen)*/
       overflow-x: hidden !important;
       overflow-y: auto !important;
     }
@@ -63,7 +63,7 @@ function MultiRowTabLiteforFx() {
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
 	   über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln  */
-    box.scrollbox-clip > scrollbox[orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag !important; }
+    .scrollbox-clip[orient="horizontal"] > scrollbox > scrollbar { -moz-window-dragging: no-drag !important; }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -88,7 +88,7 @@ function MultiRowTabLiteforFx() {
     #tabbrowser-arrowscrollbox::part(scrollbutton-down) { display: none !important; }
 
     `;
-    var sss = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
 
@@ -163,6 +163,7 @@ function MultiRowTabLiteforFx() {
       }
       ind.style.transform = "translate(" + Math.round(newMarginX) + "px," + Math.round(newMarginY) + "px)";
     }
+    gBrowser.tabContainer.addEventListener("dragover", function(event) { this.on_dragover(event); }, true)
 
     gBrowser.tabContainer.on_drop = function(event) {
       var dt = event.dataTransfer;
@@ -360,5 +361,6 @@ function MultiRowTabLiteforFx() {
         delete draggedTab._dragData;
       }
     }
+    gBrowser.tabContainer.addEventListener("drop", function(event) { this.on_drop(event); }, true)
 
 }

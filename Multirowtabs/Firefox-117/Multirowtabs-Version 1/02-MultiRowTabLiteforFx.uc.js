@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 113
+// @compatibility  Firefox 117
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -19,7 +19,7 @@ function MultiRowTabLiteforFx() {
     @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Anpassung der Symbolleisten */
-    #titlebar,#tabbrowser-tabs { appearance: none !important; }
+    #titlebar { appearance: none !important; }
 
     /* Anpassen der Titelleistenschaltfläche [- x] der Tableiste  */
     #TabsToolbar > .titlebar-buttonbox-container { margin: 0 !important; }
@@ -31,7 +31,7 @@ function MultiRowTabLiteforFx() {
     #toolbar-menubar:not([inactive]) ~ #TabsToolbar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
     /* Mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] > scrollbox {
+    .scrollbox-clip[orient="horizontal"] > scrollbox {
       flex-wrap: wrap !important;
       max-height: calc(calc(8px + var(--tab-min-height)) * 3); /* Anzahl der Tabzeilen(Standard = 3 Zeilen)*/
       overflow-x: hidden !important;
@@ -39,11 +39,9 @@ function MultiRowTabLiteforFx() {
     }
 
     /* Ausblenden */
-    .tabbrowser-tab:not([fadein]),
     #alltabs-button { display: none !important; }
 
-    /* --- Ziehbereich der Tab-Leiste --- */
-    /* Anpassung */
+    /* Anpassung des Ziehbereichs der Tab-Leiste */
     hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px */
     hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px */
 
@@ -51,8 +49,7 @@ function MultiRowTabLiteforFx() {
        können Sie den Ziehbereich links einblenden, der beim Maximieren des Fensters ausgeblendet wird. */
     /* :root:not([sizemode="normal"]) hbox.titlebar-spacer[type="pre-tabs"] { display: block !important; } */
     /* ↓Wenn Sie die Auskommentierung links und rechts von unten stehenden CSS-Code entfernen und den CSS-Code 
-        aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird.  */
-    /* :root[inFullscreen] hbox.titlebar-spacer { display: block !important; } */
+        aktivieren, können Sie den linken und rechten Ziehbereich einblenden, der im Vollbildmodus ausgeblendet wird.  */    /* :root[inFullscreen] hbox.titlebar-spacer { display: block !important; } */
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -63,8 +60,8 @@ function MultiRowTabLiteforFx() {
     @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Bei Überschreitung der angegebenen Zeilenanzahl, mit der Maus,    
-       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechselnる */
-    box.scrollbox-clip > scrollbox[orient="horizontal"] > scrollbar { -moz-window-dragging: no-drag !important; }
+       über die dann eingeblendetet Scrolleiste zur gewünschten Zeile wechseln */
+    .scrollbox-clip[orient="horizontal"] > scrollbox > scrollbar { -moz-window-dragging: no-drag !important; }
 
     } `;
     var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
@@ -89,7 +86,7 @@ function MultiRowTabLiteforFx() {
     #tabbrowser-arrowscrollbox::part(scrollbutton-down) { display: none !important; }
 
     `;
-    var sss = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
 
@@ -158,6 +155,7 @@ function MultiRowTabLiteforFx() {
       }
       ind.style.transform = "translate(" + Math.round(newMarginX) + "px," + Math.round(newMarginY) + "px)";
     }
+    gBrowser.tabContainer.addEventListener("dragover", function(event) { this.on_dragover(event); }, true)
 
     gBrowser.tabContainer.on_drop = function(event) {
       var dt = event.dataTransfer;
@@ -355,5 +353,6 @@ function MultiRowTabLiteforFx() {
         delete draggedTab._dragData;
       }
     }
+    gBrowser.tabContainer.addEventListener("drop", function(event) { this.on_drop(event); }, true)
 
 }

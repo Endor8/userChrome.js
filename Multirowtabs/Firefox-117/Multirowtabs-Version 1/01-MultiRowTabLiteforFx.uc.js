@@ -3,7 +3,7 @@
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
 // @description    Experimentelle CSS Version für Mehrzeilige Tableiste
 // @include        main
-// @compatibility  Firefox 113
+// @compatibility  Firefox 117
 // @author         Alice0775
 // @version        2016/08/05 00:00 Firefox 48
 // @version        2016/05/01 00:01 hide favicon if busy
@@ -19,7 +19,7 @@ function MultiRowTabLiteforFx() {
     @-moz-document url-prefix("chrome://browser/content/browser.xhtml") {
 
     /* Anpassung der Symbolleiste */
-    #titlebar,#tabbrowser-tabs { appearance: none !important; }
+    #titlebar { appearance: none !important; }
 
     /* Anpassen der Titelleistenschaltfläche [- x] der Tableiste */
     #TabsToolbar > .titlebar-buttonbox-container { margin: 0 !important; }
@@ -30,14 +30,14 @@ function MultiRowTabLiteforFx() {
     }
     #toolbar-menubar:not([inactive]) ~ #TabsToolbar:not([inFullscreen]) > .titlebar-buttonbox-container { display: none !important; }
 
-    /* mehrzeilige Tableiste */
-    box.scrollbox-clip[orient="horizontal"] > scrollbox { flex-wrap: wrap !important; }
+    /* Mehrzeilige Tableiste */
+    .scrollbox-clip[orient="horizontal"] > scrollbox { flex-wrap: wrap !important; }
 
     /* Ausblenden - Verstecken */
     #alltabs-button { display: none !important; }
 
-    /* --- Ziehbereich der Tab-Leiste --- */
-    /* Anpassung */
+    /* Ziehbereich der Tab-Leiste anpassen */
+ 
     hbox.titlebar-spacer[type="pre-tabs"] { width: 0px !important; } /* Linker Ziehbereich: Standard 40px */
     hbox.titlebar-spacer[type="post-tabs"] { width: 0px !important; } /* Rechter Ziehbereich: Standard 40px */
     /* ↓ Wenn Sie die Auskommentierung auf der linken und rechten Seite des unten stehenden CSS-Codes entfernen,  
@@ -65,7 +65,7 @@ function MultiRowTabLiteforFx() {
     #tabbrowser-arrowscrollbox::part(scrollbutton-down) { display: none !important; }
 
     `;
-    var sss = Components.classes['@mozilla.org/content/style-sheet-service;1'].getService(Components.interfaces.nsIStyleSheetService);
+    var sss = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
     var uri = makeURI('data:text/css;charset=UTF=8,' + encodeURIComponent(css));
     sss.loadAndRegisterSheet(uri, sss.AUTHOR_SHEET);
 
@@ -129,6 +129,7 @@ function MultiRowTabLiteforFx() {
       }
       ind.style.transform = "translate(" + Math.round(newMarginX) + "px," + Math.round(newMarginY) + "px)";
     }
+    gBrowser.tabContainer.addEventListener("dragover", function(event) { this.on_dragover(event); }, true)
 
     gBrowser.tabContainer.on_drop = function(event) {
       var dt = event.dataTransfer;
@@ -326,5 +327,6 @@ function MultiRowTabLiteforFx() {
         delete draggedTab._dragData;
       }
     }
+    gBrowser.tabContainer.addEventListener("drop", function(event) { this.on_drop(event); }, true)
 
 }
