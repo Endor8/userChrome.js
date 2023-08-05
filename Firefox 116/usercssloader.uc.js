@@ -5,7 +5,7 @@
 // @author         Griever
 // @include        main
 // @license        MIT License
-// @compatibility  Firefox 4 - 102*
+// @compatibility  Firefox 116*
 // @charset        UTF-8
 // @version        0.0.4K+
 // @note           Aktualisierung von Speravir - www.camp-firefox.de
