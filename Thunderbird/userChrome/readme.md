@@ -23,7 +23,7 @@
   
 #### Direkter Download: **⇒** [Thunderbird-Anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/userChrome/Dateien/Thunderbird-Anpassungen.zip)
 
-#### Ab Thunderbird 113 **⇒** [Thunderbird-Anpassungen-neu.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/userChrome/Dateien/Thunderbird-Anpassungen-neu.zip)
+#### Für Thunderbird 115 **⇒** [Thunderbird-Anpassungen-neu.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/Thunderbird/userChrome/Dateien/Thunderbird-Anpassungen-neu.zip)
 
 ##### Wo müssen die Dateien hin
 
