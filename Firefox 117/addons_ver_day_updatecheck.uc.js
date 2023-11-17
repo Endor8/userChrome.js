@@ -52,3 +52,4 @@ else {
         ChromeUtils.import(`resource://about-addons-verbose-ucjs/${scriptFile.leafName}?${scriptFile.lastModifiedTime}`);
     } catch (e) {Cu.reportError(e)}
 }
+ 
