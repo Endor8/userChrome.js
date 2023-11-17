@@ -31,7 +31,7 @@ if (typeof window === "undefined" || globalThis !== window) {
                         const info = doc.createElement("span");
                         info.style.fontSize = "1rem";
                         info.style.fontStyle = "normal";
-						info.style.fontWeight = "900";
+                        info.style.fontWeight = "900";
                         info.style.marginInlineEnd = "8px";
                         info.textContent = `${version} - ${updateDate.toLocaleDateString("de-DE")}`;
                         addon.insertAdjacentElement("afterend", info);
