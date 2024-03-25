@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name      	SearchEngineWheelScrollContextMenu.uc.js
 // @include    	main
-// @version     0.4   2024/03/14    engine.getIconURL()→await engine.getIconURL()
-// @version			0.3		2023/12/28		Einstellung hinzugefügt, um zusätzlich zur herkömmlichen
-// @Version                         Abwärtsrichtung eine Schleife nach oben durchzuführen.
-// @version			0.2		2023/12/25		engine.iconURI.spec geändert in: engine.getIconURL()
-// @version			0.1		2019/02/05		Abgeleitet vom Script SearchEngineWheelScroll.uc.js 
+// @version     0.4 2024/03/14 engine.getIconURL()→await engine.getIconURL()
+// @version     0.3 2023/12/28 Einstellung hinzugefügt, um zusätzlich zur herkömmlichen
+// @Version                    Abwärtsrichtung eine Schleife nach oben durchzuführen.
+// @version	0.2 2023/12/25 engine.iconURI.spec geändert in: engine.getIconURL()
+// @version	0.1 2019/02/05 Abgeleitet vom Script SearchEngineWheelScroll.uc.js 
 // ==/UserScript==
 // Wenn es eine Suchleiste gibt, suchen Sie mit dieser Funktion. 
 // Wenn nicht, suchen Sie mit einer Funktion, die der Kontextmenüsuche ähnelt
