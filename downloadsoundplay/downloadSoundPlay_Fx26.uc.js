@@ -17,7 +17,7 @@ var downloadPlaySound = {
   // -- config --
   DL_START : "file:///C:/WINDOWS/Media/tada.wav",
   DL_DONE  : "file:///C:/WINDOWS/Media/chimes.wav",
-  DL_CANCEL: "file:///F:/Adaten/vista.wav",
+  DL_CANCEL: "file:///C:/WINDOWS/Media/Windows%20Logoff%20Sound.wav",
   DL_FAILED: "file:///C:/WINDOWS/Media/Windows%20Error.wav",
   // -- config --
 
