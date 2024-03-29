@@ -17,7 +17,7 @@ var downloadPlaySound = {
   // -- config --
   DL_START : "file:///C:/WINDOWS/Media/tada.wav",
   DL_DONE  : "file:///C:/WINDOWS/Media/chimes.wav",
-  DL_CANCEL: "file:///C:/WINDOWS/Media/Windows%20Logoff%20Sound.wav",
+  DL_CANCEL: "file:///F:/Adaten/vista.wav",
   DL_FAILED: "file:///C:/WINDOWS/Media/Windows%20Error.wav",
   // -- config --
 
@@ -29,7 +29,7 @@ var downloadPlaySound = {
     //window.removeEventListener("load", this, false);
     window.addEventListener("unload", this, false);
 
-    //**** ダウンロード監視の追加
+    //**** Download-Überwachung hinzufügen
     if (!this._list) {
       Downloads.getList(Downloads.ALL).then(list => {
         this._list = list;
@@ -46,19 +46,19 @@ var downloadPlaySound = {
   },
 
   onDownloadAdded: function (aDownload) {
-    //**** ダウンロード開始イベント
+    //**** Startereignis herunterladen
     if (this.DL_START)
       this.playSoundFile(this.DL_START);
   },
 
   onDownloadChanged: function (aDownload) {
-    //**** ダウンロードキャンセル
+    //**** Download abbrechen
     if (aDownload.canceled && this.DL_CANCEL)
       this.playSoundFile(this.DL_CANCEL)
-    //**** ダウンロード失敗
+    //**** Herunterladen fehlgeschlagen
     if (aDownload.error && this.DL_FAILED)
       this.playSoundFile(this.DL_FAILED)
-    //**** ダウンロード完了
+    //**** Download abgeschlossen
     if (typeof aDownload.downloadPlaySound == "undefined" &&
         aDownload.succeeded && aDownload.stopped && this.DL_DONE) {
       aDownload.downloadPlaySound = true;
