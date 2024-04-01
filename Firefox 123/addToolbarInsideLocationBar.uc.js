@@ -12,7 +12,7 @@
 // ==/UserScript==
 (function (css) {
     const Services = globalThis.Services || Cu.import("resource://gre/modules/Services.jsm").Services;
-    const MENU_LABEL = "Symbolleiste-Urlbar";
+    const MENU_LABEL = "Symbolleiste-Urlbar anzeigen";
 
     window.LocationBar = {
         delayedInit: function () {
