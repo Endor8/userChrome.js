@@ -1,15 +1,15 @@
 // ==UserScript==
 // @name        saveUCJS_lite.uc.js
 // @description GitHub Scripte Downloaden und Installieren
-// @charset		UTF-8
+// @charset	UTF-8
 // @include     main
-// @note		userChrome.js Update-Funktion entfernen
+// @note	userChrome.js Update-Funktion entfernen
 // ==/UserScript==
 (function(){
 	"use strict";
 //  config Anfang true = ja  / false = nein
-	const skipDialogCxt = true	// Speichern Dialog nicht anzeigen - übergehen
-	const urgeRestart = true	// Firefox Neustarten Aufforderung nach dem Runterladen anzeigen
+	const skipDialogCxt = true // Speichern Dialog nicht anzeigen - übergehen
+	const urgeRestart = true   // Firefox Neustarten Aufforderung nach dem Runterladen anzeigen
 //	config Ende
 	const areaMenu = document.getElementById('contentAreaContextMenu');
 	const saveLink = document.getElementById('context-savelink');
@@ -28,10 +28,10 @@
 	function createMenu(file){
 		const url = file.replace('/blob/', '/raw/');
 		const menu = document.createXULElement('menuitem');
-			menu.setAttribute('id', 'ucjs_getUCJS_areamenu');
-			menu.setAttribute('label',(gContextMenu.onLink? 'Link' : 'Seite') + ' als uc.js Script' + ' speichern');
-			menu.setAttribute('tooltiptext', 'als uc.js speichern');
-			menu.addEventListener('command', function(){getFile(url)}, false);
+		menu.setAttribute('id', 'ucjs_getUCJS_areamenu');
+		menu.setAttribute('label',(gContextMenu.onLink? 'Link' : 'Seite') + ' als uc.js Script' + ' speichern');
+		menu.setAttribute('tooltiptext', 'als uc.js speichern');
+		menu.addEventListener('command', function(){getFile(url)}, false);
 		areaMenu.insertBefore(menu, saveLink? saveLink : areaMenu.firstChild);
 	}
 
@@ -51,8 +51,7 @@
 	function saveUCJS(string, title){
 	  if(!skipDialogCxt){
     	const fp =Cc["@mozilla.org/filepicker;1"].createInstance(Ci.nsIFilePicker);
-		    fp.init(BrowsingContext.getFromWindow(window), 'Select a File', Ci.nsIFilePicker.modeSave);
-    		//fp.init(window, 'Select a File', Ci.nsIFilePicker.modeSave);
+		fp.init(BrowsingContext.getFromWindow(window), 'Select a File', Ci.nsIFilePicker.modeSave);
     		fp.appendFilter('userChrome.js', '*.uc.js');
     		fp.displayDirectory = Services.dirsvc.get('UChrm', Ci.nsIFile);
     		fp.defaultExtension = 'uc.js';
