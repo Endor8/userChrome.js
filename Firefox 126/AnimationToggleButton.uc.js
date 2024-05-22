@@ -1,6 +1,6 @@
-// 	28_AnimationToggleButton.uc.js
-// 	v. 0.4.2a
-//  16.05.24 Endor Anpassung an Firefox 126+
+// AnimationToggleButton.uc.js
+// v. 0.4.2a
+// 16.05.24 Endor Anpassung an Firefox 126+
 //	211104:	BrokenHeart zuletzt in:
 //	https://www.camp-firefox.de/forum/thema/133649
 
