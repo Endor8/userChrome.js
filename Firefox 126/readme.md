@@ -1,4 +1,4 @@
-### Scripte frür Firefox 126 und neuer 
+### Scripte für Firefox 126 und neuer 
 
 Hier wird eine Script-Liste erstellt, die ab Firefox 126.0 angepasst wurden.     
 
