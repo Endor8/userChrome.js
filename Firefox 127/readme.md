@@ -4,6 +4,6 @@
      
 Verschiedene Änderungen, die ab Firefox 127.0 Standard sind:    
     
-let where = window.whereToOpenLink(aEvent, false, true);    
+**let where = window.whereToOpenLink(aEvent, false, true);**    
 muss jetzt so sein:    
-let where = window.BrowserUtils.whereToOpenLink(aEvent, false, true);    
+**let where = window.BrowserUtils.whereToOpenLink(aEvent, false, true);**    
