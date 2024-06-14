@@ -2,7 +2,8 @@
 
 Hier wird eine Script-Liste erstellt, die ab Firefox 126.0 angepasst wurden.     
 
-Verschiedene Änderungen, die ab Firefox 126.0 Standard sind:      
+Verschiedene Änderungen, die ab **Firefox 126.0** Standard sind:   
+       
 **BrowserReload();** muss in **BrowserCommands.reload();** geändert werde.      
 **BrowserStop();** muss in **BrowserCommands.stop();** geändert werde.    
 usw.     
