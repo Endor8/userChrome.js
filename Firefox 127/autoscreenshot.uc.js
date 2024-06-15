@@ -72,7 +72,7 @@
             let btn = createElement(doc, 'toolbarbutton', {
                 id: this.BTN_ID,
                 label: "AutoSaveScreenshot",
-				tooltiptext: "Screenshots\nLinks-klick: Sichtbarer Bereich\nUmschaltaste + Links-klick: Ganze Seite",
+		tooltiptext: "Screenshots\nLinks-klick: Sichtbarer Bereich\nUmschaltaste + Links-klick: Ganze Seite",
                 'data-l10n-id': 'auto-save-screenshot',
                 class: 'toolbarbutton-1 chromeclass-toolbar-additional',
                 image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSJjb250ZXh0LWZpbGwiIGZpbGwtb3BhY2l0eT0iY29udGV4dC1maWxsLW9wYWNpdHkiIHRyYW5zZm9ybT0ic2NhbGUoMS4zKSI+PHBhdGggZD0iTTUgM0MzLjg5NSAzIDMgMy44OTUgMyA1TDUgNUw1IDMgeiBNIDcgM0w3IDVMOSA1TDkgM0w3IDMgeiBNIDExIDNMMTEgNUwxMyA1TDEzIDNMMTEgMyB6IE0gMTUgM0wxNSA1TDE3IDVMMTcgM0wxNSAzIHogTSAxOSAzTDE5IDVMMjEgNUMyMSAzLjg5NSAyMC4xMDUgMyAxOSAzIHogTSAzIDdMMyA5TDUgOUw1IDdMMyA3IHogTSAxOSA3TDE5IDlMMjEgOUwyMSA3TDE5IDcgeiBNIDEyIDlMMTAuNjY3OTY5IDExTDguNSAxMUM3LjY3MiAxMSA3IDExLjY3MiA3IDEyLjVMNyAxOS41QzcgMjAuMzI4IDcuNjcyIDIxIDguNSAyMUwxOS41IDIxQzIwLjMyOCAyMSAyMSAyMC4zMjggMjEgMTkuNUwyMSAxMi41QzIxIDExLjY3MiAyMC4zMjggMTEgMTkuNSAxMUwxNy4zMzIwMzEgMTFMMTYgOUwxMiA5IHogTSAzIDExTDMgMTNMNSAxM0w1IDExTDMgMTEgeiBNIDEzLjA3MDMxMiAxMUwxNC45Mjk2ODggMTFMMTUuNjY5OTIyIDEyLjEwOTM3NUwxNi4yNjM2NzIgMTNMMTcuMzMyMDMxIDEzTDE5IDEzTDE5IDE5TDkgMTlMOSAxM0wxMC42Njc5NjkgMTNMMTEuNzM2MzI4IDEzTDEyLjMzMDA3OCAxMi4xMDkzNzVMMTMuMDcwMzEyIDExIHogTSAxNCAxNCBBIDIgMiAwIDAgMCAxMiAxNiBBIDIgMiAwIDAgMCAxNCAxOCBBIDIgMiAwIDAgMCAxNiAxNiBBIDIgMiAwIDAgMCAxNCAxNCB6IE0gMyAxNUwzIDE3TDUgMTdMNSAxNUwzIDE1IHogTSAzIDE5QzMgMjAuMTA1IDMuODk1IDIxIDUgMjFMNSAxOUwzIDE5IHoiLz48L3N2Zz4=",
