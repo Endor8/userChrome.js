@@ -1,6 +1,6 @@
 ### Mehrzeilige Tableiste für Firefox 129+ ###
 
-Es stehen **6** verschiedene Scripte dazu zur Verfügung.    
+Es stehen je **6** verschiedene Scripte dazu zur Verfügung.    
 
 ### Hinweis:
 Skript **1 + 2** Mehrzeilige Tableiste Tabs ganz oben    
