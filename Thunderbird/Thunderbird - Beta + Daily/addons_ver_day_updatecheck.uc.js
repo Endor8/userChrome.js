@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           addons_ver_day_updatecheck.uc.js 
-// @description    Bei about:addons beim Titel der Erweiterung Versionsinfo und Installationsdatum hinzufügen
+// @description    Bei about:addons beim Titel der Erweiterung Versionsinfo und Installatiosdatum hinzufügen
 // @update         Anpassung zur Verwendung der ESM-Module mit der Dateiendung .sys.mjs von milupo
-// @note           Wer vor dem Datum der Installation, einen Text haben möchte, Zeile 40 aktivieren 
-// @note           und Zeile 41 deaktivieren. (// ← entfernen bzw. hinzufügen)
+// @note           Wer vor dem Datum der Installation, einen Text haben möchte, Zeile 42 aktivieren 
+// @note           und Zeile 43 deaktivieren. (//← entfernen bzw. hinzufügen)
 // @include        main
 // ==/UserScript==
 
@@ -37,7 +37,9 @@ if (typeof window === "undefined" || globalThis !== window) {
                         info.style.fontStyle = "normal";
 						info.style.fontWeight = "900";
                         info.style.marginInlineEnd = "8px";
-//                      info.textContent = `${version} - Installation: ${updateDate.toLocaleDateString("de-DE")}`;
+//						info.style.marginTop = "2px";
+//						info.style.color = "#000000";
+//                      info.textContent = `${version} - Installation: ${updateDate.toLocaleDateString("de-DE")}`;						
                         info.textContent = `${version} - ${updateDate.toLocaleDateString("de-DE")}`;
                         addon.insertAdjacentElement("afterend", info);
                     }).catch(err => Cu.reportError(err));
