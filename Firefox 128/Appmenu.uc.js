@@ -22,7 +22,7 @@ var Appmenu = {
     editor: Services.prefs.getCharPref('view_source.editor.path'),
     // Dateimanager mit angegebenem Pfad verwenden oder leer ('') wenn System-Dateimanager verwenden
     fileManager: '',
-	// fileManager: 'C:\\Program files\\FreeCommander XE\\FreeCommander.exe',
+    // fileManager: 'C:\\Program files\\FreeCommander XE\\FreeCommander.exe',
     // Parameter für Dateimanager oder leer ('')
     FMParameter: '/T',
     // Submenüs ohne Inhalt im Hauptmenü automatisch ausblenden
@@ -117,13 +117,13 @@ var Appmenu = {
             subdir: 'Firefox Verzeichnisse',
             image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAatJREFUeNqkU7tKA0EUPbM7boISNKhBsLRQ9AMECx8EEQstgqVgL1iYyg+w1UbwC6ziA1TyA7FKjCKiYCGihSAIikiIJptZ7527amIjmmWHnXNn7jn3tSoIAjTzOGjy0cerI2umZtKB+VskylFwXGdds/Pw/AzgG8ByKHrV901OUYV2i41stYP81mFaW+X3MnC5IZctgabkaBmfbDWWo9VCe18WKw0tgX21dfJfgbE9IJEUlccjIJcKbWNi200Ao3X4fNkKasvml8R5p5OUSSn1IPXly9txCreNoCc40wG0tAJ9czZV6UJQEVavHYh2A9lB2sfENr4PuKTjeoInDmhPIqZS30Y/7EkkXFEhyA6QigvM3oo920+XGN8RQcmm4NiicWVtoSkd8wZMnRK1K0T5BTnjCBgXQmyqoilVp91zEZi+ksPnEyIg7skzwU9FiSBZCM+LX63VtkWc48UKfalY1Rdpo0fFyyXDvruNmKOL9dj2ap4oRIgkiMscRLuk759DZIXUDwzrw7765rG8icz1YuMoq18GObDO7Ms3KRb0/vNfulfN/s4fAgwAwWWMUVTgPhoAAAAASUVORK5CYII='
         },
-        //{
-          //  name: 'JS',
-          //  root: 'ProfD',
-          //  path: '\\chrome\\JS',
-          //  subdir: 'Firefox Verzeichnisse',
-          //  image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAC4gAAAuIAeWOKUkAAAEZSURBVDhP7ZMxLENRFIa/c2l5ESrFI+KpoUQTRoOYTJp0NBgsFpP5xSAxWNgkNlYJo72L3SIhMRiaaCxdRKIRkfQet+81FhUPsTnLvfnPzfefc3Ku6MW08oswrfPH8Q/4c8DohjKyFt+7AmVix5I/ULIlG4tfAfoXlb75eE+mDiGzIBgPctuG9HCkJ2tBOpTunPB4DrfrwvWS8lqTZioZQBvCQ9nirwqFU6Vn9n17kw+xEhqqu5a079o5MgwuR3NoD0j5sYO4tLbMmq61Y8NVUXipKAOlT1oINi0zZ8L4lsWbjB/3zlkKJ+KclSB0VYw5/S4if/yNKVdiECpeHp5vlOqe0HgSskXL0IrQmYH6JdzvO73eBvCtgDf14FTmcYgI3gAAAABJRU5ErkJggg=='
-        //},
+        {
+            name: 'JS',
+            root: 'ProfD',
+            path: '\\chrome\\JS',
+            subdir: 'Firefox Verzeichnisse',
+            image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAC4gAAAuIAeWOKUkAAAEZSURBVDhP7ZMxLENRFIa/c2l5ESrFI+KpoUQTRoOYTJp0NBgsFpP5xSAxWNgkNlYJo72L3SIhMRiaaCxdRKIRkfQet+81FhUPsTnLvfnPzfefc3Ku6MW08oswrfPH8Q/4c8DohjKyFt+7AmVix5I/ULIlG4tfAfoXlb75eE+mDiGzIBgPctuG9HCkJ2tBOpTunPB4DrfrwvWS8lqTZioZQBvCQ9nirwqFU6Vn9n17kw+xEhqqu5a079o5MgwuR3NoD0j5sYO4tLbMmq61Y8NVUXipKAOlT1oINi0zZ8L4lsWbjB/3zlkKJ+KclSB0VYw5/S4if/yNKVdiECpeHp5vlOqe0HgSskXL0IrQmYH6JdzvO73eBvCtgDf14FTmcYgI3gAAAABJRU5ErkJggg=='
+        },
         {
             name: 'Addons',
             root: 'ProfD',
