@@ -30,7 +30,7 @@ var Appmenu = {
     // Submenüs im Hauptmenü nach unten verschieben
     moveSubDirstoBottom: false,
     // Ort und Aussehen des Menü-Buttons einstellen
-    isUrlbar: 0,  // 0： TabsToolbar； 1： navbar,
+    isUrlbar: 1,  // 0：TabsToolbar； 1： navbar,
     isButton: 1,  // 0: Hamburger,klein; 1: Firefox,groß
     // Hotkey zum Öffnen des Appmenüs oder leer ('')
     hotkey: 'x',
