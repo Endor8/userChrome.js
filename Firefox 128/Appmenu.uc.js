@@ -172,12 +172,12 @@ var Appmenu = {
         },
         {
             name: 'Entwickler-Werkzeuge',
-            command: "let { require } = ChromeUtils.importESModule('resource://devtools/shared/loader/Loader.sys.mjs', {});\
-            require('devtools/client/framework/devtools-browser');\
-            document.getElementById('menu_devToolbox').click()",
+            command: "var { require } = ChromeUtils.importESModule('resource://devtools/shared/loader/Loader.sys.mjs', {});\
+                var { gDevToolsBrowser } = require('devtools/client/framework/devtools-browser');\
+                gDevToolsBrowser.toggleToolboxCommand(window.gBrowser, Cu.now());",
             subdir: 'Firefox Funktionen',
             image:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAqJJREFUeNp0k11IU2EYx593Q0RDL1wOmheihBCoiNHFrIYgYSBDKoRMIWgwduGFjTiIdRHiQIw+iBAS6qKUrJsVlRGsC2vWRUFzEclmxMZKXWzObe377PR/cLOB64Xfzt7zPv/f+8URAwMDVNoUReGHGeRAGITy+bwfbIB0JpMhWZZ369X19fXGqqqqbgR1wJPNZrngK9jAf11bW9vRlpaWE5FI5EAikVBDEkJdblfg8/m6nU7nXeDa3NxcTiaTVFlZyQVRCHyBQEBjsVguGI3G0zU1NQ0ej0eg5gcmyEBGahTq7Ha7a3JycsjtdtcGg8FliIgH0+l0DmRTqZS2tbX1mE6nO9TU1LTf4XAEcrmcF5AKguder3d6eHh4HjMNYUsSD/j9ftre3qZoNPoLYj+vDHJqbGzUx+NxLY9xX1Xcy9ra2rTJZJofGRkZ0mq1Eh/U+vo6bW1txVQqlZb7fIDYVkUsFmPaIac9rbm5WcKWVjo6OqTjtbX7Ojs7pcXFxRW9Xn+dbweysaWlJZ9GozHX1dX1ULmGfUoLkvTWWV3tdptMQe6XDLezJBwOK4XrLttO3Sf6o0xNKfaKisCMEIdXhSALKLQeluB5sFz4PHDNdnUpqJBD/f0RhJ99E+KSC4KZf5Ky7Qr4YjAYeHnJk0QTL4k+xc1mBeEXn4WQPkBw8z8SPqTVvr4+DqeA9Sx+nhLZ7JAkR0cVhF+9F2LsDQRPMHamJHwLfB8cHORwBtzmlyxAmIttjyHJjI8rCDscQlxmwXwhfAf4zVhm4QOaK1qLAoTpISQPIJEnJhSE3y0QXS0KflutVg7LJdI9AoQJN2O7BwnfzizRR0B8GhfBDfAInCuGr/Wq6UiDoMRPhWKvZUrjXXZniTbM1ivvbHvurwADAH3gYJeBXh2yAAAAAElFTkSuQmCC',
-        },				
+        },	
         {
             name: 'Browser-Werkzeuge',
             command: "var { require } = ChromeUtils.importESModule('resource://devtools/shared/loader/Loader.sys.mjs', {});\
