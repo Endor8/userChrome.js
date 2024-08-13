@@ -30,8 +30,8 @@ var Appmenu = {
     // Submenüs im Hauptmenü nach unten verschieben
     moveSubDirstoBottom: false,
     // Ort und Aussehen des Menü-Buttons einstellen
-    isUrlbar: 1,  // 0：TabsToolbar； 1： navbar,
-    isButton: 1,  // 0: Hamburger,klein; 1: Firefox,groß
+    isUrlbar: 1,  // 0: TabsToolbar, 1: navbar, 2: toolbar-menubar;
+    isButton: 1,  // 0: Hamburger, klein; 1: Firefox, groß
     // Hotkey zum Öffnen des Appmenüs oder leer ('')
     hotkey: 'x',
     hotkeyModifier: 'alt',
@@ -497,9 +497,12 @@ var Appmenu = {
 		  } else {
 			  ExternalAppBtn.style.listStyleImage = "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA6SURBVDhPYxgcIDg+6z8IQ7lwPiEMVT4YDBh4gO4kZGfiw1Dlg8GAgQfoTkJ2Jj4MVT4YDCAfMDAAAFSm42US1bMnAAAAAElFTkSuQmCC)";
 		  }
-        if (Appmenu.isUrlbar) {
+        if (Appmenu.isUrlbar === 1) {
             var navBar = document.getElementById("nav-bar-customization-target");
             navBar.insertBefore(ExternalAppBtn, navBar.firstChild);
+        } else if (Appmenu.isUrlbar === 2) {
+            var menubar = document.getElementById("toolbar-menubar");
+            menubar.insertBefore(ExternalAppBtn, menubar.firstChild);
         } else {
             var TabsToolbar = document.getElementById("TabsToolbar");
             TabsToolbar.insertBefore(ExternalAppBtn, TabsToolbar.firstChild);
