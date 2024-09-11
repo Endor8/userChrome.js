@@ -23,36 +23,36 @@ if (!window.gBrowser) { return; }
     const                                        // Tab-Leistenzeilen Anzahl angeben, oder unbegrenzte Anzahl der Zeilen wählen.
     TabBar_Rows =                      	false	,// [false] = unbegrenzt
                                                  // true    = Begrenzte Tabzeilen - Anzahl der Zeilen angeben
-    Max_Rows =                      	3		,// Tabzeilen angeben (Standard: 3 Zeilen)
+    Max_Rows =                      	3	,// Tabzeilen angeben (Standard: 3 Zeilen)
 
                                                  // ProtonUI Erscheinungsbild der Tabs ändern
     Proton_Margins =                    true	,// [true] = Darstellung ProtonUI
-                                                 //          Die Höhe der Tab-Leiste entspricht der Höhe der UI-Dichte plus dem Leerraum darüber und darunter.
+                                                 // Die Höhe der Tab-Leiste entspricht der Höhe der UI-Dichte plus dem Leerraum darüber und darunter.
                                                  // false  = Darstellung wie bei browser.proton.enabled auf false, was man vor Firefox 90 noch einstellen konnte.
-                                                 //          Leerraum um die Tabs auf 0 anpassen, um der Höhe der UI-Dichte zu entsprechen.
+                                                 // Leerraum um die Tabs auf 0 anpassen, um der Höhe der UI-Dichte zu entsprechen.
 
                                                  // Position der Tab-Leiste.
-    TabBar_Position =                  	0		,// [0] = Standard
+    TabBar_Position =                  	0	,// [0] = Standard
                                                  // 1   = unter der Symbolleiste
                                                  // 2   = unter dem Fenster
 
                                                  // Standardposition der Tableiste Blenden Sie die Titelleistenschaltfläche [-□×] 
-												 // aus und verwenden Sie die Breite der Tableiste entsprechend
+						 // aus und verwenden Sie die Breite der Tableiste entsprechend
     TitleBar_Button_Autohide =         	false	,// [false] = Aktiviert
                                                  //  true   = Deaktiviert
                                                  // Äußeren Rahmen der Titelleistenschaltfläche [-□×] reduzieren und transparent machen.
-												 // Obere rechte Ecke der Tab-Leiste auf ihre ursprüngliche Größe zurücksetzen und Transparenz aufheben.
+						 // Obere rechte Ecke der Tab-Leiste auf ihre ursprüngliche Größe zurücksetzen und Transparenz aufheben.
 
                                                  // Tab-Höhe „UI-Dichte“
-    UI_Density_Compact =               	29		,// Standard = 29 Pixel bei Kompakt
-    UI_Density_Normal =                	36		,// Standard = 36 Pixel bei Normal
-    UI_Density_Touch =                 	41		,// Standard = 41 Pixel bei Touch
+    UI_Density_Compact =               	29	,// Standard = 29 Pixel bei Kompakt
+    UI_Density_Normal =                	36	,// Standard = 36 Pixel bei Normal
+    UI_Density_Touch =                 	41	,// Standard = 41 Pixel bei Touch
                                                  // Entsprechender CSS Code in UserChrome.css wird vorrangig behandelt!
 
                                                  // Tab-Breite
                                                  // Bei gleichen Werten bei Min und Max, wird Tabbreite fixiert!
-    Tab_Min_Width =                    	76		,// Standard - Mindestwert = 76px
-    Tab_Max_Width =                    	225		,// Standard - Maxwert = 225px
+    Tab_Min_Width =                    	76	,// Standard - Mindestwert = 76px
+    Tab_Max_Width =                    	225	,// Standard - Maxwert = 225px
                                                  // Entsprechender CSS Code in UserChrome.css wird vorrangig behandelt!
 
                                                  // .Tab-Drop-Indikator-Icon-Ersetzung.
@@ -63,12 +63,12 @@ if (!window.gBrowser) { return; }
     Tab_Separators  =                  	false	,// [false] = Nicht anzeigen
                                                  // true    = Anzeigen
                                                  // Rahmen CSS wurde extrahiert und angepasst, an Aussehen wie bei browser.proton.enabled 
-												 // auf false, was man vor Firefox 90 noch einstellen konnte.
+						 // auf false, was man vor Firefox 90 noch einstellen konnte.
 
                                                  // Tab-Leisten-Ziehbereich
-    Left_Drag_Area =                   	0		,// Linker Ziehbereich Breite: Standard 40 Pixel
-    Right_Drag_Area =                  	0		,// Rechter Ziehbereich Breite: Standard 40 Pixel
-    Maximize_Left_Drag_Area =   	    false   ,// true = Linken Ziehbereich bei maximiertem Fenster anzeigen. Standardmäßig ausgeblendet.
+    Left_Drag_Area =                   	0	,// Linker Ziehbereich Breite: Standard 40 Pixel
+    Right_Drag_Area =                  	0	,// Rechter Ziehbereich Breite: Standard 40 Pixel
+    Maximize_Left_Drag_Area =           false   ,// true = Linken Ziehbereich bei maximiertem Fenster anzeigen. Standardmäßig ausgeblendet.
     Fullscreen_Drag_Area =             	false	,// true = Linken und rechten Ziehbereich bei Vollbild anzeigen. Standardmäßig ausgeblendet.
 
                                                  // Angeheftete Tabs neu positionieren
@@ -76,10 +76,10 @@ if (!window.gBrowser) { return; }
                                                  // true    = Angeheftete Tabs von der Tab-Leiste lösen und in die darüber liegende Zeile verschieben.
 
                                                  // „Tab schließen“ Schaltfläche .
-    Tab_Close_Button =                 	0		,// [0] = Standard
+    Tab_Close_Button =                 	0	,// [0] = Standard
                                                  //  1  = Ausgeblendet
                                                  //  2  = Auf allen Tabs anzeigen
-												 //  3  = Nur bei Mausberührung anzeigen
+						 //  3  = Nur bei Mausberührung anzeigen
 
                                                  // Alle Tabs Schaltfläche
     All_Tabs_Button =                  	false	,// [false] = ausblenden
