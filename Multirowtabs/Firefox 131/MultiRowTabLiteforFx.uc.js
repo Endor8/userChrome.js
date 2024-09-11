@@ -39,7 +39,7 @@ if (!window.gBrowser) { return; }
                                                  // Standardposition der Tableiste Blenden Sie die Titelleistenschaltfläche [-□×] 
 						 // aus und verwenden Sie die Breite der Tableiste entsprechend
     TitleBar_Button_Autohide =         	false	,// [false] = Aktiviert
-                                                 //  true   = Deaktiviert
+                                                 // true   = Deaktiviert
                                                  // Äußeren Rahmen der Titelleistenschaltfläche [-□×] reduzieren und transparent machen.
 						 // Obere rechte Ecke der Tab-Leiste auf ihre ursprüngliche Größe zurücksetzen und Transparenz aufheben.
 
