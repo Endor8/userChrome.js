@@ -37,8 +37,8 @@ if (!window.gBrowser) { return; }
                                                  // ProtonUI Erscheinungsbild der Tabs ändern
     Proton_Margins =                    true	,// [true] = Darstellung ProtonUI
                                                  // Die Höhe der Tab-Leiste entspricht der Höhe der UI-Dichte plus dem Leerraum darüber und darunter.
-                                                 // false  = Darstellung wie bei browser.proton.enabled auf false, was man vor Firefox 90 noch einstellen konnte.
-                                                 // Leerraum um die Tabs auf 0 anpassen, um der Höhe der UI-Dichte zu entsprechen.
+                                                 // false  = Darstellung wie bei browser.proton.enabled auf false, was man vor Firefox 90 noch einstellen 
+                                                 // konnte. Leerraum um die Tabs auf 0 anpassen, um der Höhe der UI-Dichte zu entsprechen.
 
                                                  // Position der Tab-Leiste.
     TabBar_Position =                  	0	,// [0] = Standard
@@ -51,7 +51,8 @@ if (!window.gBrowser) { return; }
                                                  //  true   = Deaktiviert
                                                  // Äußeren Rahmen der Titelleistenschaltfläche [-□×] reduzieren und transparent machen.
 						 // Obere rechte Ecke der Tab-Leiste auf ihre ursprüngliche Größe zurücksetzen und Transparenz aufheben.
-    TitleBar_Button_DisplayTime =       0.6	,// Dauer der Anzeige in Sekunden, nach der Rückkehr zur Originalgröße und dem Aufheben der Transparenz per Mouseover angeben.
+    TitleBar_Button_DisplayTime =       0.6	,// Dauer der Anzeige in Sekunden, nach der Rückkehr zur Originalgröße und dem Aufheben der Transparenz 
+                                                 // per Mouseover angeben.
     
                                                  // Tab-Höhe „UI-Dichte“
     UI_Density_Compact =               	29	,// Standard = 29 Pixelbei Kompakt
