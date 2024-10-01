@@ -26,59 +26,59 @@ if (!window.gBrowser) { return; }
                                                  // true    = Begrenzte Tabzeilen - Anzahl der Zeilen
     Max_Rows =                         	3       ,// Tabzeilen angeben (Standard: 3 Zeilen)
                                                  // Anzahl der Tab-Leistenzeilen für „true“ Normalerweise auf 1 Zeile eingestellt und
-												 // die zweite und die folgenden Zeilen werden bis zur angegebenen Anzahl von Zeilen
-									     		 // angezeigt, wenn der Mauszeiger über die Tab-Leiste bewegt wird.
+						 // die zweite und die folgenden Zeilen werden bis zur angegebenen Anzahl von Zeilen
+						 // angezeigt, wenn der Mauszeiger über die Tab-Leiste bewegt wird.
     MultiRowTab_on_MouseOver =         	false   ,// [false] = Standard
                                                  // true = Standard 1 Zeile
     TabBar_MouseOver_DisplayTime =     	1       ,// Sie können die Anzeigezeit (Sekunden) festlegen, nachdem die zweite und die folgenden
-	                                             // Zeilen beim Mouseover angezeigt werden. Das Display zeigt den eingestellten Wert
-										         // (Sekunden) an und kehrt dann zur ersten Zeile zurück.
+	                                         // Zeilen beim Mouseover angezeigt werden. Das Display zeigt den eingestellten Wert
+				                // (Sekunden) an und kehrt dann zur ersten Zeile zurück.
 														
                                                  // ProtonUI Erscheinungsbild der Tabs ändern
     Proton_Margins =                   	true    ,// [true] = Darstellung ProtonUI
                                                  // Die Höhe der Tab-Leiste entspricht der Höhe derUI-Dichte plus dem Leerraum darüber
-												 // und darunter.                                                 
-												 // false  = Darstellung wie bei browser.proton.enabled auf false, was man vor Firefox 90
-										         // noch einstellen konnte.
+						 // und darunter.                                                 
+						 // false  = Darstellung wie bei browser.proton.enabled auf false, was man vor Firefox 90
+					 	 // noch einstellen konnte.
                                                  // Wenn der Leerraum um die Registerkarte auf 0 und die Höhe auf die UI-Dichte eingestellt
                                                  // ist, ist sie 4 Pixel breiter und 8 Pixel niedriger als die Standardeinstellung.
                                                  // Ränder auf der linken und rechten Seite der Tabs
     Tab_Separators  =                   false   ,// [false] = Nicht anzeigen
                                                  // true    = Anzeigen
                                                  // Rahmen CSS wurde extrahiert und angepasst, an Aussehen wie bei browser.proton.enabled
-												 // auf false, was man vor Firefox 90 noch einstellen konnte.
+						 // auf false, was man vor Firefox 90 noch einstellen konnte.
 
                                                  // Position der Tab-Leiste.
-    TabBar_Position =              	    0       ,// [0] = Standard
+    TabBar_Position =              	    0   ,// [0] = Standard
                                                  // 1   = unter der Symbolleiste
                                                  // 2   = unter dem Fenster
                                                  // Standardposition der Tableiste Blenden Sie die Titelleistenschaltfläche [-□×] 
-												 // aus und verwenden Sie die Breite der Tableiste entsprechend
+						 // aus und verwenden Sie die Breite der Tableiste entsprechend
     TitleBar_Button_Autohide =         	false	,// [false] = Aktiviert
                                                  // true    = Deaktiviert
                                                  // Äußeren Rahmen der Titelleistenschaltfläche [-□×] reduzieren und transparent machen.
-												 // Obere rechte Ecke der Tab-Leiste auf ihre ursprüngliche Größe zurücksetzen und
-												 // Transparenz aufheben.
-    TitleBar_Button_DisplayTime =       0.6		,// Dauer der Anzeige in Sekunden, nach der Rückkehr zur Originalgröße und dem Aufheben
-	                                             // der Transparenz per Mouseover angeben.
+						 // Obere rechte Ecke der Tab-Leiste auf ihre ursprüngliche Größe zurücksetzen und
+						 // Transparenz aufheben.
+    TitleBar_Button_DisplayTime =       0.6	,// Dauer der Anzeige in Sekunden, nach der Rückkehr zur Originalgröße und dem Aufheben
+	                                         // der Transparenz per Mouseover angeben.
     
                                                  // Tab-Höhe „UI-Dichte“
-    UI_Density_Compact =               	29		,// Standard = 29 Pixelbei Kompakt
-    UI_Density_Normal =                	36		,// Standard = 36 Pixel bei Normal
-    UI_Density_Touch =                 	41		,// Standard = 41 Pixel bei Touch
+    UI_Density_Compact =               	29	,// Standard = 29 Pixelbei Kompakt
+    UI_Density_Normal =                	36	,// Standard = 36 Pixel bei Normal
+    UI_Density_Touch =                 	41	,// Standard = 41 Pixel bei Touch
                                                  // Entsprechender CSS Code in UserChrome.css wird vorrangig behandelt!
 
                                                  // Tab-Breite
                                                  // Bei gleichen Werten bei Min und Max, wird Tabbreite fixiert!
-    Tab_Min_Width =                    	76		,// Standard - Mindestwert = 76px
-    Tab_Max_Width =                    	225		,// Standard - Maxwert = 225px
+    Tab_Min_Width =                    	76	,// Standard - Mindestwert = 76px
+    Tab_Max_Width =                    	225	,// Standard - Maxwert = 225px
                                                  // Entsprechender CSS Code in UserChrome.css wird vorrangig behandelt!
 
                                                  // „Tab schließen“ Schaltfläche
-    Tab_Close_Button =                 	0		,// [0] = Standard
+    Tab_Close_Button =                 	0	,// [0] = Standard
                                                  //  1  = Ausgeblendet
                                                  //  2  = Auf allen Tabs anzeigen
-												 //  3  = Nur bei Mausberührung anzeigen
+						 //  3  = Nur bei Mausberührung anzeigen
 
                                                  // .Tab-Drop-Indikator-Icon-Ersetzung.
     Tab_Drop_Indicator =               	false	,// [false] = Stecknadel Symbol 📍
@@ -87,8 +87,8 @@ if (!window.gBrowser) { return; }
                                                  // Angeheftete Tabs neu positionieren
     Separate_Tabs_and_PinnedTabs =     	false	,// [false] = Standard
                                                  // true    = Angeheftete Tabs von der Tab-Leiste lösen und in die darüber liegende 
-												 // Zeile verschieben. Breite der angehefteten Tabs für die Position der 
-												 // angehefteten Tabs „true“ anpassen.
+						 // Zeile verschieben. Breite der angehefteten Tabs für die Position der 
+						 // angehefteten Tabs „true“ anpassen.
     PinnedTab_Width =                   false	,// [false] = Kein Standard
                                                  //  true   = Breite angehefteter Tabs anpassen, z. B. „Tab-Breite“.
     PinnedTab_Min_Width =               76   	,// Standard Mindestbreite =  76 Pixel
@@ -96,9 +96,9 @@ if (!window.gBrowser) { return; }
                                                  // Bei gleichen Werten ist die Breite fixiert.
 
                                                  // Tab-Leisten-Ziehbereich
-    Left_Drag_Area =                   	0		,// Linker Ziehbereich Breite: Standard 40 Pixel
-    Right_Drag_Area =                  	0		,// Rechter Ziehbereich Breite: Standard 40 Pixel
-    Maximize_Left_Drag_Area =   	    false   ,// true = Linken Ziehbereich bei maximiertem Fenster anzeigen. Standard ausgeblendet.
+    Left_Drag_Area =                   	0	,// Linker Ziehbereich Breite: Standard 40 Pixel
+    Right_Drag_Area =                  	0	,// Rechter Ziehbereich Breite: Standard 40 Pixel
+    Maximize_Left_Drag_Area =           false   ,// true = Linken Ziehbereich bei maximiertem Fenster anzeigen. Standard ausgeblendet.
     Fullscreen_Drag_Area =             	false	,// true = Linken und rechten Ziehbereich bei Vollbild anzeigen. Standard ausgeblendet.
                                                  // Alle Tabs Schaltfläche
     All_Tabs_Button =                  	false	,// [false] = ausblenden
@@ -107,9 +107,9 @@ if (!window.gBrowser) { return; }
                                                  // Firefox132 oder höher?
                                                  // Breite beim Öffnen/schließen, beim fahren mit der Maus über die vertikale Tab-Leiste
     VerticalTabs_MouseOver_OpenClose =  false	,// [false] Kein Standard. Drücken Sie im vertikalen Tab-Modus die Seitenleistentaste,  
-	                                             // um die Breite zu vergrößern oder zu verkleinern.
+	                                         // um die Breite zu vergrößern oder zu verkleinern.
                                                  // true  Unabhängig davon, welche Seitenleistenschaltfläche Sie im vertikalen Tab-Modus  
-												 // auswählen, können Sie die Breite vergrößern oder verkleinern, indem Sie mit der Maus
+						 // auswählen, können Sie die Breite vergrößern oder verkleinern, indem Sie mit der Maus
                                                  // darüber fahren.
 
     // -- Config End --
