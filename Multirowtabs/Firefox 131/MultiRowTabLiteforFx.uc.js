@@ -345,7 +345,7 @@ if (!window.gBrowser) { return; }
         height: calc(var(--tab-min-height) + ${Proton_Margins ? 8 : 0}px);
       }
 
-      ${TitleBarButton_Autohide ? `
+      ${TitleBar_Button_Autohide ? `
         .titlebar-buttonbox-container {
           background-color: color-mix(in srgb, currentColor 20%, transparent);
           height: 6px !important;
