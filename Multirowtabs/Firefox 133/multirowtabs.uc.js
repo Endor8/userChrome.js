@@ -22,52 +22,53 @@ if (!window.gBrowser) { return; }
     // -- Config --
     // Vergleichbarer CSS Code in userChrome.css Datei wird vorrangig behandelt!
 
-    const                                   	    	 // Mehrzeilige Tableiste Ein/Aus Anzahl der Tabzeilen
-    MultiRowTab_OnOff_and_TabBar_Rows =     	-1   	,// [-1] = Mehrzeilige Tableiste aktiv unbegrenzte Anzahl von Zeilen.
-                                            	    	 //  0   = Mehrzeilige Tableiste aus.
-                                            	    	 //  1   = Mehrzeilige Tableiste aktiv. Standard = 1 Zeile. Bei Berührung
-							 //        der Tableise mit der der Maus, werden die zweite und die folgenden Zeilen
-                                                     	 //        bis zur angegebenen Anzahl von Zeilen angezeigt.
-                                                     	 //  2   = Mehrzeilige Tableiste aktiv. Anzahl der Tabzeilen angeben.
-    TabBar_Rows_on_MouseOver =              	3   	,// Standard = 1 Zeile. Anzahl der Zeilen angeben, die angezeigt werden sollen, 
-	                                                 // wenn der Mauszeiger über die Tableiste bewegt wird. Voraussetzung: 
-														                         //„MultiRowTab_OnOff_and_TabBar_Rows“ auf „1“ setzen.
-    TabBar_DisplayTime_on_MouseOver =       	1   	,// Sie können die Anzeigezeit (Sekunden) festlegen, wann die zweite und die folgenden
-	                                                 // Zeilen beim Mouseover angezeigt werden. Das Display zeigt den eingestellten Wert 
-														                         //(Sekunden) an und kehrt dann zur ersten Zeile zurück.
+	    const                                   	    	   // Mehrzeilige Tableiste Ein/Aus Anzahl der Tabzeilen
+    MultiRowTab_OnOff_and_TabBar_Rows =     	-1   		  ,// [-1] = Mehrzeilige Tableiste aktiv unbegrenzte Anzahl von Zeilen.
+                                            	    	  	   //  0   = Mehrzeilige Tableiste aus.
+                                            	    	 	   //  1   = Mehrzeilige Tableiste aktiv. Standard = 1 Zeile. Bei Berührung
+							 	   //        der Tableise mit der der Maus, werden die zweite und die folgenden Zeilen
+                                                     	 	   //        bis zur angegebenen Anzahl von Zeilen angezeigt.
+                                                     	 	   //  2   = Mehrzeilige Tableiste aktiv. Anzahl der Tabzeilen angeben.
+ 
+    TabBar_Rows_on_MouseOver =              	3   		  ,// Standard = 1 Zeile. Anzahl der Zeilen angeben, die angezeigt werden sollen, 
+	                                                 	   // wenn der Mauszeiger über die Tableiste bewegt wird. Voraussetzung: 
+								   //„MultiRowTab_OnOff_and_TabBar_Rows“ auf „1“ setzen.
+    TabBar_DisplayTime_on_MouseOver =       	1   	 	  ,// Sie können die Anzeigezeit (Sekunden) festlegen, wann die zweite und die folgenden
+	                                                	   // Zeilen beim Mouseover angezeigt werden. Das Display zeigt den eingestellten Wert 
+							           //(Sekunden) an und kehrt dann zur ersten Zeile zurück.
 
-														                         // Position der Tab-Leiste.
-    TabBar_Position =              	    	0    	,// [0] = Standard
-														                         // 1   = unter der Symbolleiste
-														                         // 2   = unter dem Fenster
+							           // Position der Tab-Leiste.
+    TabBar_Position =              	    	0    		  ,// [0] = Standard
+								   // 1   = unter der Symbolleiste
+								   // 2   = unter dem Fenster
 
-														                         // Tab-Höhe „UI-Dichte“
+								   // Tab-Höhe „UI-Dichte“
     UI_Density_Compact =               		29		  ,// Standard = 29 Pixelbei Kompakt
     UI_Density_Normal =                		36		  ,// Standard = 36 Pixel bei Normal
     UI_Density_Touch =                 		41		  ,// Standard = 41 Pixel bei Touch
 
-														                         // Tab-Breite
-    Tab_Min_Width =                    		76		  ,// Standard - Mindestwert = 76px
-    Tab_Max_Width =                    		225		  ,// Standard - Maxwert = 225px
-														                         // Bei gleichen Werten bei Min und Max, wird die Tabbreite fixiert!
+								  // Tab-Breite
+    Tab_Min_Width =                    		76		 ,// Standard - Mindestwert = 76px
+    Tab_Max_Width =                    		225		 ,// Standard - Maxwert = 225px
+								  // Bei gleichen Werten bei Min und Max, wird die Tabbreite fixiert!
 
-														                         // „Tab schließen“ Schaltfläche
-    Tab_Close_Button =                 		 0		  ,// [0] = Standard
-														                         //  1  = Ausgeblendet
-														                         //  2  = Auf allen Tabs anzeigen
-														                         //  3  = Nur bei Mausberührung anzeigen
-														                         //  4  = Aktive Tabs werden immer angezeigt, inaktive Tabs
-														                         // werden beim Mouseover angezeigt. *Standard für vertikalen Tab-Modus.
+								  // „Tab schließen“ Schaltfläche
+    Tab_Close_Button =                 		 0		 ,// [0] = Standard
+								  //  1  = Ausgeblendet
+								  //  2  = Auf allen Tabs anzeigen
+								  //  3  = Nur bei Mausberührung anzeigen
+								  //  4  = Aktive Tabs werden immer angezeigt, inaktive Tabs
+								  // werden beim Mouseover angezeigt. *Standard für vertikalen Tab-Modus.
 
-														                         // ProtonUI Erscheinungsbild der Tabs ändern
-    Proton_Margins =                   		true    ,// [true] = Darstellung ProtonUI
-														                         // Die Höhe der Tab-Leiste entspricht der Höhe der UI-Dichte plus dem Leerraum darüber
-														                         // und darunter.                                                 
-														                         // false  = Darstellung wie bei browser.proton.enabled auf false, was man vor Firefox 90
-														                         // noch einstellen konnte.
-														                         // Wenn der Leerraum um die Tabs auf 0 und die Höhe auf die UI-Dichte eingestellt
-														                         // ist, ist sie 4 Pixel breiter und 8 Pixel niedriger als die Standardeinstellung.
-														                         // Ränder auf der linken und rechten Seite der Tabs
+								  // ProtonUI Erscheinungsbild der Tabs ändern
+    Proton_Margins =                   		true   		 ,// [true] = Darstellung ProtonUI
+								  // Die Höhe der Tab-Leiste entspricht der Höhe der UI-Dichte plus dem Leerraum darüber
+								  // und darunter.                                                 
+								  // false  = Darstellung wie bei browser.proton.enabled auf false, was man vor Firefox 90
+								  // noch einstellen konnte.
+								  // Wenn der Leerraum um die Tabs auf 0 und die Höhe auf die UI-Dichte eingestellt
+								  // ist, ist sie 4 Pixel breiter und 8 Pixel niedriger als die Standardeinstellung.
+								  // Ränder auf der linken und rechten Seite der Tabs
     Tab_Separators  =                  		false   	 ,// [false] = Nicht anzeigen
 								  // true    = Anzeigen
 								  // Rahmen CSS wurde extrahiert und angepasst, an Aussehen wie bei browser.proton.enabled
