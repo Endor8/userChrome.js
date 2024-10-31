@@ -68,27 +68,27 @@ if (!window.gBrowser) { return; }
 														                         // Wenn der Leerraum um die Tabs auf 0 und die Höhe auf die UI-Dichte eingestellt
 														                         // ist, ist sie 4 Pixel breiter und 8 Pixel niedriger als die Standardeinstellung.
 														                         // Ränder auf der linken und rechten Seite der Tabs
-    Tab_Separators  =                  		false   ,// [false] = Nicht anzeigen
-														                         // true    = Anzeigen
-														                         // Rahmen CSS wurde extrahiert und angepasst, an Aussehen wie bei browser.proton.enabled
-														                         // auf false, was man vor Firefox 90 noch einstellen konnte.
+    Tab_Separators  =                  		false   	 ,// [false] = Nicht anzeigen
+								  // true    = Anzeigen
+								  // Rahmen CSS wurde extrahiert und angepasst, an Aussehen wie bei browser.proton.enabled
+								  // auf false, was man vor Firefox 90 noch einstellen konnte.
 
-														                         // .Tab-Drop-Indikator-Icon-Ersetzung.
-    Tab_Drop_Indicator =               		false	  ,// [false] = Stecknadel Symbol 📍
-														                         // true    = Rote Linie (2px × 29px) als Symbol
+							 	  // .Tab-Drop-Indikator-Icon-Ersetzung.
+    Tab_Drop_Indicator =               		false	         ,// [false] = Stecknadel Symbol 📍
+								  // true    = Rote Linie (2px × 29px) als Symbol
 
-														                         // Blenden Sie die Titelleistenschaltfläche [-□×] aus                                                        
-														                         // und verwenden Sie die Breite der Tableiste entsprechend.
-														                         // Voraussetzung: „TabBar_Position“ auf „0“ setzen.
-    TitleBar_Button_Autohide =         		false	  ,// [false] = Aktiviert
-														                         // true    = Deaktiviert
-														                         // Äußeren Rahmen der Titelleistenschaltfläche [-□×] reduzieren und transparent machen.
-    TitleBar_Button_DisplayTime =       	0.6		  ,// Dauer der Anzeige in Sekunden, nach der Rückkehr zur Originalgröße und dem Aufheben
-														                         // der Transparenz per Mouseover angeben.
+								  // Blenden Sie die Titelleistenschaltfläche [-□×] aus                                                        
+								  // und verwenden Sie die Breite der Tableiste entsprechend.
+								  // Voraussetzung: „TabBar_Position“ auf „0“ setzen.
+    TitleBar_Button_Autohide =         		false		 ,// [false] = Aktiviert
+								  // true    = Deaktiviert
+								  // Äußeren Rahmen der Titelleistenschaltfläche [-□×] reduzieren und transparent machen.
+    TitleBar_Button_DisplayTime =       	0.6		 ,// Dauer der Anzeige in Sekunden, nach der Rückkehr zur Originalgröße und dem Aufheben
+								  // der Transparenz per Mouseover angeben.
 
-														                         // Tab-Leiste von Anfang an auf die angegebene Höhe einstellen.
-														                         // Voraussetzung: „MultiRowTab_OnOff_and_TabBar_Rows“ auf „2“ oder höher setzen.
-    Set_the_TabBar_to_the_Specified_Height =   false		  ,// [false] = Die Tab-Leiste wird höher, wenn der nächsten Zeile weitere Tabs hinzugefügt werden.
+								  // Tab-Leiste von Anfang an auf die angegebene Höhe einstellen.
+								  // Voraussetzung: „MultiRowTab_OnOff_and_TabBar_Rows“ auf „2“ oder höher setzen.
+    Set_the_TabBar_to_the_Specified_Height =   false		 ,// [false] = Die Tab-Leiste wird höher, wenn der nächsten Zeile weitere Tabs hinzugefügt werden.
                                             	    	 	  //  true   = Verwendung: Die Tab-Leiste wird von Anfang an auf die angegebene Höhe eingestellt 
 								  // und die Tabs werden normal von oben links ausgehend ausgerichtet.
 
