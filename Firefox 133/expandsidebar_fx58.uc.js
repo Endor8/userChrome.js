@@ -80,11 +80,11 @@ var ucjs_expand_sidebar = {
                                 //(Wird nicht geschlossen, selbst wenn XUL im Inhalt angezeigt wird)
   _CLOSEWHENGOOUT:  false,  	//Wenn sich die Maus aus dem Fenster bewegt: true = schließen, [false] = nicht schließen
   _FLOATING_SIDEBAR: true,  	//Schwebende Seitenleiste (Überlagerung des Seiteninhalts) aktivieren, 
-								//(bekanntes Problem: Seitenleiste kann nicht skaliert werden = mit Maus breiter oder schmaler ziehen)
+				//(bekanntes Problem: Seitenleiste kann nicht skaliert werden = mit Maus breiter oder schmaler ziehen)
   _SIDEBARPOSITION: "L",    	//Seitenleistenposition Linke Seite: L  - Rechte Seite: R
-								//VerticalToolbar.uc.js von Gomita - vertikale Symbolleiste 0.1 
-								//(http://www.xuldev.org /blog/?p=113) muss zuerst ausgeführt werden!
-  _KEEP_SIZES:true,     	    //Breite für jeden Seitenleisten-Typ speichern
+				//VerticalToolbar.uc.js von Gomita - vertikale Symbolleiste 0.1 
+				//(http://www.xuldev.org /blog/?p=113) muss zuerst ausgeführt werden!
+  _KEEP_SIZES:true,     	//Breite für jeden Seitenleisten-Typ speichern
   _defaultWidth: 350,       	//Standardbreite der Seitenleiste
   _inFullscreen: true,      	//Bei Vollbild, Verhalten von Firefox 31 verwenden
   //Ende Konfiguration
