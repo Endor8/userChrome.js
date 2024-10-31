@@ -22,7 +22,7 @@ if (!window.gBrowser) { return; }
     // -- Config --
     // Vergleichbarer CSS Code in userChrome.css Datei wird vorrangig behandelt!
 
-	    const                                   	    	   // Mehrzeilige Tableiste Ein/Aus Anzahl der Tabzeilen
+    const                                   	    	 	   // Mehrzeilige Tableiste Ein/Aus Anzahl der Tabzeilen
     MultiRowTab_OnOff_and_TabBar_Rows =     	-1   		  ,// [-1] = Mehrzeilige Tableiste aktiv unbegrenzte Anzahl von Zeilen.
                                             	    	  	   //  0   = Mehrzeilige Tableiste aus.
                                             	    	 	   //  1   = Mehrzeilige Tableiste aktiv. Standard = 1 Zeile. Bei Berührung
