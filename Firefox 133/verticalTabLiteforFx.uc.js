@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name           verticalTabLiteforFx.uc.js
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    CSS入れ替えまくりLiteバージョン
+// @description    Lite-Version mit viel CSS-Ersatz
 // @include        main
-// @compatibility  Firefox 133 Not compatible with sidebar.revamp, sidebar.verticalTabs and browser.tabs.groups.enabled
+// @compatibility  Firefox 133 Nicht Kompatibel mit sidebar.revamp, sidebar.verticalTabs und browser.tabs.groups.enabled
 // @author         Alice0775
-// @note           not support pinned tab yet
+// @note           Angeheftete Tabs werden noch nicht unterstützt!
 // @version        2024/10/27 22:00 Bug 1926582 - Rename things related to moving multiselected tabs together
 // @version        2024/10/24 18:00 Bug 1923052 - Show private browsing indicator icon
 // @version        2024/10/20 08:00 Tweak css for close button
@@ -40,7 +40,7 @@
 // @version        2023/08/29 00:00 Bug 1849904 - Convert a bunch of psuedo-boolean tab strip attributes to be standard boolean attributes
 // @version        2023/08/24 00:00 workaround Bug 1849141 - Clean up --tab-min-height rules
 // @version        2023/07/19 00:00 add padding-top due to Bug 1705215
-// @version        2023/03/09 Bug 1820534 - Move front-end to modern flexbox.
+// @version        2023/03/09 Bug 1820534 - Move front-end to modern flexbox.
 // @version        2022/12/22 add outline for selectedtab(xxx Bug 1704347)
 // @version        2022/12/19 window control in Fullscreen
 // @version        2022/11/13 tweak .tab-icon-overlay css
@@ -125,10 +125,10 @@ window.addEventListener("MozAfterPaint", function () {
 function verticalTabLiteforFx() {
   let closebuttons="activetab"; // "activetab" or ""
 
-  let verticalTabbar_maxWidth = 500;  /* タブバーの横幅 px */
-  /* not yet */
-  //let verticalTabPinned_width = 27; /* ピン留めタブの横幅 px */
-  //let verticalScrollbar_width = 11; /* スクロールバー幅 px */
+  let VerticalTabbar_maxWidth = 500; /* Tab-Leistenbreite px */
+  /* Funktioniert noch nicht! */
+  //let VerticalTabPinned_width = 27; /* Angeheftete Tabbreite px */
+  //let VerticalScrollbar_width = 11; /* Bildlaufleistenbreite px */
 
   let verticalTabbar_minWidth = Services.prefs.getIntPref("browser.tabs.tabMinWidth", 0);
   let verticalTabbar_width = Services.prefs.getIntPref("ucjs.tabWidth", verticalTabbar_maxWidth);
@@ -352,7 +352,7 @@ function verticalTabLiteforFx() {
 */
   /*cosme*/
   .tab-content {
-    /* 上 | 右 | 下 | 左 */
+    /* Oben |. Rechts |. Unten | */
     padding: 0 2px 0 3px !important;
     margin-inline-start: 1px;
     justify-content: unset !important;
@@ -377,7 +377,7 @@ function verticalTabLiteforFx() {
       margin-inline-end: calc(var(---tab-inline-padding) / -2);
       width: 19px !important;
       height: 23px !important;
-      padding: 7px 5px !important; /*[上下][左右]*/
+      padding: 7px 5px !important; /*[Auf und ab] [Links und rechts]*/
       border-radius: 8px !important;
   }
   :root[uidensity="compact"] .tabbrowser-tab > .tab-stack > .tab-content > .tab-close-button,
@@ -397,14 +397,14 @@ function verticalTabLiteforFx() {
 
  /*bollow css code from https://egg.5ch.net/test/read.cgi/software/1579702570/676 */
 
-  /* ピン留めしたタブicon左右位置調整 */
+  /* Positionsanpassung des angehefteten Tab-Symbols links und rechts */
   .tab-throbber,
   .tab-sharing-icon-overlay,
   .tab-icon-pending,
   .tab-icon-image {
     margin-inline-end: 6px;
   }
-  /* ピン留めしたタブに閉じるボタンを表示する・左右位置調整 */
+  /* Schließen-Schaltfläche auf angehefteten Tabs anzeigen/Horizontale Position anpassen */
   #vtb_TabsToolbar .tabbrowser-tab[pinned]:not([tabProtect]) .tab-close-button {
     visibility:visible !important;
     display: unset !important;
@@ -416,7 +416,7 @@ function verticalTabLiteforFx() {
 
 
 
-  /* ピン留めしたタブにピンマークを付ける */
+  /* Angehefteten Tab Markierung hinzufügen */
   #vtb_TabsToolbar .tabbrowser-tab[pinned] .tab-content::before {
     content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAABPUlEQVQokY3RTUtCQRTG8WnRNwj6DDkzotwLBoVBZLeIgsCglYvAct0LSLlICIqLm7LAIIQIAqMWiULaQsyITOkFgtpEuwokiJDE9J6nXWpG9F8efnAOM4zVVY6PH9B+NygxUC7nnSsAWtjPimdOlxF1gI7HQLkJ0OM0KpWQowEZJ2rweUuiuGNDKeUGPfhhvK+jAVFGgo4sKAQFVgcFZq3ielNRWr9BNTfqQtoMIyJw5eNYUAUCw0obY4wxHNraKd71RGkJSprxFuKIuARmpHyprUhxIClBSSuMPY5bP8dipwlrI6q1hrLqPeWHQFEFpTDHpc+E2JSKarY30XDwZ6bvhuJ2vG504MLLcTon8bHbQ01vFA54z++WbfnYJC8s2UVB1yzzTUjTtO2mYX26rvf/+gX1eTwe95/gP30BeHKkcA2on8MAAAAASUVORK5CYII=") !important;
     position: absolute !important;
@@ -427,7 +427,7 @@ function verticalTabLiteforFx() {
     display: block !important;
     filter: saturate(150%) !important;
   }
-  /* タブのfaviconよりもピンマークを上にする */
+  /* Pin-Markierung über dem Favicon des Tabs einfügen */
   #vtb_TabsToolbar .tabbrowser-tab[pinned] .tab-icon-image {
     position: relative !important;
     z-index: -2 !important;
