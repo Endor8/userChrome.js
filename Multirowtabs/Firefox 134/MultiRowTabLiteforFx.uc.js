@@ -22,9 +22,11 @@ if (!window.gBrowser) { return; }
 								//        der Tableise mit der der Maus, werden die zweite und die folgenden Zeilen
                                                          	//        bis zur angegebenen Anzahl von Zeilen angezeigt.
 	                                                        //  2   = Mehrzeilige Tableiste aktiv. Anzahl der Tabzeilen angeben.
+	    
     TabBar_Rows_on_MouseOver =              		 3     ,// Standard = 1 Zeile. Anzahl der Zeilen angeben, die angezeigt werden sollen, 
 	                                                        // wenn der Mauszeiger über die Tableiste bewegt wird. Voraussetzung: 
 								// „MultiRowTab_OnOff_and_TabBar_Rows“ auf „1“ setzen.
+	    
     TabBar_DisplayTime_on_MouseOver =       		 1     ,// Sie können die Anzeigezeit (Sekunden) festlegen, wann die zweite und die folgenden
 	                                                        // Zeilen beim Mouseover angezeigt werden. Das Display zeigt den eingestellten Wert 
 								// (Sekunden) an und kehrt dann zur ersten Zeile zurück.
@@ -33,6 +35,7 @@ if (!window.gBrowser) { return; }
     TabBar_Position =              	    		0       ,// [0] = Standard
 								 // 1   = unter der Symbolleiste
 								 // 2   = unter dem Fenster
+	    
 								 // Tab-Höhe „UI-Dichte“
     UI_Density_Compact =               			29	,// Standard = 29 Pixelbei Kompakt
     UI_Density_Normal =                			36	,// Standard = 36 Pixel bei Normal
@@ -65,9 +68,11 @@ if (!window.gBrowser) { return; }
 								 // true    = Anzeigen
 								 // Rahmen CSS wurde extrahiert und angepasst, an Aussehen wie bei browser.proton.enabled
 								 // auf false, was man vor Firefox 90 noch einstellen konnte.
+	    
 								 // Voraussetzung: „TabBar_Position“ auf „0“ setzen.
     TitleBar_Button_Autohide =         			false	,// [false] = Aktiviert
 								 // true    = Deaktiviert
+	    
 								 // Äußeren Rahmen der Titelleistenschaltfläche [-□×] reduzieren und transparent machen.
     TitleBar_Button_DisplayTime =       		0.6	,// Dauer der Anzeige in Sekunden, nach der Rückkehr zur Originalgröße und dem Aufheben
 								 // der Transparenz per Mouseover angeben.
@@ -96,11 +101,11 @@ if (!window.gBrowser) { return; }
     PinnedTab_Max_Width =               		225   	,// Standard Maximalbreite = 225 Pixel
 								 // Bei gleichen Werten ist die Breite fixiert.
 
-                                            	    	 	 // Angeheftete Tab, Schließen SChaltfläche
+                                            	    	 	 // Angeheftete Tab, Schließen Schaltfläche
                                             	    	 	 // Voraussetzung: „Separate_Tabs_and_PinnedTabs“ auf „true“ setzen.
     PinnedTab_Close_Button =                		0   	,// [0] = Standard
                                             	    	 	 //  1  = auf allen Tabs sichtbar
-                                            	    		 //  2  = Tab bei Mouseover anzeigen
+                                            	    		 //  2  = auf Tab bei Mouseover anzeigen
                                             	    	 	 //  3  = Aktiver Tab immer sichtbar, inaktiver Tab bei Mouseover sichtbar *Standard für vertikalen Tab-Modus.
 
 								 // Tab-Leisten-Ziehbereich
