@@ -24,10 +24,10 @@ if (!window.gBrowser) { return; }
 	                                                        //  2   = Mehrzeilige Tableiste aktiv. Anzahl der Tabzeilen angeben.
     TabBar_Rows_on_MouseOver =              		 3     ,// Standard = 1 Zeile. Anzahl der Zeilen angeben, die angezeigt werden sollen, 
 	                                                        // wenn der Mauszeiger über die Tableiste bewegt wird. Voraussetzung: 
-								//„MultiRowTab_OnOff_and_TabBar_Rows“ auf „1“ setzen.
+								// „MultiRowTab_OnOff_and_TabBar_Rows“ auf „1“ setzen.
     TabBar_DisplayTime_on_MouseOver =       		 1     ,// Sie können die Anzeigezeit (Sekunden) festlegen, wann die zweite und die folgenden
 	                                                        // Zeilen beim Mouseover angezeigt werden. Das Display zeigt den eingestellten Wert 
-								//(Sekunden) an und kehrt dann zur ersten Zeile zurück.
+								// (Sekunden) an und kehrt dann zur ersten Zeile zurück.
 
 								 // Position der Tab-Leiste.
     TabBar_Position =              	    		0       ,// [0] = Standard
