@@ -1,13 +1,14 @@
+/*
 // ==UserScript==
 // @name           extras_config_menu.uc.js
-// @compatibility  Firefox 5*.*
+// @compatibility  Firefox 135*.*
 // @include        main
-// @version        1.0.20190504
+// @version        1.0.20250112
 // @edit           @aborix 7/21 CSS Dateien als Untermenü eingefügt 
 // @edit           @2002Andreas 8/21 Shadow CSS Dateien als Untermenü + Ordner eingefügt
-// @edit 		   @BrokenHeart	1/25 Anpass. wg. Änderung der Sicherheitsrichtlinien bei 'inlineEvents'
+// @edit 	   @BrokenHeart	1/25 Anpass. wg. Änderung der Sicherheitsrichtlinien bei 'inlineEvents'
 // ==/UserScript==
-
+*/
 var uProfMenu = {
   // Beginn der Konfiguration
   // In der folgenden Zeile (11) den Pfad zum Texteditor eintragen (unter Ubuntu 10.04 z.B.: '/usr/bin/gedit'). Bei Fehleintrag wird view_source.editor.path ausgelesen:
@@ -20,8 +21,8 @@ var uProfMenu = {
   // In der folgenden Zeile (19) 'menu' eintragen, damit es unter "Extras" als Menue erscheint, sonst die id des gewuenschten
   // Elements *nach* dem der Button erscheinen soll (z.B. 'urlbar', 'searchbar', 'undoclosetab-button','abp-toolbarbutton')
   // Bitte nicht so etwas wie die Menue- oder Navigationsleiste (sondern einen Menuepunkt oder einen Button mit id auf diesen Leisten) eintragen:
- warpmenuto: 'usercssloader-menu',
- // Unter Linux sollte/kann versucht werden, die userChromeJS-Skripte zu sortieren, unter Windows ist das evtl. nicht noetig (die Sortierung wird Gross- und Kleinschreibung *nicht* beruecksichtigen - dazu wird die sort()-Funktion entsprechend mit einer Vergleichsfunktion aufgerufen)
+  warpmenuto: 'helpMenu',
+  // Unter Linux sollte/kann versucht werden, die userChromeJS-Skripte zu sortieren, unter Windows ist das evtl. nicht noetig (die Sortierung wird Gross- und Kleinschreibung *nicht* beruecksichtigen - dazu wird die sort()-Funktion entsprechend mit einer Vergleichsfunktion aufgerufen)
   sortScripts: 0,   // 1 zum Erzwingen der Sortierung
   // Einbindung GM-Skripte-Ordner (0: nein, 1: Greasemonkey [Profil-Verzeichnis], 2: UserScriptLoader [Chrome-Verzeichnis], 3: Scriptish [Profil-Verzeichnis]):
   gmOrdner: 0,
@@ -55,24 +56,6 @@ var uProfMenu = {
       menu.setAttribute("ondblclick","openTrustedLinkIn('about:config', 'tab');");
      } else {
 		 
-	/*	 
-      // als Button nach dem per warpmenuto gewaehlten Element anlegen (s. Kommentar ueber warpmenuto im Konfigurationsabschnitt)
-      var zielmenu = document.getElementById(this.warpmenuto);
-      if (zielmenu==null) {
-        userChrome.log("extras_config_menu.uc.js findet Zielpunkt '"+this.warpmenuto+"' nicht, evtl. weil ein anderes Fenster als das Hauptfenster " +
-                       "geoeffnet wurde. Falls dieser Fehler auch im Hauptfenster auftritt, bitte die vorgehende Definition " +
-                       "von 'warpmenuto' kontrollieren.");
-        return;
-      }
-      var menu = zielmenu.parentNode.insertBefore(document.createXULElement('toolbarbutton'), zielmenu.nextSibling);
-      menu.setAttribute("id", "ExtraConfigMenu-button");
-      menu.setAttribute("class", "toolbarbutton-1");
-      menu.setAttribute("type", "menu");
-      menu.setAttribute("tooltiptext", "Extra Config Menü\nMittelklick \öffnet about:config");
-      menu.setAttribute("onclick", "if (event.button === 2 && !this.open) {openTrustedLinkIn('about:config','tab')};");
-    }
-	*/
-	
 	 // als verschiebbaren Button anlegen
       if (window.__SSi == "window0") {
         CustomizableUI.createWidget({
@@ -98,6 +81,7 @@ var uProfMenu = {
     var css = " \
       #ExtraConfigMenu, #ExtraConfigMenu-button { \
         list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACnElEQVR4Xm2RzYtbZRSHn/fr3pvJzTB3qiNM2k2pMBUGhEHaqsUqdeFGQalCobgREaFu/B/cqCtxVSjoQhBEQRBmIfWDKgNGJUPt0Nhah9JJ4iSd5E6+bu5972tAO4SS5/DjXZ1znsMrNiq1eikMQqYYJCmjxNH5+zdW777L0J5KKl9VPmnf+ut9KWkwhbheuzNcOVYOmGKc5iRO0r1ykeXCx0h7kt4fC3z5wfqbQnAJwQHa5S7jAZSRuJ0mkf81cheobhBXZa+ri1uptQjHAZoZCEC1PiPgDuwxCfwerBU7b73zXn//3usCcdt4HkZ7SGZg431U51NUCgwlO3cV/bVXhR/6p9ut+nP9QYeNn7/n8qUPZxvQ/Q6VVWHk4ZqWRvlJjpx9hcGfW2wO95N2q8m3618A2WwDt/0RplSAXsBed57eyossHl5GYdHacG3zGpADM06wjQ1UUIN+CLHPvfAxojPnKLiE+bDE1R9+5GatAmgPeGCAteQ7l5GBhGSyuROyd/gFouUyWkqEErR2mwXAAA8BRS0AgMQBjSra30ZkEeDzz9Dn4ZcvMO51SMcJcTdGChmA0ABA6cAgzyG3I8jLEBylV4fWoaeIc0V7t0Uv7pFbC+CA+28mp/8+SwXKnMVmz1O9HpE+eobMZdjcoY1GIHD/NwIdoH1fBaNguzlg88pVyoUi4vTbFI8eJxsNAIfSkrliESllH/L0v0jktNNomFGv1TFrL3Fo9QSMR3jaEEXzLC09gjaKp595No0WjyCEB4zRclICUMDxtRMce/wJ1MIi2SglXShhfI/cOjxPoZRmbq4gXzt/gVrtBrdvbiG+Wf+p/mvll1BpiVAGhCDPxuAUDotz4HKHlIJON6bRbL4hhPjcMx5mkn8BBLEUrsVZbq0AAAAASUVORK5CYII=);  \
+		 margin-top: 0px !important; \);  \
 		 margin-top: 0px !important; \
 		 opacity: 1 !important;\
       } \
@@ -444,7 +428,7 @@ var uProfMenu = {
         m.setAttribute('label', sLabel);
         m.setAttribute('class',sClass);
 		m.addEventListener('command', function(event) {
-			Function("return " + sCommand)();
+			Function(sCommand)();
 		}, true);
 		
         break;
