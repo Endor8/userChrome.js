@@ -114,11 +114,10 @@ var uProfMenu = {
     // Ende Anlegen von Untermenues
     menupopup.appendChild(document.createXULElement('menuseparator'));
     // Einbindung von Konfigdateien
- 	menupopup.appendChild(this.createME("menuitem","Bild Url","uProfMenu.edit(0,'Bild Url.css');","uProfMenu_edit",0));
-	menupopup.appendChild(this.createME("menuitem","config Einträge.css","uProfMenu.edit(0,'config Einträge.css');","uProfMenu_edit",0));
-	/*menupopup.appendChild(this.createME("menuitem","Forum.css","uProfMenu.edit(0,'./CSSWeb/Forum.css');","uProfMenu_edit",0)); */
+    menupopup.appendChild(this.createME("menuitem","Bild Url","uProfMenu.edit(0,'Bild Url.css');","uProfMenu_edit",0));
+    menupopup.appendChild(this.createME("menuitem","config Einträge.css","uProfMenu.edit(0,'config Einträge.css');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userChrome.css","uProfMenu.edit(0,'userChrome.css');","uProfMenu_edit",0));
-	menupopup.appendChild(this.createME("menuitem","userChromeShadow.css","uProfMenu.edit(0,'userChromeShadow.css');","uProfMenu_edit",0));
+    menupopup.appendChild(this.createME("menuitem","userChromeShadow.css","uProfMenu.edit(0,'userChromeShadow.css');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userContent.css","uProfMenu.edit(0,'userContent.css');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","userChrome.js","uProfMenu.edit(0,'userChrome.js');","uProfMenu_edit",0));
     menupopup.appendChild(this.createME("menuitem","prefs.js","uProfMenu.edit(1,'prefs.js');","uProfMenu_edit",0));
@@ -142,9 +141,9 @@ var uProfMenu = {
     menupopup.appendChild(this.createME("menuitem","CSS-Ordner ","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'css');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","CSSShadow-Ordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'CSSShadow');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","CSSWeb-Ordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'CSSWeb');","uProfMenu_folder"),0);
-	 menupopup.appendChild(this.createME("menuitem","Chromeordner","uProfMenu.prefDirOpen('UChrm');","uProfMenu_folder"),0);
+    menupopup.appendChild(this.createME("menuitem","Chromeordner","uProfMenu.prefDirOpen('UChrm');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Profilordner","uProfMenu.prefDirOpen('ProfD');","uProfMenu_folder"),0);
-	    menupopup.appendChild(this.createME("menuitem","Icons-Ordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'Icons');","uProfMenu_folder"),0);
+    menupopup.appendChild(this.createME("menuitem","Icons-Ordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('UChrm')+uProfMenu.getDirSep()+'Icons');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Installationsordner","uProfMenu.prefDirOpen('CurProcD');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Addonordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('ProfD')+uProfMenu.getDirSep()+'extensions');","uProfMenu_folder"),0);
     menupopup.appendChild(this.createME("menuitem","Startup-Cacheordner","uProfMenu.dirOpen(uProfMenu.getPrefDirectoryPath('ProfLD')+uProfMenu.getDirSep()+'startupCache');","uProfMenu_folder"),0);
