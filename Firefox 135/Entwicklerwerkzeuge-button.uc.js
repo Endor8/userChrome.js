@@ -33,7 +33,7 @@
 	   
 	setTimeout(function() {
 		if (document.getElementById('menuWebDeveloperPopup').childElementCount <= 5) {
-			let { require } = Cu.import("resource://devtools/shared/loader/Loader.jsm", {});
+			let { require } = ChromeUtils.importESModule("resource://devtools/shared/loader/Loader.sys.mjs", {});
 			require("devtools/client/framework/devtools-browser");
 		};
 	}, 0);
