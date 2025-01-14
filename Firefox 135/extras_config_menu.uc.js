@@ -170,9 +170,9 @@ var uProfMenu = {
     // Falls gewuenscht (s. Konfigurationsabschnitt), Zugriff auf die normalen Einstellungen
     if (this.showNormalPrefs) menupopup.appendChild(this.createME("menuitem","Einstellungen","try{openOptionsDialog();}catch(e){openPreferences();}","uProfMenu_prefs"),0);
     // Falls addRestartButton installiert ist, Neustart zur Verfuegung stellen (addRestartButton 1.0.20120105mod erforderlich)
-    if(typeof(ToolRstartMod) != "undefined" || this.enableRestart) menupopup.appendChild(this.createME("menuitem","Neustart",
-    "try{ToolRstartMod.restartApp(false);} catch(e){alert(e);}","uProfMenu_restart"),0);
-  },
+    if(this.enableRestart) menupopup.appendChild(this.createME("menuitem","Neustart",
+    "Services.appinfo.invalidateCachesOnRestart(); Services.startup.quit(Ci.nsIAppStartup.eRestart | Ci.nsIAppStartup.eAttemptQuit,0);"));
+    },
 
   getDirSep:function() {
     // Betriebssystem nach https://developer.mozilla.org/en/Code_snippets/Miscellaneous ermitteln
