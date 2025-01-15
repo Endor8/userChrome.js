@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name       Firefox_ToolBarButtons.uc.js
 // @charset    UTF-8
-// Date		   2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
-// Date		   2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
+// Date        2025/01/15 Anpassung für Firefox 135
+// Date	       2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
+// Date	       2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
 // Date        öffnen der gespeicherten Zugangsdaten hinzugefügt (about:logins).
 // Date        2019‎/12/15 Firefox Nightly 73.0a1 xul in .xhtml umgeschrieben. Vor der Konvertierung von Label- und Tooltip-Text, die in Unicode
 // Note        konvertiert wurden, habe ich in jeden Button geschrieben. Der Cookie-Manager (für Firefox60ESR) wurde entfernt, da Firefox60ESR
