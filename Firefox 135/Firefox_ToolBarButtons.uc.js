@@ -658,8 +658,8 @@
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
-					toolbaritem.addEventListener('click', event => {
-					          if (event.button == 0) {
+		    toolbaritem.addEventListener('click', event => {
+			      if (event.button == 0) {
                                   openTrustedLinkIn("about:newtab", "tabshifted"); 
                               }; 
                               if (event.button == 1) {
