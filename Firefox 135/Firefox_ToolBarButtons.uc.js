@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name       Firefox_ToolBarButtons.uc.js
 // @charset    UTF-8
-// Date        2025/01/15 Anpassung für Firefox 135
-// Date	       2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
-// Date	       2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
+// Date        2025/01/20 Firefox 135+ Anpassung und Fehlerbehebung 
+// Date		   2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
+// Date		   2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
 // Date        öffnen der gespeicherten Zugangsdaten hinzugefügt (about:logins).
 // Date        2019‎/12/15 Firefox Nightly 73.0a1 xul in .xhtml umgeschrieben. Vor der Konvertierung von Label- und Tooltip-Text, die in Unicode
 // Note        konvertiert wurden, habe ich in jeden Button geschrieben. Der Cookie-Manager (für Firefox60ESR) wurde entfernt, da Firefox60ESR
@@ -577,7 +577,7 @@
             }
         });
 //      Zoom-Steuerung
-//      Unicode-Konvertierung  → label: 'Zoom-Steurung', tooltiptext: 'Linksklick oder Rad ↑: vergrößern | Mittelklick: zurücksetzen | 
+//      Unicode-Konvertierung  → label: 'Zoom-Steuerung', tooltiptext: 'Linksklick oder Rad ↑: vergrößern | Mittelklick: zurücksetzen | 
 //      Rechtsklick oder Rad ↓: verkleinern',
         CustomizableUI.createWidget({
             id: 'zoom-control-ToolBarbutton',
@@ -595,23 +595,23 @@
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
-					if (event.button == 0) { 
-                              if (event.button == 0) { 
-                                  FullZoom.enlarge(); 
-                              }; 
-                              if (event.button == 1) { 
-                                  FullZoom.reset(); 
-                              }; 
-                              if (event.button == 2) { 
-                                  FullZoom.reduce(); 
-                              };
-                    onwheel:  if (event.deltaY < 0) { 
-                                  FullZoom.enlarge(); 
-                              } else { 
-                                  FullZoom.reduce(); 
-                              };
+					if (event.button === 0) { 
+						FullZoom.enlarge(); 
+					} else if (event.button === 1) { 
+						FullZoom.reset(); 
+					} else if (event.button === 2) { 
+						FullZoom.reduce(); 
 					}
-				});			
+				});
+
+				toolbaritem.addEventListener('wheel', event => {
+					event.preventDefault();
+					if (event.deltaY < 0) { 
+						FullZoom.enlarge(); 
+					} else { 
+						FullZoom.reduce(); 
+					}
+				});
                 return toolbaritem;
             }
         });
@@ -658,9 +658,9 @@
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
-		    toolbaritem.addEventListener('click', event => {
-			      if (event.button == 0) {
-                                  openTrustedLinkIn("about:newtab", "tabshifted"); 
+					toolbaritem.addEventListener('click', event => {
+							if (event.button === 0) { 
+								openTrustedLinkIn("about:newtab", "tabshifted"); 
                               }; 
                               if (event.button == 1) {
                                   openTrustedLinkIn("about:config", "tab"); 
@@ -668,12 +668,16 @@
                               if (event.button == 2) {
                                   Services.dirsvc.get("UChrm", Ci.nsIFile).launch(); 
                               };
-                    onwheel:  if (event.deltaY < 0) { 
+						});
+
+						toolbaritem.addEventListener('wheel', event => {
+							event.preventDefault();
+							if (event.deltaY < 0) { 
                                   openTrustedLinkIn("about:newtab", "tabshifted");
                               } else { 
                                   openTrustedLinkIn("about:newtab", "tabshifted");
 					          }
-				});			
+						});			
                 return toolbaritem;
             }
         });
