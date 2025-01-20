@@ -3,7 +3,7 @@
 // @charset    UTF-8
 // Date        2025/01/20 Firefox 135+ Anpassung und Fehlerbehebung 
 // Date	       2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
-// Date	       2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
+// Date        2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
 // Date        öffnen der gespeicherten Zugangsdaten hinzugefügt (about:logins).
 // Date        2019‎/12/15 Firefox Nightly 73.0a1 xul in .xhtml umgeschrieben. Vor der Konvertierung von Label- und Tooltip-Text, die in Unicode
 // Note        konvertiert wurden, habe ich in jeden Button geschrieben. Der Cookie-Manager (für Firefox60ESR) wurde entfernt, da Firefox60ESR
@@ -93,7 +93,7 @@
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
-		    toolbaritem.addEventListener('click', event => {
+					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
                                   Services.startup.quit(Ci.nsIAppStartup.eRestart | Ci.nsIAppStartup.eAttemptQuit); 
                               }; 
@@ -121,7 +121,7 @@
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
-		    toolbaritem.addEventListener('click', event => {
+					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
                             openTrustedLinkIn("about:config", "tab");
                                  }
@@ -561,18 +561,22 @@
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
-					if (event.button == 0) { 
+							  if (event.button == 0) { 
                                   gBrowser.moveTabBackward(); 
                               }; 
                               if (event.button == 2) { 
                                   gBrowser.moveTabForward(); 
-                              };
-                    onwheel:  if (event.deltaY < 0) { 
+					}
+				});
+
+					toolbaritem.addEventListener('wheel', event => {
+							event.preventDefault();
+							if (event.deltaY < 0) { 
                                   gBrowser.tabContainer.advanceSelectedTab(-1, true); 
                               } else { 
                                   gBrowser.tabContainer.advanceSelectedTab(1, true);
-                                 }
-				});								 
+                    }
+				});						 
                 return toolbaritem;
             }
         });
