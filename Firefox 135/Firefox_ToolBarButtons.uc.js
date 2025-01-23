@@ -2,8 +2,8 @@
 // @name       Firefox_ToolBarButtons.uc.js
 // @charset    UTF-8
 // Date        2025/01/20 Firefox 135+ Anpassung und Fehlerbehebung 
-// Date	       2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
-// Date        2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
+// Date		   2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
+// Date		   2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
 // Date        öffnen der gespeicherten Zugangsdaten hinzugefügt (about:logins).
 // Date        2019‎/12/15 Firefox Nightly 73.0a1 xul in .xhtml umgeschrieben. Vor der Konvertierung von Label- und Tooltip-Text, die in Unicode
 // Note        konvertiert wurden, habe ich in jeden Button geschrieben. Der Cookie-Manager (für Firefox60ESR) wurde entfernt, da Firefox60ESR
@@ -58,19 +58,18 @@
 // @note    Entwickler Werkzeuge öffnen
 // @note    Cookies und Websitedaten verwalten (Cookies und Websitedaten werden anscheinend erst nach einmaligem Öffnen der Firefox-Option angezeigt.)
 // @note    Benutzerdefinierte Schaltfläche (Linksklick oder mit dem Rad ↑ ↓: Neuen Tab | Mittelklick: About: Config | Rechtsklick: Chrome-Ordner) öffnen
-																																
 // @note    
 // @note    Firefox Nightly 73.0a1 kompatibel
 // @note    http://wiki.nothing.sh/page?userChrome.js%CD%D1%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8#r7140ba6
 // @note    "Verwendung des userChrome.js Scripts auch nach 72, wenn die XBL-Bindung deaktiviert ist".
 // @note    
-// @note    Bei Verwendung des Script in Firefox 68 oder niedriger, muss aDocument.createXULElement ⇒ zu document.createElement geändert werden.
-																																									
+// @note    Bei Verwendung des Script in Firefox 68 oder niedriger, muss aDocument.createXULElement ⇒ zu document.createElement geändert werden.	
 // @note    
 // @note    Bei Verwendung des Script in Firefox 72 oder niedriger, muss die Endung xhtml ⇒ zu xul geändert werden.
 // ==/UserScript==
 "use strict";
 (function() {
+
 
     if (location != "chrome://browser/content/browser.xhtml") return;
 
@@ -93,15 +92,18 @@
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
+	
 					toolbaritem.addEventListener('click', event => {
-					if (event.button == 0) { 
-                                  Services.startup.quit(Ci.nsIAppStartup.eRestart | Ci.nsIAppStartup.eAttemptQuit); 
-                              }; 
-                              if (event.button == 1) { 
-                                  Services.appinfo.invalidateCachesOnRestart(); 
-                                  Services.startup.quit(Ci.nsIAppStartup.eRestart | Ci.nsIAppStartup.eAttemptQuit);
-                              };
-		});
+					if (event.button == 1) { 
+						Services.startup.quit(Ci.nsIAppStartup.eRestart | Ci.nsIAppStartup.eAttemptQuit); 
+					}; 
+					if (event.button == 0 || event.button == 2) {
+                      event.preventDefault();
+                      Services.appinfo.invalidateCachesOnRestart();
+                      Services.startup.quit(Ci.nsIAppStartup.eRestart | Ci.nsIAppStartup.eAttemptQuit);
+                    }
+				});
+	
                 return toolbaritem;
             }
         });
@@ -123,9 +125,9 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            openTrustedLinkIn("about:config", "tab");
-                                 }
-  });
+                        event.target.ownerGlobal.openTrustedLinkIn("about:config", "tab");
+                }
+				});
                 return toolbaritem;
             }
         });
@@ -142,14 +144,15 @@
                     label: 'Neuer Tab',
                     tooltiptext: 'Neuen Tab öffnen',
                     style: 'list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAABWFJREFUWIXtl79vHMcVxz/zdvfuluSRFEOGMgxRia3YMZTIMEADAtKkSZXCXYpUKfJHBBBUpEobQAD/CRdBilQpUgZIIxgqbEGUrViWTUrHI3l33B+zM++luOP5GN4psWIgQJAvMLd7s3PzPvN982MP/ldlRqZK2wx5WTv3rQb9jI5ttK6DfAexZVziUK1w8YTl5pkIRwsB9vb2bh8eHv4mTdMSIMY4n9i5WkTu3r179+lsvQ7ZxjpvI9l1kG0z6QLinJVOrWfSfEEMj2XNP7wEcOfOnWubm5t/3N3dfa8sS1QVVcXMUNVxgMlVRNjf3//k0aNH7+/t7Y0AbMCmufZ70HrHXOsGpK+DWwOXYJxBOHCueYKGTzD/YBYinYx2VJZlPhgMeP78OTFGYoxTkFkgM0NEtrIs+zHwVzOcDfI3cdlbRvtH0HoHS78HW0KSOuJAsWHPnOs6AdBCT31P1sbpSABu3bqV5nn+652dna2qqnDOTcvE9gslSZLO0dERt2/f9k8ev/a+qvzESHfFtW45t/Ym6bsdk5tts522pOuGhJxY5GCFGENEB7/9nR5OHUiSpGmahrquKYqCEAIxRkIIqOrUDTMbTzYz2d7e/tXS0tIvN7c2pI5XpPRfJCv6QiI3QG8i6Q+ckw5Rn7QSYYA73YRw1aTZRJN1s0acQwXg3r173ntPXdeUZUlVVZeu56Usy/O6tN/vL/V6X3bORv1WaIokSaKDrnNy1Ul6E0l3UdvJ4LsJyargWDZzOSIdM7KpA4Cpajwfdd1EysYRAsQIqufFpi6cq1sZpQcfDLOImWLmMR2BgFmNEZ01UWqftn1YyddXCnMOmwUgxtgkSUKWZXx8usGxrpEmAmKTji4Ghsl3d8CK7rPqUzaqyGrax8JTlATI0PiV1HVvNYTKPj18a+Xhl9feWE2fPfjgZ3/2FwBCCHVVVRRFQWmb/Pyn7zKowpydYGb9Au10h9fWOnS7KSqQuM8Rl4KdAoJzQxJ5mpzp6+RL30+H5RX395MsubAMAZqmaeq6pq5rjAQflP7QLwT4Wh1i3CCGLWIc4YOylvfIW58DKU0UhtU6R6Or9IttXpzmxf2Ptx9fAogx1uP1r0iSYt9gl+6NrpNKBYAPOcNqnXZWIM7woc2ZX6V/tsWwvsZnvWz07DjtXQIwMy8iWNIib7fQSzlfrKgZB4O3CdrhrFljpTihlRU4jCa2KXyXF8MNzL3B4YujSqU/nOtAWZaclQ3ZSkqM/z7AOcTh4Aan5TbLrWOytJwAZByfrTCornB1fRmvz4NP0ssAIYTae0/plU47I34DB2ZVNV2qpjvuU43ax/P1Qpo4Qoj6w142eDDHgSqEgI/QbbVowqsBAEQ1fFCi/lMfBg47+/DDX0yP2imAqlYigkvbJFmbEHVhADVDjcnhNOnbwLDxhrXAvSZEMDudrZtNQVWWJVVISSS9kIKoNi2qxqt60wTFxF14KZndByrvPd6WQKCJSt0oQZVXnA6X5JtAVOvN1s2moIwxoq5NiA4fFu+CdunmJW0mcg6KusFCPJwLEGMsRQRL21RBifPeJe2lMRnPgvkk4hxF3dBEXQzgvcdrSh0ud2VzxzUn1oImzhmDovZRQ38egFRVJSEEIkLVRES+dmBhWPsXz2cBgGLYVMOjZxeanwPkg8HgpLBlc1numqDA4mX4KnJA//ho2PvoD4+AHChnAcL9+/f/snzzg4dp62B71D9AdTwJZlMxtthYOHQ3/QDnJndSNUn+qSMOv/roT7/v7//tGGgu/GSiDrAOLAEBWPnPxnxB9QR3BJwA03N+3pnrAGFmgn4LCsD8fzr/139b/wA0wmcpTSnePAAAAABJRU5ErkJggg==)',
+					
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            openTrustedLinkIn("about:newtab", "tabshifted");
-                                 }
-				  });
+                        event.target.ownerGlobal.openTrustedLinkIn("about:newtab", "tab");
+                    }
+				});
                 return toolbaritem;
             }
         });
@@ -166,6 +169,7 @@
                     label: 'Profilordner',
                     tooltiptext: 'Profilordner öffnen',
                     style: 'list-style-image: url(data:image/png;base64,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)',
+					
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
@@ -173,7 +177,7 @@
 					if (event.button == 0) { 
                             Services.dirsvc.get("ProfD", Ci.nsIFile).launch();
                                  }
-            });								 
+				});								 
                 return toolbaritem;
             }
         });
@@ -190,12 +194,13 @@
                     label: 'Lesezeichen-Sidebar',
                     tooltiptext: 'Lesezeichen-Sidebar öffnen/schließen',
                     style: 'list-style-image: url(data:image/png;base64,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)',
+					
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            SidebarController.toggle("viewBookmarksSidebar");
+                        event.target.ownerGlobal.SidebarController.toggle("viewBookmarksSidebar");
                     }				
 					});
 					return toolbaritem;
@@ -219,7 +224,7 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            SidebarController.toggle("viewHistorySidebar");
+                        event.target.ownerGlobal.SidebarController.toggle("viewHistorySidebar");
                     }
                 });								 
                 return toolbaritem;
@@ -243,9 +248,9 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            SidebarController.toggle("viewTabsSidebar");
-                                 }
-  });								 
+                        event.target.ownerGlobal.SidebarController.toggle("viewTabsSidebar");
+                    }
+				});								 
                 return toolbaritem;
             }
         });
@@ -269,9 +274,9 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            DownloadsPanel.showDownloadsHistory();
-                                 }		
-  });								 
+                        event.target.ownerGlobal.DownloadsPanel.showDownloadsHistory();
+                    }		
+				});								 
                 return toolbaritem;
             }
         });
@@ -293,9 +298,9 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            PlacesCommandHook.showPlacesOrganizer('AllBookmarks');
+                        event.target.ownerGlobal.PlacesCommandHook.showPlacesOrganizer('AllBookmarks');
                                  }
-  });			 
+				});			 
                 return toolbaritem;
             }
         });
@@ -317,11 +322,11 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            BrowserCommands.reloadSkipCache();
-                                 }
-			});		 
-                return toolbaritem;
-            }
+                        event.target.ownerGlobal.BrowserCommands.reloadSkipCache();
+                    }
+				});		 
+					return toolbaritem;
+				}
         });
 //      Einstellungen
 //      Unicode-Konvertierung  → label: 'Einstellungen', tooltiptext: 'Einstellungen öffnen',
@@ -341,9 +346,9 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            openPreferences();
-                                 }
-  });			 
+                    event.target.ownerGlobal.openPreferences();
+                }
+			});			 
                 return toolbaritem;
             }
         });
@@ -365,10 +370,10 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            openTrustedLinkIn("about:about", "tab");
-                                 }
-  });								 
-                return toolbaritem;
+                        event.target.ownerGlobal.openTrustedLinkIn("about:about", "tab");
+                    }
+					});								 
+					return toolbaritem;
             }
         });
 //      Chrome-Ordner
@@ -389,10 +394,9 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            Services.dirsvc.get("UChrm", Ci.nsIFile).launch();
+                    Services.dirsvc.get("UChrm", Ci.nsIFile).launch();
                                  }
-  });			 
-				
+				});			 
                 return toolbaritem;
             }
         });
@@ -415,7 +419,7 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-					View:PageInfo();
+					event.target.ownerGlobal.BrowserCommands.pageInfo(null, 'mediaTab')
                     }
 				});
                 return toolbaritem;
@@ -433,14 +437,14 @@
                     class: 'toolbarbutton-1 chromeclass-toolbar-additional',
                     label: 'Zertifikate',
                     tooltiptext: 'Zertifikate anzeigen',
-                    style: 'list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2lpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcFJpZ2h0czpNYXJrZWQ9IkZhbHNlIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkQ1REVFMjI3ODQzMjExRTA4QzZCQkNCQTk0MDlCMTEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkQ1REVFMjI2ODQzMjExRTA4QzZCQkNCQTk0MDlCMTEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzMgV2luZG93cyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ1dWlkOkFDMUYyRTgzMzI0QURGMTFBQUI4QzUzOTBEODVCNUIzIiBzdFJlZjpkb2N1bWVudElEPSJ1dWlkOkM5RDM0OTY2NEEzQ0REMTFCMDhBQkJCQ0ZGMTcyMTU2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+22TEXgAAAY1JREFUeNqkk79LQlEUx7/vvauVg/0QGpIKBCdFUHCwqaRoMqKhsVpb+wscWmoJWtqCnB2iaAo0GnIIGipoiFqCBlHUIrPevdfuuaY5OKQeuBzufefzPd97eNeo1+voJ4x+BVhyNZhQeaJH/pVJWfcmjy4OhLS7Ii3TgeT67CYTUpo2/8L9da4rgWA0BmKZENKSQoBm4Q+F/gU/3t6CGGIZF9LkgquNAOccN7kcRj0eXVgqFhGJxXCVyeCzWsWQy4WZeLxRqxhiScASCpRSaoFQNNrqNOnz6bNKuYKFpQTOT071nmqJ4Q0Hwmp30HFgzMJZOq0dUM2fA6EEuBJoc9CMucN3rIcHsBF2atvNaK8l1rTpCm0Ommt3nuH47g0vpW8spwqt3HRAjK2vwAWjA1It5fO6y13RxHb2A3uLTuxnP7EyLXV2mwYuHwqYgvxtKBh7r9aGTPXBFwi0bD48lZFaG8OEm2HH32kq4yCGWCPidWwND8LXy39cqeHZUNmp1gi9iy55mni579f4I8AAEIoGFNnyuUoAAAAASUVORK5CYII=)',
+                    style: 'list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2lpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcFJpZ2h0czpNYXJrZWQ9IkZhbHNlIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkQ1REVFMjI3ODQzMjExRTA4QzZCQkNCQTk0MDlCMTEwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkQ1REVFMjI2ODQzMjExRTA4QzZCQkNCQTk0MDlCMTEwIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzMgV2luZG93cyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ1dWlkOkFDMUYyRTgzMzI0QURGMTFBQUI4QzUzOTBEODVCNUIzIiBzdFJlZjpkb2N1bWVudElEPSJ1dWlkOkM5RDM0OTY2NEEzQ0REMTFCMDhBQkJCQ0ZGMTcyMTU2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+22TEXgAAAY1JREFUeNqkk79LQlEUx7/vvauVg/0QGpIKBCdFUHCwqaRoMqKhsVpb+wscWmoJWtqCnB2iaAo0GnIIGipoiFqCBlHUIrPevdfuuaY5OKQeuBzufefzPd97eNeo1+voJ4x+BVhyNZhQeaJH/pVJWfcmjy4OhLS7Ii3TgeT67CYTUpo2/8L9da4rgWA0BmKZENKSQoBm4Q+F/gU/3t6CGGIZF9LkgquNAOccN7kcRj0eXVgqFhGJxXCVyeCzWsWQy4WZeLxRqxhiScASCpRSaoFQNNrqNOnz6bNKuYKFpQTOT071nmqJ4Q0Hwmp30HFgzMJZOq0dUM2fA6EEuBJoc9CMucN3rIcHsBF2atvNaK8l1rTpCm0Ommt3nuH47g0vpW8spwqt3HRAjK2vwAWjA1It5fO6y13RxHb2A3uLTuxnP7EyLXV2mwYuHwqYgvxtKBh7r9aGTPXBFwi0bD48lZFaG8OEm2HH32kq4yCGWCPidWwND8LXy39cqeHZUNmp1gi9iy55mni579f4I8AAEIoGFNnyuUoAAAAASUVORK5CYII=)',	 
                 };
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                             window.open( 'chrome://pippki/content/certManager.xhtml', 'mozilla:certmanager', "chrome,dialog,centerscreen,dependent,resizable=yes,width=700,min-height=760");
-                             }
+                    event.target.ownerGlobal.window.open( 'chrome://pippki/content/certManager.xhtml', 'mozilla:certmanager', "chrome,dialog,centerscreen,dependent,resizable=yes,width=700,min-height=760");
+                    }
 				});			 
                 return toolbaritem;
             }
@@ -458,16 +462,16 @@
                     label: 'Passwörter',
                     tooltiptext: 'Passwörter anzeigen',
                     style: 'list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAs5JREFUeNp0U11IU2EYfs5+canzF8ufICmvTJOTpWg/CrnIi6BQ+tUuFC/CupHqIokYRnnvhWIIRSQ6hX4RNOeFFUyXbS2GgXNh6tJtbPNvO+dsp+87U5mhHzzn/d7vvO/7ve/zfi8jiiKGHiqgkoORyZAPoJwgE9G1QDAeicDGhSFil6XYlIwQQXXS/ryawyU15aJam8ttrEAMehx/vg+V+FyOfmLzgUDcNUCIFwtSs45cOVbdct081mufnTYNhyMCMrMPZp88daluarRf7l10zpFkLf8HkNFPkENlQVWjzmrqdTjmhw3Q+uvlyWv1roDdYLO8dRwtO6+jNiGeXrYTUgbrHA4lJKanLXgm5hQa6MiRbuuGv6tOPxunyKU2e3KwHhJXQlwwqKtqLwoLAny+ZayteKBRCYhXi+A4Pkht9gwQ5PHl2+dhXdGJSjYUCMDrWkDAN4+UBAZxGemwTk3/pDYMsZ1JVUqQ6OTFbRJHjO8Nue6lpVBh8ek8tWZfWpygBQ/BPTZm+mW32noZBiOz6Sp0l2qjzoRRrEXA0Hfw5BoDIQwl2dI3cLvxvv6yZ9GBwRc9A0TvIM7jcxlKvrs8iTQcOwLIYsohnMJIoKSKXCkJ+jE6U4hzmZbqncR5UpKxbeSFaMBYXvqfd30kopU4o6c4gdQp0prZhnO3WColfSsAdY4BTRI3mu9VkP1TZ7KCptwJQZxEKAJ/2A8qJZ2cS7c9NgBXS4GcFCmo1K6uZ+3viGjjgyJ1YCsuVbL03C24UXHhrLQ3Do5uzwJefwUuFgIHtAhS/c6j1tq2Fn2I+yHUISdiNr4akezyawtZW5/FHJ0gmLeHiRL2xgL1TRZqOpYPmvR9v30YmJgh/fwUuEv+c9DHm7xhL7BBSlAyx6Fgom1kGIZyoSFILMrEmbxUNNiX8dLqwsRmSQGCVTSrOkjtLHE0EzQhS41/AgwAEXpPSomMNg0AAAAASUVORK5CYII=)',
-                };
+					};
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-					openTrustedLinkIn("about:logins", "tab")
-                                 }	
-        });								 
+					event.target.ownerGlobal.openTrustedLinkIn("about:logins", "tab")
+                    }	
+					});								 
                 return toolbaritem;
-            }
+				}
         });
 
 //      Verlauf löschen
@@ -483,12 +487,12 @@
                     label: 'Chronik löschen',
                     tooltiptext: '"Chronik löschen" anzeigen',
                     style: 'list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC6klEQVQ4ja2TT0yTBxyGv5Vw13jxsIsmJh48OA9LlrhkEjk2WXBu08iyKCEENXFW29KNIASU6YisCQWZUAZosUOcUWmrBYEUBFdtWhQp9I+lyL+W+rWlLX7I9+y0OjOyk+/9efLml/cnCB86fdcv5A2by/ucdzTLLqtOct4tkxxdpxasV0/92dNU9tn/wkPmGoPHpn0T9o6yNO8nHo8hilFmX3rwOLqwXi1eMV0uLd8QHjBV/+pzNhKLhPCGYnT3BzHcfI7e/IwOi4+nUwsEvSP0/lZCS83Rs+/Blvbavc47Kim6GGTINUfPwyC+cJxoPEkkvoJ3Jk7HfR+3BgNMuix0VH2Taqwq+SQrsLepe6ddFl68XMbcFwAgJopMvZonA2SApAxNd3043CEedKpo+unbjqyg//cT83OhcTpt00yE46TWZJKpFA2tRhZFkcTqKjdt/QxNiVwyuRl/fINmXUHw3eXbjmdi0VkuXnOzmJaIra7zBig7V0lnz200FZXcHxljXJQ43TDGTHCMVt1X6azA2lyciS75qTS6mElKLKbXCYsJqn+pQ1NRyZDLQ2QNnFGJk/WPCPkHadEeeCforisM+Mct1JvdDE6LzGUgnJDoHRgmsBxn4S14/migv3An9rxc7Ae2YDqyU8wKjNWFxoEbWkbcU9SavURkiEmQWIeEDNO3DHjUn5O5V4c8YSXVdZq/SnfJtjzFSUEQBKG5pnR3e9XX6UlnO9csT/jZPIkr+JpkWiKZkrAf2k76Xh3olaDZDOe3Ebn4Bbb9ikC2xZVz32uv1x5kYtTAw8dOzhtHUeuHUdU7sOflIj/p4d95XbEV+74c+b1BNeiOlF/Rfpm83XiYp301BCY6CTxv40HBJlZajkHFVlbVAjG1QKgkB9t+xex/Jq3/8btP688UmPQ/KEMGlTJtUCnT3UV7xNFjO+Q5zTaWynLxF32EXZnz1pqv0G38VRvEcfBjrTVfEbTvy5Gt+YrwP/DfJyYwPd442XkAAAAASUVORK5CYII=)',
-                };
+					};
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                             window.open('chrome://browser/content/sanitize.xhtml', 'Toolkit:SanitizeDialog', 'chrome,resizable=yes');
+                    event.target.ownerGlobal.window.open('chrome://browser/content/sanitize.xhtml', 'Toolkit:SanitizeDialog', 'chrome,resizable=yes');
                                  }
 				});	
                 return toolbaritem;
@@ -512,7 +516,7 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            FullZoom.enlarge();
+                    FullZoom.enlarge();
                     }				
 					  });
                 return toolbaritem;
@@ -536,7 +540,7 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                            FullZoom.reduce();
+                    FullZoom.reduce();
                     }				
 					  });
                 return toolbaritem;
@@ -553,7 +557,6 @@
                 let props = {
                     id: 'moveTab-ToolBarButton1',
                     class: 'toolbarbutton-1 chromeclass-toolbar-additional',
-                    oncontextmenu: 'return(false);',
                     label: 'Tab verschieben',
                     tooltiptext: 'Tabs verschieben - Linksklick: Tab nach links, Rechtsklick: Tab nach rechts, Rad nach oben: Zum Tab links, Rad nach unten: Zum Tab rechts',
                     style: 'list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAD1UlEQVR42u2Wa0wUVxTH/7M7u8urgAiLopHWxUiq1FZiU2F94gLia+vaxrTGBympRLHaD2p8El8RP2nUkJj4oaloRIS1hQoYFNYC2uIj+KgGUwu1RlZZlzfC7I7nLrMEcYmYkdgPnORkds7emf/vnHvuvcPhPRs3BDAE8H8DUMzYkj0fGr8cDa9UhYUEQBRFmQIcbC3tsDe3d6GzZYll39f5FHZ6AlBM25i1yDswODfVGIsxI3zxpOndZDnCH6h70opMczna7c8WXz7w7Tk3RG8A75npBU1rlkznrYIPKmpbwXHy54jVjxUxJtwXWmUbjpy1CGXp8wgJ7X0BgqbvLGjYtzYJP1U1g2fikssCELtdIF8e/QF2HSvGhW0Jw+kvW18ALQHUb0hOQllNM5TvQJxmVZIQIThF6HW+MBf/gRPffxFKQatHgB9WzcW1uhb55eeUUHBqcAq+uwKOF/hslArmoqvISo3pB2BHfn3aykT8ZW1zsctQh0KhQqO9FFVXEzFy9Hx8HPUrIoLgAjiZ6qEC4fqvxusMyfdSlsXhkb1jgNnTIuMUPb97ohyLa2B/Xo4Ht6ZhHM14TZcRi2blIbfgGipOZkTW/X7mvvsp9Zw9RS+0If7QT4mEj58XWjuEAcw/E1FRpmqPYxXEZW24gb/vxGD9nNXIqjiIBpgQPTEHZZXXYWu0o3BTnIY9Omz27kJb2ncJ6OwU4HA436QsmQpdQgd+KRoJq60RffcrBsVCutAAbFmwHfVNlTh/8yyeOU1InJWDvIJqnEiZFMQAtIa9RfUCCTsdIkQMZOej9ERvulRjQvhWpJsOw9p6mlR5187nrpBTdELDj4ajMxJ/PtwMndaIwupTuHxXD07MROnOqFBXBcg/kq5vZWGfInzh+qDj6xJ+pKW77bWV05OKFPRTB0IXsgDFt37GpQr8VrofK1w9QO7rqunbmXKCEbGxC4edSYn/BlX/Hu1/6fYKevFqaAMicCj3Lgo3Yricpc5Hr0DC5Jn++csMcbj/NK/flSNKbcUAeZ7OhceApRylJbthkgOgmpKMpEkzfMxL4z/Bf81XXgNgjekkcYcgESuBfx4BF0tgsWQgjUIP5QDQ6xCWlIHbpOHv6dRm4iG0+cTHdd/X1gIlF1ziG+i2jtwuB8DdwB+SB8LD9LMmNazDcUM88KCGMj9P4gd6xJ+TO+QeN6xxWQOrPVUoygT950Zkj40Ais2wlGW8Ku7OYrCMn7oaXwaPQ3abDZUle7G2r/igA5AHk4dJgtT7rm8AR+9BgwnA3q0h95JE2ReQ4GnQe7UhgCGAl5SxTKaI7XnTAAAAAElFTkSuQmCC)',
@@ -561,22 +564,24 @@
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
-							  if (event.button == 0) { 
-                                  gBrowser.moveTabBackward(); 
-                              }; 
-                              if (event.button == 2) { 
-                                  gBrowser.moveTabForward(); 
-					}
-				});
+						event.preventDefault();
+					    if (event.button == 0) { 
+						event.target.ownerGlobal.gBrowser.moveTabBackward(); 
+					    }; 
+					    if (event.button == 2) { 
+						event.target.ownerGlobal.gBrowser.moveTabForward(); 
+					    }
+					});
 
 					toolbaritem.addEventListener('wheel', event => {
-							event.preventDefault();
-							if (event.deltaY < 0) { 
-                                  gBrowser.tabContainer.advanceSelectedTab(-1, true); 
-                              } else { 
-                                  gBrowser.tabContainer.advanceSelectedTab(1, true);
+						event.preventDefault();
+						if (event.deltaY < 0) { 
+                        event.target.ownerGlobal.gBrowser.tabContainer.advanceSelectedTab(-1, true); 
+                        } else { 
+                        event.target.ownerGlobal.gBrowser.tabContainer.advanceSelectedTab(1, true);
                     }
 				});						 
+	
                 return toolbaritem;
             }
         });
@@ -591,7 +596,6 @@
                 let props = {
                     id: 'zoom-control-ToolBarbutton',
                     class: 'toolbarbutton-1 chromeclass-toolbar-additional',
-                    oncontextmenu: 'return(false);',
                     label: 'Zoom-Steuerung',
                     tooltiptext: 'Linksklick oder Rad ↑: vergrößern | Mittelklick: zurücksetzen | Rechtsklick oder Rad ↓: verkleinern',
                     style: 'list-style-image: url(data:image/png;base64,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)',
@@ -599,6 +603,7 @@
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
+						event.preventDefault();
 					if (event.button === 0) { 
 						FullZoom.enlarge(); 
 					} else if (event.button === 1) { 
@@ -638,9 +643,9 @@
                     toolbaritem.setAttribute(p, props[p]);
 				    toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-					window.open("chrome://browser/content/preferences/dialogs/siteDataSettings.xhtml","cookie","chrome,dialog,centerscreen,dependent,resizable=yes,width=700,height=560");					
+					event.target.ownerGlobal.window.open("chrome://browser/content/preferences/dialogs/siteDataSettings.xhtml","cookie","chrome,dialog,centerscreen,dependent,resizable=yes,width=700,height=560");					
 					}
-				});	
+				});										  
                 return toolbaritem;
             }
         });
@@ -654,8 +659,7 @@
                 let toolbaritem = aDocument.createXULElement('toolbarbutton');
                 let props = {
                     id: 'three-ToolBarButton',
-                    class: 'toolbarbutton-1 chromeclass-toolbar-additional',
-                    oncontextmenu: 'return(false);',
+                    class: 'toolbarbutton-1 chromeclass-toolbar-additional',	
                     label: 'Eigener Button',
                     tooltiptext: 'Linksklick oder Rad ↑ ↓: Neuer Tab | Mittelklick: about: config | Rechtsklick: Ordner chrome',
                     style: 'list-style-image: url(data:image/png;base64,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)',
@@ -663,29 +667,31 @@
                 for (let p in props)
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
+							event.preventDefault();
 							if (event.button === 0) { 
-								openTrustedLinkIn("about:newtab", "tabshifted"); 
-                              }; 
-                              if (event.button == 1) {
-                                  openTrustedLinkIn("about:config", "tab"); 
-                              }; 
-                              if (event.button == 2) {
-                                  Services.dirsvc.get("UChrm", Ci.nsIFile).launch(); 
-                              };
+								event.target.ownerGlobal.openTrustedLinkIn("about:newtab", "tabshifted"); 
+                            }; 
+                            if (event.button == 1) {
+                                event.target.ownerGlobal.openTrustedLinkIn("about:config", "tab"); 
+                            }; 
+                            if (event.button == 2) {
+                                Services.dirsvc.get("UChrm", Ci.nsIFile).launch(); 
+                            };
 						});
 
 						toolbaritem.addEventListener('wheel', event => {
 							event.preventDefault();
 							if (event.deltaY < 0) { 
-                                  openTrustedLinkIn("about:newtab", "tabshifted");
+                                event.target.ownerGlobal.openTrustedLinkIn("about:newtab", "tabshifted");
                               } else { 
-                                  openTrustedLinkIn("about:newtab", "tabshifted");
+                                event.target.ownerGlobal.openTrustedLinkIn("about:newtab", "tabshifted");
 					          }
 						});			
                 return toolbaritem;
             }
         });
-
     } catch(e){};
 
 })();
+
+	 
