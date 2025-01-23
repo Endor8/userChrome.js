@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name       Firefox_ToolBarButtons.uc.js
 // @charset    UTF-8
+// Date        2025/01/23 Fehlerbehebung bei Neustarten und Seinteninformationen. Aktion auf aktuelles Fenster begrenzen. 
 // Date        2025/01/20 Firefox 135+ Anpassung und Fehlerbehebung 
 // Date	       2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
 // Date	       2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
@@ -26,14 +27,11 @@
 // Date        2017/11/23 Schaltfläche zum Öffnen und Schließen der Seitenleiste, der Untermenüs "Lesezeichen", "Chronik" und "Synchronisieren" 
 // Date        2017/11/23 hinzugefügt, damit sie separat implementiert werden können.
 // Date        2017/11/09 Basierend auf "RestartFirefoxButton_Movable.uc.js" habe ich eine Schaltfläche für "Neustarten + about" festgelegt: 
-// Date        2017/11/09 "about:config", "Profilordner", "Cookies-Verwaltung" öffnen.
-// @note    
+// Date        2017/11/09 "about:config", "Profilordner", "Cookies-Verwaltung" öffnen.   
 // @note    Bei der Erstinstallation wird nur die Schaltfläche zum Neustarten in der Symbolleiste angezeigt.
 // @note    Die anderen Schaltflächen werden im Anpassen Fenster gespeichert.
 // @note    Die Schaltflächen können frei, platziert werden.
-// @note    
 // @note    Beschreibung und Tooltiptext sind je nach Umgebung unleserlich und werden daher in Unicode konvertiert.
-// @note    
 // @note    Firefox Neustarten
 // @note    about:config öffnen
 // @note    Neuer Tab öffnen
@@ -58,13 +56,10 @@
 // @note    Entwickler Werkzeuge öffnen
 // @note    Cookies und Websitedaten verwalten (Cookies und Websitedaten werden anscheinend erst nach einmaligem Öffnen der Firefox-Option angezeigt.)
 // @note    Benutzerdefinierte Schaltfläche (Linksklick oder mit dem Rad ↑ ↓: Neuen Tab | Mittelklick: About: Config | Rechtsklick: Chrome-Ordner) öffnen
-// @note    
 // @note    Firefox Nightly 73.0a1 kompatibel
 // @note    http://wiki.nothing.sh/page?userChrome.js%CD%D1%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8#r7140ba6
 // @note    "Verwendung des userChrome.js Scripts auch nach 72, wenn die XBL-Bindung deaktiviert ist".
-// @note    
-// @note    Bei Verwendung des Script in Firefox 68 oder niedriger, muss aDocument.createXULElement ⇒ zu document.createElement geändert werden.	
-// @note    
+// @note    Bei Verwendung des Script in Firefox 68 oder niedriger, muss aDocument.createXULElement ⇒ zu document.createElement geändert werden.	   
 // @note    Bei Verwendung des Script in Firefox 72 oder niedriger, muss die Endung xhtml ⇒ zu xul geändert werden.
 // ==/UserScript==
 "use strict";
