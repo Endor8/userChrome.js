@@ -32,7 +32,6 @@
 // @note    Bei der Erstinstallation wird nur die Schaltfläche zum Neustarten in der Symbolleiste angezeigt.
 // @note    Die anderen Schaltflächen werden im Anpassen Fenster gespeichert.
 // @note    Die Schaltflächen können frei, platziert werden.
-// @note    
 // @note    Beschreibung und Tooltiptext sind je nach Umgebung unleserlich und werden daher in Unicode konvertiert.   
 // @note    Firefox Neustarten
 // @note    about:config öffnen
