@@ -29,7 +29,6 @@
 // Date        2017/11/23 hinzugefügt, damit sie separat implementiert werden können.
 // Date        2017/11/09 Basierend auf "RestartFirefoxButton_Movable.uc.js" habe ich eine Schaltfläche für "Neustarten + about" festgelegt: 
 // Date        2017/11/09 "about:config", "Profilordner", "Cookies-Verwaltung" öffnen.
-// @note    
 // @note    Bei der Erstinstallation wird nur die Schaltfläche zum Neustarten in der Symbolleiste angezeigt.
 // @note    Die anderen Schaltflächen werden im Anpassen Fenster gespeichert.
 // @note    Die Schaltflächen können frei, platziert werden.
