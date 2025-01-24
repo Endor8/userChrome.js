@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name       Firefox_ToolBarButtons.uc.js
 // @charset    UTF-8
-// Date        2025/01/23 Fehlerbehebung bei Neustarten und Seinteninformationen. Aktion auf aktuelles Fenster begrenzen. 
+// Date        2025/01/24 Weitere Anpassung damit Aktionen auf aktuelles Fenster begrenzt werden. (Fix von 2002 Andreas!)
+// Date        2025/01/23 Fehlerbehebung bei Neustarten und Seinteninformationen. Aktion auf aktuelles Fenster begrenzen.
 // Date        2025/01/20 Firefox 135+ Anpassung und Fehlerbehebung 
-// Date	       2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
+// Date        2024/06/11 Firefox 127.0 Cyber-UI-Umschaltname wurde von SidebarUI in SidebarController geändert.
 // Date	       2020/04/29 Firefox Nightly 77.0a1 Gespeicherte Zugangsdaten(chrome://passwordmgr/content/passwordManager.xhtml) Schaltfläche zum 
 // Date        öffnen der gespeicherten Zugangsdaten hinzugefügt (about:logins).
 // Date        2019‎/12/15 Firefox Nightly 73.0a1 xul in .xhtml umgeschrieben. Vor der Konvertierung von Label- und Tooltip-Text, die in Unicode
@@ -27,11 +28,13 @@
 // Date        2017/11/23 Schaltfläche zum Öffnen und Schließen der Seitenleiste, der Untermenüs "Lesezeichen", "Chronik" und "Synchronisieren" 
 // Date        2017/11/23 hinzugefügt, damit sie separat implementiert werden können.
 // Date        2017/11/09 Basierend auf "RestartFirefoxButton_Movable.uc.js" habe ich eine Schaltfläche für "Neustarten + about" festgelegt: 
-// Date        2017/11/09 "about:config", "Profilordner", "Cookies-Verwaltung" öffnen.   
+// Date        2017/11/09 "about:config", "Profilordner", "Cookies-Verwaltung" öffnen.
+// @note    
 // @note    Bei der Erstinstallation wird nur die Schaltfläche zum Neustarten in der Symbolleiste angezeigt.
 // @note    Die anderen Schaltflächen werden im Anpassen Fenster gespeichert.
 // @note    Die Schaltflächen können frei, platziert werden.
-// @note    Beschreibung und Tooltiptext sind je nach Umgebung unleserlich und werden daher in Unicode konvertiert.
+// @note    
+// @note    Beschreibung und Tooltiptext sind je nach Umgebung unleserlich und werden daher in Unicode konvertiert.   
 // @note    Firefox Neustarten
 // @note    about:config öffnen
 // @note    Neuer Tab öffnen
@@ -59,7 +62,7 @@
 // @note    Firefox Nightly 73.0a1 kompatibel
 // @note    http://wiki.nothing.sh/page?userChrome.js%CD%D1%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8#r7140ba6
 // @note    "Verwendung des userChrome.js Scripts auch nach 72, wenn die XBL-Bindung deaktiviert ist".
-// @note    Bei Verwendung des Script in Firefox 68 oder niedriger, muss aDocument.createXULElement ⇒ zu document.createElement geändert werden.	   
+// @note    Bei Verwendung des Script in Firefox 68 oder niedriger, muss aDocument.createXULElement ⇒ zu document.createElement geändert werden.	
 // @note    Bei Verwendung des Script in Firefox 72 oder niedriger, muss die Endung xhtml ⇒ zu xul geändert werden.
 // ==/UserScript==
 "use strict";
@@ -511,7 +514,7 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                    FullZoom.enlarge();
+                    event.target.ownerGlobal.FullZoom.enlarge();
                     }				
 					  });
                 return toolbaritem;
@@ -535,7 +538,7 @@
                     toolbaritem.setAttribute(p, props[p]);
 					toolbaritem.addEventListener('click', event => {
 					if (event.button == 0) { 
-                    FullZoom.reduce();
+                    event.target.ownerGlobal.FullZoom.reduce();
                     }				
 					  });
                 return toolbaritem;
@@ -600,27 +603,27 @@
 					toolbaritem.addEventListener('click', event => {
 						event.preventDefault();
 					if (event.button === 0) { 
-						FullZoom.enlarge(); 
+						 event.target.ownerGlobal.FullZoom.enlarge(); 
 					} else if (event.button === 1) { 
-						FullZoom.reset(); 
+						 event.target.ownerGlobal.FullZoom.reset(); 
 					} else if (event.button === 2) { 
-						FullZoom.reduce(); 
+						 event.target.ownerGlobal.FullZoom.reduce(); 
 					}
 				});
 
 				toolbaritem.addEventListener('wheel', event => {
 					event.preventDefault();
 					if (event.deltaY < 0) { 
-						FullZoom.enlarge(); 
+						event.target.ownerGlobal.FullZoom.enlarge(); 
 					} else { 
-						FullZoom.reduce(); 
+						event.target.ownerGlobal.FullZoom.reduce(); 
 					}
 				});
                 return toolbaritem;
             }
         });
 //      Verwaltung der Cookies und Website-Daten anzeigen (die Daten werden allem Anschein nach nur gezeigt, wenn der Dialog einmal geöffnet worden ist)
-//      Unicode-Konvertierung  → label: 'Cookies und Website-Daten verwalten', tooltiptext: 'Verwaltung der Cookies und Website-Daten anzeigen (die Daten 
+//      Unicode-Konvertierung  → Label: 'Cookies und Website-Daten verwalten', tooltiptext: 'Verwaltung der Cookies und Website-Daten anzeigen (die Daten 
 //      werden allem Anschein nach nur gezeigt, wenn der Dialog einmal geöffnet worden ist)',
         CustomizableUI.createWidget({
             id: 'siteDataSettings-ToolBarButton',
