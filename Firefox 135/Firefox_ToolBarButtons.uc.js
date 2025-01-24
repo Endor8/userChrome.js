@@ -43,7 +43,7 @@
 // @note    Bibliothek "Downloads" öffnen
 // @note    Tab "Aktualisieren" (gespeicherten Cache ignorieren)
 // @note    Weitere:
-// @note    about:plugins öffnen
+// @note    about:about öffnen
 // @note    Bibliothek "Lesezeichen" öffnen
 // @note    Chromeordner öffnen
 // @note    Seiteninformationen anzeigen
