@@ -1,41 +1,50 @@
-
-  //  Entwicklerwerkzeuge-button.uc.js
-
-(function() {
-
-	if (location != 'chrome://browser/content/browser.xhtml') return;
-
+	/* Entwicklerwerkzeuge-button.uc.js
+	*
+	* aborix in https://www.camp-firefox.de/forum/thema/124672/?postID=1078103#post1078103
+	* Abwandlung eines Skriptes unbekannter Herkunft, vgl. Endor in
+	* https://www.camp-firefox.de/forum/thema/124672/?postID=1078019#post1078019
+	* diverse Edits: Speravir
+	*
+	* beachte Milupo in https://www.camp-firefox.de/forum/thema/112673/?postID=1189373#post1189373
+	* und https://www.camp-firefox.de/forum/thema/136363/?postID=1227506#post1227506
+	*
+	* letzte Aktualisierung durch Speravir in https://www.camp-firefox.de/forum/thema/138792/?postID=1264613#post1264613
+	* mit vorgeschlagener Änderung von Horstmann in
+	* https://www.camp-firefox.de/forum/thema/138792/?postID=1264536#post1264536
+	*/
+	(function() {
+	if (!window.gBrowser) return;
+	const
+		buttonID = 'entwickler-toolbarbutton',
+		labelText = 'Entwicklerwerkzeuge',
+		tooltip = labelText + ' öffnen/schließen',
+		css =
+	`#${buttonID} .toolbarbutton-icon {list-style-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAdUlEQVQokZVSwRHAIAgLPYfoXs7RCTpG53Avt7APrhaFU8gLMEEJAkEQgFbc7IxkVjt0r6Sp7VIVITumBpKt00FA2ThmjXzkfMMWO8EZFSj8LrUyjsG9b9DaJXq+qAIVxEUxtLHpaXE95dj1NcK2rmbwaGJ4Af0tIg00j/6iAAAAAElFTkSuQmCC')}`;
 	try {
 		CustomizableUI.createWidget({
-			id: 'Entwickler-ToolBarButton',
+			id: buttonID,
 			type: 'custom',
 			defaultArea: CustomizableUI.AREA_NAVBAR,
-			onBuild: function(aDocument) {			
-				var toolbaritem = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
-				var props = {
-					id: 'Entwickler-ToolBarButton',
+			onBuild: function(aDocument) {
+				let tb_button = aDocument.createElementNS('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul', 'toolbarbutton');
+				let props = {
+					id: buttonID,
 					class: 'toolbarbutton-1 chromeclass-toolbar-additional',
-					label: 'Entwicklerwerkzeuge',
-					tooltiptext: 'Entwickler Werkzeuge öffnen',
-					style: 'list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAqJJREFUeNp0k11IU2EYx593Q0RDL1wOmheihBCoiNHFrIYgYSBDKoRMIWgwduGFjTiIdRHiQIw+iBAS6qKUrJsVlRGsC2vWRUFzEclmxMZKXWzObe377PR/cLOB64Xfzt7zPv/f+8URAwMDVNoUReGHGeRAGITy+bwfbIB0JpMhWZZ369X19fXGqqqqbgR1wJPNZrngK9jAf11bW9vRlpaWE5FI5EAikVBDEkJdblfg8/m6nU7nXeDa3NxcTiaTVFlZyQVRCHyBQEBjsVguGI3G0zU1NQ0ej0eg5gcmyEBGahTq7Ha7a3JycsjtdtcGg8FliIgH0+l0DmRTqZS2tbX1mE6nO9TU1LTf4XAEcrmcF5AKguder3d6eHh4HjMNYUsSD/j9ftre3qZoNPoLYj+vDHJqbGzUx+NxLY9xX1Xcy9ra2rTJZJofGRkZ0mq1Eh/U+vo6bW1txVQqlZb7fIDYVkUsFmPaIac9rbm5WcKWVjo6OqTjtbX7Ojs7pcXFxRW9Xn+dbweysaWlJZ9GozHX1dX1ULmGfUoLkvTWWV3tdptMQe6XDLezJBwOK4XrLttO3Sf6o0xNKfaKisCMEIdXhSALKLQeluB5sFz4PHDNdnUpqJBD/f0RhJ99E+KSC4KZf5Ky7Qr4YjAYeHnJk0QTL4k+xc1mBeEXn4WQPkBw8z8SPqTVvr4+DqeA9Sx+nhLZ7JAkR0cVhF+9F2LsDQRPMHamJHwLfB8cHORwBtzmlyxAmIttjyHJjI8rCDscQlxmwXwhfAf4zVhm4QOaK1qLAoTpISQPIJEnJhSE3y0QXS0KflutVg7LJdI9AoQJN2O7BwnfzizRR0B8GhfBDfAInCuGr/Wq6UiDoMRPhWKvZUrjXXZniTbM1ivvbHvurwADAH3gYJeBXh2yAAAAAElFTkSuQmCC)',
+					label: labelText,
+					tooltiptext: tooltip
 				};
-				for (var p in props)
-					toolbaritem.setAttribute(p, props[p]);
-					toolbaritem.addEventListener('click', event => {
-					if (event.button == 0) { 
-                            document.getElementById('menu_devToolbox').click();
-                                 }
-  });
-				return toolbaritem;
+				for (let p in props) tb_button.setAttribute(p, props[p]);
+				return tb_button;
 			}
 		});
-       } catch(e) { };
-	   
+	} catch(e) {};
+	document.getElementById(buttonID).addEventListener("click", () => { if(event.button === 0) document.getElementById('menu_devToolbox').click(); });
+	let stylesheet = document.createProcessingInstruction('xml-stylesheet', 'type="text/css" href="data:text/css;utf-8,' + encodeURIComponent(css) + '"');
+	document.insertBefore(stylesheet, document.documentElement);
 	setTimeout(function() {
 		if (document.getElementById('menuWebDeveloperPopup').childElementCount <= 5) {
-			let { require } = ChromeUtils.importESModule("resource://devtools/shared/loader/Loader.sys.mjs", {});
+			let {require} = ChromeUtils.importESModule("resource://devtools/shared/loader/Loader.sys.mjs", {});
 			require("devtools/client/framework/devtools-browser");
 		};
 	}, 0);
-
-})();
+	})();
