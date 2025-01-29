@@ -35,7 +35,7 @@ try {
                     return tb_button;
             }
     });
-    CustomizableUI.registerToolbarNode(tb);
+    
 } catch(e) {};
 document.getElementById(buttonID).addEventListener("click", () => { if(event.button === 0) {
         const menuID='menu_browserToolbox',
