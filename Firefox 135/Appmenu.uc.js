@@ -522,16 +522,19 @@ var Appmenu = {
         ExternalAppBtn.appendChild(ExternalAppPopup);
         Appmenu.onpopupshowing();
         
-		  // Menü mit Tastaturkürzel öffnen
+	// Menü mit Tastaturkürzel öffnen
         if (Appmenu.hotkey) {
-        let key = document.createXULElement('key');
-        key.id = 'key_AppMenuPopup';
-        key.setAttribute('key', Appmenu.hotkey);
-            if (Appmenu.hotkeyModifier)
-        key.setAttribute('modifiers', Appmenu.hotkeyModifier);
-        key.setAttribute('oncommand', 'document.getElementById("AMpopup").openPopup();');
-        document.getElementById('mainKeyset').appendChild(key);
-        }
+	  let key = document.createXULElement('key');
+	  key.id = 'key_AppMenuPopup';
+	  key.setAttribute('key', Appmenu.hotkey);
+	  if (Appmenu.hotkeyModifier) {
+		key.setAttribute('modifiers', Appmenu.hotkeyModifier);
+	  }
+	  key.addEventListener('command', () => {
+		document.getElementById('AMpopup').openPopup();
+	  });
+	  document.getElementById('mainKeyset').appendChild(key);
+	}
     },
 
     onpopupshowing: function() {
