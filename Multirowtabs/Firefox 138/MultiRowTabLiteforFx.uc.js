@@ -3,7 +3,7 @@
 // @namespace      Based on Alice0775's zzzz-MultiRowTab_LiteforFx48.uc.js
 // @description    Mehrzeilige Tableiste - Experimentelle CSS Version
 // @include        main
-// @compatibility  Firefox138+
+// @compatibility  Firefox 138+
 // @version        2025/04/07 12:00
 // ==/UserScript==
 "use strict";
