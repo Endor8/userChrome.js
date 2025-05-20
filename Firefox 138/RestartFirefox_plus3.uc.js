@@ -1,8 +1,8 @@
     // RestartFirefox_plus3.uc.js  
     // Erstellt einen verschiebbaren Button für die Menüleiste	
     // Erstellt einen Eintrag + Icon im Menü: Datei
-	// Erstellt einen Eintrag + Icon im Hamburger Menü
-	// In Zeile 22, 49 und 68 kann ein eigenes Icon durch Pfadangabe genutzt werden
+    // Erstellt einen Eintrag + Icon im Hamburger Menü
+    // In Zeile 22, 49 und 68 kann ein eigenes Icon durch Pfadangabe genutzt werden
 	
     (function() { 
        
