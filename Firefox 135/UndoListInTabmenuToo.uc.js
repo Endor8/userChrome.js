@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           UndoListInTabmenuToo
 // @namespace      http://space.geocities.yahoo.co.jp/gl/alice0775
-// @description    UndoListInTabmenuToo.uc.js
+// @description    Kürzlich geschlossene Tabs - Fenster als Liste in Tab-Kontext und Hauptkontextmenü einfügen.
 // @include        main
 // @compatibility  Firefox 135
 // @author         Alice0775
@@ -20,24 +20,24 @@
 // @version        2018/05/10 60
 // @version        2017/11/18 nsIPrefBranch to nsIPrefBranch
 // @version        2010/09/18 00:00 4.0b7pre
-// @version        2009/02/03 13:00 ツールチップにタブ内履歴を表示するようにした
-// @Note           タブやコンテキストメニューにもUndoClose Tab Listを追加するもの
-// @OriginalCode   browser.jsからpopulateUndoSubmenuを拝借し, ごにょごにょした
+// @version        2009/02/03 13:00 Tab-Verlauf im Tooltip anzeigen
+// @Note           Fügt die UndoClose-Tab-Liste zu Tabs und Kontextmenüs hinzu
+// @OriginalCode   Orginalcode aus browser.js für populateUndoSubmenu verwenden
 // @version        2018/05/09 15:00 61
 // ==/UserScript==
 // @version        2010/03/26 13:00  Minefield/3.7a4pre Bug 554991 -  allow tab context menu to be modified by normal XUL overlays
 // @version        2010/03/15 00:00  Minefield/3.7a4pre Bug 347930 -  Tab strip should be a toolbar instead
-// @version        2009/09/09 15:00 中クリック処理
-// @version        2009/09/03 22:00 Firegox3.7a1preで動かなくなっていたのを修正(Bug 489925. getElementById should not return anonymous nodes)
-// @version        2009/08/22 00:00 Firegox3.6 stringbandleの変更による
+// @version        2009/09/09 15:00 Mittelklick-Handhabung
+// @version        2009/09/03 22:00 Firefox3.7a1pre Funktion wurde wieder hergestellt. (Bug 489925. getElementById should not return anonymous nodes)
+// @version        2009/08/22 00:00 Firefox3.6 Ändern des stringbandle
 // @version        2009/04/24 00:00 #394759 [Firefox:Session Restore]-Add undo close window feature
-// @version        2008/10/12 18:00 Fx3.0.4pre中クリックしたときメニューポップアップが閉じないおよびその他fix
+// @version        2008/10/12 18:00 Fx3.0.4pre Mittelklick-Popupmenü wurde nicht geschlossen und andere Korrekturen
 // @version        2007/10/05 10:00
 
 var UndoListInTabmenu = {
 // -- config --
-  TABCONTEXTMENU : true ,  //Im Tabkontextmenü: anzeigen: true, nicht anzeigen: false
-  CONTEXTMENU    : true ,  //Im Hauptkontextmenü: anzeigen: true , nicht anzeigen: false
+  TABCONTEXTMENU : true , //Im Tabkontextmenü: anzeigen: true, nicht anzeigen: false
+  CONTEXTMENU    : true,  //Im Hauptkontextmenü: anzeigen: true , nicht anzeigen: false
 // -- config end--
   ss: null,
 
@@ -88,11 +88,11 @@ var UndoListInTabmenu = {
     //menu.setAttribute("onpopupshowing", "UndoListInTabmenu.populateUndoWindowSubmenu(this);");
     menupopup.addEventListener("popupshowing", (event) => UndoListInTabmenu.populateUndoWindowSubmenu(event.currentTarget));
 
-    //Liste kürzlich geschosener Tabs
-    const LABELTEXT = "K\u00FCrzlich geschlossene Tabs";    //create menu
+    //Liste kürzlich geschossener Tabs
+    const LABELTEXT = "K\u00FCrzlich geschlossene Tabs";    //Menü erstellen
     menu = document.createXULElement("menu");
     menu.setAttribute("label", LABELTEXT);
-    menu.setAttribute("accesskey", "K");
+    menu.setAttribute("accesskey", "T");
     if (id)
       menu.setAttribute("id", id);
     //menu.setAttribute("disabled", true);
@@ -132,7 +132,7 @@ var UndoListInTabmenu = {
     );
 		undoPopup.appendChild(tabsFragment);
 
-    // populate tab historis for tooltip
+    // Tab-Chronik für Tooltip füllen
     var undoItems = UndoListInTabmenu._ss.getClosedTabDataForWindow(window);
     for (var i = 0; i < undoItems.length; i++) {
       var entries = undoItems[i].state ? undoItems[i].state.entries : undoItems[i].entries;
@@ -142,15 +142,15 @@ var UndoListInTabmenu = {
           tooltiptext += "\n";
         tooltiptext += parseInt(j + 1, 10) + ". " + entries[j].title;
       }
-      undoPopup.childNodes[i + 2/*restore all, sep*/].setAttribute("tooltiptext", tooltiptext);
+      undoPopup.childNodes[i].setAttribute("tooltiptext", tooltiptext);
     }
 
-    // "Append Clear undo close tb list"
+    // "Liste geschlossener Tabs l\u00F6schen anfügen"
     undoPopup.appendChild(document.createXULElement("menuseparator"));
 
     let m = undoPopup.appendChild(document.createXULElement("menuitem"));
-    m.setAttribute("label", "Liste der letzten Tabs l\u00F6schen");
-    m.setAttribute("accesskey", "C");
+    m.setAttribute("label", "Liste geschlossener Tabs l\u00F6schen");
+    m.setAttribute("accesskey", "l");
     m.addEventListener("command", function() {
       let prefs = Services.prefs;
       let max_undo = prefs.getIntPref("browser.sessionstore.max_tabs_undo");
@@ -189,8 +189,8 @@ var UndoListInTabmenu = {
     undoPopup.appendChild(document.createXULElement("menuseparator"));
 
     m = undoPopup.appendChild(document.createXULElement("menuitem"));
-    m.setAttribute("label", "Liste der kürzlich geschlossenen Fenster l\u00F6schen");
-    m.setAttribute("accesskey", "C");
+    m.setAttribute("label", "Liste geschlossener Fenster l\u00F6schen");
+    m.setAttribute("accesskey", "L");
     m.addEventListener("command", function() {
       for (let i = SessionStore.getClosedWindowCount() -1; i >= 0; i--)
         SessionStore.forgetClosedWindow(i);
