@@ -17,13 +17,11 @@
     function saveTo () {
         // config
         const dirArray = [
-		['C:\\Users\\Paulmichl\\Documents', 'Dokumente'],
-		['C:\\Users\\Paulmichl\\Pictures', 'Bilder'],
-		['C:\\Users\\Paulmichl\\Music', 'Musik'],
-		['C:\\Users\\Paulmichl\\Videos', 'Videos'],
-		['C:\\Users\\Paulmichl\\Wetter', 'Wetter'],	
-		['F:\\Video', 'Videos'],
-		['F:\\Adaten\\Downloads\\Firefox\\Muell', 'Verschiedenes'],
+		['C:\\', 'System'],
+           	['D:\\', 'DATA'],
+            	['D:\\Software', 'Software'],
+            	['D:\\Downloads', 'herunterladen'],
+            	['D:\\Video', 'Video'],
 		['' + FileUtils.getDir('UChrm', []).path + '', 'chrome'],
 		//["" + FileUtils.getDir('UChrm', ['SubScript']).path + "", "SubScript"],
 		['E:\\', 'E:'],
