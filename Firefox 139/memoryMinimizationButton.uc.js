@@ -9,6 +9,9 @@
 // @include        about:processes?memoryMinimizationButton2
 // @compatibility  Firefox 138
 // @author         Alice0775
+// @version        2025/06/11 fix 
+// @version        2025/06/11 fix about:process structure change
+// @version        2025/06/09 remove removable attribute
 // @version        2025/06/08 use onCreaded instead of onBuild
 // @version        2025/05/01 fix command
 // @version        2025/04/14 fix register eventListener
@@ -78,7 +81,6 @@ window.memoryMinimizationButton = {
         class: "toolbarbutton-1 chromeclass-toolbar-additional",
         tooltiptext: "Speicherminimierung (Umschalt+Klick; Speicher anderer Tabs minimieren)",
         label: "Speicherminimierung",
-        removable: "true",
 
         onCommand(event) {
           event.target.ownerGlobal.memoryMinimizationButton.doMinimize(event);
@@ -203,11 +205,11 @@ if (location.href == "chrome://browser/content/browser.xhtml") {
 } else if (location.href == "about:processes?memoryMinimizationButton") {
   Services.console.logStringMessage("killing start");
   setTimeout(() => {
-    let closeButtons = document.querySelectorAll("tr.process > td.close-icon");
+    let closeButtons = document.querySelectorAll("tr.process > td > .close-icon");
     for(let closeButton of closeButtons) {
-      let row = closeButton.parentNode;
+      let row = closeButton.closest(".process");
       let canKill = true;
-      if (row.querySelector("favicon")?.getAttribute("style")?.includes("link.svg")) {
+      if (row.querySelector(".favicon")?.getAttribute("style")?.includes("link.svg")) {
         canKill = false;
         break;
       }
@@ -225,7 +227,7 @@ if (location.href == "chrome://browser/content/browser.xhtml") {
     }
     return;
     /*
-    let closeButtons = document.querySelectorAll("tr.process > td.close-icon");
+    let closeButtons = document.querySelectorAll("tr.process > td > .close-icon");
     for(let closeButton of closeButtons) {
       closeButton.click();
     }
@@ -234,11 +236,11 @@ if (location.href == "chrome://browser/content/browser.xhtml") {
 } else if (location.href == "about:processes?memoryMinimizationButton2") {
   Services.console.logStringMessage("killing start");
   setTimeout(() => {
-    let closeButtons = document.querySelectorAll("tr.process > td.close-icon");
+    let closeButtons = document.querySelectorAll("tr.process > td > .close-icon");
     for(let closeButton of closeButtons) {
-      let row = closeButton.parentNode;
+      let row = closeButton.closest(".process");
       let canKill = true;
-      if (row.querySelector("favicon")?.getAttribute("style")?.includes("link.svg")) {
+      if (row.querySelector(".favicon")?.getAttribute("style")?.includes("link.svg")) {
         canKill = false;
         break;
       }
@@ -246,7 +248,8 @@ if (location.href == "chrome://browser/content/browser.xhtml") {
            childRow && !childRow.classList.contains("process");
            childRow = childRow.nextSibling ) {
         let win = childRow.win;
-        if (!win?.tab?.tab?.hasAttribute("pending")) {
+        if (!win?.tab?.tab?.hasAttribute("pending") ||
+            win?.tab?.tab?.selected) {
           canKill = false;
           break;
         }
