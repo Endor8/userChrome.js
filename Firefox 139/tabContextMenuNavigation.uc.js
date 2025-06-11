@@ -99,19 +99,15 @@ class TabContextMenuNavigation {
 	  })		
     );
 	document.getElementById('tab-context-back').addEventListener('command', () =>{
-			//menuitem.addEventListener('command', () =>{
 			tabContextMenuNavigation.goBack();
       });
 	document.getElementById('tab-context-forward').addEventListener('command', function() {
-			//menuitem.addEventListener('command', () => {
 			tabContextMenuNavigation.goForward();
       });
 	document.getElementById('tab-context-reload').addEventListener('command', function() {
-			//menuitem.addEventListener('command', () => {
 			tabContextMenuNavigation.reload();
       });
 	document.getElementById('tab-context-bookmark').addEventListener('command', function() {
-			//menuitem.addEventListener('command', () => {
 			tabContextMenuNavigation.bookmark();
       });
 	  
