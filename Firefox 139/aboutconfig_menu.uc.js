@@ -1,6 +1,6 @@
 /* Firefox userChrome script
  * Shortcut menu to modify about:config entries
- * Tested on Firefox 132+
+ * Tested on Firefox 139+
  * Author: garywill (https://garywill.github.io)
  * 
  */
