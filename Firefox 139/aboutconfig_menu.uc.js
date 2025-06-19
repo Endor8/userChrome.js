@@ -41,7 +41,7 @@ console.log("aboutconfig_menu.uc.js");
   
     
     var prefItems = [ 
-	{
+    {
             name: "📼 Kein automatisches Popup beim Download",
             type: prefs.PREF_BOOL,
             pref: "browser.download.alwaysOpenPanel",
@@ -50,7 +50,7 @@ console.log("aboutconfig_menu.uc.js");
                 {  val: true },
             ]
         },
-	{
+    {
             name: "🎞️ Beim Schließen vom letzten Tab den Browser nicht schließen",
             type: prefs.PREF_BOOL,
             pref: "browser.tabs.closeWindowWithLastTab",
@@ -59,8 +59,8 @@ console.log("aboutconfig_menu.uc.js");
                 {  val: true },
             ]
         },
-		"seperator",
-	{
+        "seperator",
+    {
             name: "🔎 Suche aus Suchleiste im neuen Tab öffnen",
             type: prefs.PREF_BOOL,
             pref: "browser.search.openintab",
@@ -69,7 +69,7 @@ console.log("aboutconfig_menu.uc.js");
                 {  val: true },
             ]
         },
-	{
+    {
             name: "📖 Lesezeichen im neuen Tab öffnen",
             type: prefs.PREF_BOOL,
             pref: "browser.tabs.loadBookmarksInTabs",
@@ -78,7 +78,7 @@ console.log("aboutconfig_menu.uc.js");
                 {  val: true },
             ]
         },
-	{
+    {
             name: "📖 Link aus Adressleiste im neuen Tab öffnen",
             type: prefs.PREF_BOOL,
             pref: "browser.urlbar.openintab",
@@ -87,8 +87,8 @@ console.log("aboutconfig_menu.uc.js");
                 {  val: true },
             ]
         },
-		"seperator",
-	{
+        "seperator",
+    {
             name: "🎊 Animations Modus",
             type: prefs.PREF_STRING,
             pref: "image.animation_mode",
@@ -98,8 +98,8 @@ console.log("aboutconfig_menu.uc.js");
                 { name: "Dauerhaft", val: "normal" },
             ]
         },
-	     "seperator",
-		{
+        "seperator",
+    {
             name: "🔏 CSP aktivieren - deaktivieren",
             type: prefs.PREF_BOOL,
             pref: "security.browser_xhtml_csp.enabled",
@@ -108,77 +108,86 @@ console.log("aboutconfig_menu.uc.js");
                 {  val: true },
             ]
         },
-	
-        {
-            name: "🌐 IPv6 ausschalten",
+    
+    {
+            name: "🔏 eval erlauben - verbieten",
             type: prefs.PREF_BOOL,
-            pref: "network.dns.disableIPv6",
+            pref: "security.allow_unsafe_dangerous_privileged_evil_eval",
             possibleVals: [
-                {  val: false },
-                {  val: true },
+                {  val: false  },
+                {  name: "true ⚠️",  val: true , sign: '‼️' },
             ]
-        },
-        {
-            name: "🔐 DNS Modus",
-            type: prefs.PREF_INT,
-            pref: "network.trr.mode",
-            possibleVals: [
-                { name: "0 - Default" , val: 0 },
-                { name: "2 - DoH, fallback Plain DNS" , val: 2 },
-                { name: "3 - DoH only" , val: 3 }, 
-                { name: "5 - Plain DNS" , val: 5 }
-            ]
-        },
-        {
-            name: "🔐 DoH server",
-            type: prefs.PREF_STRING,
-            pref: "network.trr.uri",
-            possibleVals: [
-                { name: "Cloudflare" , val: "https://mozilla.cloudflare-dns.com/dns-query" },
-                { name: "NextDNS" , val: "https://firefox.dns.nextdns.io/" }
-            ] // See buildin DoH at 'network.trr.resolvers'
-        },
-        {
-            name: "🔏 Veraltete TLS Version aktivieren",
-            type: prefs.PREF_BOOL,
-            pref: "security.tls.version.enable-deprecated",
-            possibleVals: [
-                { val: false  },
-                { name: "true ⚠️",  val: true , sign: '‼️'},
-            ]
-        },
-
-        "seperator",    
-        {
-            name: "🖱️ Mausrad-Y-Multiplikator",
-            type: prefs.PREF_INT,
-            pref: "mousewheel.default.delta_multiplier_y",
-            possibleVals: [
-                { val: 150 },
-            ]
-        },
-        {
-            name: "🖱️ Vertikaler Faktor des Systembildlaufes",
-            type: prefs.PREF_INT,
-            pref: "mousewheel.system_scroll_override.vertical.factor",
-            possibleVals: [
-                { val: 250 },
-            ]
-        },
-
-
-        "seperator",    
-        {
-            name: "▶️ Autoplay Medien Standard",
-            type: prefs.PREF_INT,
-            pref: "media.autoplay.default",
-            possibleVals: [
-                { val: 0, name: "0 - allow" },
-                { val: 1, name: "1 - blockAudible 👍" },
-                { val: 5, name: "5 - blockAll" },
-            ]
-        },
-		{
+    },
+    {
+        name: "🌐 IPv6 ausschalten",
+        type: prefs.PREF_BOOL,
+        pref: "network.dns.disableIPv6",
+        possibleVals: [
+            {  val: false },
+            {  val: true },
+        ]
+    },
+    {
+        name: "🔐 DNS Modus",
+        type: prefs.PREF_INT,
+        pref: "network.trr.mode",
+        possibleVals: [
+            { name: "0 - Default" , val: 0 },
+            { name: "2 - DoH, fallback Plain DNS" , val: 2 },
+            { name: "3 - DoH only" , val: 3 }, 
+            { name: "5 - Plain DNS" , val: 5 }
+        ]
+    },
+    {
+        name: "🔐 DoH server",
+        type: prefs.PREF_STRING,
+        pref: "network.trr.uri",
+        possibleVals: [
+            { name: "Cloudflare" , val: "https://mozilla.cloudflare-dns.com/dns-query" },
+            { name: "NextDNS" , val: "https://firefox.dns.nextdns.io/" }
+        ] // See buildin DoH at 'network.trr.resolvers'
+    },
+    {
+        name: "🔏 Veraltete TLS Version aktivieren",
+        type: prefs.PREF_BOOL,
+        pref: "security.tls.version.enable-deprecated",
+        possibleVals: [
+            { val: false  },
+            { name: "true ⚠️",  val: true , sign: '‼️'},
+        ]
+    },
+    
+        "seperator",
+    {
+        name: "🖱️ Mausrad-Y-Multiplikator",
+        type: prefs.PREF_INT,
+        pref: "mousewheel.default.delta_multiplier_y",
+        possibleVals: [
+            { val: 150 },
+        ]
+    },
+    {
+        name: "🖱️ Vertikaler Faktor des Systembildlaufes",
+        type: prefs.PREF_INT,
+        pref: "mousewheel.system_scroll_override.vertical.factor",
+        possibleVals: [
+            { val: 250 },
+        ]
+    },
+    
+    
+        "seperator",
+    {
+        name: "▶️ Autoplay Medien Standard",
+        type: prefs.PREF_INT,
+        pref: "media.autoplay.default",
+        possibleVals: [
+            { val: 0, name: "0 - allow" },
+            { val: 1, name: "1 - blockAudible 👍" },
+            { val: 5, name: "5 - blockAll" },
+        ]
+    },
+    {
             name: "📺 Videos gesperrt - Videos frei",
             type: prefs.PREF_BOOL,
             pref: "media.mediasource.enabled",
@@ -186,67 +195,71 @@ console.log("aboutconfig_menu.uc.js");
                 {  val: false  },
                 {  val: true },
             ]
-        },
-        {
-            name: "▶️ Media Autoplay ext bg",
-            type: prefs.PREF_BOOL,
-            pref: "media.autoplay.allow-extension-background-pages",
-            possibleVals: [
-                {  val: false  },
-                {  val: true },
-            ]
-        },
-        {
-            name: "▶️ Richtlinien zur Sperrung von Autoplay-Medien",
-            type: prefs.PREF_INT,
-            pref: "media.autoplay.blocking_policy",
-            possibleVals: [
-                { val: 0, name: "0 - no block" },
-                { val: 1, name: "1 - block 👍" },
-                { val: 2, name: "2 - block more" },
-                // 0=sticky (default), 1=transient, 2=user
-            ]
-        },
-        {
-            name: "▶️ InternetAudio",
-            type: prefs.PREF_BOOL,
-            pref: "dom.webaudio.enabled",
-            possibleVals: [
-                {  val: false },
-                {  val: true  ,  sign: '‼️' , warnbadge: true},
-            ]
-        },
+    },
+    {
+        name: "▶️ Media Autoplay ext bg",
+        type: prefs.PREF_BOOL,
+        pref: "media.autoplay.allow-extension-background-pages",
+        possibleVals: [
+            {  val: false  },
+            {  val: true },
+        ]
+    },
+    {
+        name: "▶️ Richtlinien zur Sperrung von Autoplay-Medien",
+        type: prefs.PREF_INT,
+        pref: "media.autoplay.blocking_policy",
+        possibleVals: [
+            { val: 0, name: "0 - no block" },
+            { val: 1, name: "1 - block 👍" },
+            { val: 2, name: "2 - block more" },
+            // 0=sticky (default), 1=transient, 2=user
+        ]
+    },
+    {
+        name: "▶️ InternetAudio",
+        type: prefs.PREF_BOOL,
+        pref: "dom.webaudio.enabled",
+        possibleVals: [
+            {  val: false },
+            {  val: true  ,  sign: '‼️' , warnbadge: true},
+        ]
+    },
 
         "seperator",    
-        {
-            name: "🔤 Benutzerdefinierte Web-Schriften zulassen",
-            type: prefs.PREF_INT,
-            pref: "browser.display.use_document_fonts",
-            possibleVals: [
-                { name: "1 - Allow", val: 1 },
-                { name: "0 - Disallow", val: 0 },
-            ]
-        },
-         {
-            name: "💻 Keine Popup Anmeldung für Browser-Werkzeuge",
-            type: prefs.PREF_BOOL,
-            pref: "devtools.debugger.prompt-connection",
-            possibleVals: [
-                {  val: true  },
-                { name: "false ⚠️",   val: false , sign: '‼️' },
-            ]
-        },       
-        {
-            name: "🔏 Tooltips aktivieren - deaktivieren",
-            type: prefs.PREF_BOOL,
-            pref: "browser.chrome.toolbar_tips",
-            possibleVals: [
-                {  val: false  },
-                {  val: true },
-            ]
-        },
+    {
+        name: "🔤 Benutzerdefinierte Web-Schriften zulassen",
+        type: prefs.PREF_INT,
+        pref: "browser.display.use_document_fonts",
+        possibleVals: [
+            { name: "1 - Allow", val: 1 },
+            { name: "0 - Disallow", val: 0 },
+        ]
+    },
+    {
+        name: "💻 Keine Popup Anmeldung für Browser-Werkzeuge",
+        type: prefs.PREF_BOOL,
+        pref: "devtools.debugger.prompt-connection",
+        possibleVals: [
+            {  val: true  },
+            { name: "false ⚠️",   val: false , sign: '‼️' },
+        ]
+    },       
+    {
+        name: "🔏 Tooltips aktivieren - deaktivieren",
+        type: prefs.PREF_BOOL,
+        pref: "browser.chrome.toolbar_tips",
+        possibleVals: [
+            {  val: false  },
+            {  val: true },
+        ]
+    },
     ];
     
+    if (!window.gBrowser){
+    return;
+    }
+
     CustomizableUI.createWidget({
         id: 'aboutconfig-button', // button id
         type: "custom",
