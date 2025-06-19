@@ -20,7 +20,7 @@ console.log("aboutconfig_menu.uc.js");
     const sss = Components.classes["@mozilla.org/content/style-sheet-service;1"].getService(Components.interfaces.nsIStyleSheetService);
     // ---------------------------------------------------------------------------------------
     
-    const button_label = "about:config shortcut menu";
+    const button_label = "about:config Kontextmenü";
     const cssuri_icon = Services.io.newURI("data:text/css;charset=utf-8," + encodeURIComponent(`
             toolbarbutton#aboutconfig-button .toolbarbutton-icon {
                 list-style-image: url("data:image/svg+xml;base64,PCEtLSBUaGlzIFNvdXJjZSBDb2RlIEZvcm0gaXMgc3ViamVjdCB0byB0aGUgdGVybXMgb2YgdGhlIE1vemlsbGEgUHVibGljCiAgIC0gTGljZW5zZSwgdi4gMi4wLiBJZiBhIGNvcHkgb2YgdGhlIE1QTCB3YXMgbm90IGRpc3RyaWJ1dGVkIHdpdGggdGhpcwogICAtIGZpbGUsIFlvdSBjYW4gb2J0YWluIG9uZSBhdCBodHRwOi8vbW96aWxsYS5vcmcvTVBMLzIuMC8uIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGZpbGw9ImNvbnRleHQtZmlsbCIgZD0iTTEzLjkgOS44MWExLjIzIDEuMjMgMCAwIDAgMC0uMTd2LS4wOGE1LjY3IDUuNjcgMCAwIDAtMi40LTMuMzYgMS4xNyAxLjE3IDAgMCAxLS41Ni0uOTVWM2ExIDEgMCAwIDAtMS0xSDYuMDZhMSAxIDAgMCAwLTEgMXYyLjI1YTEuMTcgMS4xNyAwIDAgMS0uNTYgMSA1LjY2IDUuNjYgMCAwIDAtMi4zNSAzLjMzdi4xMmEuNTMuNTMgMCAwIDAgMCAuMTEgNS4zNSA1LjM1IDAgMCAwLS4xMSAxIDUuNjUgNS42NSAwIDAgMCAzLjI0IDUuMDkgMSAxIDAgMCAwIC40NC4xaDQuNTdhMSAxIDAgMCAwIC40NC0uMUE1LjY1IDUuNjUgMCAwIDAgMTQgMTAuODNhNS4zIDUuMyAwIDAgMC0uMS0xLjAyem0tOC4yNy0yYTMuMTggMy4xOCAwIDAgMCAxLjQzLTIuNlY0aDEuODh2MS4yNWEzLjE4IDMuMTggMCAwIDAgMS40MyAyLjYgMy42OCAzLjY4IDAgMCAxIDEuNTQgMi4yNHYuMjJhMi44MiAyLjgyIDAgMCAxLTMuNjgtLjU5QTMuNDggMy40OCAwIDAgMCA0LjU2IDlhMy43NiAzLjc2IDAgMCAxIDEuMDctMS4xNXoiPjwvcGF0aD48L3N2Zz4=");
