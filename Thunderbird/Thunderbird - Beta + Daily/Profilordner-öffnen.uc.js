@@ -8,18 +8,17 @@
     var props = {
             id: 'profilefolder-ToolBarButton',
             class: 'toolbarbutton-1',
-            label: 'Profilordner',
+            label: '',
             tooltiptext: 'Profilordner öffnen',
             style: 'list-style-image: url("file:///F:/Adaten/Downloads/Firefox/Thunderbird/Thunderbird Setup 102.0.3/Profilordner/chrome/icons/Profil-Folder.png")',
-            onclick: 'if (event.button == 0) { \
-Services.dirsvc.get("ProfD", Ci.nsIFile).launch(); \
-}; '
                 };
-                for (var p in props) toolbarbutton.setAttribute(p, props[p]);
+                for (var p in props) 
+				toolbarbutton.setAttribute(p, props[p]);
+				toolbarbutton.addEventListener('click', event => {
+				if (event.button == 0) {Services.dirsvc.get("ProfD", Ci.nsIFile).launch()
+                 }
+				});	
 
-    var toolbox = document.getElementById("mail-toolbox");
-    toolbox.palette.appendChild(toolbarbutton);    
-
-    var toolbar = document.getElementById("tabbar-toolbar");
-    toolbar.insertItem("profilefolder-ToolBarButton", toolbar.lastChild);
-        })();
+    var position = document.getElementById('unifiedToolbarContent');    
+    position.parentNode.insertBefore(toolbarbutton, position.nextSibling);
+    })();
