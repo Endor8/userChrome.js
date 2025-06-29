@@ -5,7 +5,6 @@
 // ==/Userscript==
 
 (function(win){
-    Components.utils.import("resource://gre/modules/Services.jsm");
 
     function openChromeDirectory() {
       // Get the chrome directory.
