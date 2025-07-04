@@ -283,7 +283,7 @@
         let persToolBar = document.getElementById('PersonalToolbar');
         if(bmbMenu)
             bmbMenu.addEventListener('popupshowing', onPopupShowing );
-        if(bookMenu)-
+        if(bookMenu)
             bookMenu.addEventListener('popupshowing', onPopupShowing );
         if(persToolBar)
             persToolBar.addEventListener('popupshowing', onPopupShowing );
