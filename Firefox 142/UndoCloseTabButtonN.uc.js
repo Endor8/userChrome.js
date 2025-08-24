@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name			UndoCloseTabButtonN
-// @description		Schaltfläche „Geschlossene Tabs wiederherstellen“ in der Symbolleiste und mittlerer Klick auf einen leeren Bereich in der Tab-Leiste, um den zuletzt geschlossenen Tab wiederherzustellen
+// @description		Schaltfläche zum „Geschlossene Tabs wiederherstellen“ in der Symbolleiste und mit Mittelklick auf einen leeren Bereich in der Tab-Leiste, um den zuletzt geschlossenen Tab wiederherzustellen
 // @version			1.2.10
 // @include			main
 // @charset			UTF-8
