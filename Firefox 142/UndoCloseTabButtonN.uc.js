@@ -4,10 +4,10 @@
 // @version			1.2.10
 // @include			main
 // @charset			UTF-8
-// @node			  2025/07/28 Fx141 undoCloseTab() undoCloseWindow() → SessionWindowUI, Fx142 range → removeChild
-// @note        2025/01/21 Fx136
-// @note        2024/10/04 Fx131
-// @note        2023/07/10 Fx115
+// @node            2025/07/28 Fx141 undoCloseTab() undoCloseWindow() → SessionWindowUI, Fx142 range → removeChild
+// @note            2025/01/21 Fx136
+// @note            2024/10/04 Fx131
+// @note            2023/07/10 Fx115
 // @note            2021/12/12 Fx95 SessionStore.getClosedTabData / getClosedWindowData 
 // @note            2022/11/12 Verhalten der linken, mittleren und rechten Taste ändern
 // @note            2021/12/12 Fx95 SessionStore.getClosedTabData / getClosedWindowData Der Rückgabewert wurde von JSON in Array geändert.
