@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name			UndoCloseTabButton - Navbar
-// @description		Schaltfläche „Geschlossene Tabs wiederherstellen“ in der Symbolleiste und mittlerer Klick auf einen leeren Bereich in der Tab-Leiste, um den zuletzt geschlossenen Tab wiederherzustellen
+// @description		Schaltfläche zum „Geschlossene Tabs wiederherstellen“ in der Symbolleiste und mit Mittelklick auf einen leeren Bereich in der Tab-Leiste, um den zuletzt geschlossenen Tab wiederherzustellen
 // @version			1.2.10
 // @include			main
 // @charset			UTF-8
-// @node			      2025/07/28 Fx141 undoCloseTab() undoCloseWindow() → SessionWindowUI, Fx142 range → removeChild
+// @node            2025/07/28 Fx141 undoCloseTab() undoCloseWindow() → SessionWindowUI, Fx142 range → removeChild
 // @note            2025/01/21 Fx136
 // @note            2024/10/04 Fx131
 // @note            2023/07/10 Fx115
