@@ -105,6 +105,3 @@ Video freundlicher Weise von [Zitronella](https://www.camp-firefox.de/forum/them
 - https://github.com/aminomancer/uc.css.js/tree/master/script
 - https://github.com/Aris-t2/CustomJSforFx/tree/master/scripts
 - https://u6.getuploader.com/script/
-     
-       
-<div align='center'><a href='https://www.websitecounterfree.com'><img src='https://www.websitecounterfree.com/c.php?d=4&id=56180&s=12' border='0' alt='Free Website Counter'></a><br / ><small><a href='https://www.websitecounterfree.com' title="Free Website Counter">Free Website Counter</a></small></div>
