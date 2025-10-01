@@ -1,4 +1,4 @@
-/* UserCSSLoader 2025-09-16
+/* UserCSSLoader 2025-09-30
  *
  * original author: Griever -
  * https://github.com/Griever/userChromeJS/tree/master/UserCSSLoader
@@ -73,7 +73,7 @@ let position = 0;//1
 /* Dateimanager festlegen, Beispiele:
  *    let fileManager = "C:\\Programme\\FreeCommanderXE\\FreeCommander.exe";
  *    let fileManager = "C:\\Programme\\totalcmd\\TOTALCMD.EXE";
- * auch möglich:
+ * auch möglich (Achtung, nur mit fileManagerParam = "/select,"!):
  *    let fileManager = "C:\\Windows\\explorer.exe";
  * Bleibt Parameter leer, wird Standardmanager des Systems ohne Parameter
  * verwendet mit leicht eingeschränkter Funktionalität. */
@@ -404,7 +404,7 @@ window.UCL = {
 				process.run(false, args, args.length);
 	},
 	openCSSFolder:function(){
-		if (fileManager !== "" && fileManager !== "/select,") {
+		if (fileManager !== "" && fileManagerParam !== "/select,") {
 				let target = this.FOLDER.path;
 				let file = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
 				let process = Cc['@mozilla.org/process/util;1'].createInstance(Ci.nsIProcess);
@@ -420,7 +420,7 @@ window.UCL = {
 		}
 	},
 	openCHRMFolder:function(){
-		if (fileManager !== "" && fileManager !== "/select,") {
+		if (fileManager !== "" && fileManagerParam !== "/select,") {
 				let target = this.CHRMFOLDER.path;
 				let file = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
 				let process = Cc['@mozilla.org/process/util;1'].createInstance(Ci.nsIProcess);
