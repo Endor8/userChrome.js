@@ -7,7 +7,6 @@ Es muss nur mit einem entsprechenden CSS Code geladen werden.
 # Beispiel CSS Code: #     
     
 ```CSS
-@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 @-moz-document url(chrome://browser/content/browser.xhtml){
 
 #usercssloader-menu-item {
