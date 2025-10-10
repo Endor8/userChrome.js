@@ -1,12 +1,12 @@
-/* UserCSSLoader 2025-09-30
+/* UserCSSLoader 2025-10-10
  *
  * original author: Griever -
  * https://github.com/Griever/userChromeJS/tree/master/UserCSSLoader
  *
- * Enhancements and several other changes including German translation
- * and configuration section by users aborix, Endor, bege, Speravir of
- * Camp Firefox forum - https://www.camp-firefox.de/forum/ - latest version:
- * https://www.camp-firefox.de/forum/thema/138814/?postID=1279211#post1279211
+ * Enhancements and several other changes including German translation and
+ * configuration section by users aborix, Endor, bege, Mira_Belle, Speravir
+ * of Camp Firefox forum - https://www.camp-firefox.de/forum/ - latest version:
+ * https://www.camp-firefox.de/forum/thema/138814/?postID=1280726#post1280726
  */
 
 /****** Bedienungsanleitung ******
@@ -93,15 +93,28 @@ let fileManagerParamPost = false;
 let customEditor = "";
 /* Unterordner für die CSS-Dateien */
 let cssFolder = "CSS";
+/* zusätzlich Chrome-Ordner im Untermenü anzeigen (true)
+   oder verstecken (false) */
+let showChrome = true;
 /* Menüeintrag zum Bearbeiten der userChrome.css anzeigen (true)
    oder verstecken (false) */
 let showUserChromeCSS = true;
 /* Menüeintrag zum Bearbeiten der userContent.css anzeigen (true)
    oder verstecken (false) */
 let showUserContentCSS = true;
-/* zusätzlich Chrome-Ordner im Untermenü anzeigen (true)
+/* Menüeintrag zum Bearbeiten der userChromeShadow.css anzeigen (true)
    oder verstecken (false) */
-let showChrome = true;
+let showUserChromeShadowCSS = true;
+/* Menüeintrag zum Bearbeiten der userChrome.js anzeigen (true)
+   oder verstecken (false) */
+let showUserChromeJS = false;
+/* Menüeintrag zum Bearbeiten der pref.js anzeigen (true) oder
+   verstecken (false); Achtung, diese Datei sollte nur zum Ansehen geöffnet
+   werden, bei laufendem Firefox werden Änderungen wieder überschrieben! */
+let showPrefsJS = false;
+/* Menüeintrag zum Bearbeiten der user.js anzeigen (true)
+   oder verstecken (false) */
+let showUserJS = false;
 /***** Ende der Konfiguration *****/
 
 // Wenn beim Start ein weiteres Fenster (zweites Fenster) vorhanden ist, beenden
@@ -229,21 +242,54 @@ window.UCL = {
 				openChromeFolder.addEventListener("command", () => UCL.openCHRMFolder());
 				mp.appendChild(openChromeFolder);
 		}
-		if (showUserChromeCSS || showUserContentCSS)// wenigstens eine der beiden Variablen muss …
-				mp.appendChild($C('menuseparator'));// … true sein, damit Trennlinie angezeigt wird
+		if (showUserChromeCSS || showUserContentCSS || showUserChromeShadowCSS)
+		   // wenigstens eine der Variablen muss "true" sein, …
+				mp.appendChild($C('menuseparator')); // … damit Trennlinie angezeigt wird
 		if (showUserChromeCSS) {
 				let editChromeItem = $C("menuitem", {
 					label: "userChrome.css bearbeiten"
 				});
-				editChromeItem.addEventListener("command", () => UCL.editUserCSS("userChrome.css"));
+				editChromeItem.addEventListener("command", () => UCL.editUCFile("userChrome.css"));
 				mp.appendChild(editChromeItem);
 		}
 		if (showUserContentCSS) {
 				let editContentItem = $C("menuitem", {
 					label: "userContent.css bearbeiten"
 				});
-				editContentItem.addEventListener("command", () => UCL.editUserCSS("userContent.css"));
+				editContentItem.addEventListener("command", () => UCL.editUCFile("userContent.css"));
 				mp.appendChild(editContentItem);
+		}
+		if (showUserChromeShadowCSS) {
+				let editUCShadowItem = $C("menuitem", {
+					label: "userChromeShadow.css bearbeiten"
+				});
+				editUCShadowItem.addEventListener("command", () => UCL.editUCFile("userChromeShadow.css"));
+				mp.appendChild(editUCShadowItem);
+		}
+
+		if (showUserChromeJS || showPrefsJS || showUserJS)
+		   // wenigstens eine der Variablen muss "true" sein, …
+			mp.appendChild($C('menuseparator')); // … damit Trennlinie angezeigt wird
+		if (showUserChromeJS) {
+				let editUCjsItem = $C("menuitem", {
+					label: "userChrome.js bearbeiten"
+				});
+				editUCjsItem.addEventListener("command", () => UCL.editUCFile("userChrome.js"));
+				mp.appendChild(editUCjsItem);
+		}		
+		if (showPrefsJS) {
+			let editPrefsItem = $C("menuitem", {
+				label: "prefs.js bearbeiten"
+			});
+			editPrefsItem.addEventListener("command", () => UCL.editProfileFile("prefs.js"));
+			mp.appendChild(editPrefsItem);
+		}
+		if (showUserJS) {
+			let editUserJsItem = $C("menuitem", {
+				label: "user.js bearbeiten"
+			});
+			editUserJsItem.addEventListener("command", () => UCL.editProfileFile("user.js"));
+			mp.appendChild(editUserJsItem);
 		}
 
 		CustomizableUI.createWidget({
@@ -435,9 +481,14 @@ window.UCL = {
 				this.CHRMFOLDER.launch();
 		}
 	},
-	editUserCSS: function(aLeafName) {
+	editUCFile: function(aLeafName) {
 		let file = Services.dirsvc.get("UChrm", Ci.nsIFile);
 		file.appendRelativePath(aLeafName);
+		this.edit(file);
+	},
+	editProfileFile: function(filename) {
+		let file = Services.dirsvc.get("ProfD", Ci.nsIFile);
+		file.append(filename);
 		this.edit(file);
 	},
 	edit: function(aFile) {
