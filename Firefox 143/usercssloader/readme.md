@@ -1,10 +1,12 @@
 
 ## Icon für Symbolleiste ##
-Zwei Symbole stehen hier im Icons Ordner zur Verfügung.
-Es kann aber jedes nach Wahl verwendet werden.
-Es muss mit einem eigenen CSS Code geladen werden.
-#Beispiel CSS Code:#
-
+Zwei Symbole stehen hier im Icons Ordner zur Verfügung.    
+Es kann aber jedes nach Wahl verwendet werden.    
+Es muss mit einem entsprechenden CSS Code geladen werden.    
+      
+# Beispiel CSS Code: #     
+    
+```CSS
 @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
 @-moz-document url(chrome://browser/content/browser.xhtml){
 
@@ -28,11 +30,11 @@ Es muss mit einem eigenen CSS Code geladen werden.
 	height: calc(2 * var(--toolbarbutton-inner-padding) + 16px);
 }
 }
+```
+#### Direkter Download CSS Code: **⇒** [css-Symbol.css](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/css-Symbol.css).    
 
-#### Direkter Download: **⇒** [css-Symbol.css](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/css-Symbol.css)
-
-Icons:
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/css.png?raw=true) 
-
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/CSS1.png?raw=true) 
-
+Icons:      
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/css.png?raw=true)     
+    
+![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/CSS1.png?raw=true)     
+    
