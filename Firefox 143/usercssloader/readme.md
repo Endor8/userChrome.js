@@ -2,7 +2,7 @@
 ## Icon für Symbolleiste ##
 Zwei Symbole stehen hier im Icons Ordner zur Verfügung.    
 Es kann aber jedes nach Wahl verwendet werden.    
-Es muss mit einem entsprechenden CSS Code geladen werden.    
+Es muss nur mit einem entsprechenden CSS Code geladen werden.    
       
 # Beispiel CSS Code: #     
     
