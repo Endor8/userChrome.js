@@ -33,8 +33,7 @@ Es muss mit einem entsprechenden CSS Code geladen werden.
 ```
 #### Direkter Download CSS Code: **⇒** [css-Symbol.css](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/css-Symbol.css).    
 
-Icons:      
+**Symbole:**      
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/css.png?raw=true)     
-    
 ![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/CSS1.png?raw=true)     
     
