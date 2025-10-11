@@ -1,10 +1,10 @@
 ## Usercssloader.uc.js Script ##
       
 ## Icon für Symbolleiste ##
-Zwei Symbole stehen hier im Icons Ordner zur Verfügung.    
-Es kann aber jedes nach Wahl verwendet werden.    
-Es muss nur mit einem entsprechenden CSS Code geladen werden.    
-      
+Zwei Symbole stehen hier im Icons Ordner zur Verfügung.\
+Es kann aber jedes Symbol nach Wahl verwendet werden.\
+Es muss nur mit einem entsprechenden CSS-Code geladen werden.
+
 ## Beispiel CSS-Code: ##
     
 ```CSS
@@ -33,7 +33,7 @@ Es muss nur mit einem entsprechenden CSS Code geladen werden.
 ```
 #### Direkter Download CSS-Code: **⇒** [css-Symbol.css](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/css-Symbol.css).    
 
-Wird CSS1.png verwendet, muss entweder sie selbst in CSS.png umbenannt werden    
+Wird CSS1.png verwendet, muss entweder sie selbst in CSS.png umbenannt werden\
 oder der Aufruf in der CSS-Datei zu CSS1.png geändert werden.
 
 **Symbole:**\
