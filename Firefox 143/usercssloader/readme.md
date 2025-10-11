@@ -4,7 +4,7 @@ Zwei Symbole stehen hier im Icons Ordner zur Verfügung.
 Es kann aber jedes nach Wahl verwendet werden.    
 Es muss nur mit einem entsprechenden CSS Code geladen werden.    
       
-# Beispiel CSS Code: #     
+# Beispiel CSS-Code: #     
     
 ```CSS
 @-moz-document url(chrome://browser/content/browser.xhtml){
@@ -30,9 +30,14 @@ Es muss nur mit einem entsprechenden CSS Code geladen werden.
 }
 }
 ```
-#### Direkter Download CSS Code: **⇒** [css-Symbol.css](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/css-Symbol.css).    
+#### Direkter Download CSS-Code: **⇒** [css-Symbol.css](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/css-Symbol.css).    
 
-**Symbole:**      
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/css.png?raw=true)     
-![Screenshot](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/CSS1.png?raw=true)     
+Wird CSS1.png verwendet, muss entweder sie selbst in CSS.png umbenannt werden    
+oder der Aufruf in der CSS-Datei zu CSS1.png geändert werden.
+
+**Symbole:**\
+![css.png](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/css.png?raw=true) (Herkunft: [Crystal Project stylesheet.png](https://commons.wikimedia.org/wiki/File:Crystal_Project_stylesheet.png), Crystal Project Icons, Link zu Wikimedia Commons)\
+![CSS1.png](https://github.com/Endor8/userChrome.js/blob/master/Firefox%20143/usercssloader/icons/CSS1.png?raw=true) (Herkunft: [CSS text representation (short).png](https://commons.wikimedia.org/wiki/File:CSS_text_representation_(short).png), Wikimedia Commons)   
+
+Für weitere Symbole siehe beispielsweise in Wikimedia Commons in der Kategorie [Cascading Style Sheets icons](https://commons.wikimedia.org/wiki/Category:Cascading_Style_Sheets_icons).
     
