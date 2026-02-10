@@ -28,9 +28,9 @@ In allen geöffneten Wetterfenstern kann mit den Pfeiltasten der Tastatur gescro
 "Yet Another Smooth Scrolling" klappt das Scrollen auch mit dem Mausrad.
 
 ## Installation
-Kopiere die uc.js-Datei in den Chromeordner des Profils, die Symbol Datei **Wetter.pdf** in den Iconsordner im Chromeordner und füge den Button     
-zur gewünschten Symbolleiste hinzu, indem du ihn per **Anpassen** an die gewünschte Stelle ziehst. Der Throbber kann durch Änderung von   
-`wfthrobber` eingestellt werden.
+Kopiere die uc.js-Datei in den Chromeordner des Profils, die Symbol Datei **Wetter.pdf** in den Iconsordner im Chromeordner und füge den    
+Button zur gewünschten Symbolleiste hinzu, indem du ihn per **Anpassen** an die gewünschte Stelle ziehst. Der Throbber kann durch Änderung    
+von `wfthrobber` eingestellt werden.
 
 Die zu öffnenden Seiten werden im Objekt `urlobj` ab **Zeile 10** angegeben. Neben dem Bezeichner werden die Adresse (url), Breite (width) und 
 Höhe (width) eingetragen. Anhand des Bezeichners ist zu erkennen, welche Aktion bzw. welcher Menüpunkt definiert wird. Es folgt eine Auswahl der 
