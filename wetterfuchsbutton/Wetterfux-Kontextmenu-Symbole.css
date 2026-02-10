@@ -1,13 +1,9 @@
-@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
-@namespace html url('http://www.w3.org/1999/xhtml');
-
 /*Wetterfuchs Button*/
 
 @-moz-document url-prefix("chrome://browser/content/browser.xhtml"){
 	
 #wetterfuchs-toolbarbutton .toolbarbutton-menu-dropmarker {
-    display: none ! important;}
-   
+    display: none ! important;}   
    
     menu[label="DE Wetterdaten"]{
     appearance:none!important;
@@ -727,4 +723,5 @@
 	padding-left:28px!important;
 	background-position:6px 8px!important;	
     }   
+
     }
