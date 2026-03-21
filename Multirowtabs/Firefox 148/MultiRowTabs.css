@@ -1,0 +1,259 @@
+ /***********************************************************************
+ * MultiRowTabs – Tab- New-Tab-Button- und Close-Button - Anpassungen
+ * (Script selbst enthält nur Logik)
+ ***********************************************************************/
+
+/* Grundeinstellungen: Tabhöhe */
+#tabbrowser-tabs {
+  --tab-min-height: 24px;  /* Gesamthöhe eines Tabs */
+  min-height: 0 !important; /* interne Mindesthöhe der Tab-Leiste aufheben */
+}
+
+/* linker Abstand der Tabs */
+#tabbrowser-tabs arrowscrollbox#tabbrowser-arrowscrollbox tab.tabbrowser-tab stack.tab-stack vbox.tab-background {
+  margin-left: -2px !important;
+}
+
+/* Maximal 3 Zeilen Tabs sichtbar; Rest per Scrollbar / Änderungen immer hier und im Script
+   (3 = nTabLines aus dem Script) */
+#tabbrowser-arrowscrollbox {
+  max-height: calc( (var(--tab-min-height) + 2px) * 3 ) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  margin-inline-start: 2px !important;
+}
+
+/* Tab-Höhe + Zeilenabstand (wirkt auf jede Zeile im MultiRow) */
+.tabbrowser-tab,
+.tabbrowser-tab .tab-stack,
+.tabbrowser-tab .tab-background {
+  min-height: var(--tab-min-height) !important;
+  max-height: var(--tab-min-height) !important;
+  margin-top: 0 !important;
+  margin-bottom: 1px !important;  /* Abstand zwischen den Tab-Zeilen */
+}
+
+/* Tab-Breite (fix) */
+.tabbrowser-tab[fadein]:not([pinned]) {
+  min-width: 271px !important;
+  max-width: 350px !important;  /* gleiche Werte = feste Breite */
+}
+
+/* Tabs mittig */
+#tabbrowser-tabs:not([overflow], [orient="vertical"]) .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
+    margin-left: auto !important;
+}
+#tabbrowser-tabs:not([overflow], [orient="vertical"]) #tabbrowser-arrowscrollbox-periphery {
+    margin-right: auto !important;
+}
+
+/* Tab-Gruppen einklappen */
+tab-group[collapsed] .tabbrowser-tab[fadein]:not([pinned]){
+ min-width: 30px !important;
+}	
+
+#tabbrowser-tabs tab-split-view-wrapper {
+  & .tabbrowser-tab {   
+    min-width: 100px !important;
+    max-width: 150px !important;  
+}
+  }  
+
+/* Schrift inaktive Tabs */
+.tabbrowser-tab .tab-label {
+  font-family: Arial, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: rgb(20,20,20) !important;
+  opacity: .7 !important;  
+}
+
+/* Aktiver / multiselektierter Tab – Schriftfarbe */
+.tabbrowser-tab[selected] .tab-label,
+.tabbrowser-tab[multiselected] .tab-label {
+  color: rgb(0, 0, 255) !important;
+  font-weight: 600 !important;
+  opacity: 1 !important; 
+}
+
+/* Tabtext zentriert */
+.tab-label-container {
+  height: unset !important;
+  display: grid !important;
+  justify-items: safe center !important;
+  justify-content: safe center !important;
+}
+.tab-label {
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+
+/* Keine abgerundeten Ecken, mit Rahmen */
+#TabsToolbar .tabbrowser-tab .tab-background {
+  border-radius: 0 !important;
+  border: 1px solid grey !important; 
+}
+
+/* Nicht ausgewählter Tab / Farben – Pastell-Blau-Schema */
+.tabbrowser-tab:not([selected]) .tab-background {
+  background-image: linear-gradient(
+    rgba(242,246,252,1),   /* oben */
+    rgba(225,233,246,1)    /* unten */
+  ) !important;
+}
+
+/* Ausgewählter Tab */
+.tabbrowser-tab[selected] .tab-background {
+  background-image: linear-gradient(
+    rgba(225,235,255,1),   /* oben */
+    rgba(190,210,245,1)    /* unten */
+  ) !important;
+}
+
+/* Hover auf inaktivem Tab */
+.tabbrowser-tab:not([selected]):hover .tab-background {
+  filter: brightness(1.06) !important;
+}
+
+/* Tab-Leisten-Hintergrund */
+#TabsToolbar {
+  background-image: linear-gradient(
+    rgba(235,242,255,1),
+    rgba(215,225,245,1)
+  ) !important;
+}
+
+/* FavIcon-Größe (optional, kann angepasst werden) */
+.tabbrowser-tab .tab-icon-image {
+  width: 16px !important;
+  height: 16px !important;
+  margin-left: -3px !important;
+}
+
+/*=== Tab-Close-Button ** nur zu sehen bei Mouseover ===*/
+
+/* Tab X close buttons ( links -1 / rechts 2 ) */                                                                                          
+.tab-close-button {
+  order: 2 !important; 
+  margin-right: -8px !important;
+}
+
+/* Farbe der X-Markierung ändern */
+.tab-close-button {
+  fill: grey !important;
+  transform: scale(1.3, 1.3) !important;
+  display: block !important;
+  opacity: 0 !important;
+}
+	
+.tabbrowser-tab:hover .tab-close-button {
+  opacity: 1 !important;
+  color: red !important;
+  display: block !important;
+  background: none !important;
+}
+	
+/*Tab schließen Button verschoben bei Tabstext mittig*/
+.tabbrowser-tab > .tab-stack > .tab-content > .tab-close-button {
+  flex-shrink: 0 !important;
+  width: 24px !important;
+  /* display: none !important; */  /* wird total ausgeblendet */
+}
+                                                                                      
+/* close-button ** ENDE */
+
+/*===== New-Tab-Button =====*/
+
+/* Weite für newtab-button */
+#TabsToolbar #tabs-newtab-button{
+  min-width: 0px !important;
+  width: 22px !important;
+  height: 21px !important;
+  margin-top: 2px !important;
+  margin-left: 2px !important;
+}
+#TabsToolbar #tabs-newtab-button:hover {	
+  background-color: #FFF !important;
+  padding: 0px !important;
+  border: 1px solid grey !important; 
+}
+
+/* das Plus-Zeichen */
+#TabsToolbar :is(.tabs-newtab-button,#tabs-newtab-button) .toolbarbutton-icon {
+  margin-bottom: 2px !important;
+  background: unset !important;
+  box-shadow: unset !important;
+  fill: grey !important;
+}
+#TabsToolbar #tabs-newtab-button:hover > image {	
+  fill: red !important;
+}
+
+/*===== New-Tab-Button ** ENDE =====*/
+
+/********************************************
+    * Einfüge-Marker beim Drag&Drop als Punkt
+ ********************************************/
+	
+	/* Referenzrahmen für ::before/::after */
+    .tabbrowser-tab[dnd-marker] {
+       position: relative;
+    }
+
+    .tabbrowser-tab[dnd-marker="left"]::before,
+    .tabbrowser-tab[dnd-marker="right"]::after {
+       position: absolute;
+       top: 50%;
+       transform: translateY(-50%);
+       pointer-events: none;
+       z-index: 1000;
+       content: "";
+       width: 14px;
+       height: 16px;
+       border-radius: 50%;
+       background:
+         radial-gradient(circle at center,
+         #00ffff 0 35%,
+         #1dacd6 36% 60%,
+         rgba(255,255,255,0) 61%);
+       box-shadow: 0 0 3px rgba(255, 90, 82, 0.35);
+    }
+
+    .tabbrowser-tab[dnd-marker="left"]::before {
+       left: -2px;
+	   top: 6px;
+    }
+
+    .tabbrowser-tab[dnd-marker="right"]::after {
+       right: -2px;
+	   top: 6px;
+    }
+	
+/********************************************
+ * Emoji-Einfüge-Marker beim Drag&Drop
+ ********************************************/
+
+/* Referenzrahmen für ::before/::after */
+/* .tabbrowser-tab[dnd-marker] {
+  position: relative;  
+}
+
+.tabbrowser-tab[dnd-marker="left"]::before,
+.tabbrowser-tab[dnd-marker="right"]::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.tabbrowser-tab[dnd-marker="left"]::before {
+  content: "📌";
+  left: -8px;   
+}
+
+.tabbrowser-tab[dnd-marker="right"]::after {
+  content: "📌️";
+  right: -8px;  
+} */
