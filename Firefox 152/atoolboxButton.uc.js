@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name           Toolbox Button
-// @version        1.4.0.1
+// @version        1.4.0.2
 // @author         aminomancer
 // @homepageURL    https://github.com/aminomancer/uc.css.js
+// @note           compatibility to Firefox 152
 // @long-description
 // @description
 /*
