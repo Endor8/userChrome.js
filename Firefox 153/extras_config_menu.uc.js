@@ -3,11 +3,13 @@
 // @name           extras_config_menu.uc.js
 // @compatibility  Firefox 153*.*
 // @include        main
-// @version        1.0.20260810
+// @version        1.0.20260814
 // @edit           @aborix 7/21 CSS Dateien als Untermenü eingefügt
 // @edit           @2002Andreas 8/21 Shadow CSS Dateien als Untermenü + Ordner eingefügt
 // @edit           @BrokenHeart 1/25 Anpass. wg. Änderung der Sicherheitsrichtlinien bei 'inlineEvents'
 // @edit           @Mira 8/26 Anpassung für security.allow_unsafe_dangerous_privileged_evil_eval = false
+// @edit           @Mira 8/26 Anpassung für Userscripte im Unterordner "chrome/scripts", Expliziter Ausschluss von "userChromeShadow.uc.js"
+// @edit           @Mira 8/26 Anpassung für "Skriptliste in Zwischenablage"
 // ==/UserScript==
 */
 
@@ -19,10 +21,13 @@ var uProfMenu = {
   sortScripts: 0,
   gmOrdner: 0,
   cssOrdner: 1,
-  abouts: ['about:about','about:addons','about:cache','about:config','about:crashes','about:downloads','about:home','about:logins','about:memory','about:support','about:preferences','about:performance','about:profiles'],
+  abouts: ['about:about','about:addons','about:cache','about:config','about:crashes',
+           'about:downloads','about:home','about:logins','about:memory','about:support',
+           'about:preferences','about:performance','about:profiles'
+          ],
   showNormalPrefs: 1,
   enableScriptsToClip: 2,
-  enableRestart: 0,
+  enableRestart: 1,
 
   // --- INIT (ANGEPASST) ---
   init: function() {
@@ -44,7 +49,7 @@ var uProfMenu = {
           id: "ExtraConfigMenu-button",
           defaultArea: CustomizableUI.AREA_NAVBAR,
           label: "Extra Config Menü",
-          tooltiptext: "Extra Config Menü\nRechtsklick öffnet about:config"
+          tooltiptext: "Extra Config Menü\nMittelklick öffnet about:config"
         });
       }
       var menu = document.getElementById("ExtraConfigMenu-button");
@@ -56,7 +61,7 @@ var uProfMenu = {
 
       menu.setAttribute("type", "menu");
       menu.addEventListener('click', function(event) {
-        if (event.button == 2 && !this.open) {
+        if (event.button == 1 && !this.open) {
           openTrustedLinkIn("about:config", "tab");
           event.preventDefault();
         }
@@ -281,16 +286,24 @@ var uProfMenu = {
     return dirsep;
   },
 
+  // --- EDIT (changed by Mira) --- 
   edit: function(OpenMode, Filename) {
     var Path = "";
     var dSep = this.getDirSep();
-    switch (OpenMode) {
-      case 0: Path = this.getPrefDirectoryPath("UChrm") + dSep + Filename; break;
-      case 1: Path = this.getPrefDirectoryPath("ProfD") + dSep + Filename; break;
-      case 2: Path = Filename; break;
-      case 3: Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSS" + dSep + Filename; break;
-      case 4: Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSWeb" + dSep + Filename; break;
-      case 5: Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSShadow" + dSep + Filename; break;
+
+    // --- Pfad-Handling für chrome/scripts/ ---
+    if (Filename.includes("/") || Filename.includes("\\")) {
+      Path = this.getPrefDirectoryPath("ProfD") + dSep + Filename;
+    } else {
+      // Original-Logik
+      switch (OpenMode) {
+        case 0: Path = this.getPrefDirectoryPath("UChrm") + dSep + Filename; break;
+        case 1: Path = this.getPrefDirectoryPath("ProfD") + dSep + Filename; break;
+        case 2: Path = Filename; break;
+        case 3: Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSS" + dSep + Filename; break;
+        case 4: Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSWeb" + dSep + Filename; break;
+        case 5: Path = this.getPrefDirectoryPath("UChrm") + dSep + "CSSShadow" + dSep + Filename; break;
+      }
     }
     this.launch(this.TextOpenExe, Path);
   },
@@ -343,22 +356,45 @@ var uProfMenu = {
     return (a == b) ? 0 : (a > b) ? 1 : -1;
   },
 
-  // --- GETSCRIPTS (unchanged) ---
+  // --- GETSCRIPTS (changed by Mira) ---
   getScripts: function(iType) {
     let ucJsScripts = [];
     let extjs = /\.uc\.js$/i;
-    let aFolder = Cc['@mozilla.org/file/local;1'].createInstance(Ci.nsIFile);
-    aFolder.initWithPath(Services.dirsvc.get("UChrm", Ci.nsIFile).path);
-    let files = aFolder.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
-    while (files.hasMoreElements()) {
-      let file = files.getNext().QueryInterface(Ci.nsIFile);
-      if (extjs.test(file.leafName)) ucJsScripts.push(file.leafName);
+
+    // --- 1. Standard-UChrm-Ordner durchsuchen (ohne userChromeShadow.uc.js) ---
+    let uchrmFolder = Services.dirsvc.get("UChrm", Ci.nsIFile);
+    if (uchrmFolder.exists()) {
+      let files = uchrmFolder.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
+      while (files.hasMoreElements()) {
+        let file = files.getNext().QueryInterface(Ci.nsIFile);
+        if (extjs.test(file.leafName) && file.leafName !== "userChromeShadow.uc.js") {
+          ucJsScripts.push(file.leafName);
+        }
+      }
     }
+
+    // --- 2. chrome/scripts-Ordner durchsuchen (falls vorhanden) ---
+    let chromeScriptsFolder = Services.dirsvc.get("ProfD", Ci.nsIFile);
+    chromeScriptsFolder.append("chrome");
+    chromeScriptsFolder.append("scripts");
+    if (chromeScriptsFolder.exists()) {
+      let files = chromeScriptsFolder.directoryEntries.QueryInterface(Ci.nsISimpleEnumerator);
+      while (files.hasMoreElements()) {
+        let file = files.getNext().QueryInterface(Ci.nsIFile);
+        if (extjs.test(file.leafName)) {
+          ucJsScripts.push("chrome/scripts/" + file.leafName); // Pfad-Präfix für spätere Verarbeitung
+        }
+      }
+    }
+
     if (this.sortScripts) ucJsScripts.sort(this.stringComparison);
+
     if (iType == 0) {
       this.fillMenu("submenu-ucjs", "submenu-ucjs-items", "Meine Scripte", ucJsScripts, "uProfMenu_ucjs", 0);
     } else {
-      var result = this.fillClipboardValue(ucJsScripts, []);
+      // Für Zwischenablage: Nur Dateinamen (ohne Pfad) verwenden
+      var simpleNames = ucJsScripts.map(f => f.split(/[\\/]/).pop());
+      var result = this.fillClipboardValue(simpleNames, []);
       Components.classes["@mozilla.org/widget/clipboardhelper;1"].getService(Components.interfaces.nsIClipboardHelper).copyString(result);
     }
   },
@@ -394,16 +430,22 @@ var uProfMenu = {
       (function(index) {
         var fileName = scriptArray[index];
         var mitem;
+
+        // Korrektur durch Mira
         if (sTyp == 0) {
           mitem = uProfMenu.createME("menuitem", fileName, null, sClass, 0);
+          // Extrahiere Dateinamen für Anzeige (z. B. "chrome/scripts/test.uc.js" → "test.uc.js")
+          var displayName = fileName.split(/[\\/]/).pop();
+          mitem.setAttribute('label', displayName);
           mitem.addEventListener('command', function() {
-            uProfMenu.edit(0, fileName);
+            uProfMenu.edit(0, fileName); // Original-Pfad (mit Präfix) an edit() übergeben
           }, true);
           mitem.addEventListener('click', function(event) {
-            uProfMenu.openAtGithub(event, fileName);
+            uProfMenu.openAtGithub(event, displayName);
           }, true);
-          mitem.setAttribute("tooltiptext", "Linksklick: Bearbeiten,\nMittelklick: https://github.com/.../" + uProfMenu.cleanFileName(fileName) + " öffnen,\nRechtsklick: Suche auf GitHub");
+          mitem.setAttribute("tooltiptext", "Linksklick: Bearbeiten,\nMittelklick: https://github.com/.../" + uProfMenu.cleanFileName(displayName) + " öffnen,\nRechtsklick: Suche auf GitHub");
         }
+        // Korrektur ENDE
         else if (sTyp == 1) {
           mitem = uProfMenu.createME("menuitem", fileName, function() {
             openTrustedLinkIn(fileName, 'tab');
@@ -429,28 +471,11 @@ var uProfMenu = {
     }
   },
 
-  // --- FILLCLIPBOARDVALUE (unchanged) ---
-  fillClipboardValue: function(sArray, xArray) {
-    var retValue;
-    var s = sArray.length;
-    var x = xArray.length;
-    switch(this.enableScriptsToClip) {
-      case 1:
-        retValue = "userChromeJS/uc.js ("+s+"):\n------------------------\n"+sArray.join("\n")+"\n\nuserChromeJS/uc.xul ("+x+"):\n-------------------------\n"+xArray.join("\n");
-        break;
-      default:
-        retValue = "userChromeJS/uc.js ("+s+"):\n------------------------";
-        for (var i = 0; i < s; i++) {
-          j = i + 1;
-          retValue = retValue + "\n" + j + ". " + sArray[i];
-        }
-        retValue = retValue + "\n\nuserChromeJS/uc.xul ("+x+"):\n-------------------------";
-        if (this.enableScriptsToClip == 2) s = 0;
-        for (var i = 0; i < x; i++) {
-          j = i + s + 1;
-          retValue = retValue + "\n" + j + ". " + xArray[i];
-        }
-        break;
+  // --- FILLCLIPBOARDVALUE (changed by Mira) ---
+  fillClipboardValue: function(sArray) {
+    var retValue = "Meine Skripte (" + sArray.length + "):\n------------------------";
+    for (var i = 0; i < sArray.length; i++) {
+      retValue += "\n" + (i + 1) + ". " + sArray[i];
     }
     return retValue;
   },
