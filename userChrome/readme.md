@@ -67,8 +67,8 @@ oder
 https://github.com/Endor8/userChrome.js/tree/master/userChrome/Dateien
 
 ###### Eine Sammlung von Scripten gibt es hier:
-https://github.com/ardiman/userChrome.js
-ps. Obige Sammlung wird nicht mehr aktalisiert, da der Autor ardiman leider verstorben ist.
+https://github.com/ardiman/userChrome.js      
+Ps. Obige Sammlung wird nicht mehr aktalisiert, da der Autor ardiman leider verstorben ist.
 
 ###### Informationen und Hilfe siehe hier:
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
