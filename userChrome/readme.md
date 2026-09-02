@@ -66,8 +66,9 @@ oder
 ###### Datei ist hier auch zum Herunterladen verfügbar:
 https://github.com/Endor8/userChrome.js/tree/master/userChrome/Dateien
 
-###### Eine aktuelle Sammlung von Scripten gibt es hier:
+###### Eine Sammlung von Scripten gibt es hier:
 https://github.com/ardiman/userChrome.js
+ps. Obige Sammlung wird nicht mehr aktalisiert, da der Autor ardiman leider verstorben ist.
 
 ###### Informationen und Hilfe siehe hier:
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
