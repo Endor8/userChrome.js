@@ -1,6 +1,6 @@
 ### userChrome Scripte -  Verwendung in Firefox    
 
-##### Herunterladen und Entpacken der ZIP-Datei: firefox-anpassungen.zip
+##### Herunterladen und Entpacken der ZIP-Datei: Firefox-anpassungen.zip
 
 #### Das Archiv enthält folgendes:   
 
@@ -68,7 +68,7 @@ https://github.com/Endor8/userChrome.js/tree/master/userChrome/Dateien
 
 ###### Eine Sammlung von Scripten gibt es hier:
 https://github.com/ardiman/userChrome.js      
-Ps. Obige Sammlung wird nicht mehr aktalisiert, da der Autor ardiman leider verstorben ist.
+Ps. Obige Sammlung wird nicht mehr aktualisiert, da der Autor ardiman leider verstorben ist.
 
 ###### Informationen und Hilfe siehe hier:
 https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=112673
