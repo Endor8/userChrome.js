@@ -22,7 +22,7 @@
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
   **Es wird keinerlei Haftung übernommen!**    
   
-#### Direkter Download: **⇒** [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/Firefox-anpassungen.zip)
+#### Direkter Download: **⇒** [Firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/Firefox-anpassungen.zip)
 
 ##### Wo müssen die Dateien hin
 
