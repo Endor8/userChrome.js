@@ -98,7 +98,7 @@ Video freundlicher Weise von [Zitronella](https://www.camp-firefox.de/forum/them
 
 ### Scriptquellen
 - https://www.camp-firefox.de/forum/viewtopic.php?f=16&t=100898
-- https://github.com/ardiman/userChrome.js
+- https://github.com/ardiman/userChrome.js - ***Wird nicht mehr aktualisiert, da der Autor ardiman leider verstorben ist.***   
 - https://github.com/alice0775/userChrome.js
 - https://github.com/benzBrake/FirefoxCustomize/tree/master/userChromeJS
 - https://github.com/sdavidg/firefoxChromeScripts
