@@ -10,7 +10,7 @@ werden nur bei extremen Unterschieden aktualisiert.
 
 ### userChrome Scripte -  Verwendung in Firefox    
 
-##### Herunterladen und Entpacken der ZIP-Datei: firefox-anpassungen.zip
+##### Herunterladen und Entpacken der ZIP-Datei: Firefox-anpassungen.zip
 
 #### Das Archiv enthält folgendes:   
 
@@ -39,7 +39,7 @@ werden nur bei extremen Unterschieden aktualisiert.
   **Verwendung immer nur auf eigene Gefahr - eigenes Risiko!**    
   **Es wird keinerlei Haftung übernommen!**    
   
-#### Direkter Download: **⇒** [firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/firefox-anpassungen.zip)
+#### Direkter Download: **⇒** [Firefox-anpassungen.zip](https://raw.githubusercontent.com/Endor8/userChrome.js/master/userChrome/Dateien/Firefox-anpassungen.zip)
 
 ##### Wo müssen die Dateien hin
 
