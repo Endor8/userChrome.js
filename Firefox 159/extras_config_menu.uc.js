@@ -35,8 +35,8 @@ var uProfMenu = {
   // ■■ START UserConfiguration ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
   // Hier kann der Pfad zum einem Texteditor eintragen werden 
   // (unter Ubuntu 10.04 z.B.: '/usr/bin/gedit'). Bei Fehleintrag wird view_source.editor.path ausgelesen:
-  //TextOpenExe: 'C:\\Program Files (x86)\\Notepad++\\notepad++.exe',
-  TextOpenExe: 'C:\\Program Files\\Microsoft VS Code\\Code.exe',
+  TextOpenExe: 'C:\\Program Files (x86)\\Notepad++\\notepad++.exe',
+  // TextOpenExe: 'C:\\Program Files\\Microsoft VS Code\\Code.exe',
   // Falls gewuenscht, kann hier ein Dateimanager eintragen (komplett leer lassen fuer Dateimanager des Systems) Beispiele:
   // vFileManager: 'E:\\Total Commander\\Totalcmd.exe',
   // vFileManager: 'C:\\Program Files (x86)\\FreeCommander\\FreeCommander.exe'
